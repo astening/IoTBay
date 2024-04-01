@@ -1,15 +1,20 @@
-<%-- 
+<!-- 
     Document   : test
     Created on : 19 Mar 2024, 1:35:29 pm
     Author     : anna
---%>
+
+    Welcome page – Implement the welcome page to retrieve 
+    the posted form-data from register and login. 
+    The welcome page must use JavaBeans and session to transport 
+    the user (registered or logged-in user) data to the main page.
+-->
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Welcome</title>
         <%
             String name = request.getParameter("name");
             String email = request.getParameter("email");

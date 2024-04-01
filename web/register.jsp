@@ -1,8 +1,12 @@
-<%-- 
+<!-- 
     Document   : register.jsp
     Created on : 22 Mar 2024, 1:30:05 pm
     Author     : anna
---%>
+
+    Register page – Implement the register page screen 
+    using web form (e.g. JSP). The register page must post 
+    the form-data to the welcome page.
+-->
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
