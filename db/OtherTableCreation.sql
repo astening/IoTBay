@@ -38,3 +38,15 @@ CREATE TABLE Invoice (
   CONSTRAINT Invoice_PK PRIMARY KEY (InvoiceID),
   CONSTRAINT Invoice_FK FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID)
 );
+
+CREATE TABLE Payment (
+  PaymentID INT(5) NOT NULL,
+  PaymentDate DATE,
+  PaymentAmt Currency,
+  PaymentMethod VARCHAR(20),
+  CardNo INT(10),
+  CVV INT(3),
+  ExpiryDate DATE,
+  CardName VARCHAR(40),
+  CONSTRAINT Payment_PK PRIMARY KEY (PaymentID)
+);
