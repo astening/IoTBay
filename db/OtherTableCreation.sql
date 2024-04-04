@@ -42,7 +42,7 @@ CREATE TABLE Invoice (
 CREATE TABLE Payment (
   PaymentID INT(5) NOT NULL,
   PaymentDate DATE,
-  PaymentAmt Currency,
+  PaymentAmt FLOAT(10),
   PaymentMethod VARCHAR(20),
   CardNo INT(10),
   CVV INT(3),
