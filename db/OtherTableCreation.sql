@@ -1,0 +1,18 @@
+CREATE TABLE AccessLog (
+  LogID INT(5) NOT NULL,
+  UserID INT(6) NOT NULL,
+  LogDate DATE,
+  LogDetails VARCHAR(30),
+  CONSTRAINT AccessLog_PK PRIMARY KEY (LogID),
+  CONSTRAINT AccessLog_FK FOREIGN KEY (UserID) REFERENCES User(UserID))
+);
+
+CREATE TABLE Staff (
+  StaffID INT(5) NOT NULL,
+  StaFName VARCHAR(10),
+  StaLName VARCHAR(10),
+  StaPhoneNo INT(10),
+  StaEmail VARCHAR(20),
+  RoleCode INT(15),
+  CONSTRAINT Staff_PK PRIMARY KEY (StaffID),
+);
