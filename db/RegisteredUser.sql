@@ -1,5 +1,5 @@
 CREATE TABLE RegisteredUser (
-    UserID INT NOT NULL,
+    UserID INT(6) NOT NULL,
     Email VARCHAR(20),
     Password VARCHAR(12),
     IsActive VARCHAR(2),
