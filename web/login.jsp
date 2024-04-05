@@ -9,9 +9,45 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Login</title>
+        <% String email = request.getParameter("email");%>
+        <% String password = request.getParameter("password");%>
     </head>
+
     <body>
-        <h1>Hello World!</h1>
+        <h1>Login</h1>
+        
+        <form action="welcome.jsp" method="post">
+        <table>
+            <tr>
+                <th>
+                    <label for="Email">Email: </label><br>
+                </th>
+                <th>
+                    <input type="text" id="email" name="email"><br>
+                </th>
+            </tr>
+        <table>
+        
+        <table>
+            <tr>
+                <th>
+                    <label for="password">Password: </label><br>
+                </th>
+                <th>
+                    <input type="password" id="password" name="password"><br>
+                </th>
+            </tr>
+        <table>
+
+        <table>
+            <tr>
+                <th>
+                    <input type="submit" value="Register">
+                </th>
+            </tr>
+        <table>
+        </form>
+
     </body>
 </html>
