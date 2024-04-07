@@ -9,13 +9,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="style.css">
         <title>Register</title>
     </head>
     <body>
         <h1>Register Account</h1>
-        <form action="/labs/welcome.jsp" method="post">
-            <label for="email">Email:</label>
-            <input type="text" id="email" name="email" required="true"><br>
+        <form action="welcome.jsp" method="post">
+            <label for="email">Username:</label>
+            <input type="text" id="usernmae" name="username" required="true"><br>
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required="true"><br>
             <input type="submit" value="Submit">
