@@ -14,12 +14,12 @@
     </head>
     <body>
         <% 
-            User user = (User).session.getAttribute("user");
+            User user = (User)session.getAttribute("user");
         %>
         <h1>User Profile</h1>
         <table id="profile_table"> 
-            <thead><th>UserName</th><th>Password</th></thead>
-        <tr><td>${user.username}</td><td>${user.password}</td></tr>            
+            <thead><th>Name</th><th>UserName</th><th>Password</th></thead>
+        <tr><td>${user.name}</td><td>${user.username}</td><td>${user.password}</td></tr>            
         </table>
         <div class="panel_div"> 
             <a class ="button" href="logout.jsp"> Logout </a>

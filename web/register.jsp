@@ -14,9 +14,11 @@
     </head>
     <body>
         <h1>Register Account</h1>
-        <form action="welcome.jsp" method="post">
-            <label for="email">Username:</label>
-            <input type="text" id="usernmae" name="username" required="true"><br>
+        <form action="welcome.jsp" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required="true"><br>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required="true"><br>
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required="true"><br>
             <input type="submit" value="Submit">
