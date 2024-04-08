@@ -13,21 +13,21 @@
         <title>Welcome Page</title>
         <%
             String name = request.getParameter("name");
-            String username = request.getParameter("username");
+            String email = request.getParameter("email");
             String password = request.getParameter("password");
         %>
     </head>
     <body>
         
         <h1>Welcome, <%=name%>!</h1>
-        <h3>Your username is <%=username%></h3>
+        <h3>Your email is <%=email%></h3>
         <p>Your password is <%=password%></p>
         <div class ="panel_div">
             <a class="button" href="index.jsp">Cancel</a>
             <a class="button" href="main.jsp">Main</a>
         </div>
         <%
-            User user = new User(name, username, password);
+            User user = new User(name, email, password);
             session.setAttribute("user", user);
         %>
     </body>

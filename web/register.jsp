@@ -15,13 +15,20 @@
     <body>
         <h1>Register Account</h1>
         <form action="welcome.jsp" method="POST">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required="true"><br>
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required="true"><br>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required="true"><br>
-            <input type="submit" value="Submit">
+            <table>
+                <tr>
+                    <td><label for="name">Name:</label></td>
+                    <td><input type="text" id="name" name="name" required="true"></td>
+                <tr>
+                    <td><label for="email">Email:</label></td>
+                    <td><input type="text" id="email" name="email" required="true"></td>
+                </tr>
+                <tr>
+                    <td><label for="password">Password:</label></td>
+                    <td><input type="password" id="password" name="password" required="true"></td>
+                </tr>
+            </table>
+                <input type="submit" value="Submit">
         </form>
     </body>
 </html>

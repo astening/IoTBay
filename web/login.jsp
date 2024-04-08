@@ -17,38 +17,38 @@
 
     <body>
         <h1>Login</h1>
-        
+
         <form action="welcome.jsp" method="post">
-        <table>
-            <tr>
-                <th>
-                    <label for="Email">Email: </label><br>
-                </th>
-                <th>
-                    <input type="text" id="email" name="email"><br>
-                </th>
-            </tr>
-        <table>
-        
-        <table>
-            <tr>
-                <th>
-                    <label for="password">Password: </label><br>
-                </th>
-                <th>
-                    <input type="password" id="password" name="password"><br>
-                </th>
-            </tr>
-        <table>
+            <table>
+                <tr>
+                    <th>
+                        <label for="Email">Email: </label><br>
+                    </th>
+                    <th>
+                        <input type="text" id="email" name="email"><br>
+                    </th>
+                </tr>
+                <table>
 
-        <table>
-            <tr>
-                <th>
-                    <input type="submit" value="Register">
-                </th>
-            </tr>
-        <table>
-        </form>
+                    <table>
+                        <tr>
+                            <th>
+                                <label for="password">Password: </label><br>
+                            </th>
+                            <th>
+                                <input type="password" id="password" name="password"><br>
+                            </th>
+                        </tr>
+                        <table>
 
-    </body>
-</html>
+                            <table>
+                                <tr>
+                                    <th>
+                                        <input type="submit" value="Register">
+                                    </th>
+                                </tr>
+                                <table>
+                                    </form>
+
+                                    </body>
+                                    </html>

@@ -18,9 +18,9 @@
         %>
         <h1>User Profile</h1>
         <table id="profile_table"> 
-            <thead><th>Name</th><th>UserName</th><th>Password</th></thead>
-        <tr><td>${user.name}</td><td>${user.username}</td><td>${user.password}</td></tr>            
-        </table>
+            <thead><th>Name</th><th>Email</th><th>Password</th></thead>
+        <tr><td>${user.name}</td><td>${user.email}</td><td>${user.password}</td></tr>            
+         </table>
         <div class="panel_div"> 
             <a class ="button" href="logout.jsp"> Logout </a>
         </div>
