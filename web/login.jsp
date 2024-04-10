@@ -17,23 +17,21 @@
 
     <body>
         <h1>Login</h1>
-
         <form action="welcome.jsp" method="post">
             <table>
                 <tr>
-                <label for="Email">Email: </label>
-                <input type="text" id="email" name="email">
+                    <td><label for="Email">Email: </label></td>
+                    <td><input type="text" id="email" name="email"></td>
                 </tr>
                 <tr>
-                   <label for="password">Password: </label><br>
-                   <input type="password" id="password" name="password">
+                    <td><label for="password">Password: </label></td>
+                    <td><input type="password" id="password" name="password"></td>
                 </tr>
                 <tr>
-                <input type="submit" value="Register">
+                    <td><input type="submit" value="Register"></td>
                 </tr>
-                
             </table>
           
 
-                                    </body>
-                                    </html>
+    </body>
+</html>
