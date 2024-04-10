@@ -8,6 +8,7 @@
 -->
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page session="false" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,6 +16,12 @@
         <title>Logout</title>
     </head>
     <body>
-        <h1>Logout</h1>
+        <h1>Logout Page</h1>
+        <%
+            // Invalidate the session to logout the user
+            session.invalidate();
+        %>
+        <p>You have been logged out.</p>
+        <p><a href="login.jsp">Login Again</a></p>
     </body>
 </html>
