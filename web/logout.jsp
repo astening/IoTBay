@@ -13,6 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <p>You have logged out click <a href="index.html">here</a> to go pack to the home page.<p>
+        <% session.invalidate();%>
     </body>
 </html>
