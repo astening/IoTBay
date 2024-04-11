@@ -1,0 +1,67 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 1 Apr 2024, 6:41:54 pm
+    Author     : chari
+*/
+
+/*html{
+    height: 100%;
+}
+
+body{
+    height: 100%;
+    margin: 0;
+    background-color: red;
+    display: flex;
+    flex-direction: column;
+}
+bar that says IoT Bay
+.heading{
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: Arial;
+    background-color: blue;
+}
+Iot Bay words
+.IoT-title{
+    margin-left:20px;
+    color: white;
+    letter-spacing: 1px;
+}
+title of current page
+.page-title{
+    margin:0;
+    display: flex;
+    justify-content: center;
+    background-color: green;
+    letter-spacing: 5px;
+    font-family: Arial;
+}
+block below IoTBay bar and page title bar
+.main-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    background-color: yellow;
+}
+box with pick an option, register, login
+.index-options{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial;
+    
+}*/
+
+#profile_table{
+    width: 50%;
+    text-align: center;
+}
