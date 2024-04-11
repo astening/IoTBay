@@ -18,8 +18,11 @@
         %>
     </head>
     <body>
-        
-        <h1>Welcome, <%=name%>!</h1>
+        <%if (name!=null) {%>
+            <h1>Welcome, <%=name%>!</h1>
+        <%}else{%>
+            <h1>Welcome!</h1>
+        <%}%>
         <h3>Your email is <%=email%></h3>
         <p>Your password is <%=password%></p>
         <div class ="panel_div">
