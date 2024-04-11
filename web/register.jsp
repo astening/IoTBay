@@ -28,7 +28,7 @@
                     <td><input type="password" id="password" name="password" required="true"></td>
                 </tr>
             </table>
-                <input type="submit" value="Register">
+            <button>Register</button>
         </form>
     </body>
 </html>
