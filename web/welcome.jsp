@@ -26,8 +26,12 @@
         <h3>Your email is <%=email%></h3>
         <p>Your password is <%=password%></p>
         <div class ="panel_div">
-            <a class="button" href="index.jsp">Cancel</a>
-            <a class="button" href="main.jsp">Main</a>
+            <a href="index.html">
+                <button style=>Cancel</button>
+            </a>
+            <a href="main.jsp">
+                <button>Main</button>
+            </a>
         </div>
         <%
             User user = new User(name, email, password);
