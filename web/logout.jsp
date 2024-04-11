@@ -22,6 +22,6 @@
             session.invalidate();
         %>
         <p>You have been logged out.</p>
-        <p><a href="login.jsp">Login Again</a></p>
+        <p><a href="index.html"></a></p>
     </body>
 </html>
