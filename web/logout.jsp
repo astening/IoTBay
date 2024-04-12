@@ -9,11 +9,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="css/style.css">
-        <title>Logout Page</title>
+        <link rel="stylesheet" href="style.css">
+        <title>JSP Page</title>
     </head>
     <body>
-        <p>You have logged out click <a href="index.html">here</a> to go back to the home page.<p>
+        <h1>You have logged out.</h1> 
+        <h3>Click  <a href="index.html"> here</a>  to go back to the home page.</h3>
         <% session.invalidate();%>
     </body>
 </html>
