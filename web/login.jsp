@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="style.css">
         <title>Login</title>
         <% String email = request.getParameter("email");%>
         <% String password = request.getParameter("password");%>
@@ -27,11 +27,9 @@
                     <td><label for="password">Password: </label></td>
                     <td><input type="password" id="password" name="password"></td>
                 </tr>
-                <tr>
-                    <td><button>Login</button>
-                </tr>
             </table>
-          
-
+           <br>
+            <button>Login</button>
+        </form>
     </body>
 </html>
