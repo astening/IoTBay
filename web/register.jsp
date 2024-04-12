@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="style.css">
         <title>Register</title>
     </head>
     <body>
@@ -28,6 +28,7 @@
                     <td><input type="password" id="password" name="password" required="true"></td>
                 </tr>
             </table>
+            <br>
             <button>Register</button>
         </form>
     </body>
