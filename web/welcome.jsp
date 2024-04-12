@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="style.css">
         <title>Welcome Page</title>
         <%
             String name = request.getParameter("name");
@@ -25,13 +25,12 @@
         <%}%>
         <h3>Your email is <%=email%></h3>
         <p>Your password is <%=password%></p>
-        <div class ="panel_div">
-            <a href="index.html">
-                <button style=>Cancel</button>
-            </a>
-            <a href="main.jsp">
-                <button>Main</button>
-            </a>
+        <div>
+           <br>
+            <a class="button" href="index.html">Cancel</a>
+            
+            <a class="button" href="main.jsp">Main</a>
+            
         </div>
         <%
             User user = new User(name, email, password);
