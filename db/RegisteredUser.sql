@@ -1,4 +1,4 @@
-CREATE TABLE RegisteredUser (
+CREATE TABLE Users (
     UserID INT(6) NOT NULL,
     Email VARCHAR(20),
     Password VARCHAR(12),
