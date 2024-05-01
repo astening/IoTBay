@@ -45,21 +45,22 @@ public User findUser(String email, String password) throws SQLException {
 }
 
 //Add a user-data into the database   
-public void addUser(String email, String name, String password, String gender, String favcol) throws SQLException {                   //code for add-operation       
-  st.executeUpdate("sql query");   
+public void addUser(String email, String name, String password) throws SQLException {                   //code for add-operation       
+  st.executeUpdate("INSERT INTO IOTDB.User " + "VALUES ('" + name + "', '" + email + "', '" + password);   
 
 }
 
 //update a user details in the database   
-public void updateUser( String email, String name, String password, String gender, String favcol) throws SQLException {       
+public void updateUser( String email, String name, String password) throws SQLException {       
    //code for update-operation   
+   st.executeUpdate("UPDATE IOTDB.User SET NAME='" + name + "',PASSWORD='" + password);
 
 }       
 
 //delete a user from the database   
 public void deleteUser(String email) throws SQLException{       
    //code for delete-operation   
-
+   st.executeUpdate("DELETE FROM IOTDB.User WHERE EMAIL='" + email + "'");
 }
 
 
