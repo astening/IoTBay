@@ -1,0 +1,87 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 1 Apr 2024, 6:41:54 pm
+    Author     : chari
+*/
+
+h1 {
+  color: #009999;
+  margin-bottom: 20px;
+}
+
+#leftpadding {
+  padding-left: 20px;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+p {
+  margin-bottom: 20px;
+}
+
+body {
+  background-color: #f4f4f4;
+  font-family: Arial, sans-serif;
+}
+
+input[type=text],
+input[type=password] {
+  padding: 8px;
+  font-size: 16px;
+  padding-left: 20px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+}
+
+.button {
+  background-color: #009999;
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.button:hover {
+  background-color: #006666;
+}
+
+button {
+  background-color: #009999;
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#table {
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+#table td {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 12px;
+  padding-right: 12px;
+  text-align: left;
+  border: 1px solid black;
+}
+
+#table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 12px;
+  padding-right: 12px;
+  text-align: left;
+  background-color: #009999;
+  color: white;
+  border: 1px solid black;
+}
