@@ -71,11 +71,13 @@ CREATE TABLE AccessLog (
   CONSTRAINT AccessLog_FK FOREIGN KEY (userID) REFERENCES Users(userID)
 );
 
--- product from Anna's device cat mgmt
-CREATE TABLE Product (
-    productID INT,
---     tbc
-    CONSTRAINT Product_PK PRIMARY KEY (productID)
+CREATE TABLE Products (
+  ProductID INT NOT NULL,
+  ProductName VARCHAR(30) NOT NULL,
+  ProductType VARCHAR(20),
+  UnitPrice FLOAT,
+  StockLvl INT,
+  CONSTRAINT Product_PK PRIMARY KEY (ProductID)
 );
 
 CREATE TABLE OrderLineItem (
