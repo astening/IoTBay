@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="isdmodel.Order" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,6 +14,9 @@
         <title>Order Form</title>
     </head>
     <body>
+        <%
+            Order order = (Order) session.getAttribute("order") ;
+        %>
         <h1>Submit an order here:</h1>
         <form action="OrderFormServlet" method="POST">
             <table>

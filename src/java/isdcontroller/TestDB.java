@@ -17,8 +17,8 @@ import java.util.logging.Logger;
 
 import isdmodeldao.DBConnector;
 import isdmodeldao.DBManager;
-import java.time.LocalDate;
-import java.util.Date;
+//import java.time.LocalDate;
+//import java.util.Date;
 
 //import isdmodel.Order ;
 
@@ -47,7 +47,7 @@ String status = in.nextLine();
 //System.out.print("Order date: ");
 
 //String orderDate = in.nextLine(); //convert to date
-String stringDate = "2024-05-06" ;
+//String stringDate = "2024-05-06" ;
 
 //System.out.print("No of items: ");
 
@@ -61,6 +61,14 @@ System.out.print("Order ID: ");
 
 int orderID = in.nextInt();
 
+System.out.print("Product ID: ");
+
+int productID = in.nextInt();
+
+System.out.print("Quantity: ");
+
+int quantity = in.nextInt();
+
 // update status
 //db.updateOrderStatus(orderID, status) ;
 
@@ -72,7 +80,13 @@ int orderID = in.nextInt();
 //System.out.println("Order added to the database") ;
 
 // find order
-db.findOrder(orderID, "2024-04-01") ;
+//db.findOrder(orderID, "2024-04-01") ;
+
+// delete order
+//db.deleteOrder(orderID) ;
+
+// update order
+db.updateOrder(orderID, productID, quantity) ;
 
 connector.closeConnection();
 

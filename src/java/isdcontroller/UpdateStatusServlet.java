@@ -49,8 +49,32 @@ public class UpdateStatusServlet extends HttpServlet {
             out.println("</html>");
         }
     }
-   
+      
+  
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
 
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)   throws ServletException, IOException {       
 
@@ -61,10 +85,10 @@ public class UpdateStatusServlet extends HttpServlet {
             Validator validator = new Validator() ;
             validator.clear(session) ;
             
-            //3- capture the posted email      
+            //3- capture the posted orderID      
 //            int orderID = (int) request.getAttribute("orderID") ;
             
-            //4- capture the posted password 
+            //4- capture the posted status 
             String status = (String) request.getAttribute("status") ;
 
             //5- retrieve the manager instance from session
@@ -124,35 +148,7 @@ public class UpdateStatusServlet extends HttpServlet {
 
             }   
 
-    }    
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
+    } 
 
     /**
      * Returns a short description of the servlet.

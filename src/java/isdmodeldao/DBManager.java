@@ -24,6 +24,7 @@ public class DBManager {
     }
     
     // add the order in the database - tbc
+    //  also need to check if quanity > 0 before ordering
     public void addOrder(int orderID, String orderDate, String status, int noItems, double totalPrice, int userID) throws SQLException { //change from string to date
         String addQuery = "INSERT INTO ISDUSER.ORDERS(orderID, orderDate, status, totalNoItems, totalPrice, userID) VALUES('" + orderID + "'," + "'" + orderDate + "'," + "'" + status + "',"  + "'" + noItems + "'," + "'" + totalPrice + "'," + "'" + userID + "')" ;
         st.executeUpdate(addQuery) ;
@@ -37,21 +38,29 @@ public class DBManager {
             String rsOrderID = rs.getString(1) ;
             String rsOrderDate = rs.getString(2) ;
             if (rsOrderID.equals(orderID) && rsOrderDate.equals(orderDate)) {
-                return new Order(orderID, null, null, null, null) ;
+//                return new Order(orderID, null, null, null, null) ; //WIP
             }
         }
         
 //        return null; //  apparently unnecessary
     }
     
-    // delete the order from the database and restore product values - tbc
-    // for each product id, add the quantity
+    // update the stored order tbc
+    //  also need to check if quantity > 0 before ordering
+    // need to change the orderlineitem quantity and total quantity
+    public void updateOrder(int orderID, int productID, int quantity) throws SQLException {
+        String updateQuery = "UPDATE ISDUSER.ORDERLINEITEM SET PRODUCTID=" + productID + ", ITEMQUANTITY=" + quantity + "WHERE ORDERID=" + orderID ; // orders or orderlineitem
+        st.executeUpdate(updateQuery) ;
+    }
+    
+    // delete the order from the database and restore product quantity - works
     public void deleteOrder(int orderID) throws SQLException {
-        String changeStatus = "UPDATE ISDUSER.ORDERS SET STATUS='Deleted' WHERE ORDERID=" + orderID ;
+        // set status to cancelled
+        String changeStatus = "UPDATE ISDUSER.ORDERS SET STATUS='Cancelled' WHERE ORDERID=" + orderID ;
         st.executeUpdate(changeStatus) ;
         
-        // set quantity to current - this order quantity, where productID = this order product ID
-        String restoreProduct = "UPDATE ISDUSER.PRODUCTS SET Quantity="  ;
+        // add ordered quantity back to the product table
+        String restoreProduct = "UPDATE ISDUSER.PRODUCTS SET STOCKLVL=STOCKLVL+" + "(SELECT ITEMQUANTITY FROM ISDUSER.ORDERLINEITEM WHERE ORDERID=" + orderID + ")"  + "WHERE PRODUCTID = (SELECT productID FROM ISDUSER.ORDERLINEITEM WHERE ORDERID=" + orderID + ")"  ;
         st.executeUpdate(restoreProduct) ;
         
     }

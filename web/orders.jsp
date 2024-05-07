@@ -48,13 +48,11 @@
                     <td><label for="orderDate">Order Date: </label></td>
                     <td><input type="date" id="orderDate" name="orderDate" required="true"></td>
                 <tr>
-                    <td><input class="button" type="submit" value="Update"></td>
-                    <!--<a href="/UpdateStatusServlet">Update</a>-->
+                    <td><input class="button" type="submit" value="Search"></td>
                 </tr>
             </table>
         </form>
         <h2>Results from search:</h2>
-        <p>Stick a table with orderID, date and link to submit</p>
         <table id="table" >
             <tr>
                 <th>Order ID:</th>
