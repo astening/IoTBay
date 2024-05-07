@@ -45,8 +45,8 @@ public User findStaff(String email, String password) throws SQLException {
 }
 
 //Add a user-data into the database   
-public void addStaff(String email, String name, String password) throws SQLException {                   //code for add-operation       
-  st.executeUpdate("INSERT INTO IOTDB.User " + "VALUES ('" + name + "', '" + email + "', '" + password);   
+public void addStaff(String email, String fname, String lname, String password, Integer phoneNum, String state, Boolean activation, Integer roleId) throws SQLException {                   //code for add-operation       
+  st.executeUpdate("INSERT INTO IOTDB.User " + "VALUES ('" + fname + "', '" + lname + "', '" + phoneNum + "', '" + email + "', '" + password + "', '" + state + "', '" + activation + "', '" + roleId);   
 
 }
 
