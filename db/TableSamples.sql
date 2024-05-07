@@ -7,10 +7,10 @@ INSERT INTO Role (roleID, roleName) VALUES
 
 -- Sample data for Users table
 INSERT INTO Users (userID, fName, lName, phoneNo, email, password, address, city, state, postCode, activation, registrationDate, roleID) VALUES
-(1, 'John', 'Doe', 123456789, 'john@example.com', 'password123', '123 Main St', 'New York', 'NY', '10001', TRUE, '2024-04-01', 2),
-(2, 'Jane', 'Smith', 987654321, 'jane@example.com', 'password456', '456 Elm St', 'Los Angeles', 'CA', '90001', TRUE, '2024-04-02', 2),
-(3, 'Alice', 'Johnson', 555123456, 'alice@example.com', 'password789', '789 Oak St', 'Chicago', 'IL', '60001', TRUE, '2024-04-03', 2),
-(4, 'Bob', 'Williams', 999888777, 'bob@example.com', 'passwordabc', '987 Pine St', 'Houston', 'TX', '77001', TRUE, '2024-04-04', 2),
+(1, 'John', 'Doe', 123456789, 'john@example.com', 'password123', '123 Main St', 'New York', 'NY', '1001', TRUE, '2024-04-01', 2),
+(2, 'Jane', 'Smith', 987654321, 'jane@example.com', 'password456', '456 Elm St', 'Los Angeles', 'CA', '9001', TRUE, '2024-04-02', 2),
+(3, 'Alice', 'Johnson', 555123456, 'alice@example.com', 'password789', '789 Oak St', 'Chicago', 'IL', '6001', TRUE, '2024-04-03', 2),
+(4, 'Bob', 'Williams', 999888777, 'bob@example.com', 'passwordabc', '987 Pine St', 'Houston', 'TX', '7701', TRUE, '2024-04-04', 2),
 (5, 'Admin', 'Admin', 111222333, 'admin@example.com', 'adminpassword', '456 Admin St', 'Admin City', 'AC', '1234', TRUE, '2024-04-05', 1),
 (6, 'Supplier1', 'Supplier', 444555666, 'supplier1@example.com', 'supplierpassword1', '789 Supplier St', 'Supplier City', 'SC', '5678', TRUE, '2024-04-06', 3),
 (7, 'Supplier2', 'Supplier', 777888999, 'supplier2@example.com', 'supplierpassword2', '321 Supplier St', 'Supplier Town', 'ST', '9012', TRUE, '2024-04-07', 3),
@@ -69,21 +69,21 @@ INSERT INTO Invoice (invoiceID, userID, invoiceDate, invoiceDueDate) VALUES
 
 -- Sample data for Payment table
 INSERT INTO Payment (paymentID, paymentDate, paymentAmt, paymentMethod, cardNo, CVV, expiryDate, cardName) VALUES
-(1, '2024-04-02', 50.00, 'Credit Card', 1234567890123456, 123, '2026-04-01', 'John Doe'),
+(1, '2024-04-02', 50.00, 'Credit Card', 12345678, 123, '2026-04-01', 'John Doe'),
 (2, '2024-04-03', 30.00, 'PayPal', NULL, NULL, NULL, 'Jane Smith'),
-(3, '2024-04-04', 25.00, 'Credit Card', 9876543210987654, 456, '2025-04-02', 'Alice Johnson'),
+(3, '2024-04-04', 25.00, 'Credit Card', 98765432, 456, '2025-04-02', 'Alice Johnson'),
 (4, '2024-04-05', 35.00, 'PayPal', NULL, NULL, NULL, 'Bob Williams'),
-(5, '2024-04-06', 40.00, 'Credit Card', 1111222233334444, 789, '2027-04-03', 'Admin Admin'),
-(6, '2024-04-07', 20.00, 'Credit Card', 5555666677778888, 321, '2026-04-04', 'Supplier1 Supplier'),
-(7, '2024-04-08', 55.00, 'Credit Card', 9999888877776666, 654, '2025-04-05', 'Manager1 Manager'),
-(8, '2024-04-09', 45.00, 'Credit Card', 4444333322221111, 987, '2027-04-06', 'Customer1 Customer'),
-(9, '2024-04-10', 60.00, 'Credit Card', 8888777766665555, 654, '2026-04-07', 'Customer2 Customer'),
-(10, '2024-04-11', 75.00, 'Credit Card', 7777666655554444, 321, '2025-04-08', 'Customer3 Customer'),
-(11, '2024-04-12', 80.00, 'Credit Card', 6666555544443333, 987, '2027-04-09', 'Customer4 Customer'),
-(12, '2024-04-13', 65.00, 'Credit Card', 3333222211110000, 123, '2026-04-10', 'Customer5 Customer'),
-(13, '2024-04-14', 70.00, 'Credit Card', 2222111100009999, 456, '2025-04-11', 'Customer6 Customer'),
-(14, '2024-04-15', 85.00, 'Credit Card', 9999000011112222, 789, '2027-04-12', 'Supplier2 Supplier'),
-(15, '2024-04-16', 90.00, 'Credit Card', 8888777766665555, 654, '2026-04-13', 'Manager2 Manager');
+(5, '2024-04-06', 40.00, 'Credit Card', 11112222, 789, '2027-04-03', 'Admin Admin'),
+(6, '2024-04-07', 20.00, 'Credit Card', 55556666, 321, '2026-04-04', 'Supplier1 Supplier'),
+(7, '2024-04-08', 55.00, 'Credit Card', 99998888, 654, '2025-04-05', 'Manager1 Manager'),
+(8, '2024-04-09', 45.00, 'Credit Card', 44443333, 987, '2027-04-06', 'Customer1 Customer'),
+(9, '2024-04-10', 60.00, 'Credit Card', 88887777, 654, '2026-04-07', 'Customer2 Customer'),
+(10, '2024-04-11', 75.00, 'Credit Card', 77776666, 321, '2025-04-08', 'Customer3 Customer'),
+(11, '2024-04-12', 80.00, 'Credit Card', 66665555, 987, '2027-04-09', 'Customer4 Customer'),
+(12, '2024-04-13', 65.00, 'Credit Card', 33332222, 123, '2026-04-10', 'Customer5 Customer'),
+(13, '2024-04-14', 70.00, 'Credit Card', 22221111, 456, '2025-04-11', 'Customer6 Customer'),
+(14, '2024-04-15', 85.00, 'Credit Card', 99990000, 789, '2027-04-12', 'Supplier2 Supplier'),
+(15, '2024-04-16', 90.00, 'Credit Card', 88887777, 654, '2026-04-13', 'Manager2 Manager');
 
 -- Sample data for AccessLog table
 INSERT INTO AccessLog (logID, userID, logDate, logDetails) VALUES
