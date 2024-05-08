@@ -89,7 +89,7 @@ public class UpdateStatusServlet extends HttpServlet {
 //            int orderID = (int) request.getAttribute("orderID") ;
             
             //4- capture the posted status 
-            String status = (String) request.getAttribute("status") ;
+            String status = (String) request.getParameter("status") ;
 
             //5- retrieve the manager instance from session
             DBManager manager = (DBManager)session.getAttribute("manager") ;
