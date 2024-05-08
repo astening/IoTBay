@@ -18,6 +18,10 @@
         <servlet-name>OrderFormServlet</servlet-name>
         <servlet-class>isdcontroller.OrderFormServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateStatus</servlet-name>
+        <servlet-class>isdcontroller.UpdateStatus</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ConnServlet</servlet-name>
         <url-pattern>/ConnServlet</url-pattern>
@@ -33,6 +37,10 @@
     <servlet-mapping>
         <servlet-name>OrderFormServlet</servlet-name>
         <url-pattern>/OrderFormServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateStatus</servlet-name>
+        <url-pattern>/UpdateStatus</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

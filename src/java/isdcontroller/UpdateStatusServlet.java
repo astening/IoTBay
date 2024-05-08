@@ -13,6 +13,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 //import java.sql.SQLException;
 //import java.util.logging.Level;
 //import java.util.logging.Logger;
@@ -86,7 +89,8 @@ public class UpdateStatusServlet extends HttpServlet {
             validator.clear(session) ;
             
             //3- capture the posted orderID      
-//            int orderID = (int) request.getAttribute("orderID") ;
+            String stringOrderID = (String) request.getParameter("orderID") ;
+            int orderID = Integer.parseInt(stringOrderID) ;
             
             //4- capture the posted status 
             String status = (String) request.getParameter("status") ;
@@ -109,7 +113,7 @@ public class UpdateStatusServlet extends HttpServlet {
 //            }
 
 // UP TO HERE
-            if (validator.validateStatus(status)     /*7-   validate status  */   ) {           
+            if (false      /*7-   validate status  validator.validateStatus(status) */   ) { // temp change           
 
                     //8-set incorrect status error to the session 
                     session.setAttribute("statusValidated", "Status incorrect format") ;
@@ -139,7 +143,14 @@ public class UpdateStatusServlet extends HttpServlet {
 
             } else {                       
 
-                    //15-set user does not exist error to the session
+                //15-set user does not exist error to the session
+                // temp change to add order
+                try {
+                    
+                    manager.updateOrderStatus(orderID, status) ;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UpdateStatusServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
                     session.setAttribute("updated", "Update was not successful!") ;
                     
 

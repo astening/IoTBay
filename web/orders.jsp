@@ -20,7 +20,7 @@
         %>
         <h1>Orders Page</h1>
         <h2>Update order status - staff only</h2>
-        <form action="UpdateStatusServlet" method="post">
+        <form action="UpdateStatus" method="post">  <!--Change back to UpdateStatusServlet-->
             <table>
                 <tr>
                     <td><label for="orderID">Order ID: </label></td>
