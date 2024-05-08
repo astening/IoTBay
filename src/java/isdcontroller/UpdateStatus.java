@@ -51,55 +51,55 @@ import jakarta.servlet.http.HttpSession;
 
         
 
-       @Override //Create an instance of DBConnector for the deployment session
-
-       public void init() {
-
-           try {
-
-               db = new DBConnector();
-
-           } catch (ClassNotFoundException | SQLException ex) {
-
-               Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE, null, ex);
-
-           }      
-
-       }
-
-      
-
-       @Override //Add the DBConnector, DBManager, Connection instances to the session
-
-       protected void doGet(HttpServletRequest request, HttpServletResponse response)
-
-               throws ServletException, IOException {
-
-           response.setContentType("text/html;charset=UTF-8");       
-
-           HttpSession session = request.getSession();
-
-           conn = db.openConnection();       
-
-           try {
-
-               manager = new DBManager(conn);
-
-           } catch (SQLException ex) {
-
-               Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE, null, ex);
-
-           }
-
-           //export the DB manager to the view-session (JSPs)
-
-           session.setAttribute("manager", manager);           
-
-       }
+//       @Override //Create an instance of DBConnector for the deployment session
+//
+//       public void init() {
+//
+//           try {
+//
+//               db = new DBConnector();
+//
+//           } catch (ClassNotFoundException | SQLException ex) {
+//
+//               Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE, null, ex);
+//
+//           }      
+//
+//       }
+//
+//      
+//
+//       @Override //Add the DBConnector, DBManager, Connection instances to the session
+//
+//       protected void doGet(HttpServletRequest request, HttpServletResponse response)
+//
+//               throws ServletException, IOException {
+//
+//           response.setContentType("text/html;charset=UTF-8");       
+//
+//           HttpSession session = request.getSession();
+//
+//           conn = db.openConnection();       
+//
+//           try {
+//
+//               manager = new DBManager(conn);
+//
+//           } catch (SQLException ex) {
+//
+//               Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE, null, ex);
+//
+//           }
+//
+//           //export the DB manager to the view-session (JSPs)
+//
+//           session.setAttribute("manager", manager);           
+//
+//       }
        
        
        @Override
-       protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+       protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             //1- retrieve the current session
             HttpSession session = request.getSession() ;
 
@@ -119,25 +119,26 @@ import jakarta.servlet.http.HttpSession;
                 } catch (SQLException ex) {
                     Logger.getLogger(UpdateStatusServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            
+            request.getRequestDispatcher("orders.jsp").include(request, response) ;
+                
        }
 
         
 
-       @Override //Destroy the servlet and release the resources of the application (terminate also the db connection)
-
-        public void destroy() {
-
-           try {
-
-               db.closeConnection();
-
-           } catch (SQLException ex) {
-
-               Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE, null, ex);
-
-           }
-
-       }
+//       @Override //Destroy the servlet and release the resources of the application (terminate also the db connection)
+//
+//        public void destroy() {
+//
+//           try {
+//
+//               db.closeConnection();
+//
+//           } catch (SQLException ex) {
+//
+//               Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE, null, ex);
+//
+//           }
+//
+//       }
 
    }
