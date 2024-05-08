@@ -111,7 +111,7 @@ import jakarta.servlet.http.HttpSession;
             String status = (String) request.getParameter("status") ;
 
             //5- retrieve the manager instance from session
-            manager = (DBManager)session.getAttribute("manager") ;
+            manager = (DBManager) session.getAttribute("manager") ;
             
                 try {
                     
