@@ -55,19 +55,21 @@ CREATE TABLE PaymentMethod (
   userID INT NOT NULL,
   cardName VARCHAR(40),
   cardNo INT,
-  expiryDate DATE,
+  expiryDate INT,
   CVV INT,
   CONSTRAINT PaymentMethod_PK PRIMARY KEY (paymentMethodID),
   CONSTRAINT PaymentMethod_FK FOREIGN KEY (userID) REFERENCES Users(userID)
-)
+);
 
 CREATE TABLE Payment (
   paymentID INT NOT NULL,
   paymentMethodID INT,
+  invoiceID INT NOT NULL,
   paymentDate DATE,
   paymentAmt FLOAT,
   CONSTRAINT Payment_PK PRIMARY KEY (paymentID),
-  CONSTRAINT Payment_FK FOREIGN KEY (paymentMethodID) REFERENCES PaymentMethod(paymentMethodID)
+  CONSTRAINT Payment_FK1 FOREIGN KEY (paymentMethodID) REFERENCES PaymentMethod(paymentMethodID),
+  CONSTRAINT Payment_FK2 FOREIGN KEY (invoiceID) REFERENCES Invoice(invoiceID)
 );
 
 CREATE TABLE AccessLog (
