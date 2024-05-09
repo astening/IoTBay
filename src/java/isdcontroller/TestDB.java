@@ -80,7 +80,7 @@ int orderID = in.nextInt();
 //System.out.println("Order added to the database") ;
 
 // find order
-db.findOrder(orderID, "2024-05-06") ;
+db.findOrder(orderID, "2024-04-01") ;
 
 // delete order
 //db.deleteOrder(orderID) ;

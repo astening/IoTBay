@@ -37,14 +37,15 @@ public class DBManager {
         String findQuery = "SELECT * FROM ISDUSER.ORDERS WHERE ORDERID=" + orderID + "AND orderDate='" + orderDate + "'" ;
         ResultSet rs = st.executeQuery(findQuery) ;
         while (rs.next()) {
-            String rsOrderID = rs.getString("orderID") ;
+            int rsOrderID = rs.getInt("orderID") ;
             String rsOrderDate = rs.getString("orderDate") ;
-            System.out.println("ID is:" + rsOrderID + ", and date is: " + rsOrderDate) ;
-            if (rsOrderID.equals(orderID) && rsOrderDate.equals(orderDate)) {
-//                return new Order(orderID, null, null, null, null) ; //WIP
+            if (rsOrderID==orderID && rsOrderDate.equals(orderDate)) {
+                
+//              return new Order(orderID, 0, orderDate, 0, 0) ; //WIP
+                System.out.println("ID is: " + rsOrderID + ", and date is: " + rsOrderDate) ;
             }
+
         }
-        
 //        return null; //  apparently unnecessary
     }
     
