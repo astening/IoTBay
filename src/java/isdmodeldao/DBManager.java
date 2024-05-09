@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
+//import java.util.Date;
 
 /**
  *
@@ -40,9 +41,13 @@ public class DBManager {
             int rsOrderID = rs.getInt("orderID") ;
             String rsOrderDate = rs.getString("orderDate") ;
             if (rsOrderID==orderID && rsOrderDate.equals(orderDate)) {
-                
-//              return new Order(orderID, 0, orderDate, 0, 0) ; //WIP
+                // tbc return a proper order
+                String status = rs.getString("status") ;
+                java.sql.Date rsOrderDateDate = rs.getDate("orderDate") ;
+                double totalPrice = rs.getDouble("totalPrice") ;
+                int noItems = rs.getInt("noItems") ;
                 System.out.println("ID is: " + rsOrderID + ", and date is: " + rsOrderDate) ;
+                return new Order(orderID, rsOrderDateDate, status, noItems, totalPrice) ; // java date and string
             }
 
         }
