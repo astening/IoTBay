@@ -47,7 +47,7 @@ String status = in.nextLine();
 //System.out.print("Order date: ");
 
 //String orderDate = in.nextLine(); //convert to date
-//String stringDate = "2024-05-06" ;
+String stringDate = "2024-05-06" ;
 
 //System.out.print("No of items: ");
 
@@ -75,7 +75,7 @@ int quantity = in.nextInt();
 //System.out.println("Status is updated in the database.") ;
 
 // add order
-//db.addOrder(orderID, stringDate , status, orderID, totalPrice, orderID); // change 2 to orderDate, 4 to noItems, 6 to userID
+//db.addOrder(orderID, stringDate , status, quantity, totalPrice, orderID); // change 2 to orderDate, 4 to noItems, 6 to userID
 //addOrder(int orderID, Date orderDate, String status, int noItems, double totalPrice, int userID)
 //System.out.println("Order added to the database") ;
 
@@ -86,11 +86,11 @@ int quantity = in.nextInt();
 //db.deleteOrder(orderID) ;
 
 // update order
-db.updateOrder(orderID, productID, quantity) ;
+//db.updateOrder(orderID, productID, quantity) ;
 
 connector.closeConnection();
 
- 
+
 
 } catch (ClassNotFoundException | SQLException ex) {
 

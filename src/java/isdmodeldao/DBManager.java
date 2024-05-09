@@ -8,7 +8,6 @@ import isdmodel.Order;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Date;
 import java.sql.ResultSet;
 
 /**
@@ -23,8 +22,11 @@ public class DBManager {
        st = conn.createStatement();   
     }
     
+    // dates should be input as string - according to video
+    
     // add the order in the database - tbc
     //  also need to check if quanity > 0 before ordering
+    // would need to deduct quantity from stock
     public void addOrder(int orderID, String orderDate, String status, int noItems, double totalPrice, int userID) throws SQLException { //change from string to date
         String addQuery = "INSERT INTO ISDUSER.ORDERS(orderID, orderDate, status, totalNoItems, totalPrice, userID) VALUES('" + orderID + "'," + "'" + orderDate + "'," + "'" + status + "',"  + "'" + noItems + "'," + "'" + totalPrice + "'," + "'" + userID + "')" ;
         st.executeUpdate(addQuery) ;
@@ -45,15 +47,42 @@ public class DBManager {
 //        return null; //  apparently unnecessary
     }
     
-    // update the stored order tbc
-    //  also need to check if quantity > 0 before ordering
-    // need to change the orderlineitem quantity and total quantity
+    // update the order details - works
+    // send error message if quantity change < 0 / quantity = 0
     public void updateOrder(int orderID, int productID, int quantity) throws SQLException {
-        String updateQuery = "UPDATE ISDUSER.ORDERLINEITEM SET PRODUCTID=" + productID + ", ITEMQUANTITY=" + quantity + "WHERE ORDERID=" + orderID ; // orders or orderlineitem
-        st.executeUpdate(updateQuery) ;
+        int productStock=0 ;
+        
+        String checkStock = "SELECT STOCKLVL FROM ISDUSER.PRODUCTS WHERE PRODUCTID = (SELECT productID FROM ISDUSER.ORDERLINEITEM WHERE ORDERID=" + orderID + ")" ;
+        ResultSet rs = st.executeQuery(checkStock) ;
+        while(rs.next()) {
+            productStock = rs.getInt("STOCKLVL") ;
+        }
+        rs.close() ;
+        
+        if ((productStock-quantity)>0 ) {
+      
+            // add back old value to product stock
+            String restoreProduct = "UPDATE ISDUSER.PRODUCTS SET STOCKLVL=STOCKLVL+" + "(SELECT ITEMQUANTITY FROM ISDUSER.ORDERLINEITEM WHERE ORDERID=" + orderID + ")"  + "WHERE PRODUCTID = (SELECT productID FROM ISDUSER.ORDERLINEITEM WHERE ORDERID=" + orderID + ")"  ;
+            st.executeUpdate(restoreProduct) ;
+            
+            // update quantity ordered in order
+            String updateOrderQuantity = "UPDATE ISDUSER.ORDERS SET TOTALNOITEMS=" + quantity + "WHERE ORDERID=" + orderID ;
+            st.executeUpdate(updateOrderQuantity) ;
+            
+            // update total price
+            String updatePrice = "UPDATE ISDUSER.ORDERS SET TOTALPRICE=((SELECT UNITPRICE FROM ISDUSER.PRODUCTS WHERE PRODUCTID=" + productID + ")*" + quantity + ")" + "WHERE ORDERID=" + orderID ;
+            st.executeUpdate(updatePrice) ;
+
+            // update quantity in orderLineItem
+            String updateQuery = "UPDATE ISDUSER.ORDERLINEITEM SET PRODUCTID=" + productID + ", ITEMQUANTITY=" + quantity + "WHERE ORDERID=" + orderID ;
+            st.executeUpdate(updateQuery) ;
+        }
+        
+        
     }
     
     // delete the order from the database and restore product quantity - works
+    // ideally, put a for statement and loop through each orderline item ie when the customer makes a purchase for multiple products
     public void deleteOrder(int orderID) throws SQLException {
         // set status to cancelled
         String changeStatus = "UPDATE ISDUSER.ORDERS SET STATUS='Cancelled' WHERE ORDERID=" + orderID ;
