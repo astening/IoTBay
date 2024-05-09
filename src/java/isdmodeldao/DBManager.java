@@ -10,6 +10,8 @@ package isdmodeldao;
  */
 import isdmodel.User;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Date;
 
 /* 
 * DBManager is the primary DAO class to interact with the database. 
@@ -34,19 +36,29 @@ public User findStaff(String email, String password) throws SQLException {
    ResultSet rs = st.executeQuery(fetch);
    
    while (rs.next()) {
-       String staffEmail = rs.getString(2);
-       String staffPassword = rs.getString(3);
+       String staffEmail = rs.getString(5);
+       String staffPassword = rs.getString(6);
        if (staffEmail.equals(email) && staffPassword.equals(password)) {
-           String staffName = rs.getString(1);
-           return new User(staffName, staffEmail, staffPassword);
+           int userID = rs.getInt(1);
+           String fName = rs.getString(2);
+           String lName = rs.getString(3);
+           int phoneNo = rs.getInt(4);
+           String address = rs.getString(7);
+           String city = rs.getString(8);
+           String state = rs.getString(9);
+           int postcode = rs.getInt(10);
+           boolean activation = rs.getBoolean(11);
+           Date registrationDate = rs.getDate(12);
+           int roleID = rs.getInt(13);
+           return new User(userID, fName, lName, phoneNo, staffEmail, staffPassword, address, city, state, postcode, activation, registrationDate, roleID);
        }
    }
    return null;   
 }
 
 //Add a user-data into the database   
-public void addStaff(String email, String fname, String lname, String password, Integer phoneNum, String state, Boolean activation, Integer roleId) throws SQLException {                   //code for add-operation       
-  st.executeUpdate("INSERT INTO IOTDB.User " + "VALUES ('" + fname + "', '" + lname + "', '" + phoneNum + "', '" + email + "', '" + password + "', '" + state + "', '" + activation + "', '" + roleId);   
+public void addStaff(int userID, String fname, String lname, int phoneNo, String email, String password, String address, String city, String state, int postcode, boolean activation, Date registrationDate, int roleID) throws SQLException {                   //code for add-operation       
+  st.executeUpdate("INSERT INTO IOTDB.User " + "VALUES ('" + userID + "','" + fname + "', '" + lname + "', '" + phoneNo + "', '" + email + "', '" + password + "','" + address + "', '" + city + "', '" + state + "', '" + postcode + "', '" + activation + "', '" + registrationDate + "', '" + roleID);   
 
 }
 
@@ -63,7 +75,28 @@ public void deleteStaff(String email) throws SQLException{
    st.executeUpdate("DELETE FROM IOTDB.User WHERE EMAIL='" + email + "'");
 }
 
-
+public ArrayList<User> fetchStaff() throws SQLException{
+    String fetch = "select * from USERS";
+    ResultSet rs = st.executeQuery(fetch);
+    ArrayList<User> temp = new ArrayList();
+    while (rs.next()) {
+        int userID = rs.getInt(1);
+        String email = rs.getString(5);
+        String fname = rs.getString(2);
+        String lname = rs.getString(3);
+        String password = rs.getString(6);
+        int phoneNum = rs.getInt(4);
+        String address = rs.getString(7);
+        String city = rs.getString(8);
+        String state = rs.getString(9);
+        int postcode = rs.getInt(10);
+        boolean activation = rs.getBoolean(11);
+        Date registrationDate = rs.getDate(12);
+        int roleId = rs.getInt(13);
+        temp.add(new User(userID, fname, lname, phoneNum, email, password, address, city, state, postcode, activation, registrationDate, roleId));
+    } 
+    return temp;
+}
  
 
 }
