@@ -14,7 +14,7 @@ public class Payment {
     private int paymentID;
     private Date paymentDate;
     private double paymentAmount;
-    private String paymentMwthod;
+    private String paymentMethodID;
     private int cardNo;
     private int cvv;
     private Date expiryDate;
@@ -24,11 +24,7 @@ public class Payment {
         this.paymentID = paymentID;
         this.paymentDate = paymentDate;
         this.paymentAmount = paymentAmount;
-        this.paymentMwthod = paymentMwthod;
-        this.cardNo = cardNo;
-        this.cvv = cvv;
-        this.expiryDate = expiryDate;
-        this.cardName = cardName;
+        this.paymentMethodID = paymentMethodID;
     }
 
     public int getPaymentID() {
@@ -56,45 +52,10 @@ public class Payment {
     }
 
     public String getPaymentMwthod() {
-        return paymentMwthod;
+        return paymentMethodID;
     }
 
     public void setPaymentMwthod(String paymentMwthod) {
-        this.paymentMwthod = paymentMwthod;
+        this.paymentMethodID = paymentMwthod;
     }
-
-    public int getCardNo() {
-        return cardNo;
-    }
-
-    public void setCardNo(int cardNo) {
-        this.cardNo = cardNo;
-    }
-
-    public int getCvv() {
-        return cvv;
-    }
-
-    public void setCvv(int cvv) {
-        this.cvv = cvv;
-    }
-
-    public Date getExpiryDate() {
-        return expiryDate;
-    }
-
-    public void setExpiryDate(Date expiryDate) {
-        this.expiryDate = expiryDate;
-    }
-
-    public String getCardName() {
-        return cardName;
-    }
-
-    public void setCardName(String cardName) {
-        this.cardName = cardName;
-    }
-    
-    
-            
 }
