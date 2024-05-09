@@ -52,15 +52,23 @@ CREATE TABLE Invoice (
 
 CREATE TABLE Payment (
   paymentID INT NOT NULL,
+  paymentMethodID INT,
   paymentDate DATE,
   paymentAmt FLOAT,
-  paymentMethod VARCHAR(20),
-  cardNo INT,
-  CVV INT,
-  expiryDate DATE,
-  cardName VARCHAR(40),
-  CONSTRAINT Payment_PK PRIMARY KEY (paymentID)
+  CONSTRAINT Payment_PK PRIMARY KEY (paymentID),
+  CONSTRAINT Payment_FK FOREIGN KEY (paymentMethodID) REFERENCES PaymentMethod(paymentMethodID)
 );
+
+CREATE TABLE PaymentMethod (
+  paymentMethodID INT NOT NULL,
+  userID INT NOT NULL,
+  cardName VARCHAR(40),
+  cardNo INT,
+  expiryDate DATE,
+  CVV INT,
+  CONSTRAINT PaymentMethod_PK PRIMARY KEY (paymentMethodID),
+  CONSTRAINT PaymentMethod_FK FOREIGN KEY (userID) REFERENCES Users(userID)
+)
 
 CREATE TABLE AccessLog (
   logID INT NOT NULL,
