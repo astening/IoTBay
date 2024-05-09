@@ -53,21 +53,21 @@ String stringDate = "2024-05-06" ;
 
 //String totalNoItems = in.nextLine(); //convert to int
 
-System.out.print("Total price: ");
-
-double totalPrice = (double) in.nextInt(); //convert to double
+//System.out.print("Total price: ");
+//
+//double totalPrice = (double) in.nextInt(); //convert to double
 
 System.out.print("Order ID: ");
 
 int orderID = in.nextInt();
 
-System.out.print("Product ID: ");
-
-int productID = in.nextInt();
-
-System.out.print("Quantity: ");
-
-int quantity = in.nextInt();
+//System.out.print("Product ID: ");
+//
+//int productID = in.nextInt();
+//
+//System.out.print("Quantity: ");
+//
+//int quantity = in.nextInt();
 
 // update status
 //db.updateOrderStatus(orderID, status) ;
@@ -80,7 +80,7 @@ int quantity = in.nextInt();
 //System.out.println("Order added to the database") ;
 
 // find order
-//db.findOrder(orderID, "2024-04-01") ;
+db.findOrder(orderID, "2024-05-06") ;
 
 // delete order
 //db.deleteOrder(orderID) ;

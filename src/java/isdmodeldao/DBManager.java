@@ -32,13 +32,14 @@ public class DBManager {
         st.executeUpdate(addQuery) ;
     }
     
-    // find an order using orderID and orderDate - tbc
-    public void findOrder(int orderID, String orderDate) throws SQLException { // string or date
-        String findQuery = "SELECT * FROM ISDUSER.ORDERS WHERE ORDERID=" + orderID + "AND orderDate = " + orderDate ;
+    // find an order using orderID and orderDate - in progress
+    public void findOrder(int orderID, String orderDate) throws SQLException {
+        String findQuery = "SELECT * FROM ISDUSER.ORDERS WHERE ORDERID=" + orderID + "AND orderDate='" + orderDate + "'" ;
         ResultSet rs = st.executeQuery(findQuery) ;
         while (rs.next()) {
-            String rsOrderID = rs.getString(1) ;
-            String rsOrderDate = rs.getString(2) ;
+            String rsOrderID = rs.getString("orderID") ;
+            String rsOrderDate = rs.getString("orderDate") ;
+            System.out.println("ID is:" + rsOrderID + ", and date is: " + rsOrderDate) ;
             if (rsOrderID.equals(orderID) && rsOrderDate.equals(orderDate)) {
 //                return new Order(orderID, null, null, null, null) ; //WIP
             }
@@ -48,7 +49,6 @@ public class DBManager {
     }
     
     // update the order details - works
-    // send error message if quantity change < 0 / quantity = 0
     public void updateOrder(int orderID, int productID, int quantity) throws SQLException {
         int productStock=0 ;
         
