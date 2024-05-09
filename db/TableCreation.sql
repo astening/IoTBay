@@ -50,15 +50,6 @@ CREATE TABLE Invoice (
   CONSTRAINT Invoice_FK FOREIGN KEY (userID) REFERENCES Users(userID)
 );
 
-CREATE TABLE Payment (
-  paymentID INT NOT NULL,
-  paymentMethodID INT,
-  paymentDate DATE,
-  paymentAmt FLOAT,
-  CONSTRAINT Payment_PK PRIMARY KEY (paymentID),
-  CONSTRAINT Payment_FK FOREIGN KEY (paymentMethodID) REFERENCES PaymentMethod(paymentMethodID)
-);
-
 CREATE TABLE PaymentMethod (
   paymentMethodID INT NOT NULL,
   userID INT NOT NULL,
@@ -70,6 +61,15 @@ CREATE TABLE PaymentMethod (
   CONSTRAINT PaymentMethod_FK FOREIGN KEY (userID) REFERENCES Users(userID)
 )
 
+CREATE TABLE Payment (
+  paymentID INT NOT NULL,
+  paymentMethodID INT,
+  paymentDate DATE,
+  paymentAmt FLOAT,
+  CONSTRAINT Payment_PK PRIMARY KEY (paymentID),
+  CONSTRAINT Payment_FK FOREIGN KEY (paymentMethodID) REFERENCES PaymentMethod(paymentMethodID)
+);
+
 CREATE TABLE AccessLog (
   logID INT NOT NULL,
   userID INT NOT NULL,
@@ -79,7 +79,7 @@ CREATE TABLE AccessLog (
   CONSTRAINT AccessLog_FK FOREIGN KEY (userID) REFERENCES Users(userID)
 );
 
-CREATE TABLE Products (
+CREATE TABLE Product (
   ProductID INT NOT NULL,
   ProductName VARCHAR(30) NOT NULL,
   ProductType VARCHAR(20),
