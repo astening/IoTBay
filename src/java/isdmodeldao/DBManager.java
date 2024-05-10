@@ -27,9 +27,10 @@ public class DBManager {
     
     // add the order in the database - tbc
     //  also need to check if quanity > 0 before ordering
-    // would need to deduct quantity from stock
+    // would need to deduct quantity from stock - borrow from the updateOrder function :D
+    // am i meant to add the userID as well
     public void addOrder(int orderID, String orderDate, String status, int noItems, double totalPrice, int userID) throws SQLException { //change from string to date
-        String addQuery = "INSERT INTO ISDUSER.ORDERS(orderID, orderDate, status, totalNoItems, totalPrice, userID) VALUES('" + orderID + "'," + "'" + orderDate + "'," + "'" + status + "',"  + "'" + noItems + "'," + "'" + totalPrice + "'," + "'" + userID + "')" ;
+        String addQuery = "INSERT INTO ISDUSER.ORDERS(orderID, orderDate, status, totalNoItems, totalPrice, userID) VALUES('" + orderID + "'," + orderDate + "," + "'" + status + "',"  + "'" + noItems + "'," + "'" + totalPrice + "'," + "'" + userID + "')" ;
         st.executeUpdate(addQuery) ;
     }
     
@@ -47,7 +48,9 @@ public class DBManager {
                 double totalPrice = rs.getDouble("totalPrice") ;
                 int noItems = rs.getInt("noItems") ;
                 System.out.println("ID is: " + rsOrderID + ", and date is: " + rsOrderDate) ;
-                return new Order(orderID, rsOrderDateDate, status, noItems, totalPrice) ; // java date and string
+                // check for order object return
+                // ignore for now and come back
+//                return new Order(orderID, rsOrderDateDate, status, noItems, totalPrice) ; // java date and string
             }
 
         }

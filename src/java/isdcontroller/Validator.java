@@ -59,6 +59,7 @@ import java.util.regex.Pattern;
 
    } 
    
+   // need to update the error names here and add to respective views
    public void clear(HttpSession session) {
        session.setAttribute("emailErr", "Enter email") ;
        session.setAttribute("passErr", "Enter password") ;
