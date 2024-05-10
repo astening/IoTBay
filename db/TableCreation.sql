@@ -51,7 +51,7 @@ CREATE TABLE Invoice (
 );
 
 CREATE TABLE PaymentMethod (
-  paymentMethodID INT NOT NULL,
+  paymentMethodID INT NOT NULL AUTO_INCREMENT,
   userID INT NOT NULL,
   cardName VARCHAR(40),
   cardNo INT,
