@@ -16,8 +16,9 @@ public class PaymentMethod {
     private int cvv;
     private Date expiryDate;
     private String cardName;
+    private int userID;
 
-    public PaymentMethod(int paymentMethodID, int cardNo, int cvv, Date expiryDate, String cardName) {
+    public PaymentMethod(int paymentMethodID, int userID, String cardName, int cardNo, int cvv, Date expiryDate) {
         this.paymentMethodID = paymentMethodID;
         this.cardNo = cardNo;
         this.cvv = cvv;
@@ -63,6 +64,14 @@ public class PaymentMethod {
 
     public void setCardName(String cardName) {
         this.cardName = cardName;
+    }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
     
     
