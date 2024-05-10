@@ -29,7 +29,7 @@ INSERT INTO Orders (orderID, orderDate, status, totalNoItems, totalPrice, userID
 (2, '2024-04-02', 'Pending', 3, 75.00, 2),
 (3, '2024-04-03', 'Processing', 2, 50.00, 3),
 (4, '2024-04-04', 'Completed', 4, 100.00, 4),
-(5, 2024-04-05', 'Cancelled', 1, 25.00, 5),
+(5, '2024-04-05', 'Cancelled', 1, 25.00, 5),
 (6, '2024-04-06', 'Pending', 2, 60.00, 6),
 (7, '2024-04-07', 'Processing', 3, 90.00, 7),
 (8, '2024-04-08', 'Completed', 4, 120.00, 8),
