@@ -24,9 +24,9 @@ public class User {
     private int postcode; 
     private boolean activation;
     private Date registrationDate; 
-    private int roleID;
+    private String position;
 
-    public User(int userID, String fname, String lname, int phoneNo, String email, String password, String address, String city, String state, int postcode, boolean activation, Date registrationDate, int roleID) {
+    public User(int userID, String fname, String lname, int phoneNo, String email, String password, String address, String city, String state, int postcode, boolean activation, Date registrationDate, String position) {
         this.userID = userID;
         this.fname = fname; 
         this.lname = lname;
@@ -39,23 +39,15 @@ public class User {
         this.postcode = postcode;
         this.activation = activation;
         this.registrationDate = registrationDate;
-        this.roleID = roleID;
+        this.position = position;
     }
 
-    public int getRoleID() {
-        return roleID;
+    public String getPosition() {
+        return position;
     }
 
-    public void setRoleID(int roleID) {
-        this.roleID = roleID;
-    }
-
-    public int getUserID() {
-        return userID;
-    }
-
-    public void setUserID(int userID) {
-        this.userID = userID;
+    public void setPosition(String position) {
+        this.position = position;
     }
 
     public String getFname() {

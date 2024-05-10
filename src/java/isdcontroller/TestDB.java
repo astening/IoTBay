@@ -8,98 +8,205 @@ package isdcontroller;
  *
  * @author William Sinclair
  */
+import isdmodel.User;
 import isdmodeldao.DBConnector;
 import isdmodeldao.DBManager;
 import java.sql.*;
-import java.util.Scanner;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.logging.*;
+import java.util.Scanner;
 import java.util.Date;
-
- 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class TestDB {
 
-private static Scanner in = new Scanner(System.in);
+    private static Scanner in = new Scanner(System.in);
+    private DBConnector connector;
+    private Connection conn;
+    private DBManager db;
 
- 
-
-public static void main(String[] args) {
-
-try {
-
-DBConnector connector = new DBConnector();
-
-Connection conn = connector.openConnection();
-
-DBManager db = new DBManager(conn);
-
-System.out.print("User ID: "); 
-int userID = Integer.parseInt(in.nextLine());
-
-System.out.print("User email: ");
-String email = in.nextLine();
-
-System.out.print("User First name: ");
-String fname = in.nextLine();
-
-System.out.print("User Last name: ");
-String lname = in.nextLine();
-
-System.out.print("User Phone Number: ");
-int phoneNo = Integer.parseInt(in.nextLine());
-
-System.out.print("User password: ");
-String password = in.nextLine();
-
-System.out.print("User address: ");
-String address = in.nextLine();
-
-System.out.print("User city: ");
-String city = in.nextLine();
-
-System.out.print("User state: ");
-String state = in.nextLine();
-
-System.out.print("User postcode: ");
-int postcode = Integer.parseInt(in.nextLine());
-
-System.out.print("Staff activation status (true/false): ");
-boolean activation = Boolean.parseBoolean(in.nextLine());
-
-System.out.print("User Registration Date: ");
-String dateString = in.nextLine();
-
-System.out.print("Staff Role Number: ");
-int roleID = Integer.parseInt(in.nextLine());
-
-//Convert String to Date
-SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-try {
-    Date registrationDate = formatter.parse(dateString);
-    // Now you can use the date variable in your method
-    System.out.println("Date object: " + registrationDate);
+    public static void main(String[] args) throws SQLException{
+            (new TestDB()).runQueries();
+    }
     
-    db.addStaff(userID, fname, lname, phoneNo, email, password, address, city, state, postcode, activation, registrationDate, roleID);
+    public TestDB(){
+        try {
+            connector = new DBConnector();
+            conn = connector.openConnection();
+            db = new DBManager(conn);
+            } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(TestDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
-} catch (ParseException e) {
-    System.out.println("Incorrect format. Please enter date in YYYY-MM-DD format.");
-}
+    private char readChoice() {
+        System.out.print("Operation CRUDS or * to exit:");
+        return in.nextLine().charAt(0);
+    }
+    
+    private void runQueries() throws SQLException{
+        char c; 
+        
+        while ((c = readChoice()) != '*'){
+            switch (c) {
+                case 'C':
+                testAddStaff();
+                break;
+                case 'R':
+                testFindStaff();
+                break; 
+                case 'U': 
+                testUpdateStaff();
+                break; 
+                case 'D':
+                testDeleteStaff();
+                break;
+                case 'S':
+                testShowAllStaff();
+                break;
+                default: 
+                System.out.println("Unknown Command");
+                break;
+        }
+      }
+    }
+    
+    private void testAddStaff(){
+            System.out.print("User email: ");
+            String email = in.nextLine();
 
+            System.out.print("User First name: ");
+            String fname = in.nextLine();
 
-System.out.println("User is added to the database.");
+            System.out.print("User Last name: ");
+            String lname = in.nextLine();
 
-connector.closeConnection();
+            System.out.print("User Phone Number: ");
+            int phoneNo = Integer.parseInt(in.nextLine());
 
- 
+            System.out.print("User password: ");
+            String password = in.nextLine();
 
-} catch (ClassNotFoundException | SQLException ex) {
+            System.out.print("User address: ");
+            String address = in.nextLine();
 
-Logger.getLogger(TestDB.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.print("User city: ");
+            String city = in.nextLine();
 
-}
+            System.out.print("User state: ");
+            String state = in.nextLine();
 
-}
+            System.out.print("User postcode: ");
+            int postcode = Integer.parseInt(in.nextLine());
 
-}
+            System.out.print("Staff activation status (true/false): ");
+            boolean activation = Boolean.parseBoolean(in.nextLine());
+
+            System.out.print("Staff Position: ");
+            String position = in.nextLine();
+
+            // Generate a random registration date within a reasonable range
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Random rand = new Random();
+            long startTimestamp = Timestamp.valueOf("2010-01-01 00:00:00").getTime();
+            long endTimestamp = System.currentTimeMillis();
+            long randomTimestamp = startTimestamp + (long) (rand.nextDouble() * (endTimestamp - startTimestamp));
+            Date registrationDate = new Date(randomTimestamp);
+            
+            try{
+            db.addStaff(fname, lname, phoneNo, email, password, address, city, state, postcode, activation, registrationDate, position);
+            System.out.println("User is added to the database.");
+            } catch (SQLException ex) {
+            Logger.getLogger(TestDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+    }
+    
+    
+    private void testFindStaff() throws SQLException{
+        
+        System.out.print("Staff First Name: ");
+        String fname = in.nextLine();
+        System.out.print("Student Last Name: ");
+        String lname = in.nextLine();
+        System.out.print("Staff Position: ");
+        String position = in.nextLine();
+        User user = db.findStaff(fname, lname, position);
+        if (user != null) {
+            System.out.print("Staff member " + user.getFname() + " " +  user.getLname() + " exists in the database.");
+        } else {
+            System.out.print("Staff member does not exist");
+        }
+        
+    }
+    
+    private void testUpdateStaff() {
+            System.out.print("Staff ID: ");
+            int userID = Integer.parseInt(in.nextLine());
+            try{ 
+                if(db.checkStaff(userID)){
+                    System.out.print("User email: ");
+                    String email = in.nextLine();
+                    System.out.print("User First name: ");
+                    String fname = in.nextLine();
+                    System.out.print("User Last name: ");
+                    String lname = in.nextLine();
+                    System.out.print("User Phone Number: ");
+                    int phoneNo = Integer.parseInt(in.nextLine());
+                    System.out.print("User password: ");
+                    String password = in.nextLine();
+                    System.out.print("User address: ");
+                    String address = in.nextLine();
+                    System.out.print("User city: ");
+                    String city = in.nextLine();
+                    System.out.print("User state: ");
+                    String state = in.nextLine();
+                    System.out.print("User postcode: ");
+                    int postcode = Integer.parseInt(in.nextLine());
+                    System.out.print("Staff activation status (true/false): ");
+                    boolean activation = Boolean.parseBoolean(in.nextLine());
+                    System.out.print("Staff Position: ");
+                    String position = in.nextLine();
+                    db.updateStaff(userID, fname, lname, phoneNo, email, password, address, city, state, postcode, activation, position);
+                } else {
+                    System.out.println("Staff Member does not exist.");
+                }
+           } catch (SQLException ex){
+               Logger.getLogger(TestDB.class.getName()).log(Level.SEVERE, null, ex);
+           }
+    }
+    
+    private void testDeleteStaff() {
+        System.out.print("Staff ID: ");
+        int userID = Integer.parseInt(in.nextLine());
+        
+        try {
+            if (db.checkStaff(userID)){
+                db.deleteStaff(userID);
+            } else {
+                System.out.println("Staff Member does not exist.");
+            }
+        } catch (SQLException ex){
+               Logger.getLogger(TestDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void testShowAllStaff() {
+        try {
+            ArrayList<User> users = db.fetchStaff();
+            System.out.println("STAFF TABLE: ");
+            users.stream().forEach((user) -> {
+                System.out.printf("%-20s %-30s %-20s %-10s \n", user.getFname(), user.getLname(), user.getEmail(), user.getPassword(), user.getPhoneNo(), user.getAddress(), user.getCity(), user.getState(), user.getPostcode(), user.getRegistrationDate(), user.getPosition());
+            });
+            System.out.println();
+        } catch (SQLException ex){
+               Logger.getLogger(TestDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    
+    }
+
