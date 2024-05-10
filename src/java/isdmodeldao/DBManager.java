@@ -29,14 +29,22 @@ public class DBManager {
     //  also need to check if quanity > 0 before ordering
     // would need to deduct quantity from stock - borrow from the updateOrder function :D
     // am i meant to add the userID as well
-    public void addOrder(int orderID, String orderDate, String status, int noItems, double totalPrice, int userID) throws SQLException { //change from string to date
+
+//        orderID INT NOT NULL,
+//    orderDate DATE,
+//    status VARCHAR(10),
+//    totalNoItems INT,
+//    totalPrice DOUBLE,
+//    userID INT,
+    
+    public void addOrder(int orderID, String orderDate, String status, int noItems, double totalPrice, int userID) throws SQLException {
         String addQuery = "INSERT INTO ISDUSER.ORDERS(orderID, orderDate, status, totalNoItems, totalPrice, userID) VALUES('" + orderID + "'," + orderDate + "," + "'" + status + "',"  + "'" + noItems + "'," + "'" + totalPrice + "'," + "'" + userID + "')" ;
         st.executeUpdate(addQuery) ;
     }
     
     // find an order using orderID and orderDate - in progress
     public void findOrder(int orderID, String orderDate) throws SQLException {
-        String findQuery = "SELECT * FROM ISDUSER.ORDERS WHERE ORDERID=" + orderID + "AND orderDate='" + orderDate + "'" ;
+        String findQuery = "SELECT * FROM ISDUSER.ORDERS WHERE ORDERID=" + orderID + "AND orderDate=" + orderDate ;
         ResultSet rs = st.executeQuery(findQuery) ;
         while (rs.next()) {
             int rsOrderID = rs.getInt("orderID") ;

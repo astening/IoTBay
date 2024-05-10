@@ -47,7 +47,7 @@ String status = in.nextLine();
 //System.out.print("Order date: ");
 
 //String orderDate = in.nextLine(); //convert to date
-String stringDate = "2024-05-06" ;
+//String stringDate = "2024-05-06" ;
 
 //System.out.print("No of items: ");
 
