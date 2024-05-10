@@ -15,7 +15,7 @@
     <body>
         <h1>Payment Details</h1>
         <h2>Update Card Details</h2>
-        <form method="POST">
+        <form method="POST" action="payment.jsp">
             <table>
                 <tr>
                     <td>Name on card</td>
