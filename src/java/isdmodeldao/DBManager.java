@@ -29,14 +29,6 @@ public class DBManager {
     //  also need to check if quanity > 0 before ordering
     // would need to deduct quantity from stock - borrow from the updateOrder function :D
     // am i meant to add the userID as well
-
-//        orderID INT NOT NULL,
-//    orderDate DATE,
-//    status VARCHAR(10),
-//    totalNoItems INT,
-//    totalPrice DOUBLE,
-//    userID INT,
-    
     public void addOrder(int orderID, String orderDate, String status, int noItems, double totalPrice, int userID) throws SQLException {
         String addQuery = "INSERT INTO ISDUSER.ORDERS(orderID, orderDate, status, totalNoItems, totalPrice, userID) VALUES('" + orderID + "'," + orderDate + "," + "'" + status + "',"  + "'" + noItems + "'," + "'" + totalPrice + "'," + "'" + userID + "')" ;
         st.executeUpdate(addQuery) ;
