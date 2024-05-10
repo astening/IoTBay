@@ -81,16 +81,35 @@ public void addStaff(String fname, String lname, int phoneNo, String email, Stri
 }
 
 //update a user details in the database   
-public void updateStaff(int userID, String fName, String lName, int phoneNo, String email, String password, String address, String city, String state, int postcode, boolean activation, String position) throws SQLException {       
-   //code for update-operation   
-   st.executeUpdate("UPDATE Users SET Fname='" + fName + "', Lname='" + lName + "' ,PhoneNo='" + phoneNo + "' ,Password='" + password + "' ,Address='" + address + "' ,City='" + city + "' ,State='" + state + "' ,Postcode='" + postcode + "' ,Activation='" + activation + "' ,Position='" + position + "' WHERE UserID='" + userID + "'");
-
-}       
+public void updateStaff(int userID, String fName, String lName, int phoneNo, String email, String password, String address, String city, String state, int postcode, boolean activation, String position) throws SQLException {
+    String query = "UPDATE Users SET fName=?, lName=?, phoneNo=?, email=?, password=?, address=?, city=?, state=?, postcode=?, activation=?, position=? WHERE userID=?";
+    
+    try (PreparedStatement stmt = conn.prepareStatement(query)) {
+        stmt.setString(2, fName);
+        stmt.setString(3, lName);
+        stmt.setInt(4, phoneNo);
+        stmt.setString(5, email);
+        stmt.setString(6, password);
+        stmt.setString(7, address);
+        stmt.setString(8, city);
+        stmt.setString(9, state);
+        stmt.setInt(10, postcode);
+        stmt.setBoolean(11, activation);
+        stmt.setString(13, position);
+        stmt.setInt(1, userID);
+        
+        stmt.executeUpdate();
+    }
+}     
 
 //delete a user from the database   
-public void deleteStaff(int userID) throws SQLException{       
-   //code for delete-operation   
-   st.executeUpdate("DELETE FROM Users WHERE USERID='" + userID + "'");
+public void deleteStaff(int userID) throws SQLException {
+    String query = "DELETE FROM Users WHERE userID=?";
+    
+    try (PreparedStatement stmt = conn.prepareStatement(query)) {
+        stmt.setInt(1, userID);
+        stmt.executeUpdate();
+    }
 }
 
 public ArrayList<User> fetchStaff() throws SQLException{
@@ -117,14 +136,18 @@ public ArrayList<User> fetchStaff() throws SQLException{
 }
  
 public boolean checkStaff(int userID) throws SQLException {
-    String fetch = "select * from Users where UserID = '" + userID + "'";
-    ResultSet rs = st.executeQuery(fetch);
+   String fetch = "SELECT * FROM Users WHERE UserID = ?";
     
-    while (rs.next()) {
-        int staffID = rs.getInt(1);
-     if (staffID == userID){
-         return true;
-     }
+    try (PreparedStatement stmt = conn.prepareStatement(fetch)) {
+        stmt.setInt(1, userID);
+        ResultSet rs = stmt.executeQuery();
+        
+        while (rs.next()) {
+            int staffID = rs.getInt(1);
+            if (staffID == userID) {
+                return true;
+            }
+        }
     }
     return false;
 }
