@@ -24,7 +24,7 @@ CREATE TABLE Users (
 
 CREATE TABLE Orders (
     orderID INT NOT NULL,
-    orderDate DATE,
+    orderDate VARCHAR(20),
     status VARCHAR(10),
     totalNoItems INT,
     totalPrice DOUBLE,
