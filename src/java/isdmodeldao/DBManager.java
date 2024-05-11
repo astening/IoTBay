@@ -24,12 +24,15 @@ public class DBManager {
     }
         
     // add the order in the database - also in progress
+    // i need product to be in here - need to change order table
     // am i meant to add the userID as well
-    public void addOrder(int orderID, String orderDate, String status, int noItems, int totalPrice, int userID) throws SQLException { // change price from double to int
+    // this input would need to change completely
+    public void addOrder(int orderID, String orderDate, String status, int noItems, int totalPrice, int userID) throws SQLException { // change this and add product ID
 
         int productStock=0 ;
         
-        // crap its not doing this
+        // i would need to get the product from the user and then add into orderLineItem
+        // and then I need to do the quantity checks etc
         String checkStock = "SELECT STOCKLVL FROM ISDUSER.PRODUCTS WHERE PRODUCTID = (SELECT productID FROM ISDUSER.ORDERLINEITEM WHERE ORDERID=" + orderID + ")" ;
         ResultSet rs = st.executeQuery(checkStock) ;
         while(rs.next()) {

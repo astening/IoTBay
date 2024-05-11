@@ -20,10 +20,8 @@ import java.util.regex.Pattern;
    public class Validator implements Serializable{ 
 
  
-//   private final String emailPattern = "([a-zA-Z0-9]+)(([._-])([a-zA-Z0-9]+))*(@)([a-z]+)(.)([a-z]{3})((([.])[a-z]{0,2})*)";      
    private final String statusPattern = "([A-Z][a-z]+[\\s])+[A-Z][a-z]*";       
-//   private final String passwordPattern = "[a-z0-9]{4,}";
-   private final String orderIDPattern = "[0-9]" ;
+   private final String numberPattern = "[0-9]+" ;
               
    public Validator(){    }       
 
@@ -36,7 +34,7 @@ import java.util.regex.Pattern;
 
    }       
 
- 
+
    // notifies user if values aren't filled
    public boolean checkEmpty(int orderID, String status){  
 
@@ -50,21 +48,19 @@ import java.util.regex.Pattern;
       return validate(statusPattern,status);   
 
    }
-   
-   // check orderID format tbc
-       
-   public boolean validateName(String name){
 
-      return validate(orderIDPattern,name); 
+   // checks that the number is a digit 0-9    
+   public boolean validateNumber(String number){
+
+      return validate(numberPattern,number); 
 
    } 
    
    // need to update the error names here and add to respective views
    public void clear(HttpSession session) {
-       session.setAttribute("emailErr", "Enter email") ;
-       session.setAttribute("passErr", "Enter password") ;
-       session.setAttribute("existErr", "") ;
-       session.setAttribute("nameErr", "Enter name") ;
+       session.setAttribute("statusValidated", "Enter status") ;
+       session.setAttribute("updated", "No change made yet") ;
+       session.setAttribute("IDValidated", "Enter ID") ;
    }
         
 }
