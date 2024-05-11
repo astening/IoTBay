@@ -37,9 +37,12 @@ import java.util.regex.Pattern;
 
    // notifies user if values aren't filled
    public boolean checkEmpty(int orderID, String status){  
-
-      return  status.isEmpty() || orderID==0  ; // instead of isEmpty, ==0
-
+      if (status!=null) {
+          return  status.isEmpty() || orderID==0  ; // instead of isEmpty, ==0
+      }
+      else {
+          return true ;
+      }
    }
 
    // check status format
