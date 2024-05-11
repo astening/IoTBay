@@ -44,9 +44,9 @@ System.out.print("Order status: ");
 
 String status = in.nextLine();
 
-//System.out.print("Order date: ");
+System.out.print("Order date: ");
 
-//String orderDate = in.nextLine(); //convert to date
+String orderDate = in.nextLine(); //convert to date
 //String stringDate = "2024-05-06" ;
 
 //System.out.print("No of items: ");
@@ -59,7 +59,7 @@ String status = in.nextLine();
 
 System.out.print("Order ID: ");
 
-int orderID = (int) in.nextInt();
+int orderID = in.nextInt() ;
 
 //System.out.print("Product ID: ");
 //
@@ -69,6 +69,9 @@ int orderID = (int) in.nextInt();
 //
 //int quantity = in.nextInt();
 
+System.out.println("User ID:") ;
+int userID = in.nextInt() ;
+
 // update status
 //db.updateOrderStatus(orderID, status) ;
 
@@ -76,7 +79,7 @@ int orderID = (int) in.nextInt();
 
 // add order
 //db.addOrder(orderID, stringDate , status, quantity, totalPrice, orderID); // change 2 to orderDate, 4 to noItems, 6 to userID
-db.addOrder(orderID, "2024-05-09" , status, orderID, orderID, orderID);
+db.addOrder(orderID, orderDate , status, orderID, orderID, userID);
 //addOrder(int orderID, Date orderDate, String status, int noItems, double totalPrice, int userID)
 //System.out.println("Order added to the database") ;
 

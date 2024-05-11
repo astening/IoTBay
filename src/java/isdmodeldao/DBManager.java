@@ -22,19 +22,37 @@ public class DBManager {
     public DBManager(Connection conn) throws SQLException {       
        st = conn.createStatement();   
     }
-    
-    // dates should be input as string - according to video
-    
+        
     // add the order in the database - also in progress
-    // also need to check if quanity > 0 before ordering
-    // would need to deduct quantity from stock - borrow from the updateOrder function :D
     // am i meant to add the userID as well
-    public void addOrder(int orderID, String orderDate, String status, int noItems, double totalPrice, int userID) throws SQLException {
-        String addQuery = "INSERT INTO ISDUSER.ORDERS(orderID, orderDate, status, totalNoItems, totalPrice, userID) VALUES('" + orderID + "'," + orderDate + "," + "'" + status + "',"  + "'" + noItems + "'," + "'" + totalPrice + "'," + "'" + userID + "')" ;
-        st.executeUpdate(addQuery) ;
+    public void addOrder(int orderID, String orderDate, String status, int noItems, int totalPrice, int userID) throws SQLException { // change price from double to int
+
+        int productStock=0 ;
+        
+        // crap its not doing this
+        String checkStock = "SELECT STOCKLVL FROM ISDUSER.PRODUCTS WHERE PRODUCTID = (SELECT productID FROM ISDUSER.ORDERLINEITEM WHERE ORDERID=" + orderID + ")" ;
+        ResultSet rs = st.executeQuery(checkStock) ;
+        while(rs.next()) {
+            productStock = rs.getInt("STOCKLVL") ;
+        }
+        rs.close() ;
+        
+        if ((productStock-noItems)>=0 ) {
+
+            // add the order details
+            String addQuery = "INSERT INTO ISDUSER.ORDERS(orderID, orderDate, status, totalNoItems, totalPrice, userID) VALUES(" + orderID + ", '" + orderDate + "', '" + status + "',"  + noItems + "," + totalPrice + "," + userID + ")" ;
+            st.executeUpdate(addQuery) ;
+            
+            // deduct producct from the product table
+            String deductProduct = "UPDATE ISDUSER.PRODUCTS SET STOCKLVL=STOCKLVL-" + noItems  + "WHERE PRODUCTID = (SELECT productID FROM ISDUSER.ORDERLINEITEM WHERE ORDERID=" + orderID + ")"  ;
+            st.executeUpdate(deductProduct) ;
+
+        }
+  
     }
     
     // find an order using orderID and orderDate - in progress
+    // what happens if i use a list here
     public void findOrder(int orderID, String orderDate) throws SQLException {
         String findQuery = "SELECT * FROM ISDUSER.ORDERS WHERE ORDERID=" + orderID + "AND orderDate=" + orderDate ;
         ResultSet rs = st.executeQuery(findQuery) ;
@@ -57,6 +75,7 @@ public class DBManager {
     }
     
     // update the order details - works
+    // double check this actually works
     public void updateOrder(int orderID, int productID, int quantity) throws SQLException {
         int productStock=0 ;
         
@@ -67,7 +86,7 @@ public class DBManager {
         }
         rs.close() ;
         
-        if ((productStock-quantity)>0 ) {
+        if ((productStock-quantity)>=0 ) {
       
             // add back old value to product stock
             String restoreProduct = "UPDATE ISDUSER.PRODUCTS SET STOCKLVL=STOCKLVL+" + "(SELECT ITEMQUANTITY FROM ISDUSER.ORDERLINEITEM WHERE ORDERID=" + orderID + ")"  + "WHERE PRODUCTID = (SELECT productID FROM ISDUSER.ORDERLINEITEM WHERE ORDERID=" + orderID + ")"  ;
@@ -84,6 +103,10 @@ public class DBManager {
             // update quantity in orderLineItem
             String updateOrderLineQuantity = "UPDATE ISDUSER.ORDERLINEITEM SET PRODUCTID=" + productID + ", ITEMQUANTITY=" + quantity + "WHERE ORDERID=" + orderID ;
             st.executeUpdate(updateOrderLineQuantity) ;
+            
+            // deduct new product from stock
+            String deductProduct = "UPDATE ISDUSER.PRODUCTS SET STOCKLVL=STOCKLVL-" + quantity  + "WHERE PRODUCTID = (SELECT productID FROM ISDUSER.ORDERLINEITEM WHERE ORDERID=" + orderID + ")"  ;
+            st.executeUpdate(deductProduct) ;
         }
         
         
