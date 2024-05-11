@@ -20,7 +20,7 @@ import java.util.regex.Pattern;
    public class Validator implements Serializable{ 
 
  
-   private final String statusPattern = "([A-Z][a-z]+[\\s])+[A-Z][a-z]*";       
+   private final String statusPattern = "([A-Z][a-z]+)";       
    private final String numberPattern = "[0-9]+" ;
               
    public Validator(){    }       
