@@ -36,6 +36,12 @@ public class ValidatorTestStatusNumber {
         assertEquals(false,res) ;
     }
     
+    @Test
+    public void testValidateStatusInvalidSpace() { // status is invalid
+        boolean res = validator.validateStatus("New order");
+        assertEquals(false,res) ;
+    }
+    
     // test validateStatus() functionality
     
 }
