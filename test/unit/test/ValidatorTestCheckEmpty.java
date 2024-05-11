@@ -14,11 +14,11 @@ import org.junit.Test ;
 import static org.junit.Assert.* ;
 import isdcontroller.Validator ;
 
-public class ValidatorTest {
+public class ValidatorTestCheckEmpty {
     
     private final Validator validator;
 
-    public ValidatorTest() {
+    public ValidatorTestCheckEmpty() {
         validator = new Validator();
     }
 

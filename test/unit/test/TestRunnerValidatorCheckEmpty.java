@@ -9,12 +9,12 @@ import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 
-public class TestRunnerValidator {
+public class TestRunnerValidatorCheckEmpty {
 
     public static void main(String[] args) {
         
     System.out.println("Testing Calculator: ");
-    Result result = JUnitCore.runClasses(ValidatorTest.class);
+    Result result = JUnitCore.runClasses(ValidatorTestCheckEmpty.class);
 
     for (Failure failure : result.getFailures()) {
       System.out.println(failure.toString());
