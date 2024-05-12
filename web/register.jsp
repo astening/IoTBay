@@ -17,8 +17,16 @@
         <form action="welcome.jsp" method="POST">
             <table>
                 <tr>
-                    <td><label for="name">Name:</label></td>
-                    <td><input type="text" id="name" name="name" required="true"></td>
+                    <td><label for="lname">First Name:</label></td>
+                    <td><input type="text" id="fname" name="fname" required="true"></td>
+                <tr>
+                <tr>
+                    <td><label for="lname">Last Name:</label></td>
+                    <td><input type="text" id="lname" name="lname" required="true"></td>
+                <tr>
+                <tr>
+                    <td><label for="phoneno">Phone Number:</label></td>
+                    <td><input type="number" id="phoneno" name="phoneno" required="true"></td>
                 <tr>
                     <td><label for="email">Email:</label></td>
                     <td><input type="text" id="email" name="email" required="true"></td>
@@ -26,6 +34,26 @@
                 <tr>
                     <td><label for="password">Password:</label></td>
                     <td><input type="password" id="password" name="password" required="true"></td>
+                </tr>
+                <tr>
+                    <td><label for="address">Address:</label></td>
+                    <td><input type="text" id="address" name="address" required="true"></td>
+                </tr>
+                <tr>
+                    <td><label for="city">City:</label></td>
+                    <td><input type="text" id="city" name="city" required="true"></td>
+                </tr>
+                <tr>
+                    <td><label for="state">State:</label></td>
+                    <td><input type="text" id="state" name="state" required="true"></td>
+                </tr>
+                <tr>
+                    <td><label for="postcode">Postcode:</label></td>
+                    <td><input type="number" id="postcode" name="postcode" required="true"></td>
+                </tr>
+                <tr>
+                    <td><label for="position">Position:</label></td>
+                    <td><input type="text" id="position" name="position" required="true"></td>
                 </tr>
             </table>
             <br>
