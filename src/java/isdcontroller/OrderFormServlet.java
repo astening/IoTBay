@@ -4,18 +4,31 @@
  */
 package isdcontroller;
 
+import isdmodeldao.DBConnector;
+import isdmodeldao.DBManager;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author chari
  */
 public class OrderFormServlet extends HttpServlet {
+    
+       private DBConnector db;
+
+       private DBManager manager;
+
+       private Connection conn;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -55,6 +68,25 @@ public class OrderFormServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+           response.setContentType("text/html;charset=UTF-8");       
+
+           HttpSession session = request.getSession();
+
+           conn = db.openConnection();       
+
+           try {
+
+               manager = new DBManager(conn);
+
+           } catch (SQLException ex) {
+
+               Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE, null, ex);
+
+           }
+
+           //export the DB manager to the view-session (JSPs)
+
+           session.setAttribute("manager", manager);   
         processRequest(request, response);
     }
 
