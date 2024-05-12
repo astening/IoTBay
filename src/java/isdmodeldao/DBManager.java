@@ -55,7 +55,7 @@ public class DBManager {
     }
     
     // find an order using orderID and orderDate - in progress
-    // what happens if i use a list here
+    // what happens if i use a list here --> i don't know how I am meant to return the stuff
     public void findOrder(int orderID, String orderDate) throws SQLException {
         String findQuery = "SELECT * FROM ISDUSER.ORDERS WHERE ORDERID=" + orderID + "AND orderDate=" + orderDate ;
         ResultSet rs = st.executeQuery(findQuery) ;
@@ -70,12 +70,14 @@ public class DBManager {
                 System.out.println("ID is: " + rsOrderID + ", and date is: " + rsOrderDate) ;
                 // check for order object return
                 // ignore for now and come back
-//                return new Order(orderID, rsOrderDateDate, status, noItems, totalPrice) ; // java date and string
+//                return new Order(orderID, orderDate, status, noItems, totalPrice) ; // string not working
             }
 
         }
 //        return null; //  apparently unnecessary
     }
+    
+    // if time, create a fetch students list ie select * from students
     
     // update the order details - works
     // double check this actually works
