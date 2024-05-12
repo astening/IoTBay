@@ -9,7 +9,6 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
-//import java.util.Date;
 
 /**
  *
@@ -56,7 +55,7 @@ public class DBManager {
     }
     
     // find an order using orderID and orderDate - need to return the order itself
-    // what happens if i use a list here --> i don't know how I am meant to return the stuff
+    // use a list here to return the stuff
     public void findOrder(int orderID, String orderDate) throws SQLException {
         String findQuery = "SELECT * FROM ISDUSER.ORDERS WHERE ORDERID=" + orderID + "AND orderDate='" + orderDate + "'" ;
         ResultSet rs = st.executeQuery(findQuery) ;
@@ -134,6 +133,7 @@ public class DBManager {
     //update order status in the database - works  
     public void updateOrderStatus( int orderID, String status) throws SQLException {       
     //code for update-operation
+    // add an if-branch to perform delete functionality if status = cancelled / deleted
     String updateQuery = "UPDATE ISDUSER.ORDERS SET STATUS='" + status +  "' WHERE ORDERID=" + orderID ;
     st.executeUpdate(updateQuery) ;
     
@@ -145,7 +145,7 @@ public class DBManager {
 
 // for reference, these are the inputs for the table
 //    orderID INT NOT NULL,
-//    orderDate DATE,
+//    orderDate STRING,
 //    status VARCHAR(10),
 //    totalNoItems INT,
 //    totalPrice DOUBLE,
@@ -153,7 +153,7 @@ public class DBManager {
 
 // and this is from the model
 //    private int orderID;
-//    private Date orderDate;
+//    private String orderDate;
 //    private String status;
 //    private int noItems;
 //    private double totalPrice;
