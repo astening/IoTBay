@@ -42,6 +42,36 @@ public class ValidatorTestStatusNumber {
         assertEquals(false,res) ;
     }
     
-    // test validateStatus() functionality
+    // test validateNumber() functionality
+    
+    @Test
+    public void testValidateNumberValid() {
+        boolean res = validator.validateNumber("1") ; // number is valid
+        assertEquals(true, res) ;
+    }
+    
+    @Test
+    public void testValidateNumberValidMultiple() {
+        boolean res = validator.validateNumber("13") ; // double digit number is valid
+        assertEquals(true, res) ;
+    }
+    
+    @Test
+    public void testValidateNumberInvalidLetter() {
+        boolean res = validator.validateNumber("1a") ; // letter is invalid
+        assertEquals(false, res) ;
+    }
+    
+    @Test
+    public void testValidateNumberInvalidCharacter() {
+        boolean res = validator.validateNumber("12!") ; // character is invalid
+        assertEquals(false, res) ;
+    }
+    
+    @Test
+    public void testValidateNumberInvalidNegative() {
+        boolean res = validator.validateNumber("-2") ; // negative number is invalid
+        assertEquals(false, res) ;
+    }
     
 }
