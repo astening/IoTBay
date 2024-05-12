@@ -25,7 +25,7 @@ import java.util.regex.Pattern;
               
    public Validator(){    }       
 
-
+   // set up validator patterns
    public boolean validate(String pattern, String input){       
       Pattern regEx = Pattern.compile(pattern);       
       Matcher match = regEx.matcher(input);       
@@ -59,7 +59,7 @@ import java.util.regex.Pattern;
 
    } 
    
-   // need to update the error names here and add to respective views
+   // set validation messages to default
    public void clear(HttpSession session) {
        session.setAttribute("statusValidated", "Enter status") ;
        session.setAttribute("updated", "No change made yet") ;

@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="isdmodel.Order"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,10 +16,10 @@
     </head>
     <body>
         <%
-            String existErr = (String) session.getAttribute("existErr") ;
-            String emailErr = (String) session.getAttribute("emailErr") ;
-            String passErr = (String) session.getAttribute("passErr") ;
-        %>
+            String statusValidated = (String) session.getAttribute("statusValidated") ;
+            String updated = (String) session.getAttribute("updated") ;
+            String IDvalidated = (String) session.getAttribute("IDValidated") ;
+        %>        
         <h1>Orders Page</h1>
         <h2>Update order status - staff only</h2>
         <form action="UpdateStatus" method="post">  <!--Change back to UpdateStatusServlet-->
