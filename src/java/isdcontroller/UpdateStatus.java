@@ -66,36 +66,36 @@ import jakarta.servlet.http.HttpSession;
 //           }      
 //
 //       }
-//
-//      
-//
-//       @Override //Add the DBConnector, DBManager, Connection instances to the session
-//
-//       protected void doGet(HttpServletRequest request, HttpServletResponse response)
-//
-//               throws ServletException, IOException {
-//
-//           response.setContentType("text/html;charset=UTF-8");       
-//
-//           HttpSession session = request.getSession();
-//
-//           conn = db.openConnection();       
-//
-//           try {
-//
-//               manager = new DBManager(conn);
-//
-//           } catch (SQLException ex) {
-//
-//               Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE, null, ex);
-//
-//           }
-//
-//           //export the DB manager to the view-session (JSPs)
-//
-//           session.setAttribute("manager", manager);           
-//
-//       }
+
+      
+
+       @Override //Add the DBConnector, DBManager, Connection instances to the session
+
+       protected void doGet(HttpServletRequest request, HttpServletResponse response)
+
+               throws ServletException, IOException {
+
+           response.setContentType("text/html;charset=UTF-8");       
+
+           HttpSession session = request.getSession();
+
+           conn = db.openConnection();       
+
+           try {
+
+               manager = new DBManager(conn);
+
+           } catch (SQLException ex) {
+
+               Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE, null, ex);
+
+           }
+
+           //export the DB manager to the view-session (JSPs)
+
+           session.setAttribute("manager", manager);           
+
+       }
        
        
        @Override
@@ -110,6 +110,9 @@ import jakarta.servlet.http.HttpSession;
             //4- capture the posted status 
             String status = (String) request.getParameter("status") ;
 
+            //4.1 - set the manager attribute
+//            session.setAttribute("manager", manager);
+            
             //5- retrieve the manager instance from session
             manager = (DBManager) session.getAttribute("manager") ;
             
