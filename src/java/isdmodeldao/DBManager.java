@@ -73,7 +73,7 @@ public void addStaff(String fname, String lname, int phoneNo, String email, Stri
         stmt.setString(8, state);
         stmt.setInt(9, postcode);
         stmt.setBoolean(10, activation);
-        stmt.setDate(11, new java.sql.Date(registrationDate.getTime())); // Convert java.util.Date to java.sql.Date
+        stmt.setDate(11, new java.sql.Date(new Date().getTime())); // Using current date
         stmt.setString(12, position);
         
         stmt.executeUpdate();
@@ -95,7 +95,7 @@ public void updateStaff(int userID, String fName, String lName, int phoneNo, Str
         stmt.setString(9, state);
         stmt.setInt(10, postcode);
         stmt.setBoolean(11, activation);
-        stmt.setString(13, position);
+        stmt.setString(12, position);
         stmt.setInt(1, userID);
         
         stmt.executeUpdate();

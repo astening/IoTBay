@@ -41,7 +41,7 @@ public class User {
         this.registrationDate = registrationDate;
         this.position = position;
     }
-
+    
     public String getPosition() {
         return position;
     }
@@ -136,6 +136,10 @@ public class User {
 
     public void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
+    }
+
+    public int getUserID() {
+        return userID;
     }
     
 

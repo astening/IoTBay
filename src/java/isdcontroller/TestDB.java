@@ -107,13 +107,8 @@ public class TestDB {
             System.out.print("Staff Position: ");
             String position = in.nextLine();
 
-            // Generate a random registration date within a reasonable range
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Random rand = new Random();
-            long startTimestamp = Timestamp.valueOf("2010-01-01 00:00:00").getTime();
-            long endTimestamp = System.currentTimeMillis();
-            long randomTimestamp = startTimestamp + (long) (rand.nextDouble() * (endTimestamp - startTimestamp));
-            Date registrationDate = new Date(randomTimestamp);
+            // Generate the current registration date
+            Date registrationDate = new Date();
             
             try{
             db.addStaff(fname, lname, phoneNo, email, password, address, city, state, postcode, activation, registrationDate, position);
