@@ -79,12 +79,12 @@ int userID = in.nextInt() ;
 
 // add order
 //db.addOrder(orderID, stringDate , status, quantity, totalPrice, orderID); // change 2 to orderDate, 4 to noItems, 6 to userID
-db.addOrder(orderID, orderDate , status, orderID, orderID, userID);
+//db.addOrder(orderID, orderDate , status, orderID, orderID, userID);
 //addOrder(int orderID, Date orderDate, String status, int noItems, double totalPrice, int userID)
 //System.out.println("Order added to the database") ;
 
 // find order
-//db.findOrder(orderID, "2024-04-01") ;
+db.findOrder(orderID, "2024-04-01") ;
 
 // delete order
 //db.deleteOrder(orderID) ;

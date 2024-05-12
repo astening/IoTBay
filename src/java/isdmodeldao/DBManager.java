@@ -24,6 +24,7 @@ public class DBManager {
     }
         
     // add the order in the database - also in progress
+    // the addQuery works perfectly --> might need to add into orderLineItem
     // i need product to be in here - need to change order table
     // am i meant to add the userID as well
     // this input would need to change completely
@@ -54,19 +55,19 @@ public class DBManager {
   
     }
     
-    // find an order using orderID and orderDate - in progress
+    // find an order using orderID and orderDate - need to return the order itself
     // what happens if i use a list here --> i don't know how I am meant to return the stuff
     public void findOrder(int orderID, String orderDate) throws SQLException {
-        String findQuery = "SELECT * FROM ISDUSER.ORDERS WHERE ORDERID=" + orderID + "AND orderDate=" + orderDate ;
+        String findQuery = "SELECT * FROM ISDUSER.ORDERS WHERE ORDERID=" + orderID + "AND orderDate='" + orderDate + "'" ;
         ResultSet rs = st.executeQuery(findQuery) ;
         while (rs.next()) {
-            int rsOrderID = rs.getInt("orderID") ;
-            String rsOrderDate = rs.getString("orderDate") ;
+            int rsOrderID = (int) rs.getInt("orderID") ;
+            String rsOrderDate = (String) rs.getString("orderDate") ;
             if (rsOrderID==orderID && rsOrderDate.equals(orderDate)) {
                 // tbc return a proper order
                 String status = rs.getString("status") ;
                 double totalPrice = rs.getDouble("totalPrice") ;
-                int noItems = rs.getInt("noItems") ;
+                int totalNoItems = rs.getInt("totalNoItems") ;
                 System.out.println("ID is: " + rsOrderID + ", and date is: " + rsOrderDate) ;
                 // check for order object return
                 // ignore for now and come back
