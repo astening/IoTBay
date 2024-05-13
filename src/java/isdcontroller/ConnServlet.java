@@ -17,7 +17,7 @@ import jakarta.servlet.http.HttpSession;
 
    import java.io.IOException;
 
-   import java.sql.Connection;
+   import java.sql.*;
 
    import java.sql.SQLException;
 
@@ -66,21 +66,29 @@ import jakarta.servlet.http.HttpSession;
            }      
 
        }
+       
+       // attempting to properly get the manager created correctly - like the dbconnector class - didnt work
+//       public void init() throws ServletException {
+//        try {
+//            Class.forName("org.apache.derby.jdbc.ClientDriver");
+//            conn = DriverManager.getConnection("jdbc:derby://localhost:1527/", "isduser", "admin");
+//        } catch (ClassNotFoundException | SQLException e) {
+//            throw new ServletException("Error initializing database connection", e);
+//        }
+//       }
 
       
 
        @Override //Add the DBConnector, DBManager, Connection instances to the session
 
-       protected void doGet(HttpServletRequest request, HttpServletResponse response)
-
-               throws ServletException, IOException {
+       protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
            response.setContentType("text/html;charset=UTF-8");       
 
            HttpSession session = request.getSession();
 
-           conn = db.openConnection();       
-
+           conn = db.openConnection();   
+           
            try {
 
                manager = new DBManager(conn);

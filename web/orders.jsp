@@ -19,6 +19,7 @@
             String statusValidated = (String) session.getAttribute("statusValidated") ;
             String updated = (String) session.getAttribute("updated") ;
             String IDvalidated = (String) session.getAttribute("IDValidated") ;
+            session.getAttribute("manager") ;
         %>        
         <h1>Orders Page</h1>
         <h2>Update order status - staff only</h2>

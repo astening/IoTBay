@@ -51,21 +51,21 @@ import jakarta.servlet.http.HttpSession;
 
         
 
-//       @Override //Create an instance of DBConnector for the deployment session
-//
-//       public void init() {
-//
-//           try {
-//
-//               db = new DBConnector();
-//
-//           } catch (ClassNotFoundException | SQLException ex) {
-//
-//               Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE, null, ex);
-//
-//           }      
-//
-//       }
+       @Override //Create an instance of DBConnector for the deployment session
+
+       public void init() {
+
+           try {
+
+               db = new DBConnector();
+
+           } catch (ClassNotFoundException | SQLException ex) {
+
+               Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE, null, ex);
+
+           }      
+
+       }
 
       
 
@@ -77,23 +77,23 @@ import jakarta.servlet.http.HttpSession;
 
            response.setContentType("text/html;charset=UTF-8");       
 
-           HttpSession session = request.getSession();
-
-           conn = db.openConnection();       
-
-           try {
-
-               manager = new DBManager(conn);
-
-           } catch (SQLException ex) {
-
-               Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE, null, ex);
-
-           }
+//           HttpSession session = request.getSession();
+//
+//           conn = db.openConnection();       
+//
+//           try {
+//
+//               manager = new DBManager(conn);
+//
+//           } catch (SQLException ex) {
+//
+//               Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE, null, ex);
+//
+//           }
 
            //export the DB manager to the view-session (JSPs)
 
-           session.setAttribute("manager", manager);           
+//           session.setAttribute("manager", manager);           
 
        }
        
@@ -114,7 +114,20 @@ import jakarta.servlet.http.HttpSession;
 //            session.setAttribute("manager", manager);
             
             //5- retrieve the manager instance from session
-            manager = (DBManager) session.getAttribute("manager") ;
+//            manager = (DBManager) session.getAttribute("manager") ;
+
+
+           conn = db.openConnection();       
+
+           try {
+
+               manager = new DBManager(conn);
+
+           } catch (SQLException ex) {
+
+               Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE, null, ex);
+
+           }
             
                 try {
                     
