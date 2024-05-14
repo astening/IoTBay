@@ -22,8 +22,8 @@ public class Validator implements Serializable {
     private String namePattern = "([A-Z][a-z]+[\\s])+[A-Z][a-z]*";       
     private String passwordPattern = "[a-z0-9]{4,}";
     private String cardNoPattern = "([0-9]{4}+[\\s]+[0-9]{4}+[\\s]+[0-9]{4}+[\\s]+[0-9]{4})";
-    private String expiryDatePattern = "([0-9])";
-    private String cvvPattern = "([0-9])";
+    private String expiryDatePattern = "[0-1][1-9]+/+[2][4-9]";
+    private String cvvPattern = "[0-9]{3}";
     
     public Validator() {
     }
@@ -73,7 +73,6 @@ public class Validator implements Serializable {
        session.setAttribute("cardNoErr", null);
        session.setAttribute("expiryDateErr", null);
        session.setAttribute("cvvErr", null);
-       
        //note: dont put gaps between lines^^ will break
    }
 }
