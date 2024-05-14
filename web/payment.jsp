@@ -6,6 +6,7 @@
 <%@page import="isdmodel.PaymentMethod"%>
 <%@page import="isdmodel.User"%>
 <%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -26,14 +27,18 @@
             String cardName="";
             String cardNo="";
             int cvv=0;
-            Date expiryDate = null;
+            String expiryDate = "";
             
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/yy");
+          
             
             PaymentMethod paymentMethod = (PaymentMethod) session.getAttribute("paymentMethod");
             if(paymentMethod!=null){
                 cardName = paymentMethod.getCardName();
                 cardNo = paymentMethod.getCardNo();
-                expiryDate = paymentMethod.getExpiryDate();
+                Date expiry = paymentMethod.getExpiryDate();
+                expiryDate = simpleDateFormat.format(expiry);
+                
                 cvv = paymentMethod.getCvv();
             }
         %>
@@ -71,7 +76,6 @@
 
         <h2>Payment History</h2>
         
-        <%--<jsp:include page="/PaymentMethodServlet" flush="true"/>--%>
         
     </body>
 </html>
