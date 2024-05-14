@@ -12,13 +12,13 @@ import java.util.Date;
  */
 public class PaymentMethod {
     private int paymentMethodID;
-    private int cardNo;
+    private String cardNo;
     private int cvv;
     private Date expiryDate;
     private String cardName;
     private int userID;
 
-    public PaymentMethod(int paymentMethodID, int userID, String cardName, int cardNo, int cvv, Date expiryDate) {
+    public PaymentMethod(int paymentMethodID, int userID, String cardName, String cardNo, int cvv, Date expiryDate) {
         this.paymentMethodID = paymentMethodID;
         this.cardNo = cardNo;
         this.cvv = cvv;
@@ -30,7 +30,7 @@ public class PaymentMethod {
         return paymentMethodID;
     }
 
-    public int getCardNo() {
+    public String getCardNo() {
         return cardNo;
     }
 
@@ -50,7 +50,7 @@ public class PaymentMethod {
         this.paymentMethodID = paymentMethodID;
     }
 
-    public void setCardNo(int cardNo) {
+    public void setCardNo(String cardNo) {
         this.cardNo = cardNo;
     }
 
