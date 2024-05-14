@@ -44,30 +44,30 @@ System.out.print("Order status: ");
 
 String status = in.nextLine();
 
-System.out.print("Order date: ");
+//System.out.print("Order date: ");
 
-String orderDate = in.nextLine(); //convert to date
-//String stringDate = "2024-05-06" ;
+//String orderDate = in.nextLine(); //convert to date
+String stringDate = "2024-05-06" ;
 
 //System.out.print("No of items: ");
 
 //String totalNoItems = in.nextLine(); //convert to int
 
-//System.out.print("Total price: ");
-//
-//double totalPrice = (double) in.nextInt(); //convert to double
+System.out.print("Total price: ");
+
+double totalPrice = (double) in.nextInt(); //convert to double
 
 System.out.print("Order ID: ");
 
 int orderID = in.nextInt() ;
 
-//System.out.print("Product ID: ");
-//
-//int productID = in.nextInt();
-//
-//System.out.print("Quantity: ");
-//
-//int quantity = in.nextInt();
+System.out.print("Product ID: ");
+
+int productID = in.nextInt();
+
+System.out.print("Quantity: ");
+
+int quantity = in.nextInt();
 
 System.out.println("User ID:") ;
 int userID = in.nextInt() ;
@@ -78,13 +78,13 @@ int userID = in.nextInt() ;
 //System.out.println("Status is updated in the database.") ;
 
 // add order
-//db.addOrder(orderID, stringDate , status, quantity, totalPrice, orderID); // change 2 to orderDate, 4 to noItems, 6 to userID
+db.addOrder(orderID, stringDate , status, quantity, quantity, userID, productID); // change 2 to orderDate, 4 to noItems, 6 to userID, change 2nd quantity to double
 //db.addOrder(orderID, orderDate , status, orderID, orderID, userID);
 //addOrder(int orderID, Date orderDate, String status, int noItems, double totalPrice, int userID)
 //System.out.println("Order added to the database") ;
 
 // find order
-db.findOrder(orderID, "2024-04-01") ;
+//db.findOrder(orderID, "2024-04-01") ;
 
 // delete order
 //db.deleteOrder(orderID) ;

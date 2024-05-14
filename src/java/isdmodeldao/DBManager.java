@@ -22,18 +22,15 @@ public class DBManager {
        st = conn.createStatement();   
     }
         
-    // add the order in the database - also in progress
-    // the addQuery works perfectly --> might need to add into orderLineItem
-    // i need product to be in here - need to change order table
-    // am i meant to add the userID as well
-    // this input would need to change completely
-    public void addOrder(int orderID, String orderDate, String status, int noItems, int totalPrice, int userID) throws SQLException { // change this and add product ID
+    // add the order in the database - few changes to be made
+    // change input so you dont need the total price and status and useriD and product iD --> manually insert these with defaults in statement
+    public void addOrder(int orderID, String orderDate, String status, int noItems, int totalPrice, int userID, int productID) throws SQLException { // change this and add product ID
 
         int productStock=0 ;
         
         // i would need to get the product from the user and then add into orderLineItem
         // and then I need to do the quantity checks etc
-        String checkStock = "SELECT STOCKLVL FROM ISDUSER.PRODUCTS WHERE PRODUCTID = (SELECT productID FROM ISDUSER.ORDERLINEITEM WHERE ORDERID=" + orderID + ")" ;
+        String checkStock = "SELECT STOCKLVL FROM ISDUSER.PRODUCTS WHERE PRODUCTID =" + productID ;
         ResultSet rs = st.executeQuery(checkStock) ;
         while(rs.next()) {
             productStock = rs.getInt("STOCKLVL") ;
@@ -46,8 +43,12 @@ public class DBManager {
             String addQuery = "INSERT INTO ISDUSER.ORDERS(orderID, orderDate, status, totalNoItems, totalPrice, userID) VALUES(" + orderID + ", '" + orderDate + "', '" + status + "',"  + noItems + "," + totalPrice + "," + userID + ")" ;
             st.executeUpdate(addQuery) ;
             
+            // add into orderLine table
+            String addOrderLine = "INSERT INTO ISDUSER.ORDERLINEITEM(itemQuantity, orderID, productID) VALUES(" + noItems + ", " + orderID + ", " + productID + ")" ;
+            st.executeUpdate(addOrderLine) ;
+            
             // deduct producct from the product table
-            String deductProduct = "UPDATE ISDUSER.PRODUCTS SET STOCKLVL=STOCKLVL-" + noItems  + "WHERE PRODUCTID = (SELECT productID FROM ISDUSER.ORDERLINEITEM WHERE ORDERID=" + orderID + ")"  ;
+            String deductProduct = "UPDATE ISDUSER.PRODUCTS SET STOCKLVL=STOCKLVL-" + noItems  + "WHERE PRODUCTID =" + productID ;
             st.executeUpdate(deductProduct) ;
 
         }
@@ -80,7 +81,6 @@ public class DBManager {
     // if time, create a fetch students list ie select * from students
     
     // update the order details - works
-    // double check this actually works
     public void updateOrder(int orderID, int productID, int quantity) throws SQLException {
         int productStock=0 ;
         
