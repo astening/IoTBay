@@ -37,6 +37,7 @@
             
             
         <form action="UpdateStatus" method="post">
+            <table>
                 <tr>
                     <td><label for="orderID">Order ID: </label></td>
                     <td><input type="int" id="orderID" name="orderID"></td>
