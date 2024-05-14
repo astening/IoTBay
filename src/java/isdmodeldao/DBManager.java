@@ -72,7 +72,7 @@ public void addStaff(String fname, String lname, int phoneNo, String email, Stri
         stmt.setString(7, city);
         stmt.setString(8, state);
         stmt.setInt(9, postcode);
-        stmt.setBoolean(10, activation);
+        stmt.setBoolean(10, true);
         stmt.setDate(11, new java.sql.Date(new Date().getTime())); // Using current date
         stmt.setString(12, position);
         
@@ -85,22 +85,22 @@ public void updateStaff(int userID, String fName, String lName, int phoneNo, Str
     String query = "UPDATE Users SET fName=?, lName=?, phoneNo=?, email=?, password=?, address=?, city=?, state=?, postcode=?, activation=?, position=? WHERE userID=?";
     
     try (PreparedStatement stmt = conn.prepareStatement(query)) {
-        stmt.setString(2, fName);
-        stmt.setString(3, lName);
-        stmt.setInt(4, phoneNo);
-        stmt.setString(5, email);
-        stmt.setString(6, password);
-        stmt.setString(7, address);
-        stmt.setString(8, city);
-        stmt.setString(9, state);
-        stmt.setInt(10, postcode);
-        stmt.setBoolean(11, activation);
-        stmt.setString(12, position);
-        stmt.setInt(1, userID);
+        stmt.setString(1, fName);
+        stmt.setString(2, lName);
+        stmt.setInt(3, phoneNo);
+        stmt.setString(4, email);
+        stmt.setString(5, password);
+        stmt.setString(6, address);
+        stmt.setString(7, city);
+        stmt.setString(8, state);
+        stmt.setInt(9, postcode);
+        stmt.setBoolean(10, activation);
+        stmt.setString(11, position);
+        stmt.setInt(12, userID);
         
         stmt.executeUpdate();
     }
-}     
+}   
 
 //delete a user from the database   
 public void deleteStaff(int userID) throws SQLException {

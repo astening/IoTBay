@@ -101,8 +101,7 @@ public class TestDB {
             System.out.print("User postcode: ");
             int postcode = Integer.parseInt(in.nextLine());
 
-            System.out.print("Staff activation status (true/false): ");
-            boolean activation = Boolean.parseBoolean(in.nextLine());
+            boolean activation = true;
 
             System.out.print("Staff Position: ");
             String position = in.nextLine();
@@ -165,6 +164,7 @@ public class TestDB {
                     System.out.print("Staff Position: ");
                     String position = in.nextLine();
                     db.updateStaff(userID, fname, lname, phoneNo, email, password, address, city, state, postcode, activation, position);
+                    System.out.println("Staff Member successfully updated");
                 } else {
                     System.out.println("Staff Member does not exist.");
                 }
@@ -180,6 +180,7 @@ public class TestDB {
         try {
             if (db.checkStaff(userID)){
                 db.deleteStaff(userID);
+                System.out.println("StaffMember successfully deleted.");
             } else {
                 System.out.println("Staff Member does not exist.");
             }

@@ -82,8 +82,8 @@ public void testAddStaff() throws SQLException {
         assertNotNull(staff);
         int originalPhoneNo = staff.getPhoneNo();
         int newPhoneNo = originalPhoneNo + 1;
-        dbManager.updateStaff(6, staff.getFname(), staff.getLname(), newPhoneNo, staff.getEmail(), staff.getPassword(), staff.getAddress(), staff.getCity(), staff.getState(), staff.getPostcode(), staff.isActivation(), staff.getPosition());
-        User updatedStaff = dbManager.findStaff("John", "Doe", "Manager");
+        dbManager.updateStaff(1, staff.getFname(), staff.getLname(), newPhoneNo, staff.getEmail(), staff.getPassword(), staff.getAddress(), staff.getCity(), staff.getState(), staff.getPostcode(), staff.isActivation(), staff.getPosition());
+        User updatedStaff = dbManager.findStaff("John", "Doe", "Salesperson");
         assertEquals(newPhoneNo, updatedStaff.getPhoneNo());
     }
 
