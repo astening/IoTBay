@@ -15,18 +15,18 @@ public class User {
     private int userID;
     private String fname;
     private String lname;
-    private int phoneNo; 
+    private Integer phoneNo; 
     private String email;
     private String password;
     private String address; 
     private String city;
     private String state;
-    private int postcode; 
-    private boolean activation;
+    private Integer postcode; 
+    private Boolean activation;
     private Date registrationDate; 
     private String position;
 
-    public User(int userID, String fname, String lname, int phoneNo, String email, String password, String address, String city, String state, int postcode, boolean activation, Date registrationDate, String position) {
+    public User(int userID, String fname, String lname, Integer phoneNo, String email, String password, String address, String city, String state, Integer postcode, Boolean activation, Date registrationDate, String position) {
         this.userID = userID;
         this.fname = fname; 
         this.lname = lname;
@@ -70,7 +70,7 @@ public class User {
         return phoneNo;
     }
 
-    public void setPhoneNo(int phoneNo) {
+    public void setPhoneNo(Integer phoneNo) {
         this.phoneNo = phoneNo;
     }
 
@@ -118,7 +118,7 @@ public class User {
         return postcode;
     }
 
-    public void setPostcode(int postcode) {
+    public void setPostcode(Integer postcode) {
         this.postcode = postcode;
     }
 
@@ -126,7 +126,7 @@ public class User {
         return activation;
     }
 
-    public void setActivation(boolean activation) {
+    public void setActivation(Boolean activation) {
         this.activation = activation;
     }
 

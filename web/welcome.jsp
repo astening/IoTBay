@@ -27,7 +27,7 @@
         <p>Your password is <%=password%></p>
         <div>
            <br>
-            <a class="button" href="index.html">Cancel</a>
+            <a class="button" href="index.jsp.html">Cancel</a>
             
             <a class="button" href="main.jsp">Main</a>
             

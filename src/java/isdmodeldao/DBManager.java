@@ -122,12 +122,12 @@ public ArrayList<User> fetchStaff() throws SQLException{
         String fname = rs.getString(2);
         String lname = rs.getString(3);
         String password = rs.getString(6);
-        int phoneNum = rs.getInt(4);
+        Integer phoneNum = rs.getInt(4);
         String address = rs.getString(7);
         String city = rs.getString(8);
         String state = rs.getString(9);
-        int postcode = rs.getInt(10);
-        boolean activation = rs.getBoolean(11);
+        Integer postcode = rs.getInt(10);
+        Boolean activation = rs.getBoolean(11);
         Date registrationDate = rs.getDate(12);
         String position = rs.getString(13);
         temp.add(new User(userID, fname, lname, phoneNum, email, password, address, city, state, postcode, activation, registrationDate, position));
