@@ -62,7 +62,6 @@ public class PaymentMethodServlet extends HttpServlet{
         int userID = user.getUserID();
         validator.clear(session);
         
-       
         if(!validator.validateName(cardName)){
             session.setAttribute("nameErr", "Error: Card Name format incorrect");
             request.getRequestDispatcher("payment.jsp").include(request, response);
@@ -78,7 +77,8 @@ public class PaymentMethodServlet extends HttpServlet{
         else if (!validator.validateCVV(cvv)){
             session.setAttribute("cvvErr", "Error: Card CVV format incorrect");
             request.getRequestDispatcher("payment.jsp").include(request, response);
+        } else{
+            request.getRequestDispatcher("payment.jsp").include(request, response);
         }
-        
     }
 }
