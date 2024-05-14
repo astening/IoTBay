@@ -31,14 +31,12 @@
             
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/yy");
           
-            
             PaymentMethod paymentMethod = (PaymentMethod) session.getAttribute("paymentMethod");
             if(paymentMethod!=null){
                 cardName = paymentMethod.getCardName();
                 cardNo = paymentMethod.getCardNo();
                 Date expiry = paymentMethod.getExpiryDate();
                 expiryDate = simpleDateFormat.format(expiry);
-                
                 cvv = paymentMethod.getCvv();
             }
         %>
@@ -62,13 +60,13 @@
                     <td>Expiry date</td>
                 </tr>
                 <tr>
-                    <td><input name="expiryDate" type="text" value="<%=expiryDate%>" placeholder="MM/YY" maxlength="5" required></td>
+                    <td><input name="expiryDate" type="text" value="<%=(expiryDateErr!=null? expiryDateErr : expiryDate)%>" placeholder="MM/YY" maxlength="5" required></td>
                 </tr>
                 <tr>
                 <tr>
                     <td>CVC/CVV</td>
                 </tr>
-                <td><input name="CVV" type="text" value="<%=cvv%>" placeholder="123" maxlength="3" required></td>
+                <td><input name="cvv" type="text" value="<%=(cvvErr!=null? cvvErr : cvv)%>" placeholder="123" maxlength="3" required></td>
                 </tr>
             </table>
             <button>Submit</button>
