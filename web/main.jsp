@@ -14,7 +14,8 @@
     </head>
     <body>
         <% 
-            User user = (User)session.getAttribute("user");
+            User user = new User(123, "James Potter", "james@gmail.com", "password");
+            session.setAttribute("user", user);
         %>
         <h1>User Profile</h1>
         <table id="table">
@@ -34,5 +35,12 @@
         <br>
             <a class ="button" href="logout.jsp"> Logout </a>
         </div>
+            
+        <div> 
+        <br>
+        <br>
+            <a class ="button" href="PaymentMethodServlet?userID=<%=user.getUserID()%>"> Edit Payment Details </a>
+        </div>
+        <jsp:include page="/ConnServlet" flush="true"/>
     </body>
 </html>
