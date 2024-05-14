@@ -1,7 +1,9 @@
 package isdmodeldao;
 
+import isdmodel.PaymentMethod;
 import isdmodel.User;
 import java.sql.*;
+import java.sql.Connection;
 
 /* 
 * DBManager is the primary DAO class to interact with the database. 
@@ -25,11 +27,12 @@ public User findUser(String email, String password) throws SQLException {
    //add the results to a ResultSet       
    //search the ResultSet for a user using the parameters   
    while(rs.next()){
-       String userEmail=rs.getString(1);
-       String userPass=rs.getString(3);
+       String userEmail=rs.getString(5);
+       String userPass=rs.getString(6);
        if(userEmail.equals(email) && userPass.equals(password)){
            String userName=rs.getString(2);
-           return new User(userName,userEmail, userPass);
+           int userID = rs.getInt(1);
+           return new User(userID, userName,userEmail, userPass);
        }
    }
    return null;   
@@ -52,6 +55,53 @@ public void deleteUser(String email) throws SQLException{
    //code for delete-operation   
    st.executeUpdate("DELETE FROM ISDUSER.USERS WHERE EMAIl='"+email+"'");   
 }
+
+//find paymentMethod by userid
+    public PaymentMethod findPaymentMethod (int userID) throws SQLException{
+        String fetch = "select * from ISDUSER.PaymentMethod where USERID = " + userID + " ";
+        ResultSet rs = st.executeQuery(fetch);
+        
+        while (rs.next()){
+            int uID = rs.getInt(2);
+            if(userID == uID){
+                int paymentMethodID = rs.getInt(1);
+                String cardName  = rs.getString(3);
+                String cardNo = rs.getString(4);
+                Date expiryDate = rs.getDate(5);
+                int cvv = rs.getInt(6);
+                return new PaymentMethod(paymentMethodID, userID, cardName, cardNo, cvv, expiryDate);
+            }
+        }
+        return null;
+    }
+    //add new paymentMethod and attatch it to userID
+    public void addPaymentMethod (int userID, String cardName, int cardNo, int cvv, Date expiryDate) throws SQLException{
+        st.executeUpdate("INSERT INTO ISDUSER.PaymentMethod " + "VALUES ('"
+                + userID + "', '" + cardName + "', '" + cardNo + "', '" + expiryDate + "','" + cvv + "')");
+    }
+    //update paymentMethod
+    public void updatePaymentMethod (int userID, String cardName, int cardNo, int cvv, Date expiryDate) throws SQLException{
+        st.executeUpdate("UPDATE ISDUSER.PaymentMethod SET CARDNAME='" 
+                + cardName + "',CARDNO'" + cardNo + "',EXPIRYDATE'" + expiryDate + "',CVV'" + cvv
+                + "'WHERE USERID='" + userID + "'");
+    }
+    
+    public void deletePaymenetMethod (int userID, String cardName, int cardNo, int cvv, Date expiryDate) throws SQLException{
+        st.executeUpdate("DELETE FROM ISDUSER.PaymentMethod WHERE USERID='" + userID + "'");
+    }
+    
+    public boolean checkPaymentMethod (int userID) throws SQLException {
+        String fetch = "select * from ISDUSER.PAYMENTMETHOD where USERID = " + userID + "";
+        ResultSet rs = st.executeQuery(fetch);
+        
+        while(rs.next()){
+            int uid = rs.getInt(2);
+            if(uid == userID){
+                return true;
+            }
+        }
+        return false;
+    }
 
 
  
