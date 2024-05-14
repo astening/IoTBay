@@ -102,6 +102,10 @@ import jakarta.servlet.http.HttpSession;
        protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             //1- retrieve the current session
             HttpSession session = request.getSession() ;
+            
+            //2- create a validator object and clear the session variables
+            Validator validator = new Validator() ;
+            validator.clear(session) ;
 
             //3- capture the posted orderID      
             String stringOrderID = (String) request.getParameter("orderID") ;
@@ -128,14 +132,31 @@ import jakarta.servlet.http.HttpSession;
                Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE, null, ex);
 
            }
-            
+  
+            // check that the values are filled in and correc
+            // before updating the db
+            if(validator.checkEmpty(orderID, status)) {
+                session.setAttribute("statusValidated", "Provide a status") ;
+                session.setAttribute("IDvalidated", "Provide an order ID") ;
+            }
+            else if (!validator.validateNumber(stringOrderID)) {
+                session.setAttribute("IDvalidated", "Fill in a valid ID") ;
+            }
+            else if (!validator.validateStatus(status)) {
+                session.setAttribute("statusValidated", "Fill in a valid status") ;
+            }
+            else {
                 try {
-                    
                     manager.updateOrderStatus(orderID, status) ;
+                    session.setAttribute("updated", "Update successful"); // duplicate
                 } catch (SQLException ex) {
                     Logger.getLogger(UpdateStatusServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    session.setAttribute("updated", "Update not successful") ;
                 }
-            request.getRequestDispatcher("orders.jsp").include(request, response) ;
+            }
+                
+                
+            request.getRequestDispatcher("orders.jsp").include(request, response) ; // where do i put this?
                 
        }
 

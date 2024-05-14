@@ -23,20 +23,31 @@
         %>        
         <h1>Orders Page</h1>
         <h2>Update order status - staff only</h2>
-        <form action="UpdateStatus" method="post">  <!--Change back to UpdateStatusServlet-->
-            <table>
+                    
+        <% if(updated==null ) { //|| updated.equals("No change made yet") //do not display initial values on start-up %>
+        <% } else { // display change unsucccessful %>
+            <p><%= updated %><p>
+            <% if(statusValidated.equals("Provide a status")) { // display specific error messages%>
+            <p><%= statusValidated %><p>
+            <% } else if(IDvalidated.equals("Provide an order ID")) { %>
+            <p><%= IDvalidated %><p>
+            <% } else { // what do I do here %>
+            <% }%>
+        <% } %>
+            
+            
+        <form action="UpdateStatus" method="post">
                 <tr>
                     <td><label for="orderID">Order ID: </label></td>
-                    <td><input type="int" id="orderID" name="orderID" required="true"></td>
+                    <td><input type="int" id="orderID" name="orderID"></td>
                 </tr>
                 <tr>
                     <td><label for="status">Status: </label></td>
-                    <td><input type="text" id="status" name="status" required="true"></td>
+                    <td><input type="text" id="status" name="status"></td>
                 </tr>
                 <br>
                 <tr>
                     <td><input class="button" type="submit" value="Update"></td>
-                    <!--<a href="/UpdateStatusServlet">Update</a>-->
                 </tr>
             </table>
         </form>

@@ -12,7 +12,7 @@ public class TestRunnerValidatorStatusNumber {
 
     public static void main(String[] args) {
         
-    System.out.println("Testing Calculator: ");
+    System.out.println("Testing Status and Number Checker: ");
     Result result = JUnitCore.runClasses(ValidatorTestStatusNumber.class);
 
     for (Failure failure : result.getFailures()) {

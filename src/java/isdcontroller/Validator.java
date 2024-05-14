@@ -37,8 +37,11 @@ import java.util.regex.Pattern;
 
    // notifies user if values aren't filled
    public boolean checkEmpty(int orderID, String status){  
-      if (status!=null) {
-          return  status.isEmpty() || orderID==0  ; // instead of isEmpty, ==0
+      if (status!=null ) {
+          return  status.isEmpty() ;
+      }
+      else if (orderID==0) { // order is the default
+          return true ;
       }
       else {
           return true ;
@@ -54,8 +57,19 @@ import java.util.regex.Pattern;
 
    // checks that the number is a digit 0-9    
    public boolean validateNumber(String number){
+       
+       if (number==null) {
+           return false ;
+       }
+       else if (number.length()==0) {
+           return false ;
+       }
+       else {
+           
+           return validate(numberPattern,number); 
+       }
 
-      return validate(numberPattern,number); 
+      
 
    } 
    

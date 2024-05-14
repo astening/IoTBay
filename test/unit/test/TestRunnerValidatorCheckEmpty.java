@@ -13,7 +13,7 @@ public class TestRunnerValidatorCheckEmpty {
 
     public static void main(String[] args) {
         
-    System.out.println("Testing Calculator: ");
+    System.out.println("Testing Check Empty: ");
     Result result = JUnitCore.runClasses(ValidatorTestCheckEmpty.class);
 
     for (Failure failure : result.getFailures()) {

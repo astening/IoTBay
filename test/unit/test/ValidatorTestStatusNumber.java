@@ -74,4 +74,16 @@ public class ValidatorTestStatusNumber {
         assertEquals(false, res) ;
     }
     
+    @Test
+    public void testValidateNumberNEmpty() {
+        boolean res = validator.validateNumber("") ; // null is invalid
+        assertEquals(false, res) ;
+    }
+    
+    @Test
+    public void testValidateNumberNull() {
+        boolean res = validator.validateNumber(null) ; // null is invalid
+        assertEquals(false, res) ;
+    }
+    
 }
