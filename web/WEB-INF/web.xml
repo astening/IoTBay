@@ -8,6 +8,10 @@
         <servlet-name>ConnServlet</servlet-name>
         <servlet-class>isdcontroller.ConnServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeletePaymentMethodServlet</servlet-name>
+        <servlet-class>isdcontroller.DeletePaymentMethodServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PaymentMethodServlet</servlet-name>
         <url-pattern>/PaymentMethodServlet</url-pattern>
@@ -15,5 +19,9 @@
     <servlet-mapping>
         <servlet-name>ConnServlet</servlet-name>
         <url-pattern>/ConnServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeletePaymentMethodServlet</servlet-name>
+        <url-pattern>/DeletePaymentMethodServlet</url-pattern>
     </servlet-mapping>
 </web-app>
