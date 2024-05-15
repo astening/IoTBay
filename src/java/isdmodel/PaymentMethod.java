@@ -4,7 +4,7 @@
  */
 package isdmodel;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  *
@@ -14,11 +14,11 @@ public class PaymentMethod {
     private int paymentMethodID;
     private String cardNo;
     private int cvv;
-    private Date expiryDate;
+    private LocalDate expiryDate;
     private String cardName;
     private int userID;
 
-    public PaymentMethod(int paymentMethodID, int userID, String cardName, String cardNo, int cvv, Date expiryDate) {
+    public PaymentMethod(int paymentMethodID, int userID, String cardName, String cardNo, int cvv, LocalDate expiryDate) {
         this.paymentMethodID = paymentMethodID;
         this.cardNo = cardNo;
         this.cvv = cvv;
@@ -38,7 +38,7 @@ public class PaymentMethod {
         return cvv;
     }
 
-    public Date getExpiryDate() {
+    public LocalDate getExpiryDate() {
         return expiryDate;
     }
 
@@ -58,7 +58,7 @@ public class PaymentMethod {
         this.cvv = cvv;
     }
 
-    public void setExpiryDate(Date expiryDate) {
+    public void setExpiryDate(LocalDate expiryDate) {
         this.expiryDate = expiryDate;
     }
 
