@@ -134,8 +134,14 @@ public class OrderFormServlet extends HttpServlet {
         int intProductID = 1 ; // dont think is changed
         int intItemQuantity = 1 ;
 //        int intItemQuantity = (int) session.getAttribute("itemQuantity") ;
-        String itemQuantity = (String) session.getAttribute("itemQuantity") ; // unaccepted
-//        int intItemQuantity = Integer.parseInt(itemQuantity) ;
+        String itemQuantity = (String) session.getAttribute("itemQuantity") ;
+        try {
+            intItemQuantity = Integer.parseInt(itemQuantity) ; // doesnt work
+        }
+        catch(NumberFormatException e) {
+            session.setAttribute("itemQuantity", "Please provide a quantity") ;
+        }
+        
         
         // add and create db manager
         conn = db.openConnection() ;       
@@ -171,7 +177,7 @@ public class OrderFormServlet extends HttpServlet {
 
            try {
             int userID = 1 ;
-            int orderID = 32 ;
+            int orderID = 33 ;
             manager.addOrder(orderID, intItemQuantity, userID, intProductID);
                // set confirmation message for product id, quantity
                session.setAttribute("updated", "Order was submitted") ;
