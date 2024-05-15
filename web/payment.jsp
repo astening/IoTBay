@@ -22,6 +22,8 @@
             String expiryDateErr = (String) session.getAttribute("expiryDateErr");
             String cvvErr = (String) session.getAttribute("cvvErr");
             
+            String statusMsg = (String) session.getAttribute("statusMsg");
+            
             String cardName="";
             String cardNo="";
             String cvv = "";
@@ -42,7 +44,7 @@
             }
         %>
         <h1>Payment Details</h1>
-        <h2>Update Card Details</h2>
+        <h2>Edit Card Details <span> <%=(statusMsg!=null? "- "+statusMsg : "")%></span></h2>
         <form method="POST" action="PaymentMethodServlet">
             <table>
                 <tr>
