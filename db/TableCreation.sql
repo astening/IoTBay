@@ -5,7 +5,7 @@ CREATE TABLE Role (
 );
 
 CREATE TABLE Users (
-    userID INT NOT NULL,
+    userID INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     fName VARCHAR(50),
     lName VARCHAR(50),
     phoneNo INT,
@@ -18,18 +18,18 @@ CREATE TABLE Users (
     activation BOOLEAN,
     registrationDate DATE,
     roleID INT,
-    CONSTRAINT Users_PK PRIMARY KEY (UserID),
+--     CONSTRAINT Users_PK PRIMARY KEY (userID),
     CONSTRAINT Users_FK FOREIGN KEY (roleID) REFERENCES Role(roleID)
 );
 
 CREATE TABLE Orders (
-    orderID INT NOT NULL,
+    orderID INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     orderDate VARCHAR(20),
     status VARCHAR(10),
     totalNoItems INT,
     totalPrice DOUBLE,
     userID INT,
-    CONSTRAINT Order_PK PRIMARY KEY (orderID),
+--     CONSTRAINT Order_PK PRIMARY KEY (orderID),
     CONSTRAINT Order_FK FOREIGN KEY (userID) REFERENCES Users(userID)
 );
 
@@ -85,6 +85,6 @@ CREATE TABLE OrderLineItem (
     orderID INT,
     productID INT,
     CONSTRAINT OrderLineItem_FK1 FOREIGN KEY (orderID) REFERENCES Orders(orderID),
-    CONSTRAINT OrderLineItem_FK2 FOREIGN KEY (productID) REFERENCES Products(productID)
+    CONSTRAINT OrderLineItem_FK2 FOREIGN KEY (productID) REFERENCES Products(ProductID)
 );
 
