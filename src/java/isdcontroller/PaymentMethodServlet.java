@@ -46,7 +46,8 @@ public class PaymentMethodServlet extends HttpServlet{
             Logger.getLogger(PaymentMethodServlet.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println(ex.getErrorCode() + " and " + ex.getMessage());
         }
-         request.getRequestDispatcher("payment.jsp").include(request, response);
+//         request.getRequestDispatcher("payment.jsp").include(request, response);
+            response.sendRedirect("payment.jsp");
     }
     
     @Override
@@ -54,6 +55,7 @@ public class PaymentMethodServlet extends HttpServlet{
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         Validator validator = new Validator();
+        PaymentMethod paymentMethod = (PaymentMethod) session.getAttribute("paymentMethod");
         
         //name = parameter, not id
         String cardName = request.getParameter("cardName");
@@ -87,12 +89,23 @@ public class PaymentMethodServlet extends HttpServlet{
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/yy");
                 YearMonth yearMonth = YearMonth.parse(expiryString, formatter);
                 LocalDate expiryDate = yearMonth.atEndOfMonth();
-                manager.updatePaymentMethod(userID, cardName, cardNo, cvv, expiryDate);
+                if(paymentMethod!=null){
+                    manager.updatePaymentMethod(userID, cardName, cardNo, cvv, expiryDate);
+                    paymentMethod.setCardName(cardName);
+                    paymentMethod.setCardNo(cardNo);
+                    paymentMethod.setCvv(cvv);
+                    paymentMethod.setExpiryDate(expiryDate);
+                } else{
+                    manager.addPaymentMethod(userID, cardName, cardNo, cvv, expiryDate);
+                    paymentMethod = manager.findPaymentMethod(userID);
+                    session.setAttribute("paymentMethod", paymentMethod);
+                }
             } catch (SQLException ex){
                 Logger.getLogger(PaymentMethodServlet.class.getName()).log(Level.SEVERE, null, ex);
                 System.out.println(ex.getErrorCode() + " and " + ex.getMessage());
             }
-            request.getRequestDispatcher("payment.jsp").include(request, response);
+//            request.getRequestDispatcher("payment.jsp").include(request, response);
+              response.sendRedirect("payment.jsp");
         }
     }
 }
