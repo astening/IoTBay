@@ -33,6 +33,9 @@ public class PaymentMethodServlet extends HttpServlet{
         DBManager manager = (DBManager) session.getAttribute("manager");
         PaymentMethod paymentMethod = null;
         
+        Validator validator = new Validator();
+        validator.clear(session);
+        
         try{
             if(manager.checkPaymentMethod(userID)){
                 paymentMethod = manager.findPaymentMethod(userID);
@@ -50,13 +53,12 @@ public class PaymentMethodServlet extends HttpServlet{
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         Validator validator = new Validator();
-        
         //name = parameter, not id
         String cardName = request.getParameter("cardName");
         String cardNo = request.getParameter("cardNo");
         String expiryDate = request.getParameter("expiryDate");
         String cvv = request.getParameter("cvv");
-        
+        //I think its bc the value isnt being wiped in cvv text box
         DBManager manager = (DBManager) session.getAttribute("manager");
         User user = (User) session.getAttribute("user");
         int userID = user.getUserID();
@@ -75,7 +77,7 @@ public class PaymentMethodServlet extends HttpServlet{
             request.getRequestDispatcher("payment.jsp").include(request, response);
         }
         else if (!validator.validateCVV(cvv)){
-            session.setAttribute("cvvErr", "Error: Card CVV format incorrect");
+            session.setAttribute("cvvErr", "Error: Card CVV/CVC format incorrect");
             request.getRequestDispatcher("payment.jsp").include(request, response);
         } else{
             request.getRequestDispatcher("payment.jsp").include(request, response);
