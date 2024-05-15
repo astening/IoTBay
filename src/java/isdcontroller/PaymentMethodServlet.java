@@ -33,6 +33,7 @@ public class PaymentMethodServlet extends HttpServlet{
         int userID = Integer.parseInt(request.getParameter("userID"));
         DBManager manager = (DBManager) session.getAttribute("manager");
         PaymentMethod paymentMethod = null;
+        session.setAttribute("statusMsg", null);
         
         Validator validator = new Validator();
         validator.clear(session);
@@ -95,10 +96,12 @@ public class PaymentMethodServlet extends HttpServlet{
                     paymentMethod.setCardNo(cardNo);
                     paymentMethod.setCvv(cvv);
                     paymentMethod.setExpiryDate(expiryDate);
+                    session.setAttribute("statusMsg", "Card details updated successfully");
                 } else{
                     manager.addPaymentMethod(userID, cardName, cardNo, cvv, expiryDate);
                     paymentMethod = manager.findPaymentMethod(userID);
                     session.setAttribute("paymentMethod", paymentMethod);
+                    session.setAttribute("statusMsg", "Card details created successfully");
                 }
             } catch (SQLException ex){
                 Logger.getLogger(PaymentMethodServlet.class.getName()).log(Level.SEVERE, null, ex);
