@@ -109,9 +109,47 @@ public class OrderSearchServlet extends HttpServlet {
         validator.clear(session) ;
         
         // Capture and store input from the session request
-        int orderID = (int) session.getAttribute("orderID") ;
+//        int orderID = (int) request.getAttribute("orderID") ; // int doesnt
+        String orderID = (String) request.getAttribute("orderID") ; // string works
+        int intOrderID = 0;
+        try {
+            intOrderID = Integer.parseInt(orderID) ;
+        }
+        catch (NumberFormatException e) {
+            session.setAttribute("IDvalidated", "Provide a valid order ID") ;
+        }
         
-        processRequest(request, response);
+        // set up db manager
+        conn = db.openConnection();       
+        try {
+            manager = new DBManager(conn);
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+            // check that the values are filled in and correct
+            // before updating the db
+            if(validator.checkEmpty(intOrderID, "test")) {
+                session.setAttribute("IDvalidated", "Provide a valid order ID") ;
+            }
+            else if (!validator.validateNumber(orderID)) {
+                session.setAttribute("IDvalidated", "Fill in a valid ID") ;
+            }
+//            else if (!validator.validateStatus(status)) { // change to add date
+//                session.setAttribute("statusValidated", "Fill in a valid status") ;
+//            }
+            else {
+                try {
+                    manager.findOrder(intOrderID, "test-date") ;
+                    session.setAttribute("updated", "Search successful"); // could change to search
+                } catch (SQLException ex) {
+                    Logger.getLogger(UpdateStatusServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    session.setAttribute("updated", "Search not successful") ;
+                }
+            }        
+        
+        // pretty sure this could be better
+        request.getRequestDispatcher("orders.jsp").include(request, response) ;
     }
 
     /**

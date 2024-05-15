@@ -54,6 +54,16 @@
         </form>
         <br>
         <h2>Search for orders here:</h2>
+        <% if(updated==null ) { // do not display initial values on start-up %>
+        <% } else { // display relevant response message %>
+            <p><%= updated %><p>
+            <% if(statusValidated.equals("Provide a status")) { // display specific error messages %>
+            <p><%= statusValidated %><p>
+            <% } else if(IDvalidated.equals("Provide an order ID")) { %>
+            <p><%= IDvalidated %><p>
+            <% } else { // what do I do here %>
+            <% }%>
+        <% } %>
         <form action="OrderSearchServlet" method="post">
             <table>
                 <tr>
