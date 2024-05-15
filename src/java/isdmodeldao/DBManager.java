@@ -64,6 +64,7 @@ public class DBManager {
             String IDQuery = "SELECT MAX(orderID) FROM ISDUSER.ORDERS" ;
             ResultSet IDResults = st.executeQuery(IDQuery) ;
             int orderID = 0;
+            // should probably return the orderID to the user :)
             while(IDResults.next()) {
                 orderID = IDResults.getInt(1) ;
             }

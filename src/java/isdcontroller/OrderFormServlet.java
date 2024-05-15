@@ -177,8 +177,7 @@ public class OrderFormServlet extends HttpServlet {
 
            try {
             int userID = 1 ;
-            int orderID = 33 ;
-            manager.addOrder(orderID, intItemQuantity, userID, intProductID);
+            manager.addOrder(intItemQuantity, userID, intProductID);
                // set confirmation message for product id, quantity
                session.setAttribute("updated", "Order was submitted") ;
                
