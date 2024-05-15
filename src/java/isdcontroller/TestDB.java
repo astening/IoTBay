@@ -78,7 +78,7 @@ int userID = in.nextInt() ;
 //System.out.println("Status is updated in the database.") ;
 
 // add order
-db.addOrder(quantity, userID, productID); // change 2 to orderDate, 4 to noItems, 6 to userID, change 2nd quantity to double
+db.addOrder(quantity, userID, productID); // 4 to noItems, 6 to userID, change 2nd quantity to double
 //System.out.println("Order added to the database") ;
 
 // find order
