@@ -4,12 +4,19 @@
  */
 package isdcontroller;
 
+import isdmodeldao.DBConnector;
+import isdmodeldao.DBManager;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,6 +25,28 @@ import jakarta.servlet.http.HttpServletResponse;
 
 //tbc obviously
 public class OrderSearchServlet extends HttpServlet {
+    
+    private DBConnector db;
+
+    private DBManager manager;
+
+    private Connection conn;
+    
+    @Override //Create an instance of DBConnector for the deployment session
+
+    public void init() {
+
+        try {
+
+            db = new DBConnector();
+
+        } catch (ClassNotFoundException | SQLException ex) {
+
+            Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE, null, ex);
+
+        }      
+
+    }
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -71,6 +100,17 @@ public class OrderSearchServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        // Retrieve session from the request
+        HttpSession session = request.getSession() ;
+        
+        // Create a validator object and clear the session
+        Validator validator = new Validator() ;
+        validator.clear(session) ;
+        
+        // Capture and store input from the session request
+        int orderID = (int) session.getAttribute("orderID") ;
+        
         processRequest(request, response);
     }
 
