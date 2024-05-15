@@ -62,10 +62,6 @@ public class PaymentMethodServlet extends HttpServlet{
         String cvvString = request.getParameter("cvv");
         int cvv = Integer.valueOf(cvvString);
         
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/yy");
-        YearMonth yearMonth = YearMonth.parse(expiryString, formatter);
-        LocalDate expiryDate = yearMonth.atEndOfMonth();
-       
         DBManager manager = (DBManager) session.getAttribute("manager");
         User user = (User) session.getAttribute("user");
         int userID = user.getUserID();
@@ -88,6 +84,9 @@ public class PaymentMethodServlet extends HttpServlet{
             request.getRequestDispatcher("payment.jsp").include(request, response);
         } else{
             try{
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/yy");
+                YearMonth yearMonth = YearMonth.parse(expiryString, formatter);
+                LocalDate expiryDate = yearMonth.atEndOfMonth();
                 manager.updatePaymentMethod(userID, cardName, cardNo, cvv, expiryDate);
             } catch (SQLException ex){
                 Logger.getLogger(PaymentMethodServlet.class.getName()).log(Level.SEVERE, null, ex);
