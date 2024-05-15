@@ -131,7 +131,7 @@ public class OrderFormServlet extends HttpServlet {
         // Retrieve posted data - not working
         String productID = (String) session.getAttribute("productID") ; // is null --> what happens if i make this an int
 //        String productID = "1" ;
-        int intProductID = 1 ; // this is never set
+        int intProductID = 1 ; // dont think is changed
         int intItemQuantity = 1 ;
 //        int intItemQuantity = (int) session.getAttribute("itemQuantity") ;
         String itemQuantity = (String) session.getAttribute("itemQuantity") ; // unaccepted
@@ -171,8 +171,8 @@ public class OrderFormServlet extends HttpServlet {
 
            try {
             int userID = 1 ;
-            int orderID = 27 ;
-            manager.addOrder(orderID, intItemQuantity, intProductID, userID);
+            int orderID = 32 ;
+            manager.addOrder(orderID, intItemQuantity, userID, intProductID);
                // set confirmation message for product id, quantity
                session.setAttribute("updated", "Order was submitted") ;
                
