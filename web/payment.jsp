@@ -5,8 +5,8 @@
 --%>
 <%@page import="isdmodel.PaymentMethod"%>
 <%@page import="isdmodel.User"%>
-<%@page import="java.util.Date"%>
-<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.time.LocalDate"%>
+<%@page import="java.time.format.DateTimeFormatter"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -27,15 +27,15 @@
             String cvv = "";
             String expiryDate = "";
             
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/yy");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/yy");
           
-            PaymentMethod paymentMethod = (PaymentMethod) session.getAttribute("paymentMethod");
-//            PaymentMethod paymentMethod = null;
+//            PaymentMethod paymentMethod = (PaymentMethod) session.getAttribute("paymentMethod");
+            PaymentMethod paymentMethod = null;
             if(paymentMethod!=null){
                 cardName = paymentMethod.getCardName();
                 cardNo = paymentMethod.getCardNo();
-                Date expiry = paymentMethod.getExpiryDate();
-                expiryDate = simpleDateFormat.format(expiry);
+                LocalDate expiry = paymentMethod.getExpiryDate();
+                expiryDate = expiry.format(formatter);
                 cvv = paymentMethod.getCvv()+"";
             }
         %>
