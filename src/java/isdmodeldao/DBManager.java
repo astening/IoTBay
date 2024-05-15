@@ -4,6 +4,8 @@ import isdmodel.PaymentMethod;
 import isdmodel.User;
 import java.sql.*;
 import java.sql.Connection;
+import java.time.LocalDate;
+import java.time.ZoneId;
 
 /* 
 * DBManager is the primary DAO class to interact with the database. 
@@ -67,7 +69,8 @@ public void deleteUser(String email) throws SQLException{
                 int paymentMethodID = rs.getInt(1);
                 String cardName  = rs.getString(3);
                 String cardNo = rs.getString(4);
-                Date expiryDate = rs.getDate(5);
+                Date expiry = rs.getDate(5);
+                LocalDate expiryDate = expiry.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                 int cvv = rs.getInt(6);
                 return new PaymentMethod(paymentMethodID, userID, cardName, cardNo, cvv, expiryDate);
             }
@@ -75,18 +78,18 @@ public void deleteUser(String email) throws SQLException{
         return null;
     }
     //add new paymentMethod and attatch it to userID
-    public void addPaymentMethod (int userID, String cardName, int cardNo, int cvv, Date expiryDate) throws SQLException{
+    public void addPaymentMethod (int userID, String cardName, String cardNo, int cvv, LocalDate expiryDate) throws SQLException{
         st.executeUpdate("INSERT INTO ISDUSER.PaymentMethod " + "VALUES ('"
                 + userID + "', '" + cardName + "', '" + cardNo + "', '" + expiryDate + "','" + cvv + "')");
     }
     //update paymentMethod
-    public void updatePaymentMethod (int userID, String cardName, int cardNo, int cvv, Date expiryDate) throws SQLException{
+    public void updatePaymentMethod (int userID, String cardName, String cardNo, int cvv, LocalDate expiryDate) throws SQLException{
         st.executeUpdate("UPDATE ISDUSER.PaymentMethod SET CARDNAME='" 
                 + cardName + "',CARDNO'" + cardNo + "',EXPIRYDATE'" + expiryDate + "',CVV'" + cvv
                 + "'WHERE USERID='" + userID + "'");
     }
     
-    public void deletePaymenetMethod (int userID, String cardName, int cardNo, int cvv, Date expiryDate) throws SQLException{
+    public void deletePaymenetMethod (int userID, String cardName, String cardNo, int cvv, LocalDate expiryDate) throws SQLException{
         st.executeUpdate("DELETE FROM ISDUSER.PaymentMethod WHERE USERID='" + userID + "'");
     }
     
