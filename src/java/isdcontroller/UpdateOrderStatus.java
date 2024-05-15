@@ -140,7 +140,7 @@ import jakarta.servlet.http.HttpSession;
 
            }
   
-            // check that the values are filled in and correc
+            // check that the values are filled in and correct
             // before updating the db
             if(validator.checkEmpty(orderID, status)) {
                 session.setAttribute("statusValidated", "Provide a status") ;
