@@ -50,16 +50,13 @@ public class Validator implements Serializable {
       return  email.isEmpty() || password.isEmpty();   
    }
 
-   
    public boolean validateEmail(String email){                       
       return validate(emailPattern,email);   
    }
 
-       
    public boolean validateName(String name){
       return validate(namePattern,name); 
    }       
-   
 
    public boolean validatePassword(String password){
       return validate(passwordPattern,password); 
