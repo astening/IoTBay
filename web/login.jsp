@@ -7,29 +7,22 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="style.css">
         <title>Login</title>
-        <% String email = request.getParameter("email");%>
-        <% String password = request.getParameter("password");%>
     </head>
-
+    
     <body>
-        <h1>Login</h1>
-        <form action="welcome.jsp" method="post">
-            <table>
-                <tr>
-                    <td><label for="Email">Email: </label></td>
-                    <td><input type="text" id="email" name="email" required="true"></td>
-                </tr>
-                <tr>
-                    <td><label for="password">Password: </label></td>
-                    <td><input type="password" id="password" name="password" required="true"></td>
-                </tr>
-            </table>
-           <br>
-            <button>Login</button>
+        
+        <form action="LoginServlet">
+            Please enter your email 		
+            <input type="text" name="un"/><br>		
+            
+            Please enter your password
+            <input type="text" name="pw"/>
+            <input type="submit" value="submit">			
+        
         </form>
     </body>
 </html>
