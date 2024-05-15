@@ -17,47 +17,51 @@
         <form action="RegistrationServlet" method="POST">
             <table>
                 <tr>
-                    <td><label for="lname">First Name:</label></td>
-                    <td><input type="text" id="fname" name="fname" required="true"></td>
+                    <td><label for="fname">First Name:</label></td>
+                    <td><input type="text" id="fname" name="fname" required></td>
                 <tr>
                 <tr>
                     <td><label for="lname">Last Name:</label></td>
-                    <td><input type="text" id="lname" name="lname" required="true"></td>
+                    <td><input type="text" id="lname" name="lname" required></td>
                 <tr>
                 <tr>
-                    <td><label for="phoneno">Phone Number:</label></td>
-                    <td><input type="number" id="phoneno" name="phoneno" required="true"></td>
+                    <td><label for="phoneNo">Phone Number:</label></td>
+                    <td><input type="number" id="phoneNo" name="phoneNo" required></td>
                 <tr>
                     <td><label for="email">Email:</label></td>
-                    <td><input type="text" id="email" name="email" required="true"></td>
+                    <td><input type="text" id="email" name="email" required></td>
                 </tr>
                 <tr>
                     <td><label for="password">Password:</label></td>
-                    <td><input type="password" id="password" name="password" required="true"></td>
+                    <td><input type="password" id="password" name="password" required></td>
                 </tr>
                 <tr>
                     <td><label for="address">Address:</label></td>
-                    <td><input type="text" id="address" name="address" required="true"></td>
+                    <td><input type="text" id="address" name="address" required></td>
                 </tr>
                 <tr>
                     <td><label for="city">City:</label></td>
-                    <td><input type="text" id="city" name="city" required="true"></td>
+                    <td><input type="text" id="city" name="city"></td>
                 </tr>
                 <tr>
                     <td><label for="state">State:</label></td>
-                    <td><input type="text" id="state" name="state" required="true"></td>
+                    <td><input type="text" id="state" name="state" required></td>
                 </tr>
                 <tr>
                     <td><label for="postcode">Postcode:</label></td>
-                    <td><input type="number" id="postcode" name="postcode" required="true"></td>
+                    <td><input type="number" id="postcode" name="postcode" required></td>
                 </tr>
                 <tr>
                     <td><label for="position">Position:</label></td>
-                    <td><input type="text" id="position" name="position" required="true"></td>
+                    <td><input type="text" id="position" name="position" required></td>
+                </tr>
+                <tr><td><td>
+                    <td><a href="CancelServlet" class="button">Cancel</a>
+                        <input class="button" type="submit" value="Register">
+                    </td>
                 </tr>
             </table>
             <br>
-            <button>Register</button>
         </form>
     </body>
 </html>

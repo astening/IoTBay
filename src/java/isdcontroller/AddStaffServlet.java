@@ -16,11 +16,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.Date;
 
-@WebServlet("/AddStaffServlet")
 public class AddStaffServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
             HttpSession session = request.getSession();
             DBManager manager = (DBManager) session.getAttribute("manager");
 
@@ -36,7 +34,7 @@ public class AddStaffServlet extends HttpServlet {
             boolean activation = true;
             Date registrationDate = new java.sql.Date(new Date().getTime());
             String position = request.getParameter("position");
-            // Get other parameters similarly
+        try {
             manager.addStaff(fName, lName, phoneNo, email, password, address, city, state, postcode, activation, registrationDate, position);
             response.sendRedirect("ShowAllStaffServlet");
             System.out.println("Successfully added staff member to the database!");

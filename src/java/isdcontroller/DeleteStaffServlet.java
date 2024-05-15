@@ -16,15 +16,15 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-@WebServlet("/DeleteStaffServlet")
 public class DeleteStaffServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
+        
             HttpSession session = request.getSession();
             DBManager manager = (DBManager) session.getAttribute("manager");
 
             int userID = Integer.parseInt(request.getParameter("userID"));
+   try {
             manager.deleteStaff(userID);
             response.sendRedirect("ShowAllStaffServlet");
         } catch (SQLException e) {

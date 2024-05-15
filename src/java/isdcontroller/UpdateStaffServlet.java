@@ -15,11 +15,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-@WebServlet("/UpdateStaffServlet")
+
 public class UpdateStaffServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
             HttpSession session = request.getSession();
             DBManager manager = (DBManager) session.getAttribute("manager");
 
@@ -35,7 +34,7 @@ public class UpdateStaffServlet extends HttpServlet {
             Integer postcode = Integer.valueOf(request.getParameter("postcode"));
             boolean activation = true;
             String position = request.getParameter("position");
-            
+        try{
             manager.updateStaff(userID, fName, lName, phoneNo, email, password, address, city, state, postcode, activation, position);
             response.sendRedirect("ShowAllStaffServlet");
             System.out.println("Staff Member successfully updated in the database!");

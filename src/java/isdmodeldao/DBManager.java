@@ -89,6 +89,28 @@ public User findStaff(String fname, String lname, String position) throws SQLExc
 }
 
 //Add a user-data into the database   
+public void addUser(String fname, String lname, int phoneNo, String email, String password, String address, String city, String state, int postcode, boolean activation, Date registrationDate, String position) throws SQLException {
+    String query = "INSERT INTO Users (FName, LName, PhoneNo, Email, Password, Address, City, State, Postcode, Activation, RegistrationDate, Position) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    
+    try (PreparedStatement stmt = conn.prepareStatement(query)) {
+        stmt.setString(1, fname);
+        stmt.setString(2, lname);
+        stmt.setInt(3, phoneNo);
+        stmt.setString(4, email);
+        stmt.setString(5, password);
+        stmt.setString(6, address);
+        stmt.setString(7, city);
+        stmt.setString(8, state);
+        stmt.setInt(9, postcode);
+        stmt.setBoolean(10, true);
+        stmt.setDate(11, new java.sql.Date(new Date().getTime())); // Using current date
+        stmt.setString(12, position);
+        
+        stmt.executeUpdate();
+    }
+}
+
+//Add a staff-data into the database   
 public void addStaff(String fname, String lname, int phoneNo, String email, String password, String address, String city, String state, int postcode, boolean activation, Date registrationDate, String position) throws SQLException {
     String query = "INSERT INTO Users (FName, LName, PhoneNo, Email, Password, Address, City, State, Postcode, Activation, RegistrationDate, Position) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     
