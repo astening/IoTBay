@@ -32,14 +32,19 @@ public class DeletePaymentMethodServlet extends HttpServlet {
         
         DBManager manager = (DBManager) session.getAttribute("manager");
         
-        try {
-            manager.deletePaymenetMethod(paymentMethod.getPaymentMethodID());
-            paymentMethod = null;
-            session.setAttribute("paymentMethod", null);
-            
-        } catch (SQLException ex){
-            Logger.getLogger(DeletePaymentMethodServlet.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println(ex.getErrorCode() + " and " + ex.getMessage());
+        if(paymentMethod!=null){
+            try {
+                manager.deletePaymenetMethod(paymentMethod.getPaymentMethodID());
+                paymentMethod = null;
+                session.setAttribute("paymentMethod", null);
+                session.setAttribute("statusMsg", "Card details successfully deleted");
+
+            } catch (SQLException ex){
+                Logger.getLogger(DeletePaymentMethodServlet.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex.getErrorCode() + " and " + ex.getMessage());
+            }
+        } else{
+            session.setAttribute("statusMsg", null);
         }
         request.getRequestDispatcher("payment.jsp").include(request, response);
     }
