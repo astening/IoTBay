@@ -50,7 +50,6 @@ import java.util.regex.Pattern;
 
    // check status format
    public boolean validateStatus(String status){                       
-
       return validate(statusPattern,status);   
 
    }
@@ -69,8 +68,6 @@ import java.util.regex.Pattern;
            return validate(numberPattern,number); 
        }
 
-      
-
    } 
    
    // set validation messages to default
@@ -78,6 +75,7 @@ import java.util.regex.Pattern;
        session.setAttribute("statusValidated", "Enter status") ;
        session.setAttribute("updated", "No change made yet") ;
        session.setAttribute("IDValidated", "Enter ID") ;
+       session.setAttribute("quantityValidated", "Enter a number above 0") ;
    }
         
 }
