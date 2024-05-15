@@ -17,27 +17,26 @@
     </head>
     <body>
         <%
-            
             String nameErr = (String) session.getAttribute("nameErr");
             String cardNoErr = (String) session.getAttribute("cardNoErr");
             String expiryDateErr = (String) session.getAttribute("expiryDateErr");
             String cvvErr = (String) session.getAttribute("cvvErr");
             
-                    
             String cardName="";
             String cardNo="";
-            int cvv=0;
+            String cvv = "";
             String expiryDate = "";
             
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/yy");
           
             PaymentMethod paymentMethod = (PaymentMethod) session.getAttribute("paymentMethod");
+//            PaymentMethod paymentMethod = null;
             if(paymentMethod!=null){
                 cardName = paymentMethod.getCardName();
                 cardNo = paymentMethod.getCardNo();
                 Date expiry = paymentMethod.getExpiryDate();
                 expiryDate = simpleDateFormat.format(expiry);
-                cvv = paymentMethod.getCvv();
+                cvv = paymentMethod.getCvv()+"";
             }
         %>
         <h1>Payment Details</h1>
@@ -71,6 +70,7 @@
             </table>
             <button>Submit</button>
         </form>
+                <button <%=(paymentMethod!=null? "enabled" : "disabled")%>>Delete</button>
 
         <h2>Payment History</h2>
         
