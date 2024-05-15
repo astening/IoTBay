@@ -28,7 +28,37 @@ public DBManager(Connection conn) throws SQLException {
    st = conn.createStatement();   
 }
 
-//Find user by email and password in the database   
+//Find user by email and password in the database 
+public User findUser(String email, String password) throws SQLException {       
+   //setup the select sql query string       
+   //execute this query using the statement field       
+   //add the results to a ResultSet       
+   //search the ResultSet for a user using the parameters  
+   String fetch = "select * from Users where EMAIL = '" + email + "' and PASSWORD = '" + password + "'";
+   ResultSet rs = st.executeQuery(fetch);
+   
+   while (rs.next()) {
+       String userEmail = rs.getString(5);
+       String userPass = rs.getString(6);
+       if (userEmail.equals(email) && userPass.equals(password)) {
+           int userID = rs.getInt(1);
+           int phoneNo = rs.getInt(4);
+           String fname = rs.getString(2);
+           String lname = rs.getString(3);
+           String address = rs.getString(7);
+           String city = rs.getString(8);
+           String state = rs.getString(9);
+           int postcode = rs.getInt(10);
+           boolean activation = rs.getBoolean(11);
+           Date registrationDate = rs.getDate(12);
+           String position = rs.getString(13);
+           return new User(userID, fname, lname, phoneNo, email, password, address, city, state, postcode, activation, registrationDate, position);
+       }
+   }
+   return null;   
+}
+
+//Find staff based on name and position
 public User findStaff(String fname, String lname, String position) throws SQLException {       
    //setup the select sql query string       
    //execute this query using the statement field       

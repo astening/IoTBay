@@ -1,5 +1,6 @@
    package isdcontroller;
 
+import jakarta.servlet.http.HttpSession;
    import java.io.Serializable;
    import java.util.regex.Matcher;
    import java.util.regex.Pattern;
@@ -18,12 +19,8 @@
    public boolean validate(String pattern, String input){       
       Pattern regEx = Pattern.compile(pattern);       
       Matcher match = regEx.matcher(input);       
-
       return match.matches(); 
-
    }       
-
- 
 
    public boolean checkEmpty(String email, String password){       
 
@@ -57,4 +54,13 @@
       return validate(passwordPattern,password); 
 
    }          
+
+    void clear(HttpSession session) {
+        session.setAttribute("emailErr", "Enter Email:");
+        session.setAttribute("passErr", "Enter Password:");
+        session.setAttribute("existErr", "");
+        session.setAttribute("fnameErr", "Enter First Name:");
+        session.setAttribute("lnameErr", "Enter Last Name:");
+        
+    }
 }

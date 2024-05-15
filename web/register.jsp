@@ -14,7 +14,7 @@
     </head>
     <body>
         <h1>Register Account</h1>
-        <form action="welcome.jsp" method="POST">
+        <form action="RegistrationServlet" method="POST">
             <table>
                 <tr>
                     <td><label for="lname">First Name:</label></td>

@@ -12,7 +12,8 @@
         <link rel="stylesheet" href="style.css">
         <title>IOT Bay Main Page</title>
     </head>
-    <body>
+    <body onload="startTime(); resetSearch();">
+     <div><span class="time" id="time"></span></div>
         <% 
             User user = (User)session.getAttribute("user");
         %>
@@ -24,7 +25,7 @@
                 <th>Password</th>
             </tr>
             <tr>
-                <td>${user.name}</td>
+                <td>${user.fname} ${user.lname}</td>
                 <td>${user.email}</td>
                 <td>${user.password}</td>
             </tr>

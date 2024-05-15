@@ -10,26 +10,35 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="style.css">
+        <script type="text/javascript" src="js/script.js"></script>
         <title>Login</title>
-        <% String email = request.getParameter("email");%>
-        <% String password = request.getParameter("password");%>
     </head>
 
-    <body>
-        <h1>Login</h1>
-        <form action="welcome.jsp" method="post">
-            <table>
+    <body onload="startTime();">
+        <div> <span class="time" id="time"></span></div>
+                <%
+                   String existErr = (String) session.getAttribute("existErr");
+                   String emailErr = (String) session.getAttribute("emailErr");
+                   String passErr = (String) session.getAttribute("passErr");
+                %>
+        <h1>Login <span class="message"> <%=(existErr != null ? existErr : "")%> </span></h1>
+        <form action="LoginServlet" method="post">
+            <table id="form_table">
                 <tr>
-                    <td><label for="Email">Email: </label></td>
-                    <td><input type="text" id="email" name="email" required="true"></td>
+                    <td>Email:</td>
+                    <td><input type="text" placeholder="<%=(emailErr != null ? emailErr : "Enter Email:")%>" name="email" required></td>
                 </tr>
                 <tr>
-                    <td><label for="password">Password: </label></td>
-                    <td><input type="password" id="password" name="password" required="true"></td>
+                    <td>Password:</td>
+                    <td><input type="password" placeholder="<%=(passErr != null ? passErr : "Enter Password:")%>" name="password" required></td>
+                </tr>
+                <tr><td><td>
+                    <td><a href="CancelServlet" class="button">Cancel</a>
+                        <input class="button" type="submit" value="Log in">
+                    </td>
                 </tr>
             </table>
            <br>
-            <button>Login</button>
         </form>
     </body>
 </html>

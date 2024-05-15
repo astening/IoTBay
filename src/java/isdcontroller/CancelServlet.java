@@ -16,8 +16,8 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author William Sinclair
  */
-@WebServlet(name = "DeleteStaff", urlPatterns = {"/DeleteStaff"})
-public class DeleteStaff extends HttpServlet {
+@WebServlet(name = "CancelServlet", urlPatterns = {"/CancelServlet"})
+public class CancelServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,10 +36,10 @@ public class DeleteStaff extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DeleteStaff</title>");            
+            out.println("<title>Servlet CancelServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet DeleteStaff at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet CancelServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }

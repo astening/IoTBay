@@ -8,6 +8,18 @@
         <servlet-name>ConnServlet</servlet-name>
         <servlet-class>isdcontroller.ConnServlet</servlet-class>
     </servlet>
+    <servlet-mapping>
+        <servlet-name>ConnServlet</servlet-name>
+        <url-pattern>/ConnServlet</url-pattern> <!-- Adjust URL pattern as needed -->
+    </servlet-mapping>  
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>isdcontroller.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern> <!-- Adjust URL pattern as needed -->
+    </servlet-mapping>   
     <servlet>
         <servlet-name>DeleteStaffServlet</servlet-name>
         <servlet-class>isdcontroller.DeleteStaffServlet</servlet-class>
