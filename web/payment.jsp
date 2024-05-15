@@ -29,8 +29,10 @@
             
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/yy");
           
-//            PaymentMethod paymentMethod = (PaymentMethod) session.getAttribute("paymentMethod");
-            PaymentMethod paymentMethod = null;
+            User user = (User) session.getAttribute("user");
+            PaymentMethod paymentMethod = (PaymentMethod) session.getAttribute("paymentMethod");
+//            PaymentMethod paymentMethod = null;
+
             if(paymentMethod!=null){
                 cardName = paymentMethod.getCardName();
                 cardNo = paymentMethod.getCardNo();
@@ -70,7 +72,7 @@
             </table>
             <button>Submit</button>
         </form>
-                <button <%=(paymentMethod!=null? "enabled" : "disabled")%>>Delete</button>
+                <a class ="button" href="DeletePaymentMethodServlet?userID=<%=user.getUserID()%>" <%=(paymentMethod!=null? "enabled" : "disabled")%>>Delete</a>
 
         <h2>Payment History</h2>
         
