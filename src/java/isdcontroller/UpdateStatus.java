@@ -107,9 +107,16 @@ import jakarta.servlet.http.HttpSession;
             Validator validator = new Validator() ;
             validator.clear(session) ;
 
-            //3- capture the posted orderID      
+            //3- capture the posted orderID and attempt to parse as an Integer    
             String stringOrderID = (String) request.getParameter("orderID") ;
-            int orderID = Integer.parseInt(stringOrderID) ;
+            int orderID =  0 ;
+            try {
+                orderID = Integer.parseInt(stringOrderID) ;
+            }
+            catch (NumberFormatException e) {
+                session.setAttribute("IDValidated", "Please enter an ID below");
+            }
+            
             
             //4- capture the posted status 
             String status = (String) request.getParameter("status") ;
