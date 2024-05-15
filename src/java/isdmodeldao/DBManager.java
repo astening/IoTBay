@@ -79,8 +79,8 @@ public void deleteUser(String email) throws SQLException{
     }
     //add new paymentMethod and attatch it to userID
     public void addPaymentMethod (int userID, String cardName, String cardNo, int cvv, LocalDate expiryDate) throws SQLException{
-        st.executeUpdate("INSERT INTO ISDUSER.PaymentMethod " + "VALUES ('"
-                + userID + "', '" + cardName + "', '" + cardNo + "', '" + expiryDate + "','" + cvv + "')");
+        st.executeUpdate("INSERT INTO ISDUSER.PaymentMethod " + "(USERID, CARDNAME, CARDNO, EXPIRYDATE, CVV)" +
+                "VALUES (" + userID + ", '" + cardName + "', '" + cardNo + "', '" + expiryDate + "'," + cvv + ")");
     }
     //update paymentMethod
     public void updatePaymentMethod (int userID, String cardName, String cardNo, int cvv, LocalDate expiry) throws SQLException{
@@ -88,8 +88,8 @@ public void deleteUser(String email) throws SQLException{
         st.executeUpdate("UPDATE ISDUSER.PaymentMethod SET CARDNAME='" + cardName + "',CARDNO='" + cardNo + "',EXPIRYDATE='" + expiryDate + "',CVV=" + cvv + "WHERE USERID=" + userID + "");
     }
     
-    public void deletePaymenetMethod (int userID, String cardName, String cardNo, int cvv, LocalDate expiryDate) throws SQLException{
-        st.executeUpdate("DELETE FROM ISDUSER.PaymentMethod WHERE USERID='" + userID + "'");
+    public void deletePaymenetMethod (int paymentMethodID) throws SQLException{
+        st.executeUpdate("DELETE FROM ISDUSER.PaymentMethod WHERE PAYMENTMETHODID=" + paymentMethodID + "");
     }
     
     public boolean checkPaymentMethod (int userID) throws SQLException {
