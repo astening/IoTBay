@@ -58,10 +58,10 @@
             <table>
                 <tr>
                     <td><label for="orderID">Order ID: </label></td>
-                    <td><input type="int" id="orderID" name="orderID" required="true"></td>
+                    <td><input type="int" id="orderID" name="orderID"></td>
                 </tr>
                     <td><label for="orderDate">Order Date: </label></td>
-                    <td><input type="date" id="orderDate" name="orderDate" required="true"></td>
+                    <td><input type="date" id="orderDate" name="orderDate"></td>
                 <tr>
                     <td><input class="button" type="submit" value="Search"></td>
                 </tr>
