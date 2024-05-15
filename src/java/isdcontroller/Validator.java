@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
 
  
    private final String statusPattern = "([A-Z][a-z]+)";       
-   private final String numberPattern = "[0-9]+" ;
+   private final String numberPattern = "([0-9])+" ;
               
    public Validator(){    }       
 
@@ -38,7 +38,11 @@ import java.util.regex.Pattern;
    // notifies user if values aren't filled
    public boolean checkEmpty(int orderID, String status){  
       if (status!=null ) {
-          return  status.isEmpty() ;
+          if (orderID==0) {
+              return true ;
+          } else {
+              return  status.isEmpty() ;
+          }
       }
       else if (orderID==0) { // order is the default
           return true ;
@@ -61,6 +65,9 @@ import java.util.regex.Pattern;
            return false ;
        }
        else if (number.length()==0) {
+           return false ;
+       }
+       else if (number.equals("0")) {
            return false ;
        }
        else {

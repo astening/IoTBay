@@ -26,8 +26,8 @@ public class ValidatorTestCheckEmpty {
     
     @Test
     public void testCheckEmptyNumberEmpty() { // number is correctly identified as empty
+        // this isnt woring
         boolean res = validator.checkEmpty(0, "New");
-        // assert equals, what it should be, what the code currently says it is
         assertEquals(true,res) ;
     }
     
