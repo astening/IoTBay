@@ -39,7 +39,7 @@
                     <td><input type="int" id="noItems" name="noItems"></td>
                 </tr>
                 <tr>
-                    <% //add hidden fields here %>
+                    <% //add hidden fields here for user ID %>
                 </tr>
             </table>
             <br>

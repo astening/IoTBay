@@ -128,13 +128,14 @@ public class OrderFormServlet extends HttpServlet {
         Validator validator = new Validator() ;
         validator.clear(session) ;
         
-        // Retrieve posted data
-//        String productID = (String) session.getAttribute("productID") ; // is null --> what happens if i make this an int
-        String productID = "1" ;
-        int intProductID = 0 ;
+        // Retrieve posted data - not working
+        String productID = (String) session.getAttribute("productID") ; // is null --> what happens if i make this an int
+//        String productID = "1" ;
+        int intProductID = 1 ; // this is never set
         int intItemQuantity = 1 ;
 //        int intItemQuantity = (int) session.getAttribute("itemQuantity") ;
         String itemQuantity = (String) session.getAttribute("itemQuantity") ; // unaccepted
+//        int intItemQuantity = Integer.parseInt(itemQuantity) ;
         
         // add and create db manager
         conn = db.openConnection() ;       
@@ -154,14 +155,14 @@ public class OrderFormServlet extends HttpServlet {
             session.setAttribute("productID", "Please provide a product ID") ;
         }
         else if (validator.checkEmpty(2, itemQuantity)) {
-            session.setAttribute("itemQuantity", "Please provide a product ID") ;
+            session.setAttribute("itemQuantity", "Please provide a quantity") ;
         }
-//        else if (!validator.validateNumber(itemQuantity)) {
-//            session.setAttribute("IDValidated", "Please enter a valid quantity number above 0") ;
+        else if (!validator.validateNumber(itemQuantity)) {
+            session.setAttribute("IDValidated", "Please enter a valid quantity number above 0") ;
+        }
+//        else if (!validator.validateNumber(productID)) {
+//            session.setAttribute("IDValidated", "Please provide a valid product ID") ;
 //        }
-        else if (!validator.validateNumber(productID)) {
-            session.setAttribute("IDValidated", "Please provide a valid product ID") ;
-        }
         else {
             intProductID = Integer.parseInt(productID) ;
         }
@@ -169,9 +170,8 @@ public class OrderFormServlet extends HttpServlet {
         // Use manager to add the order into the database
 
            try {
-//               manager.updateOrder(2, intProductID, intItemQuantity) ; // temporary fix
             int userID = 1 ;
-            int orderID = 25 ;
+            int orderID = 26 ;
             manager.addOrder(orderID, intItemQuantity, intProductID, userID);
                // set confirmation message for product id, quantity
                session.setAttribute("updated", "Order was submitted") ;
