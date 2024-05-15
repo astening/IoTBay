@@ -25,9 +25,9 @@
         <h2>Update order status - staff only</h2>
                     
         <% if(updated==null ) { //|| updated.equals("No change made yet") //do not display initial values on start-up %>
-        <% } else { // display change unsucccessful %>
+        <% } else { // display relevant response message %>
             <p><%= updated %><p>
-            <% if(statusValidated.equals("Provide a status")) { // display specific error messages%>
+            <% if(statusValidated.equals("Provide a status")) { // display specific error messages %>
             <p><%= statusValidated %><p>
             <% } else if(IDvalidated.equals("Provide an order ID")) { %>
             <p><%= IDvalidated %><p>
@@ -80,6 +80,7 @@
                 <td><a href="/IoTBay/orderForm.jsp">View details</a></td>
             </tr>
         </table>
+        <a href="main.jsp">Main Page</a>
         
     </body>
 </html>

@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="isdmodel.Order" %>
+<%@page import="isdmodel.User" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,16 +17,29 @@
     <body>
         <%
             Order order = (Order) session.getAttribute("order") ;
+            User user = (User) session.getAttribute("user") ;
+            String quantityValidated = (String) session.getAttribute("quantityValidated") ;
+            String IDValidated = (String) session.getAttribute("IDValidated") ;
+            String updated = (String) session.getAttribute("updated") ;
         %>
         <h1>Submit an order here:</h1>
+        <p>
+            <%= quantityValidated %>
+            <%= IDValidated %>
+            <%= updated %>
+        </p>
         <form action="OrderFormServlet" method="POST">
             <table>
                 <tr>
                     <td><label for="productID">Product ID: </label></td>
-                    <td><input type="int" id="productID" name="productID" required="true"></td>
+                    <td><input type="int" id="productID" name="productID"></td>
+                </tr>
                 <tr>
                     <td><label for="noItems">Quantity: </label></td>
-                    <td><input type="int" id="noItems" name="noItems" required="true"></td>
+                    <td><input type="int" id="noItems" name="noItems"></td>
+                </tr>
+                <tr>
+                    <% //add hidden fields here %>
                 </tr>
             </table>
             <br>
@@ -33,6 +47,7 @@
             <button>Save</button>
             <button>Submit my order</button>
         </form>
+        <a href="main.jsp">Main Page</a>
     </body>
 </html>
 
