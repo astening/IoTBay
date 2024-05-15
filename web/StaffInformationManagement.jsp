@@ -34,6 +34,17 @@
         </tr>
         
         <%
+            String fnameErr = (String) session.getAttribute("fnameErr");
+            String lnameErr = (String) session.getAttribute("lnameErr");
+            String phoneErr = (String) session.getAttribute("phoneErr");
+            String emailErr = (String) session.getAttribute("emailErr");
+            String passErr = (String) session.getAttribute("passErr");
+            String addressErr = (String) session.getAttribute("addressErr");
+            String cityErr = (String) session.getAttribute("cityErr");
+            String stateErr = (String) session.getAttribute("stateErr");
+            String postErr = (String) session.getAttribute("postErr");
+            String positionErr = (String) session.getAttribute("positionErr");
+                   
             List<User> staffList = (List<User>) request.getAttribute("staffList");
             User foundStaff = (User) request.getAttribute("foundStaff");
             
@@ -97,9 +108,9 @@
     <!-- Add form for searching staff -->
     <h2> Find Staff Member </h2>
     <form action="FindStaffServlet" method="get">
-        First Name: <input type="text" name="fname">
-        Last Name: <input type="text" name="lname">
-        Position: <input type="text" name="position">
+        First Name: <input type="text" placeholder="<%=(fnameErr != null ? fnameErr : "Enter First Name:")%>" name="fname">
+        Last Name: <input type="text" placeholder="<%=(lnameErr != null ? lnameErr : "Enter Last Name:")%>" name="lname">
+        Position: <input type="text" placeholder="<%=(positionErr != null ? positionErr : "Enter Position:")%>" name="position">
         <input type="submit" value="Search">
     </form>
 
@@ -112,16 +123,16 @@
     <!-- Add form for adding new staff -->
     <h2>Add New Staff</h2>
     <form action="AddStaffServlet" method="post">
-        First Name: <input type="text" name="fName">
-        Last Name: <input type="text" name="lName">
-        Phone Number:<input type="number" name="phoneNo">
-        Email: <input type="text" name="email">
-        Password:<input type="password" name="password">
-        Address:<input type="text" name="address">
-        City:<input type="text" name="city">
-        State:<input type="text" name="state">
-        Postcode:<input type="number" name="postcode">
-        Position:<input type="text" name="position">
+        First Name: <input type="text" placeholder="<%=(fnameErr != null ? fnameErr : "Enter First Name:")%>" name="fName">
+        Last Name: <input type="text" placeholder="<%=(lnameErr != null ? lnameErr : "Enter Last Name:")%>" name="lName">
+        Phone Number:<input type="number" placeholder="<%=(phoneErr != null ? phoneErr : "Enter Phone Number:")%>" name="phoneNo">
+        Email: <input type="text" placeholder="<%=(emailErr != null ? emailErr : "Enter Email:")%>" name="email">
+        Password:<input type="password" placeholder="<%=(passErr != null ? passErr : "Enter Password:")%>" name="password">
+        Address:<input type="text" placeholder="<%=(addressErr != null ? addressErr : "Enter Address:")%>" name="address">
+        City:<input type="text" placeholder="<%=(cityErr != null ? cityErr : "Enter City:")%>" name="city">
+        State:<input type="text" placeholder="<%=(stateErr != null ? stateErr : "Enter State:")%>" name="state">
+        Postcode:<input type="number" placeholder="<%=(postErr != null ? postErr : "Enter Postcode:")%>" name="postcode">
+        Position:<input type="text" placeholder="<%=(positionErr != null ? positionErr : "Enter Position:")%>" name="position">
         <input type="submit" value="Add">
     </form>
     
@@ -133,16 +144,21 @@
                     <br>
                     <br>
         Update their details:            
-                    First Name: <input type="text" name="fName">
-                    Last Name: <input type="text" name="lName">
-                    Phone Number:<input type="number" name="phoneNo">
-                    Email: <input type="text" name="email">
-                    Password:<input type="password" name="password">
-                    Address:<input type="text" name="address">
-                    City:<input type="text" name="city">
-                    State:<input type="text" name="state">
-                    Postcode:<input type="number" name="postcode">
-                    Position:<input type="text" name="position">
+                    First Name: <input type="text" placeholder="<%=(fnameErr != null ? fnameErr : "Enter First Name:")%>" name="fName">
+                    Last Name: <input type="text" placeholder="<%=(lnameErr != null ? lnameErr : "Enter Last Name:")%>" name="lName">
+                    Phone Number:<input type="number" placeholder="<%=(phoneErr != null ? phoneErr : "Enter Phone Number:")%>" name="phoneNo">
+                    Email: <input type="text" placeholder="<%=(emailErr != null ? emailErr : "Enter Email:")%>" name="email">
+                    Password:<input type="password" placeholder="<%=(passErr != null ? passErr : "Enter Password:")%>" name="password">
+                    Address:<input type="text" placeholder="<%=(addressErr != null ? addressErr : "Enter Address:")%>" name="address">
+                    City:<input type="text" placeholder="<%=(cityErr != null ? cityErr : "Enter City:")%>" name="city">
+                    State:<input type="text" placeholder="<%=(stateErr != null ? stateErr : "Enter State:")%>" name="state">
+                    Postcode:<input type="number" placeholder="<%=(postErr != null ? postErr : "Enter Postcode:")%>" name="postcode">
+                    Activation:
+                    <select name="activation">
+                        <option value="true">True</option>
+                        <option value="false">False</option>
+                    </select><br>
+                    Position:<input type="text" placeholder="<%=(positionErr != null ? positionErr : "Enter Position:")%>" name="position">
                     <input type="submit" value="Update">
                 </form>
                     

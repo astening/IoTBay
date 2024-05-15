@@ -19,19 +19,33 @@ public class FindStaffServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
             HttpSession session = request.getSession();
+            Validator validator = new Validator();
             DBManager manager = (DBManager) session.getAttribute("manager");
 
             String fname = request.getParameter("fname");
             String lname = request.getParameter("lname");
             String position = request.getParameter("position");
             User foundstaff = null;
-       try {
-            foundstaff = manager.findStaff(fname, lname, position);
-            request.setAttribute("foundStaff", foundstaff);
+            validator.clear(session);
+            
+            if(!validator.validateFName(fname)) {
+                session.setAttribute("fnameErr", "Error: Fname format incorrect");
+                request.getRequestDispatcher("StaffInformationManagement.jsp").forward(request, response);
+            } else if (!validator.validateLName(lname)) {
+                session.setAttribute("lnameErr", "Error: Lname format incorrect");
+                request.getRequestDispatcher("StaffInformationManagement.jsp").forward(request, response);
+            } else if (!validator.validatePosition(position)) {
+            session.setAttribute("positionErr", "Error: Position format incorrect");
             request.getRequestDispatcher("StaffInformationManagement.jsp").forward(request, response);
-        } catch (SQLException e) {
-            e.printStackTrace(); // Handle your exception here
-            System.out.println("Staff Member does not exist in the database.");
-        }
+            } else {
+           try {
+                foundstaff = manager.findStaff(fname, lname, position);
+                request.setAttribute("foundStaff", foundstaff);
+                request.getRequestDispatcher("StaffInformationManagement.jsp").forward(request, response);
+            } catch (SQLException e) {
+                e.printStackTrace(); // Handle your exception here
+                System.out.println("Staff Member does not exist in the database.");
+            }
     }
+}
 }

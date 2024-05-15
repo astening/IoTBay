@@ -42,6 +42,7 @@
                  <!-- Check if the user is a System Admin, then display the button -->
                  <br>
                  <br>
+                 <br>
                 <% if (isSystemsAdmin) { %>
                   <a class="button" href="StaffInformationManagement.jsp">Manage Staff</a>
                <% } %>
