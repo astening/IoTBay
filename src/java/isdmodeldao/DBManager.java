@@ -83,9 +83,10 @@ public void deleteUser(String email) throws SQLException{
                 + userID + "', '" + cardName + "', '" + cardNo + "', '" + expiryDate + "','" + cvv + "')");
     }
     //update paymentMethod
-    public void updatePaymentMethod (int userID, String cardName, String cardNo, int cvv, LocalDate expiryDate) throws SQLException{
+    public void updatePaymentMethod (int userID, String cardName, String cardNo, int cvv, LocalDate expiry) throws SQLException{
+        Date expiryDate = Date.valueOf(expiry);
         st.executeUpdate("UPDATE ISDUSER.PaymentMethod SET CARDNAME='" 
-                + cardName + "',CARDNO'" + cardNo + "',EXPIRYDATE'" + expiryDate + "',CVV'" + cvv
+                + cardName + "',CARDNO'" + cardNo + "',EXPIRYDATE" + expiryDate + ",CVV'" + cvv
                 + "'WHERE USERID='" + userID + "'");
     }
     
