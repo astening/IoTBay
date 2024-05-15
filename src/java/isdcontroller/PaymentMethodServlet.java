@@ -12,10 +12,8 @@ package isdcontroller;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.logging.Logger;
 import java.util.logging.Level;
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -23,6 +21,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import isdmodel.*;
 import isdmodeldao.DBManager;
+import java.time.LocalDate;
+import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
 
 public class PaymentMethodServlet extends HttpServlet{
     @Override
@@ -53,12 +54,18 @@ public class PaymentMethodServlet extends HttpServlet{
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         Validator validator = new Validator();
+        
         //name = parameter, not id
         String cardName = request.getParameter("cardName");
         String cardNo = request.getParameter("cardNo");
-        String expiryDate = request.getParameter("expiryDate");
-        String cvv = request.getParameter("cvv");
-        //I think its bc the value isnt being wiped in cvv text box
+        String expiryString = request.getParameter("expiryDate");
+        String cvvString = request.getParameter("cvv");
+        int cvv = Integer.valueOf(cvvString);
+        
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/yy");
+        YearMonth yearMonth = YearMonth.parse(expiryString, formatter);
+        LocalDate expiryDate = yearMonth.atEndOfMonth();
+       
         DBManager manager = (DBManager) session.getAttribute("manager");
         User user = (User) session.getAttribute("user");
         int userID = user.getUserID();
@@ -72,14 +79,20 @@ public class PaymentMethodServlet extends HttpServlet{
             session.setAttribute("cardNoErr", "Error: Card Number format incorrect");
             request.getRequestDispatcher("payment.jsp").include(request, response);
         }
-        else if (!validator.validateExpiryDate(expiryDate)){
+        else if (!validator.validateExpiryDate(expiryString)){
             session.setAttribute("expiryDateErr", "Error: Card Expiry Date format incorrect");
             request.getRequestDispatcher("payment.jsp").include(request, response);
         }
-        else if (!validator.validateCVV(cvv)){
+        else if (!validator.validateCVV(cvvString)){
             session.setAttribute("cvvErr", "Error: Card CVV/CVC format incorrect");
             request.getRequestDispatcher("payment.jsp").include(request, response);
         } else{
+            try{
+                manager.updatePaymentMethod(userID, cardName, cardNo, cvv, expiryDate);
+            } catch (SQLException ex){
+                Logger.getLogger(PaymentMethodServlet.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex.getErrorCode() + " and " + ex.getMessage());
+            }
             request.getRequestDispatcher("payment.jsp").include(request, response);
         }
     }
