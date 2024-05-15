@@ -160,9 +160,9 @@ public class OrderFormServlet extends HttpServlet {
         else if (!validator.validateNumber(itemQuantity)) {
             session.setAttribute("IDValidated", "Please enter a valid quantity number above 0") ;
         }
-//        else if (!validator.validateNumber(productID)) {
-//            session.setAttribute("IDValidated", "Please provide a valid product ID") ;
-//        }
+        else if (!validator.validateNumber(productID)) {
+            session.setAttribute("IDValidated", "Please provide a valid product ID") ;
+        }
         else {
             intProductID = Integer.parseInt(productID) ;
         }
@@ -171,7 +171,7 @@ public class OrderFormServlet extends HttpServlet {
 
            try {
             int userID = 1 ;
-            int orderID = 26 ;
+            int orderID = 27 ;
             manager.addOrder(orderID, intItemQuantity, intProductID, userID);
                // set confirmation message for product id, quantity
                session.setAttribute("updated", "Order was submitted") ;
