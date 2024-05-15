@@ -144,7 +144,7 @@ import jakarta.servlet.http.HttpSession;
             // before updating the db
             if(validator.checkEmpty(orderID, status)) {
                 session.setAttribute("statusValidated", "Provide a status") ;
-                session.setAttribute("IDvalidated", "Provide an order ID") ;
+                session.setAttribute("IDvalidated", "Provide a valid order ID") ;
             }
             else if (!validator.validateNumber(stringOrderID)) {
                 session.setAttribute("IDvalidated", "Fill in a valid ID") ;
