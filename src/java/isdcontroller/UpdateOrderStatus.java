@@ -39,7 +39,7 @@ import jakarta.servlet.http.HttpSession;
 
  
 
-   public class UpdateStatus extends HttpServlet {
+   public class UpdateOrderStatus extends HttpServlet {
 
  
 

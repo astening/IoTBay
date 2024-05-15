@@ -36,7 +36,7 @@
         <% } %>
             
             
-        <form action="UpdateStatus" method="post">
+        <form action="UpdateOrderStatus" method="post">
             <table>
                 <tr>
                     <td><label for="orderID">Order ID: </label></td>
