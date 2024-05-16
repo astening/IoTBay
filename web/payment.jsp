@@ -53,7 +53,8 @@
             ArrayList<Payment> searchResults = (ArrayList<Payment>) session.getAttribute("searchResults");
         %>
         <h1>Payment Details</h1>
-        <h2>Edit Card Details <span> <%=(statusMsg!=null? "- "+statusMsg : "")%></span></h2>
+        <h2>Edit Card Details</h2>
+        <h3><span> <%=(statusMsg!=null? statusMsg : "")%></h3>
         <form method="POST" action="PaymentMethodServlet">
             <table>
                 <tr>
