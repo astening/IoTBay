@@ -108,7 +108,14 @@
                 <td><%= i.getNoItems() %></td>
                 <td><%= i.getTotalPrice() %></td>
                 <% if(i.getStatus().equals("Saved")) { %>
-                <td><a class ="button" href="orderForm.jsp" method="post"> Update </a></td>
+                
+                <form action="orderForm.jsp" method="post">
+                    <input type='hidden' id='submitted' name='submitted' value=i.getOrderID()>
+                    <input type='hidden' id='submitted' name='submitted' value=i.getNoItems()>
+                    <input type='hidden' id='submitted' name='submitted' value=i.getTotalPrice()>
+                    <td><a class ="button" href="orderForm.jsp" method="post"> Update (details to be posted) </a></td>
+                </form>
+                
                 <% } else { %>
                 <td><a class ="button" href="orderForm.jsp" method="post"> View </a></td>
                 <% } %>             
