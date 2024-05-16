@@ -119,7 +119,6 @@ public class OrderFormServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("updated", "Order was not submitted") ;
         
         // Retrieve session from request
         HttpSession session = request.getSession() ;
@@ -129,11 +128,10 @@ public class OrderFormServlet extends HttpServlet {
         validator.clear(session) ;
         
         // Retrieve posted data - not working
-        String productID = (String) session.getAttribute("productID") ; // is null --> what happens if i make this an int
-//        String productID = "1" ;
-        int intProductID = 0 ; // dont think is changed
+        String productID = (String) session.getAttribute("productID") ; // null
+        int intProductID = 0 ; // dont think its changed
         int intItemQuantity = 0 ;
-        String itemQuantity = (String) session.getAttribute("noItems") ;
+        String noItems = (String) session.getAttribute("noItems") ; // null
 
         
         
@@ -151,40 +149,78 @@ public class OrderFormServlet extends HttpServlet {
         }
         
         // Check variables are valid before using manager to perform update
-        if(validator.checkEmpty(2, productID)) {
-            session.setAttribute("IDValidated", "Please provide a product ID") ;
-        }
-        else if (validator.checkEmpty(2, itemQuantity)) {
-            session.setAttribute("quantityValidated", "Please provide a quantity") ;
-        }
-//        else if (!validator.validateNumber(itemQuantity)) { // this isnt working properly
-//            session.setAttribute("IDValidated", "Please enter a valid quantity number above 0") ;
+//        if(validator.checkEmpty(2, productID)) {
+//            session.setAttribute("IDValidated", "Please provide a product ID") ;
 //        }
-        else if (!validator.validateNumber(productID)) {
-            session.setAttribute("IDValidated", "Please provide a valid product ID") ;
-        }
-        else {
-            // convert int
-            try {
-                intItemQuantity = Integer.parseInt(itemQuantity) ; // ? doesnt work
+//        else if (validator.checkEmpty(2, noItems)) {
+//            session.setAttribute("quantityValidated", "Please provide a quantity") ;
+//        }
+////        else if (!validator.validateNumber(itemQuantity)) { // this isnt working properly
+////            session.setAttribute("IDValidated", "Please enter a valid quantity number above 0") ;
+////        }
+//        else if (!validator.validateNumber(productID)) {
+//            session.setAttribute("IDValidated", "Please provide a valid product ID") ;
+//        }
+//        else {
+//            // convert int
+//            try {
+//                intItemQuantity = Integer.parseInt(noItems) ; // ? doesnt work
+//            }
+//            catch(NumberFormatException e) {
+//                session.setAttribute("quantityValidated", "Please provide a quantity") ;
+//            }            
+//            intProductID = Integer.parseInt(productID) ;
+//            try {
+//            
+//            // Use manager to add the order into the database
+//            manager.addOrder(intItemQuantity, userID, intProductID);
+//               // set confirmation message for product id, quantity
+//               session.setAttribute("updated", "Order was submitted") ;
+//               
+//               // provide user with the order number and date
+//           } catch (SQLException ex) {
+//               Logger.getLogger(OrderFormServlet.class.getName()).log(Level.SEVERE, null, ex) ;
+//           }
+//        }
+
+            // validation is not working, because values are not coming through
+//            if(validator.checkEmpty(2, noItems)) {
+//                session.setAttribute("quantityValidated", "Provide a quantity") ;
+//            }
+//            else if (validator.checkEmpty(2, productID)) {
+//                session.setAttribute("IDvalidated", "Provide a product ID") ;
+//            }
+//            else if (!validator.validateNumber(productID)) {
+//                session.setAttribute("IDvalidated", "Fill in a valid product ID") ;
+//            }
+//            else if (!validator.validateNumber(noItems)) {
+//                session.setAttribute("quantityValidated", "Fill in a valid quantity number") ;
+//            }
+            if (validator.checkEmpty(1, "2")) {
+                // skip to see if above validation is wrong
             }
-            catch(NumberFormatException e) {
-                session.setAttribute("quantityValidated", "Please provide a quantity") ;
-            }            
-            intProductID = Integer.parseInt(productID) ;
-            try {
-            int userID = 1 ;
-            // Use manager to add the order into the database
-            manager.addOrder(intItemQuantity, userID, intProductID);
-               // set confirmation message for product id, quantity
-               session.setAttribute("updated", "Order was submitted") ;
-               
-               // provide user with the order number and date
-           } catch (SQLException ex) {
-               Logger.getLogger(OrderFormServlet.class.getName()).log(Level.SEVERE, null, ex) ;
-           }
-        }
-        
+            else {
+                // convert int
+                
+                try {
+                    intItemQuantity = Integer.parseInt(noItems) ; // null
+                    intProductID = Integer.parseInt(productID) ; // random error message
+                }
+                catch(NumberFormatException e) {
+                    session.setAttribute("quantityValidated", "Please provide a quantity") ;
+                }
+                
+                // attempt to add order into database
+                try {
+                    int userID = 1 ; // should be retrieved from session
+                    manager.addOrder(intItemQuantity, userID, intProductID) ;
+                    session.setAttribute("updated", "Order added successfully"); //
+                } catch (SQLException ex) {
+                    Logger.getLogger(UpdateStatusServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    session.setAttribute("updated", "Order not added, please try again") ;
+                }
+            }
+
         request.getRequestDispatcher("orderForm.jsp").include(request, response) ; 
     }
 
