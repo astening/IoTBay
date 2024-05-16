@@ -5,6 +5,9 @@
         <group>
             <file>file:/C:/Users/chari/OneDrive/Documents/GitHub/IoTBay/web/orderForm.jsp</file>
             <file>file:/C:/Users/chari/OneDrive/Documents/GitHub/IoTBay/web/orders.jsp</file>
+            <file>file:/C:/Users/chari/OneDrive/Documents/GitHub/IoTBay/src/java/isdcontroller/UpdateOrderStatus.java</file>
+            <file>file:/C:/Users/chari/OneDrive/Documents/GitHub/IoTBay/src/java/isdcontroller/ConnServlet.java</file>
+            <file>file:/C:/Users/chari/OneDrive/Documents/GitHub/IoTBay/web/main.jsp</file>
             <file>file:/C:/Users/chari/OneDrive/Documents/GitHub/IoTBay/src/java/isdcontroller/OrderFetchAll.java</file>
         </group>
     </open-files>

@@ -100,21 +100,18 @@
                 ArrayList<Order> list = (ArrayList<Order>) session.getAttribute("resultList") ;
                 if (list!=null) {
                 for (Order i: list) {
-//                    out.print(i.getOrderID() + ", ");
-//                    out.print(i.getOrderDate() + ", ") ;
-//                    out.print(i.getStatus() + ", ") ;
-//                    out.print(i.getNoItems() + ", ") ;
-//                    out.println(i.getTotalPrice() + ", ") ; // need to add more stuff here
-            %>
-            
-            
+            %>          
             <tr>
                 <td><%= i.getOrderID() %></td>
                 <td><%= i.getOrderDate() %></td>
                 <td><%= i.getStatus() %></td>
                 <td><%= i.getNoItems() %></td>
                 <td><%= i.getTotalPrice() %></td>
-                <td><a class ="button" href="orderForm.jsp" method="post"> View or update </a></td>
+                <% if(i.getStatus()!="Saved") { %>
+                <td><a class ="button" href="orderForm.jsp" method="post"> View </a></td>
+                <% } else { %>
+                <td><a class ="button" href="orderForm.jsp" method="post"> Update </a></td>
+                <% } %>             
             </tr>
             <% } } else { %>
             <tr>
