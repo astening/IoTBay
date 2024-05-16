@@ -129,11 +129,10 @@ public class OrderFormServlet extends HttpServlet {
         validator.clear(session) ;
         
         // Retrieve posted data - not working
-        String productID = (String) session.getAttribute("productID") ; // is null --> what happens if i make this an int
-//        String productID = "1" ;
+        String productID = (String) session.getAttribute("productID") ; // this is null
         int intProductID = 0 ; // dont think is changed
         int intItemQuantity = 0 ;
-        String itemQuantity = (String) session.getAttribute("noItems") ;
+        String itemQuantity = (String) session.getAttribute("noItems") ; // and this is null
 
         
         
@@ -166,12 +165,12 @@ public class OrderFormServlet extends HttpServlet {
         else {
             // convert int
             try {
-                intItemQuantity = Integer.parseInt(itemQuantity) ; // ? doesnt work
+                intItemQuantity = Integer.parseInt(itemQuantity) ; // wont work as these are null
+                intProductID = Integer.parseInt(productID) ;
             }
             catch(NumberFormatException e) {
                 session.setAttribute("quantityValidated", "Please provide a quantity") ;
             }            
-            intProductID = Integer.parseInt(productID) ;
             try {
             int userID = 1 ;
             // Use manager to add the order into the database
