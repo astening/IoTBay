@@ -93,7 +93,7 @@
                 <button>Search</button>
             </div><br><br>
             
-            <table>
+            <table id="table">
                 <tr>
                     <th>PaymentID</th>
                     <th>Amount</th>
@@ -116,7 +116,7 @@
             </table>
             
             <h3>Full Payment History</h3>
-            <table>
+            <table id="table">
                 <tr>
                     <th>PaymentID</th>
                     <th>Amount</th>
