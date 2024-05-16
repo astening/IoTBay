@@ -133,7 +133,7 @@ public class OrderFormServlet extends HttpServlet {
 //        String productID = "1" ;
         int intProductID = 0 ; // dont think is changed
         int intItemQuantity = 0 ;
-        String itemQuantity = (String) session.getAttribute("itemQuantity") ;
+        String itemQuantity = (String) session.getAttribute("noItems") ;
 
         
         
@@ -155,7 +155,7 @@ public class OrderFormServlet extends HttpServlet {
             session.setAttribute("productID", "Please provide a product ID") ;
         }
         else if (validator.checkEmpty(2, itemQuantity)) {
-            session.setAttribute("itemQuantity", "Please provide a quantity") ;
+            session.setAttribute("quantityValidated", "Please provide a quantity") ;
         }
 //        else if (!validator.validateNumber(itemQuantity)) { // this isnt working properly
 //            session.setAttribute("IDValidated", "Please enter a valid quantity number above 0") ;
@@ -166,10 +166,10 @@ public class OrderFormServlet extends HttpServlet {
         else {
             // convert int
             try {
-                intItemQuantity = Integer.parseInt(itemQuantity) ; // doesnt work
+                intItemQuantity = Integer.parseInt(itemQuantity) ; // ? doesnt work
             }
             catch(NumberFormatException e) {
-                session.setAttribute("itemQuantity", "Please provide a quantity") ;
+                session.setAttribute("quantityValidated", "Please provide a quantity") ;
             }            
             intProductID = Integer.parseInt(productID) ;
             try {
@@ -185,7 +185,7 @@ public class OrderFormServlet extends HttpServlet {
            }
         }
         
-        request.getRequestDispatcher("orderForm.jsp").include(request, response) ;
+        request.getRequestDispatcher("orderForm.jsp").include(request, response) ; 
     }
 
     /**
