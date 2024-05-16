@@ -79,6 +79,7 @@ public class PaymentMethodServlet extends HttpServlet{
         User user = (User) session.getAttribute("user");
         int userID = user.getUserID();
         validator.clear(session);
+        session.setAttribute("statusMsg", null);
         
         //validate all inputted data
         if(!validator.validateName(cardName)){
