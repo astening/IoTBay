@@ -29,6 +29,9 @@
                 <td>${user.password}</td>
             </tr>
         </table>
+        <br><a href="index.html">Home Page</a><br>
+        <br><a href="orders.jsp">Order Page</a><br>
+        <br><a href="orderForm.jsp">Order Form</a><br>
         <div> 
         <br>
         <br>
