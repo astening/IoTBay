@@ -4,7 +4,6 @@
     Author     : Ella
 --%>
 <%@page import="isdmodel.PaymentMethod"%>
-<%@page import="isdmodel.User"%>
 <%@page import="isdmodel.Payment"%>
 <%@page import="java.time.LocalDate"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
@@ -19,24 +18,28 @@
     </head>
     <body>
         <%
+            //get error messages
             String nameErr = (String) session.getAttribute("nameErr");
             String cardNoErr = (String) session.getAttribute("cardNoErr");
             String expiryDateErr = (String) session.getAttribute("expiryDateErr");
             String cvvErr = (String) session.getAttribute("cvvErr");
             
+            //get status message to show user
             String statusMsg = (String) session.getAttribute("statusMsg");
             
+            //reset varaibles used in input boxes
             String cardName="";
             String cardNo="";
             String cvv = "";
             String expiryDate = "";
             
+            //date formatter for expiry date pattern
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/yy");
           
-            User user = (User) session.getAttribute("user");
+            //get paymentMethod obj from session (linked to user)
             PaymentMethod paymentMethod = (PaymentMethod) session.getAttribute("paymentMethod");
-//            PaymentMethod paymentMethod = null;
-
+            
+            //get user's card details if they have one saved
             if(paymentMethod!=null){
                 cardName = paymentMethod.getCardName();
                 cardNo = paymentMethod.getCardNo();
@@ -45,6 +48,7 @@
                 cvv = paymentMethod.getCvv()+"";
             }
             
+            //get users payment history and search result
             ArrayList<Payment> payments = (ArrayList<Payment>) session.getAttribute("payments");
             ArrayList<Payment> searchResults = (ArrayList<Payment>) session.getAttribute("searchResults");
         %>
@@ -78,7 +82,7 @@
                 </tr>
             </table><br>
             <button>Submit</button>
-            <a class ="button" href="DeletePaymentMethodServlet" class="<%=(paymentMethod!=null? "" : "disabled")%>">Delete</a>
+            <a class ="button" href="DeletePaymentMethodServlet">Delete</a>
         </form>
                 <br>
 
@@ -99,7 +103,7 @@
                     <th>Amount</th>
                     <th>Date</th>
                 </tr>
-            <%
+            <%  //loop to generate table rows + data for each search  result
                     if(searchResults!=null){
                         for(Payment p : searchResults){
                 %>
@@ -122,7 +126,7 @@
                     <th>Amount</th>
                     <th>Date</th>
                 </tr>
-                <%
+                <% //loop to generate table rows + data for each payment in the user's payment history
                     if(payments!=null){
                         for(Payment p : payments){
                 %>
