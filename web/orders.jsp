@@ -64,6 +64,11 @@
             <% } else { // what do I do here %>
             <% }%>
         <% } %>
+        
+        <p><%= updated %><p>
+        <p><%= statusValidated %><p>
+        <p><%= IDvalidated %><p>
+        
         <form action="OrderSearchServlet" method="post">
             <table>
                 <tr>
