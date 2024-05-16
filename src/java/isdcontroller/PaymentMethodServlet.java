@@ -31,8 +31,10 @@ public class PaymentMethodServlet extends HttpServlet{
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException{
         HttpSession session = request.getSession();
-        int userID = Integer.parseInt(request.getParameter("userID"));
         DBManager manager = (DBManager) session.getAttribute("manager");
+        
+        int userID = Integer.parseInt(request.getParameter("userID"));
+        //reset all variables used
         PaymentMethod paymentMethod = null;
         session.setAttribute("statusMsg", null);
         ArrayList<Payment> payments = null;
@@ -41,11 +43,12 @@ public class PaymentMethodServlet extends HttpServlet{
         validator.clear(session);
         
         try{
+            //gets the users saved card if they have one
             if(manager.checkPaymentMethod(userID)){
                 paymentMethod = manager.findPaymentMethod(userID);
                 session.setAttribute("paymentMethod", paymentMethod);
             }
-            
+            //gets the users payment history if they have any payments
             if(manager.checkPayments(userID)){
                 payments = manager.getPayments(userID);
                 session.setAttribute("payments", payments);
@@ -55,7 +58,6 @@ public class PaymentMethodServlet extends HttpServlet{
             Logger.getLogger(PaymentMethodServlet.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println(ex.getErrorCode() + " and " + ex.getMessage());
         }
-//         request.getRequestDispatcher("payment.jsp").include(request, response);
             response.sendRedirect("payment.jsp");
     }
     
@@ -66,7 +68,7 @@ public class PaymentMethodServlet extends HttpServlet{
         Validator validator = new Validator();
         PaymentMethod paymentMethod = (PaymentMethod) session.getAttribute("paymentMethod");
         
-        //name = parameter, not id
+        //get the inputted card details from the form inputs
         String cardName = request.getParameter("cardName");
         String cardNo = request.getParameter("cardNo");
         String expiryString = request.getParameter("expiryDate");
@@ -78,6 +80,7 @@ public class PaymentMethodServlet extends HttpServlet{
         int userID = user.getUserID();
         validator.clear(session);
         
+        //validate all inputted data
         if(!validator.validateName(cardName)){
             session.setAttribute("nameErr", "Error: Card Name format incorrect");
             request.getRequestDispatcher("payment.jsp").include(request, response);
@@ -95,9 +98,13 @@ public class PaymentMethodServlet extends HttpServlet{
             request.getRequestDispatcher("payment.jsp").include(request, response);
         } else{
             try{
+                //format date correctly from expiry date formatting to LocalDate formatting
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/yy");
                 YearMonth yearMonth = YearMonth.parse(expiryString, formatter);
                 LocalDate expiryDate = yearMonth.atEndOfMonth();
+                
+                //updates card details if user has a saved card
+                //status message updated
                 if(paymentMethod!=null){
                     manager.updatePaymentMethod(userID, cardName, cardNo, cvv, expiryDate);
                     paymentMethod.setCardName(cardName);
@@ -106,6 +113,8 @@ public class PaymentMethodServlet extends HttpServlet{
                     paymentMethod.setExpiryDate(expiryDate);
                     session.setAttribute("statusMsg", "Card details updated successfully");
                 } else{
+                    //creates a new card attached to user if there isnt one already
+                    //status message updated
                     manager.addPaymentMethod(userID, cardName, cardNo, cvv, expiryDate);
                     paymentMethod = manager.findPaymentMethod(userID);
                     session.setAttribute("paymentMethod", paymentMethod);
@@ -115,7 +124,6 @@ public class PaymentMethodServlet extends HttpServlet{
                 Logger.getLogger(PaymentMethodServlet.class.getName()).log(Level.SEVERE, null, ex);
                 System.out.println(ex.getErrorCode() + " and " + ex.getMessage());
             }
-//            request.getRequestDispatcher("payment.jsp").include(request, response);
               response.sendRedirect("payment.jsp");
         }
     }
