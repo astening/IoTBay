@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 
 import isdmodeldao.DBConnector;
 import isdmodeldao.DBManager;
+import java.util.ArrayList;
 //import java.time.LocalDate;
 //import java.util.Date;
 
@@ -84,18 +85,25 @@ int userID = in.nextInt() ;
 //System.out.println("Order added to the database") ;
 
 // find order
-Order order = db.findOrder(orderID, orderDate) ;
-System.out.println(order.getOrderID());
-System.out.println(order.getOrderDate()) ;
-System.out.println(order.getStatus()) ;
-System.out.println(order.getNoItems()) ;
-System.out.println(order.getTotalPrice()) ;
+//Order order = db.findOrder(orderID, orderDate) ;
+//System.out.println(order.getOrderID());
+//System.out.println(order.getOrderDate()) ;
+//System.out.println(order.getStatus()) ;
+//System.out.println(order.getNoItems()) ;
+//System.out.println(order.getTotalPrice()) ;
 
 // delete order
 //db.deleteOrder(orderID) ;
 
 // update order
 //db.updateOrder(orderID, productID, quantity) ;
+
+// return a list of all orders
+ArrayList<Order> list = db.fetchAllOrders() ;
+System.out.print(list.size()); // returns correct value
+for (Order i: list) {
+    System.out.println(i + " ");
+}
 
 connector.closeConnection();
 

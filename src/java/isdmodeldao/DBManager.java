@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  *
@@ -104,6 +105,22 @@ public class DBManager {
     }
     
     // create a fetch students list ie select * from students
+    public ArrayList<Order> fetchAllOrders() throws SQLException {
+        String fetch = "SELECT * FROM ORDERS" ;
+        ArrayList<Order> list = new ArrayList() ;
+        ResultSet rs = st.executeQuery(fetch) ;
+        
+        while (rs.next()) {
+            int orderID = rs.getInt(1) ; // to avoid problem with ID
+            String orderDate = rs.getString(2) ;
+            String status = rs.getString(3) ;
+            int totalNoItems = rs.getInt(4) ;
+            double totalPrice = rs.getDouble(5) ;
+            list.add(new Order(orderID, orderDate, status, totalNoItems, totalPrice)) ;
+        }
+        
+        return list ;
+    }
     
     // update the order details - works
     // im not even sure why i would need this method but ok ill keep it
