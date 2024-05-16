@@ -40,11 +40,17 @@ public class FindStaffServlet extends HttpServlet {
             } else {
            try {
                 foundstaff = manager.findStaff(fname, lname, position);
-                request.setAttribute("foundStaff", foundstaff);
-                request.getRequestDispatcher("StaffInformationManagement.jsp").forward(request, response);
+                if (foundstaff != null){
+                    request.setAttribute("foundStaff", foundstaff);
+                    request.getRequestDispatcher("StaffInformationManagement.jsp").forward(request, response);
+                } else {
+                    session.setAttribute("existErr", "Error: Staff Member does not exist in the database!");
+                    request.getRequestDispatcher("StaffInformationManagement.jsp").forward(request, response);
+                }
+                
             } catch (SQLException e) {
                 e.printStackTrace(); // Handle your exception here
-                System.out.println("Staff Member does not exist in the database.");
+                System.out.println("SQL Exception: failed to find Staff Member");
             }
     }
 }

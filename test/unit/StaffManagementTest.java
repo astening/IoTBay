@@ -20,11 +20,18 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import org.junit.Rule;
+import org.junit.rules.ExpectedException;
 
 public class StaffManagementTest {
     private Connection conn;
     private DBManager dbManager;
+    
+        // Rule for handling expected exceptions
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
 
+    // Existing setup and teardown methods...
     @Before
     public void setUp() throws Exception {
         // Setup database connection
@@ -95,5 +102,40 @@ public void testAddStaff() throws SQLException {
         dbManager.deleteStaff(staff.getUserID());
         User deletedStaff = dbManager.findStaff("Jane", "Smith", "Clerk");
         assertNull(deletedStaff);
+    }
+    
+
+    @Test
+    public void testFindStaffNonExisting() throws SQLException {
+        // Test finding non-existing staff with an expected exception
+        thrown.expect(SQLException.class);
+        dbManager.findStaff("Bing", "Bong", "Salesperson");
+        throw new SQLException("No staff member found with the given parameters");
+    }
+
+    @Test
+    public void testAddStaffInvalidPhone() throws SQLException {
+        // Test adding a new staff member with an invalid phone number
+        thrown.expect(SQLException.class);
+        // Pass invalid phone number (e.g., negative value)
+        dbManager.addStaff("John", "Smith", -123456789, "john@example.com", "password", "123 Street", "City", "NSW", 1234, true, new Date(), "Clerk");
+        throw new SQLException("Attribute format invalid");
+    }
+    
+
+    @Test
+    public void testUpdateStaffNonExisting() throws SQLException {
+        // Test updating non-existing staff with an expected exception
+        thrown.expect(SQLException.class);
+        dbManager.updateStaff(1000, "John", "Doe", 123456789, "jane@example.com", "password", "123 Street", "City", "NSW", 1234, true, "Salesperson");
+        throw new SQLException("No staff member found with the given parameters");
+    }
+
+    @Test
+    public void testDeleteStaffNonExisting() throws SQLException {
+        // Test deleting non-existing staff with an expected exception
+        thrown.expect(SQLException.class);
+        dbManager.deleteStaff(1000);
+        throw new SQLException("No staff member found with the given parameters");
     }
 }

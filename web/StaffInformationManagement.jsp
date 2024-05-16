@@ -34,6 +34,7 @@
         </tr>
         
         <%
+            String existErr = (String) session.getAttribute("existErr");
             String fnameErr = (String) session.getAttribute("fnameErr");
             String lnameErr = (String) session.getAttribute("lnameErr");
             String phoneErr = (String) session.getAttribute("phoneErr");
@@ -106,7 +107,7 @@
     </table>
 
     <!-- Add form for searching staff -->
-    <h2> Find Staff Member </h2>
+    <h2> Find Staff Member <span class="message"> <%=(existErr != null ? existErr : "")%> </span> </h2>
     <form action="FindStaffServlet" method="get">
         First Name: <input type="text" placeholder="<%=(fnameErr != null ? fnameErr : "Enter First Name:")%>" name="fname">
         Last Name: <input type="text" placeholder="<%=(lnameErr != null ? lnameErr : "Enter Last Name:")%>" name="lname">
