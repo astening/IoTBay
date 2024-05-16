@@ -4,6 +4,7 @@
  */
 package isdmodel;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -12,19 +13,13 @@ import java.util.Date;
  */
 public class Payment {
     private int paymentID;
-    private Date paymentDate;
+    private LocalDate paymentDate;
     private double paymentAmount;
-    private String paymentMethodID;
-    private int cardNo;
-    private int cvv;
-    private Date expiryDate;
-    private String cardName;
 
-    public Payment(int paymentID, Date paymentDate, double paymentAmount, String paymentMwthod, int cardNo, int cvv, Date expiryDate, String cardName) {
+    public Payment(int paymentID,LocalDate paymentDate, double paymentAmount) {
         this.paymentID = paymentID;
         this.paymentDate = paymentDate;
         this.paymentAmount = paymentAmount;
-        this.paymentMethodID = paymentMethodID;
     }
 
     public int getPaymentID() {
@@ -35,11 +30,11 @@ public class Payment {
         this.paymentID = paymentID;
     }
 
-    public Date getPaymentDate() {
+    public LocalDate getPaymentDate() {
         return paymentDate;
     }
 
-    public void setPaymentDate(Date paymentDate) {
+    public void setPaymentDate(LocalDate paymentDate) {
         this.paymentDate = paymentDate;
     }
 
@@ -51,11 +46,6 @@ public class Payment {
         this.paymentAmount = paymentAmount;
     }
 
-    public String getPaymentMwthod() {
-        return paymentMethodID;
-    }
-
-    public void setPaymentMwthod(String paymentMwthod) {
-        this.paymentMethodID = paymentMwthod;
-    }
 }
+    
+    
