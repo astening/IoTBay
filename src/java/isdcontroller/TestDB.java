@@ -4,6 +4,7 @@
  */
 package isdcontroller;
 
+import isdmodel.Order;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -44,10 +45,10 @@ System.out.print("Order status: ");
 
 String status = in.nextLine();
 
-//System.out.print("Order date: ");
+System.out.print("Order date: ");
 
-//String orderDate = in.nextLine(); //convert to date
-String stringDate = "2024-05-06" ;
+String orderDate = in.nextLine(); //convert to date
+//String stringDate = "2024-05-06" ;
 
 //System.out.print("No of items: ");
 
@@ -69,7 +70,8 @@ System.out.print("Quantity: ");
 
 int quantity = in.nextInt();
 
-System.out.println("User ID:") ;
+System.out.print("User ID: ") ;
+
 int userID = in.nextInt() ;
 
 // update status
@@ -78,11 +80,16 @@ int userID = in.nextInt() ;
 //System.out.println("Status is updated in the database.") ;
 
 // add order
-db.addOrder(quantity, userID, productID); // 4 to noItems, 6 to userID, change 2nd quantity to double
+//db.addOrder(quantity, userID, productID); // 4 to noItems, 6 to userID, change 2nd quantity to double
 //System.out.println("Order added to the database") ;
 
 // find order
-//db.findOrder(orderID, "2024-04-01") ;
+Order order = db.findOrder(orderID, orderDate) ;
+System.out.println(order.getOrderID());
+System.out.println(order.getOrderDate()) ;
+System.out.println(order.getStatus()) ;
+System.out.println(order.getNoItems()) ;
+System.out.println(order.getTotalPrice()) ;
 
 // delete order
 //db.deleteOrder(orderID) ;
