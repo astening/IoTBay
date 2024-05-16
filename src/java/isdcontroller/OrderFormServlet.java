@@ -131,16 +131,10 @@ public class OrderFormServlet extends HttpServlet {
         // Retrieve posted data - not working
         String productID = (String) session.getAttribute("productID") ; // is null --> what happens if i make this an int
 //        String productID = "1" ;
-        int intProductID = 1 ; // dont think is changed
-        int intItemQuantity = 1 ;
-//        int intItemQuantity = (int) session.getAttribute("itemQuantity") ;
+        int intProductID = 0 ; // dont think is changed
+        int intItemQuantity = 0 ;
         String itemQuantity = (String) session.getAttribute("itemQuantity") ;
-        try {
-            intItemQuantity = Integer.parseInt(itemQuantity) ; // doesnt work
-        }
-        catch(NumberFormatException e) {
-            session.setAttribute("itemQuantity", "Please provide a quantity") ;
-        }
+
         
         
         // add and create db manager
@@ -163,20 +157,24 @@ public class OrderFormServlet extends HttpServlet {
         else if (validator.checkEmpty(2, itemQuantity)) {
             session.setAttribute("itemQuantity", "Please provide a quantity") ;
         }
-        else if (!validator.validateNumber(itemQuantity)) {
-            session.setAttribute("IDValidated", "Please enter a valid quantity number above 0") ;
-        }
+//        else if (!validator.validateNumber(itemQuantity)) { // this isnt working properly
+//            session.setAttribute("IDValidated", "Please enter a valid quantity number above 0") ;
+//        }
         else if (!validator.validateNumber(productID)) {
             session.setAttribute("IDValidated", "Please provide a valid product ID") ;
         }
         else {
+            // convert int
+            try {
+                intItemQuantity = Integer.parseInt(itemQuantity) ; // doesnt work
+            }
+            catch(NumberFormatException e) {
+                session.setAttribute("itemQuantity", "Please provide a quantity") ;
+            }            
             intProductID = Integer.parseInt(productID) ;
-        }
-        
-        // Use manager to add the order into the database
-
-           try {
+            try {
             int userID = 1 ;
+            // Use manager to add the order into the database
             manager.addOrder(intItemQuantity, userID, intProductID);
                // set confirmation message for product id, quantity
                session.setAttribute("updated", "Order was submitted") ;
@@ -185,7 +183,8 @@ public class OrderFormServlet extends HttpServlet {
            } catch (SQLException ex) {
                Logger.getLogger(OrderFormServlet.class.getName()).log(Level.SEVERE, null, ex) ;
            }
-           
+        }
+        
         request.getRequestDispatcher("orderForm.jsp").include(request, response) ;
     }
 
