@@ -132,11 +132,11 @@
         <table>
                 <tr>
                     <td><label for="fname">First Name:</label></td>
-                    <td><input type="text" placeholder="<%=(fnameErr != null ? fnameErr : "Enter First Name:")%>" id="fname" name="fname" required></td>
+                    <td><input type="text" placeholder="<%=(fnameErr != null ? fnameErr : "Enter First Name:")%>" id="fName" name="fName" required></td>
                 <tr>
                 <tr>
                     <td><label for="lname">Last Name:</label></td>
-                    <td><input type="text" placeholder="<%=(lnameErr != null ? lnameErr : "Enter Last Name:")%>" id="lname" name="lname" required></td>
+                    <td><input type="text" placeholder="<%=(lnameErr != null ? lnameErr : "Enter Last Name:")%>" id="lName" name="lName" required></td>
                 <tr>
                 <tr>
                     <td><label for="phoneNo">Phone Number:</label></td>
@@ -189,11 +189,11 @@
                     <table>
                 <tr>
                     <td><label for="fname">First Name:</label></td>
-                    <td><input type="text" placeholder="<%=(fnameErr != null ? fnameErr : "Enter First Name:")%>" id="fname" name="fname" required></td>
+                    <td><input type="text" placeholder="<%=(fnameErr != null ? fnameErr : "Enter First Name:")%>" id="fName" name="fName" required></td>
                 <tr>
                 <tr>
                     <td><label for="lname">Last Name:</label></td>
-                    <td><input type="text" placeholder="<%=(lnameErr != null ? lnameErr : "Enter Last Name:")%>" id="lname" name="lname" required></td>
+                    <td><input type="text" placeholder="<%=(lnameErr != null ? lnameErr : "Enter Last Name:")%>" id="lName" name="lName" required></td>
                 <tr>
                 <tr>
                     <td><label for="phoneNo">Phone Number:</label></td>
