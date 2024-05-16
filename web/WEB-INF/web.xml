@@ -12,6 +12,10 @@
         <servlet-name>DeletePaymentMethodServlet</servlet-name>
         <servlet-class>isdcontroller.DeletePaymentMethodServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PaymentsServlet</servlet-name>
+        <servlet-class>isdcontroller.PaymentsServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PaymentMethodServlet</servlet-name>
         <url-pattern>/PaymentMethodServlet</url-pattern>
@@ -23,5 +27,9 @@
     <servlet-mapping>
         <servlet-name>DeletePaymentMethodServlet</servlet-name>
         <url-pattern>/DeletePaymentMethodServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PaymentsServlet</servlet-name>
+        <url-pattern>/PaymentsServlet</url-pattern>
     </servlet-mapping>
 </web-app>
