@@ -44,9 +44,6 @@ import java.util.regex.Pattern;
               return  status.isEmpty() ;
           }
       }
-      else if (orderID==0) { // order is the default
-          return true ;
-      }
       else {
           return true ;
       }
