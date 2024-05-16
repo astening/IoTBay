@@ -20,6 +20,7 @@
             String updated = (String) session.getAttribute("updated") ;
             String IDvalidated = (String) session.getAttribute("IDValidated") ;
             session.getAttribute("manager") ;
+            session.getAttribute("resultOrder") ;
         %>        
         <h1>Orders Page</h1>
         <h2>Update order status - staff only</h2>
@@ -73,6 +74,10 @@
             </table>
         </form>
         <h2>Results from search:</h2>
+        <% Order order = (Order) session.getAttribute("resultOrder") ; %>
+        <p>
+            <%= order.getOrderID() %>
+        </p>
         <table id="table" >
             <tr>
                 <th>Order ID:</th>
