@@ -174,9 +174,10 @@ public class OrderFormServlet extends HttpServlet {
             try {
             int userID = 1 ; // this needs to be worked on
             // Use manager to add the order into the database
-            manager.addOrder(intItemQuantity, userID, intProductID);
+            int returnID = manager.addOrder(intItemQuantity, userID, intProductID);
                // set confirmation message for product id, quantity
                session.setAttribute("updated", "Order was submitted") ;
+               session.setAttribute("returnID", returnID) ;
                
                // provide user with the order number and date
            } catch (SQLException ex) {

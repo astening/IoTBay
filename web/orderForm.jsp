@@ -27,8 +27,7 @@
             <%= quantityValidated %>
             <%= IDValidated %>
             <%= updated %>
-            Product: <%= session.getAttribute("productID") %>
-            Items: <%= session.getAttribute("noItems") %>
+            Your ID is: <%= session.getAttribute("returnID") %>
         </p>
         <form action="OrderFormServlet" method="POST">
             <table>

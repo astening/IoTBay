@@ -81,8 +81,9 @@ int userID = in.nextInt() ;
 //System.out.println("Status is updated in the database.") ;
 
 // add order
-//db.addOrder(quantity, userID, productID); // 4 to noItems, 6 to userID, change 2nd quantity to double
-//System.out.println("Order added to the database") ;
+
+int returnID = db.addOrder(quantity, userID, productID); // 4 to noItems, 6 to userID, change 2nd quantity to double
+System.out.println("Order added to the database as: " + returnID) ;
 
 // find order
 //Order order = db.findOrder(orderID, orderDate) ;
@@ -112,16 +113,16 @@ int userID = in.nextInt() ;
 
 // return a list of all user orders
 //ArrayList<Order> list = db.fetchUserOrders(userID) ;
-ArrayList<Order> list = db.findOrder(orderID, orderDate) ;
-System.out.println("Total number of orders:" + list.size());
-for (Order i: list) {
-    System.out.print(i + ", "); // not needed
-    System.out.print(i.getOrderID() + ", ");
-    System.out.print(i.getOrderDate() + ", ") ;
-    System.out.print(i.getStatus() + ", ") ;
-    System.out.print(i.getNoItems() + ", ") ;
-    System.out.println(i.getTotalPrice() + ", ") ;    
-}
+//ArrayList<Order> list = db.findOrder(orderID, orderDate) ;
+//System.out.println("Total number of orders:" + list.size());
+//for (Order i: list) {
+//    System.out.print(i + ", "); // not needed
+//    System.out.print(i.getOrderID() + ", ");
+//    System.out.print(i.getOrderDate() + ", ") ;
+//    System.out.print(i.getStatus() + ", ") ;
+//    System.out.print(i.getNoItems() + ", ") ;
+//    System.out.println(i.getTotalPrice() + ", ") ;    
+//}
 
 connector.closeConnection();
 

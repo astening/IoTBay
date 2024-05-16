@@ -26,7 +26,7 @@ public class DBManager {
         
     // add the order in the database - few changes to be made with null userID
     // double check you dont always need the useriD as input
-    public void addOrder(int noItems, int userID, int productID) throws SQLException { 
+    public int addOrder(int noItems, int userID, int productID) throws SQLException { 
 
         int productStock=0 ;
         
@@ -76,8 +76,12 @@ public class DBManager {
             // deduct product from the product table
             String deductProduct = "UPDATE ISDUSER.PRODUCTS SET STOCKLVL=STOCKLVL-" + noItems  + "WHERE PRODUCTID =" + productID ;
             st.executeUpdate(deductProduct) ;
+            
+            return orderID ;
 
         }
+        
+        return 0 ;
   
     }
     
