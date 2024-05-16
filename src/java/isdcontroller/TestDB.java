@@ -111,7 +111,8 @@ int userID = in.nextInt() ;
 //}
 
 // return a list of all user orders
-ArrayList<Order> list = db.fetchUserOrders(userID) ;
+//ArrayList<Order> list = db.fetchUserOrders(userID) ;
+ArrayList<Order> list = db.findOrder(orderID, orderDate) ;
 System.out.println("Total number of orders:" + list.size());
 for (Order i: list) {
     System.out.print(i + ", "); // not needed

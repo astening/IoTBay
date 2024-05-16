@@ -81,23 +81,27 @@ public class DBManager {
   
     }
     
-    // find an order using orderID and orderDate - need to return the order object
+    // find an order using orderID and orderDate
     // use a list here to return the stuff
-    public Order findOrder(int orderID, String orderDate) throws SQLException {
+    public ArrayList<Order> findOrder(int orderID, String orderDate) throws SQLException {
         String findQuery = "SELECT * FROM ISDUSER.ORDERS WHERE ORDERID=" + orderID + "AND orderDate='" + orderDate + "'" ;
         ResultSet rs = st.executeQuery(findQuery) ;
+        ArrayList<Order> list = new ArrayList() ;
+        
         while (rs.next()) {
             int rsOrderID = (int) rs.getInt("orderID") ;
             String rsOrderDate = (String) rs.getString("orderDate") ;
             if (rsOrderID==orderID && rsOrderDate.equals(orderDate)) {
-                // tbc return a proper order
-                String status = rs.getString("status") ;
-                double totalPrice = rs.getDouble("totalPrice") ;
-                int totalNoItems = rs.getInt("totalNoItems") ;
+                // tbc return a proper order                
+                String status = rs.getString(3) ;
+                int totalNoItems = rs.getInt(4) ;
+                double totalPrice = rs.getDouble(5) ;
+                list.add(new Order(orderID, orderDate, status, totalNoItems, totalPrice)) ;
 //                System.out.println("ID is: " + rsOrderID + ", and date is: " + rsOrderDate) ;
                 // check for order object return - tbc
                 // added user id
-                return new Order(orderID, orderDate, status, totalNoItems, totalPrice) ; // string not working
+//                return new Order(orderID, orderDate, status, totalNoItems, totalPrice) ; // string not working
+                return list ;
             }
 
         }
