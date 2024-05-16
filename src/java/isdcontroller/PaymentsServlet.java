@@ -29,28 +29,32 @@ public class PaymentsServlet extends HttpServlet {
         HttpSession session = request.getSession();
         Validator validate = new Validator();
         DBManager manager = (DBManager) session.getAttribute("manager");
-//        Payment payment = null;
         ArrayList<Payment> searchResults = new ArrayList<Payment>();
         ArrayList<Payment> payments = (ArrayList<Payment>) session.getAttribute("payments");
         
         User user = (User) session.getAttribute("user");
         int userID = user.getUserID();
+        
+        //gets the inputted data from the enter paymentID and date boxes
         String paymentIDString = request.getParameter("paymentID");
-       
         String pdate = request.getParameter("paymentDate");
         
+        //date formatter for turning input data into correct LocalDate format
         DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate paymentDate =null;
         int paymentID = 0;
         
+        //checks if no date has been inputted before trying to parse
         if(!pdate.isEmpty()){
             paymentDate = LocalDate.parse(pdate, df);
         }
         
+        //checks if no paymentID has been inputted before trying to get integer value
         if(!paymentIDString.isEmpty()){
              paymentID = Integer.valueOf(paymentIDString);
         }
         
+        //loops over array of users payments and checks if the inputted data matches any
         for(Payment payment : payments){
             if(payment.getPaymentID()==paymentID || payment.getPaymentDate().equals(paymentDate)){
                 searchResults.add(payment);
