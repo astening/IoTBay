@@ -82,7 +82,7 @@ public class DBManager {
     
     // find an order using orderID and orderDate - need to return the order object
     // use a list here to return the stuff
-    public void findOrder(int orderID, String orderDate) throws SQLException {
+    public Order findOrder(int orderID, String orderDate) throws SQLException {
         String findQuery = "SELECT * FROM ISDUSER.ORDERS WHERE ORDERID=" + orderID + "AND orderDate='" + orderDate + "'" ;
         ResultSet rs = st.executeQuery(findQuery) ;
         while (rs.next()) {
@@ -93,17 +93,17 @@ public class DBManager {
                 String status = rs.getString("status") ;
                 double totalPrice = rs.getDouble("totalPrice") ;
                 int totalNoItems = rs.getInt("totalNoItems") ;
-                System.out.println("ID is: " + rsOrderID + ", and date is: " + rsOrderDate) ;
-                // check for order object return
-                // ignore for now and come back
-//                return new Order(orderID, orderDate, status, noItems, totalPrice) ; // string not working
+//                System.out.println("ID is: " + rsOrderID + ", and date is: " + rsOrderDate) ;
+                // check for order object return - tbc
+                // added user id
+                return new Order(orderID, orderDate, status, totalNoItems, totalPrice) ; // string not working
             }
 
         }
-//        return null; //  apparently unnecessary
+        return null;
     }
     
-    // if time, create a fetch students list ie select * from students
+    // create a fetch students list ie select * from students
     
     // update the order details - works
     // im not even sure why i would need this method but ok ill keep it
@@ -151,6 +151,7 @@ public class DBManager {
         st.executeUpdate(changeStatus) ;
         
         // add ordered quantity back to the product table
+        // is this truly working?
         String restoreProduct = "UPDATE ISDUSER.PRODUCTS SET STOCKLVL=STOCKLVL+" + "(SELECT ITEMQUANTITY FROM ISDUSER.ORDERLINEITEM WHERE ORDERID=" + orderID + ")"  + "WHERE PRODUCTID = (SELECT productID FROM ISDUSER.ORDERLINEITEM WHERE ORDERID=" + orderID + ")"  ;
         st.executeUpdate(restoreProduct) ;
         
