@@ -66,7 +66,6 @@
         <% } %>
         
         <p><%= updated %><p>
-        <p><%= statusValidated %><p>
         <p><%= IDvalidated %><p>
         
         <form action="OrderSearchServlet" method="post">
