@@ -89,7 +89,7 @@ public void deleteUser(String email) throws SQLException{
         st.executeUpdate("UPDATE ISDUSER.PaymentMethod SET CARDNAME='" + cardName + "',CARDNO='" + cardNo + "',EXPIRYDATE='" + expiryDate + "',CVV=" + cvv + "WHERE USERID=" + userID + "");
     }
     
-    public void deletePaymenetMethod (int paymentMethodID) throws SQLException{
+    public void deletePaymentMethod (int paymentMethodID) throws SQLException{
         st.executeUpdate("DELETE FROM ISDUSER.PaymentMethod WHERE PAYMENTMETHODID=" + paymentMethodID + "");
     }
     
