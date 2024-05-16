@@ -129,10 +129,10 @@ public class OrderFormServlet extends HttpServlet {
         validator.clear(session) ;
         
         // Retrieve posted data - not working
-        String productID = (String) session.getAttribute("productID") ; // this is null
+        String productID = (String) request.getParameter("productID") ; // this is null
         int intProductID = 0 ; // dont think is changed
         int intItemQuantity = 0 ;
-        String itemQuantity = (String) session.getAttribute("noItems") ; // and this is null
+        String itemQuantity = (String) request.getParameter("noItems") ; // and this is null
 
         
         
