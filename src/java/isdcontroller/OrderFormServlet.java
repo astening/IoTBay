@@ -152,7 +152,7 @@ public class OrderFormServlet extends HttpServlet {
         
         // Check variables are valid before using manager to perform update
         if(validator.checkEmpty(2, productID)) {
-            session.setAttribute("productID", "Please provide a product ID") ;
+            session.setAttribute("IDValidated", "Please provide a product ID") ;
         }
         else if (validator.checkEmpty(2, itemQuantity)) {
             session.setAttribute("quantityValidated", "Please provide a quantity") ;
