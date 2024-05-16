@@ -24,6 +24,7 @@ import isdmodeldao.DBManager;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class PaymentMethodServlet extends HttpServlet{
     @Override
@@ -34,6 +35,7 @@ public class PaymentMethodServlet extends HttpServlet{
         DBManager manager = (DBManager) session.getAttribute("manager");
         PaymentMethod paymentMethod = null;
         session.setAttribute("statusMsg", null);
+        ArrayList<Payment> payments = null;
         
         Validator validator = new Validator();
         validator.clear(session);
@@ -43,6 +45,12 @@ public class PaymentMethodServlet extends HttpServlet{
                 paymentMethod = manager.findPaymentMethod(userID);
                 session.setAttribute("paymentMethod", paymentMethod);
             }
+            
+            if(manager.checkPayments(userID)){
+                payments = manager.getPayments(userID);
+                session.setAttribute("payments", payments);
+            }
+            
         } catch (SQLException ex){
             Logger.getLogger(PaymentMethodServlet.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println(ex.getErrorCode() + " and " + ex.getMessage());
