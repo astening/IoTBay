@@ -153,13 +153,26 @@ import jakarta.servlet.http.HttpSession;
                 session.setAttribute("statusValidated", "Fill in a valid status") ;
             }
             else {
-                try {
-                    manager.updateOrderStatus(orderID, status) ;
-                    session.setAttribute("updated", "Update successful"); // duplicate
-                } catch (SQLException ex) {
-                    Logger.getLogger(UpdateStatusServlet.class.getName()).log(Level.SEVERE, null, ex);
-                    session.setAttribute("updated", "Update not successful") ;
+                // use delete method to update status
+                if (status.equals("Delete") || status.equals("Cancel") || status.equals("Cancelled") || status.equals("Deleted")) {
+                    try {
+                        manager.deleteOrder(orderID) ;
+                        session.setAttribute("updated", "Cancellation successful");
+                    } catch (SQLException ex) {
+                        Logger.getLogger(UpdateOrderStatus.class.getName()).log(Level.SEVERE, null, ex);
+                        session.setAttribute("updated", "Cancellation unsuccessful") ;
+                    }
                 }
+                else {
+                    try {
+                        manager.updateOrderStatus(orderID, status) ;
+                        session.setAttribute("updated", "Update successful");
+                    } catch (SQLException ex) {
+                        Logger.getLogger(UpdateStatusServlet.class.getName()).log(Level.SEVERE, null, ex);
+                        session.setAttribute("updated", "Update not successful") ;
+                    }                    
+                }
+
             }
                 
                 
