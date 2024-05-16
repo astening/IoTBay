@@ -109,7 +109,8 @@ public class OrderSearchServlet extends HttpServlet {
         validator.clear(session) ;
         
         // Capture and store input from the session request
-//        int orderID = (int) request.getAttribute("orderID") ; // int doesnt
+        String orderDate = (String) request.getAttribute("orderDate") ;
+        
         String orderID = (String) request.getAttribute("orderID") ; // string works
         int intOrderID = 0;
         try {
@@ -128,25 +129,25 @@ public class OrderSearchServlet extends HttpServlet {
         }
 
             // check that the values are filled in and correct
-            // before updating the db
-            if(validator.checkEmpty(intOrderID, "test")) {
-                session.setAttribute("IDvalidated", "Provide a valid order ID") ;
-            }
-            else if (!validator.validateNumber(orderID)) {
-                session.setAttribute("IDvalidated", "Fill in a valid ID") ;
-            }
-//            else if (!validator.validateStatus(status)) { // change to add date
-//                session.setAttribute("statusValidated", "Fill in a valid status") ;
+//            // before updating the db
+//            if(validator.checkEmpty(2, orderID)) {
+//                session.setAttribute("IDvalidated", "Provide a valid order ID") ;
 //            }
-            else {
+//            else if (validator.checkEmpty(2, orderDate)) {
+//                // need to add another error message
+//            }
+//            else if (!validator.validateNumber(orderID)) {
+//                session.setAttribute("IDvalidated", "Fill in a valid ID") ;
+//            }
+//            else {
                 try {
-                    manager.findOrder(intOrderID, "test-date") ;
+                    manager.findOrder(intOrderID, orderDate) ;
                     session.setAttribute("updated", "Search successful"); // could change to search
                 } catch (SQLException ex) {
                     Logger.getLogger(UpdateStatusServlet.class.getName()).log(Level.SEVERE, null, ex);
                     session.setAttribute("updated", "Search not successful") ;
                 }
-            }        
+//            }        
         
         // pretty sure this could be better
         request.getRequestDispatcher("orders.jsp").include(request, response) ;
