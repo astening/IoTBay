@@ -89,12 +89,12 @@
         </p>
         <table id="table" >
             <tr>
-                <th>Order ID:</th>
+                <th>Order ID</th>
                 <th>Order Date</th>
                 <th>Order Status</th>
                 <th>Number of Items</th>
                 <th>Total Price</th>
-                <th>View Details:</th>
+                <th>View Details</th>
             </tr>
             <%
                 ArrayList<Order> list = (ArrayList<Order>) session.getAttribute("resultList") ;
@@ -114,7 +114,7 @@
                 <td><%= i.getStatus() %></td>
                 <td><%= i.getNoItems() %></td>
                 <td><%= i.getTotalPrice() %></td>
-                <td><a href="/IoTBay/orderForm.jsp">View details here (in progress)</a></td>
+                <td><a class ="button" href="orderForm.jsp" method="post"> View or update </a></td>
             </tr>
             <% } } else { %>
             <tr>
