@@ -45,7 +45,6 @@
             </table>
             <br>
             <button>Cancel</button>
-            <a class ="button" href="orderForm.jsp" method="post"> Update </a>
             <button>Save</button>
             <button>Submit my order</button>
         </form>
