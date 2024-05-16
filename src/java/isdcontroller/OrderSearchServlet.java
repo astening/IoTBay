@@ -155,9 +155,9 @@ public class OrderSearchServlet extends HttpServlet {
                         
                 try { // need to add an if else --> if staff, fetch all, if user, fetch user orders, if not logged in, fetch session stuff??
 //                    
-                    resultOrder = manager.findOrder(intOrderID, orderDate) ;
+                    list = manager.findOrder(intOrderID, orderDate) ;
                     session.setAttribute("searched", "Search request sent");
-                    session.setAttribute("resultOrder", resultOrder) ; // add order to session
+                    session.setAttribute("resultList", list) ; // add order to session
                 } catch (SQLException ex) {
                     Logger.getLogger(UpdateStatusServlet.class.getName()).log(Level.SEVERE, null, ex);
                     session.setAttribute("searched", "Search not successful") ;

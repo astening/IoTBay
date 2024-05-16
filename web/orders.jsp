@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="isdmodel.Order"%>
+<%@page import="java.util.ArrayList"%>
 
 <!DOCTYPE html>
 <html>
@@ -74,9 +75,17 @@
             </table>
         </form>
         <h2>Results from search:</h2>
-        <% Order order = (Order) session.getAttribute("resultOrder") ; %>
         <p>
-            <%= order.getOrderID() %>
+        <%
+            ArrayList<Order> list = (ArrayList<Order>) session.getAttribute("resultList") ;
+            for (Order i: list) {
+                out.print(i.getOrderID() + ", ");
+                out.print(i.getOrderDate() + ", ") ;
+                out.print(i.getStatus() + ", ") ;
+                out.print(i.getNoItems() + ", ") ;
+                out.println(i.getTotalPrice() + ", ") ;    
+            }          
+        %>
         </p>
         <table id="table" >
             <tr>
