@@ -32,9 +32,11 @@ public class DeletePaymentMethodServlet extends HttpServlet {
         
         DBManager manager = (DBManager) session.getAttribute("manager");
         
+        //deletes users card if there is one attached to the account
+        //status message updated
         if(paymentMethod!=null){
             try {
-                manager.deletePaymenetMethod(paymentMethod.getPaymentMethodID());
+                manager.deletePaymentMethod(paymentMethod.getPaymentMethodID());
                 paymentMethod = null;
                 session.setAttribute("paymentMethod", null);
                 session.setAttribute("statusMsg", "Card details successfully deleted");
