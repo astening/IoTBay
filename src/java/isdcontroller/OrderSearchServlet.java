@@ -130,9 +130,12 @@ public class OrderSearchServlet extends HttpServlet {
 
             // check that the values are filled in and correct
 //            // before updating the db
-//            if(validator.checkEmpty(2, orderID)) {
-//                session.setAttribute("IDvalidated", "Provide a valid order ID") ;
-//            }
+            if (validator.checkEmpty(2, orderID)) {
+                session.setAttribute("IDValidated", "ID is empty") ;
+            }
+            else {
+                session.setAttribute("IDValidated", "ID is not empty"); // does this work
+            }
 //            else if (validator.checkEmpty(2, orderDate)) {
 //                // need to add another error message
 //            }
@@ -140,14 +143,23 @@ public class OrderSearchServlet extends HttpServlet {
 //                session.setAttribute("IDvalidated", "Fill in a valid ID") ;
 //            }
 //            else {
+
                 try {
+                    intOrderID = Integer.parseInt(orderID) ;
+                }
+                catch (NumberFormatException e) {
+                    session.setAttribute("updated", "Search not successful") ;
+                }
+                        
+                try {
+//                    
                     manager.findOrder(intOrderID, orderDate) ;
                     session.setAttribute("updated", "Search successful"); // could change to search
                 } catch (SQLException ex) {
                     Logger.getLogger(UpdateStatusServlet.class.getName()).log(Level.SEVERE, null, ex);
                     session.setAttribute("updated", "Search not successful") ;
                 }
-//            }        
+//            }
         
         // pretty sure this could be better
         request.getRequestDispatcher("orders.jsp").include(request, response) ;
