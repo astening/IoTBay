@@ -86,21 +86,3 @@ button {
   border: 1px solid black;
 }
 
-.return-link {
-    position: relative;
-    padding-left: 20px; /* Adjust as needed */
-}
-
-.arrow {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 10px; /* Adjust the size of the arrow */
-    height: 10px; /* Adjust the size of the arrow */
-    border: solid black;
-    border-width: 0 2px 2px 0;
-    display: inline-block;
-    padding: 3px; /* Adjust the padding to position the arrow */
-    transform: rotate(135deg); /* Rotates the arrow to point backwards */
-}

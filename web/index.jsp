@@ -14,6 +14,7 @@
         <link rel="stylesheet" type="text/css" href="style.css">
         <script type="text/javascript" src="js.script.js"> </script>
     </head>
+     <!-- Establish DB connection through Conn Servlet and display buttons -->
     <body onload="startTime()">
         <h1>Welcome to IoTBay!</h1>
         <div> <span class="time" id="time"> </span> </div>

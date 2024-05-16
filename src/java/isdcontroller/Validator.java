@@ -9,7 +9,7 @@ import java.util.Date;
 
    public class Validator implements Serializable{ 
 
- 
+ /*Creates the validation regexes */
    private String emailPattern = "([a-zA-Z0-9]+)(([._-])([a-zA-Z0-9]+))*(@)([a-z]+)(.)([a-z]{3})((([.])[a-z]{0,2})*)";      
    private String namePattern = "^[A-Z][a-z]+(?: [A-Z][a-z]+)*$";       
    private String passwordPattern = "[a-z0-9]{4,}";
@@ -20,13 +20,14 @@ import java.util.Date;
               
    public Validator(){    }       
 
-
+/*Validates inputs against regex pattern*/
    public boolean validate(String pattern, String input){       
       Pattern regEx = Pattern.compile(pattern);       
       Matcher match = regEx.matcher(input);       
       return match.matches(); 
    }       
 
+/*Validation methods to check for empty inputs and check inputs against regexes*/
    public boolean checkEmpty(String email, String password){       
 
       return  email.isEmpty() || password.isEmpty();   
@@ -96,6 +97,7 @@ import java.util.Date;
 
    }   
 
+   /*Method to reset the validation session to default attributes and values*/
     void clear(HttpSession session) {
         session.setAttribute("emailErr", "Enter Email:");
         session.setAttribute("passErr", "Enter Password:");

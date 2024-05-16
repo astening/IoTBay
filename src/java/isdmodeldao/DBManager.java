@@ -110,7 +110,7 @@ public void addUser(String fname, String lname, int phoneNo, String email, Strin
     }
 }
 
-//Add a staff-data into the database   
+//Add a new staff-data into the database   
 public void addStaff(String fname, String lname, int phoneNo, String email, String password, String address, String city, String state, int postcode, boolean activation, Date registrationDate, String position) throws SQLException {
     String query = "INSERT INTO Users (FName, LName, PhoneNo, Email, Password, Address, City, State, Postcode, Activation, RegistrationDate, Position) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     
@@ -132,7 +132,7 @@ public void addStaff(String fname, String lname, int phoneNo, String email, Stri
     }
 }
 
-//update a user details in the database   
+//updating existing staff details in the database   
 public void updateStaff(int userID, String fName, String lName, int phoneNo, String email, String password, String address, String city, String state, int postcode, boolean activation, String position) throws SQLException {
     String query = "UPDATE Users SET fName=?, lName=?, phoneNo=?, email=?, password=?, address=?, city=?, state=?, postcode=?, activation=?, position=? WHERE userID=?";
     
@@ -164,6 +164,7 @@ public void deleteStaff(int userID) throws SQLException {
     }
 }
 
+//fetch all staff members from the db
 public ArrayList<User> fetchStaff() throws SQLException{
     String fetch = "select * from USERS";
     ResultSet rs = st.executeQuery(fetch);
@@ -186,7 +187,8 @@ public ArrayList<User> fetchStaff() throws SQLException{
     } 
     return temp;
 }
- 
+
+//check that staff member exists in the DB
 public boolean checkStaff(int userID) throws SQLException {
    String fetch = "SELECT * FROM Users WHERE UserID = ?";
     

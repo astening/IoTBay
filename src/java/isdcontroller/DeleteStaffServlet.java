@@ -16,6 +16,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
+/*Post method creates new Http Session. Gets the userID and deletes the matching user */
 public class DeleteStaffServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -28,7 +29,8 @@ public class DeleteStaffServlet extends HttpServlet {
             manager.deleteStaff(userID);
             response.sendRedirect("ShowAllStaffServlet");
         } catch (SQLException e) {
-            e.printStackTrace(); // Handle your exception here
+            e.printStackTrace(); // Handle the exception here
+            System.out.println("SQL Exception: Failed to find Staff member to delete");
         }
     }
 }

@@ -22,6 +22,7 @@ import java.sql.SQLException;
  */
 public class LoginServlet extends HttpServlet {
 
+  /*Post method creates new Http Session and Validator. Following Validation Checks, it saves the user to the session */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

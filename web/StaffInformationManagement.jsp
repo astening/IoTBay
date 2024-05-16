@@ -33,6 +33,7 @@
             <th>Action</th>
         </tr>
         
+        <!--Create Validations and staffList of Users -->
         <%
             String existErr = (String) session.getAttribute("existErr");
             String fnameErr = (String) session.getAttribute("fnameErr");
@@ -52,6 +53,8 @@
             if (staffList != null && !staffList.isEmpty()) {
                 for (User user : staffList) {
         %>
+        
+        <!-- Get the values of the users attributes and put them in the table columns-->
         <tr>
             <td><%= user.getUserID() %></td>
             <td><%= user.getFname() %></td>
@@ -78,6 +81,7 @@
                 }
             } else if (foundStaff != null) { // Display single staff member
         %>
+         <!-- Get the values of the single users attributes and put them in the table columns-->
         <tr>
             <td><%= foundStaff.getUserID() %></td>
             <td><%= foundStaff.getFname() %></td>
@@ -240,6 +244,6 @@
         <br>
         <br>  
     <!-- Add a link to return to the main page -->
-    <a href="main.jsp" class="return-link"><span class="arrow"></span>Return to Main Page</a>
+    <a href="main.jsp" class="button"> Return to Main Page</a>
 </body>
 </html>

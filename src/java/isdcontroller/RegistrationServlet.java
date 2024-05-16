@@ -25,6 +25,8 @@ public class RegistrationServlet extends HttpServlet {
     private static final String JDBC_USER = "isduser";
     private static final String JDBC_PASSWORD = "admin";
 
+    /*Post method creates new Http Session and Validator. 
+    Following Validation Checks, it creates the user in the DB and saves them to the session */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        HttpSession session = request.getSession();
