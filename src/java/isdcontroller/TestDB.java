@@ -100,9 +100,14 @@ int userID = in.nextInt() ;
 
 // return a list of all orders
 ArrayList<Order> list = db.fetchAllOrders() ;
-System.out.print(list.size()); // returns correct value
+System.out.println("Total number of orders:" + list.size());
 for (Order i: list) {
-    System.out.println(i + " ");
+    System.out.print(i + ", ");
+    System.out.print(i.getOrderID() + ", ");
+    System.out.print(i.getOrderDate() + ", ") ;
+    System.out.print(i.getStatus() + ", ") ;
+    System.out.print(i.getNoItems() + ", ") ;
+    System.out.println(i.getTotalPrice() + ", ") ;    
 }
 
 connector.closeConnection();
