@@ -107,10 +107,10 @@
                 <td><%= i.getStatus() %></td>
                 <td><%= i.getNoItems() %></td>
                 <td><%= i.getTotalPrice() %></td>
-                <% if(i.getStatus()!="Saved") { %>
-                <td><a class ="button" href="orderForm.jsp" method="post"> View </a></td>
-                <% } else { %>
+                <% if(i.getStatus().equals("Saved")) { %>
                 <td><a class ="button" href="orderForm.jsp" method="post"> Update </a></td>
+                <% } else { %>
+                <td><a class ="button" href="orderForm.jsp" method="post"> View </a></td>
                 <% } %>             
             </tr>
             <% } } else { %>
