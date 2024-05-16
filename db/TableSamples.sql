@@ -1,27 +1,30 @@
--- Sample data for Role table
-INSERT INTO Role (roleID, roleName) VALUES 
-(1, 'Admin'),
-(2, 'Customer'),
-(3, 'Supplier'),
-(4, 'Manager');
+
+/* 
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Other/SQLTemplate.sql to edit this template
+ */
+/**
+ * Author:  William Sinclair
+ * Created: 10 May 2024
+ */
 
 -- Sample data for Users table
-INSERT INTO Users (userID, fName, lName, phoneNo, email, password, address, city, state, postCode, activation, registrationDate, roleID) VALUES
-(1, 'John', 'Doe', 123456789, 'john@example.com', 'password123', '123 Main St', 'New York', 'NY', '10001', TRUE, '2024-04-01', 2),
-(2, 'Jane', 'Smith', 987654321, 'jane@example.com', 'password456', '456 Elm St', 'Los Angeles', 'CA', '90001', TRUE, '2024-04-02', 2),
-(3, 'Alice', 'Johnson', 555123456, 'alice@example.com', 'password789', '789 Oak St', 'Chicago', 'IL', '60001', TRUE, '2024-04-03', 2),
-(4, 'Bob', 'Williams', 999888777, 'bob@example.com', 'passwordabc', '987 Pine St', 'Houston', 'TX', '77001', TRUE, '2024-04-04', 2),
-(5, 'Admin', 'Admin', 111222333, 'admin@example.com', 'adminpassword', '456 Admin St', 'Admin City', 'AC', '1234', TRUE, '2024-04-05', 1),
-(6, 'Supplier1', 'Supplier', 444555666, 'supplier1@example.com', 'supplierpassword1', '789 Supplier St', 'Supplier City', 'SC', '5678', TRUE, '2024-04-06', 3),
-(7, 'Supplier2', 'Supplier', 777888999, 'supplier2@example.com', 'supplierpassword2', '321 Supplier St', 'Supplier Town', 'ST', '9012', TRUE, '2024-04-07', 3),
-(8, 'Manager1', 'Manager', 222333444, 'manager1@example.com', 'managerpassword1', '654 Manager St', 'Manager City', 'MC', '3456', TRUE, '2024-04-08', 4),
-(9, 'Manager2', 'Manager', 666777888, 'manager2@example.com', 'managerpassword2', '987 Manager St', 'Manager Town', 'MT', '7890', TRUE, '2024-04-09', 4),
-(10, 'Customer1', 'Customer', 333444555, 'customer1@example.com', 'customerpassword1', '123 Customer St', 'Customer City', 'CC', '6789', TRUE, '2024-04-10', 2),
-(11, 'Customer2', 'Customer', 888999000, 'customer2@example.com', 'customerpassword2', '456 Customer St', 'Customer Town', 'CT', '0123', TRUE, '2024-04-11', 2),
-(12, 'Customer3', 'Customer', 555666777, 'customer3@example.com', 'customerpassword3', '789 Customer St', 'Customer Village', 'CV', '4567', TRUE, '2024-04-12', 2),
-(13, 'Customer4', 'Customer', 000111222, 'customer4@example.com', 'customerpassword4', '321 Customer St', 'Customer Hamlet', 'CH', '8901', TRUE, '2024-04-13', 2),
-(14, 'Customer5', 'Customer', 222333444, 'customer5@example.com', 'customerpassword5', '654 Customer St', 'Customer County', 'CC', '2345', TRUE, '2024-04-14', 2),
-(15, 'Customer6', 'Customer', 999000111, 'customer6@example.com', 'customerpassword6', '987 Customer St', 'Customer State', 'CS', '6789', TRUE, '2024-04-15', 2);
+INSERT INTO Users (fName, lName, phoneNo, email, password, address, city, state, postCode, activation, registrationDate, position) VALUES
+( 'John', 'Doe', 123456789, 'john@example.com', 'password123', '123 Main St', 'New York', 'NY', '1001', TRUE, '2024-04-01', 'Salesperson'),
+( 'Jane', 'Smith', 987654321, 'jane@example.com', 'password456', '456 Elm St', 'Los Angeles', 'CA', '9001', TRUE, '2024-04-02', 'Salesperson'),
+( 'Alice', 'Johnson', 555123456, 'alice@example.com', 'password789', '789 Oak St', 'Chicago', 'IL', '6001', TRUE, '2024-04-03', 'Salesperson'),
+( 'Bob', 'Williams', 999888777, 'bob@example.com', 'passwordabc', '987 Pine St', 'Houston', 'TX', '7701', TRUE, '2024-04-04', 'Salesperson'),
+( 'Admin', 'Admin', 111222333, 'admin@example.com', 'adminpassword', '456 Admin St', 'Admin City', 'AC', '1234', TRUE, '2024-04-05', 'Systems Admin'),
+( 'Supplier1', 'Supplier', 444555666, 'supplier1@example.com', 'supplierpassword1', '789 Supplier St', 'Supplier City', 'SC', '5678', TRUE, '2024-04-06', 'Systems Admin'),
+( 'Supplier2', 'Supplier', 777888999, 'supplier2@example.com', 'supplierpassword2', '321 Supplier St', 'Supplier Town', 'ST', '9012', TRUE, '2024-04-07', 'Manager'),
+( 'Manager1', 'Manager', 222333444, 'manager1@example.com', 'managerpassword1', '654 Manager St', 'Manager City', 'MC', '3456', TRUE, '2024-04-08', 'Customer'),
+( 'Manager2', 'Manager', 666777888, 'manager2@example.com', 'managerpassword2', '987 Manager St', 'Manager Town', 'MT', '7890', TRUE, '2024-04-09', 'Customer'),
+( 'Customer1', 'Customer', 333444555, 'customer1@example.com', 'customerpassword1', '123 Customer St', 'Customer City', 'CC', '6789', TRUE, '2024-04-10', 'Customer'),
+( 'Customer2', 'Customer', 888999000, 'customer2@example.com', 'customerpassword2', '456 Customer St', 'Customer Town', 'CT', '0123', TRUE, '2024-04-11', 'Salesperson'),
+( 'Customer3', 'Customer', 555666777, 'customer3@example.com', 'customerpassword3', '789 Customer St', 'Customer Village', 'CV', '4567', TRUE, '2024-04-12', 'Salesperson'),
+( 'Customer4', 'Customer', 000111222, 'customer4@example.com', 'customerpassword4', '321 Customer St', 'Customer Hamlet', 'CH', '8901', TRUE, '2024-04-13', 'Salesperson'),
+( 'Customer5', 'Customer', 222333444, 'customer5@example.com', 'customerpassword5', '654 Customer St', 'Customer County', 'CC', '2345', TRUE, '2024-04-14', 'Salesperson'),
+( 'Customer6', 'Customer', 999000111, 'customer6@example.com', 'customerpassword6', '987 Customer St', 'Customer State', 'CS', '6789', TRUE, '2024-04-15', 'Salesperson');
 
 -- Sample data for Orders table
 INSERT INTO Orders (orderID, orderDate, status, totalNoItems, totalPrice, userID) VALUES

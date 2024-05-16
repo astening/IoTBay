@@ -10,11 +10,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="style.css">
-        <title>JSP Page</title>
+        <title>Logout Page</title>
     </head>
     <body>
         <h1>You have logged out.</h1> 
-        <h3>Click  <a href="index.html"> here</a>  to go back to the home page.</h3>
+        <h3>Click  <a href="index.jsp"> here</a>  to go back to the home page.</h3>
         <% session.invalidate();%>
     </body>
 </html>

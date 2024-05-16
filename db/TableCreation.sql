@@ -1,11 +1,7 @@
-CREATE TABLE Role (
-    roleID INT NOT NULL,
-    roleName VARCHAR(10),
-    CONSTRAINT Role_PK PRIMARY KEY (roleID)
-);
+
 
 CREATE TABLE Users (
-    userID INT NOT NULL,
+    userID INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     fName VARCHAR(50),
     lName VARCHAR(50),
     phoneNo INT,
@@ -17,9 +13,7 @@ CREATE TABLE Users (
     postCode VARCHAR(4),
     activation BOOLEAN,
     registrationDate DATE,
-    roleID INT,
-    CONSTRAINT Users_PK PRIMARY KEY (UserID),
-    CONSTRAINT Users_FK FOREIGN KEY (roleID) REFERENCES Role(roleID)
+    position VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE Orders (
