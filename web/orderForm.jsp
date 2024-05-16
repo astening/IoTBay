@@ -52,8 +52,3 @@
         <a href="main.jsp">Main Page</a>
     </body>
 </html>
-
-<!--
-i need to add a hidden field that will add an order ID and also the date
-
-?-->
