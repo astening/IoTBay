@@ -37,6 +37,8 @@ public class PaymentMethodServlet extends HttpServlet{
         //reset all variables used
         PaymentMethod paymentMethod = null;
         session.setAttribute("statusMsg", null);
+        session.setAttribute("searchResults", null);
+        session.setAttribute("payments", null);
         ArrayList<Payment> payments = null;
         
         Validator validator = new Validator();
