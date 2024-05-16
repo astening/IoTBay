@@ -109,9 +109,9 @@ public class OrderSearchServlet extends HttpServlet {
         validator.clear(session) ;
         
         // Capture and store input from the session request
-        String orderDate = (String) request.getAttribute("orderDate") ;
+        String orderDate = (String) request.getParameter("orderDate") ;
         
-        String orderID = (String) request.getAttribute("orderID") ; // string works
+        String orderID = (String) request.getParameter("orderID") ;
         int intOrderID = 0;
         try {
             intOrderID = Integer.parseInt(orderID) ;
@@ -128,21 +128,17 @@ public class OrderSearchServlet extends HttpServlet {
             Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-            // check that the values are filled in and correct
-//            // before updating the db
+            // check that the values are filled in and correct before sending to db
             if (validator.checkEmpty(2, orderID)) {
                 session.setAttribute("IDValidated", "ID is empty") ;
             }
-            else {
-                session.setAttribute("IDValidated", "ID is not empty"); // does this work
+            else if (validator.checkEmpty(2, orderDate)) {
+                session.setAttribute("dateValidated", "Date is empty") ;
             }
-//            else if (validator.checkEmpty(2, orderDate)) {
-//                // need to add another error message
-//            }
-//            else if (!validator.validateNumber(orderID)) {
-//                session.setAttribute("IDvalidated", "Fill in a valid ID") ;
-//            }
-//            else {
+            else if (!validator.validateNumber(orderID)) {
+                session.setAttribute("IDvalidated", "Fill in a valid ID") ;
+            }
+            else {
 
                 try {
                     intOrderID = Integer.parseInt(orderID) ;
@@ -154,12 +150,12 @@ public class OrderSearchServlet extends HttpServlet {
                 try {
 //                    
                     manager.findOrder(intOrderID, orderDate) ;
-                    session.setAttribute("updated", "Search successful"); // could change to search
+                    session.setAttribute("searched", "Search request sent"); // could change to search
                 } catch (SQLException ex) {
                     Logger.getLogger(UpdateStatusServlet.class.getName()).log(Level.SEVERE, null, ex);
-                    session.setAttribute("updated", "Search not successful") ;
+                    session.setAttribute("searched", "Search not successful") ;
                 }
-//            }
+            }
         
         // pretty sure this could be better
         request.getRequestDispatcher("orders.jsp").include(request, response) ;

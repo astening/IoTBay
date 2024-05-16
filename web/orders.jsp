@@ -55,8 +55,9 @@
         <br>
         <h2>Search for orders here:</h2>
         
-        <p><%= updated %><p>
+        <p><%= session.getAttribute("searched") %><p>
         <p><%= IDvalidated %><p>
+        <p><%= session.getAttribute("dateValidated") %><p>
         
         <form action="OrderSearchServlet" method="post">
             <table>

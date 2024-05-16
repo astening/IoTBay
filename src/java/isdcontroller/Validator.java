@@ -80,6 +80,8 @@ import java.util.regex.Pattern;
        session.setAttribute("updated", "No change made yet") ;
        session.setAttribute("IDValidated", "Enter ID") ;
        session.setAttribute("quantityValidated", "Enter a number above 0") ;
+       session.setAttribute("dateValidated", "Enter a date") ;
+       session.setAttribute("searched", "No search made yet") ;
    }
         
 }
