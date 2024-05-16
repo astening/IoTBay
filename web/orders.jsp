@@ -76,28 +76,42 @@
         </form>
         <h2>Results from search:</h2>
         <p>
-        <%
-            ArrayList<Order> list = (ArrayList<Order>) session.getAttribute("resultList") ;
-            for (Order i: list) {
-                out.print(i.getOrderID() + ", ");
-                out.print(i.getOrderDate() + ", ") ;
-                out.print(i.getStatus() + ", ") ;
-                out.print(i.getNoItems() + ", ") ;
-                out.println(i.getTotalPrice() + ", ") ;    
-            }          
-        %>
+
         </p>
         <table id="table" >
             <tr>
                 <th>Order ID:</th>
                 <th>Order Date</th>
+                <th>Order Status</th>
+                <th>Number of Items</th>
+                <th>Total Price</th>
                 <th>View Details:</th>
             </tr>
+            <%
+                ArrayList<Order> list = (ArrayList<Order>) session.getAttribute("resultList") ;
+                if (list!=null) {
+                for (Order i: list) {
+//                    out.print(i.getOrderID() + ", ");
+//                    out.print(i.getOrderDate() + ", ") ;
+//                    out.print(i.getStatus() + ", ") ;
+//                    out.print(i.getNoItems() + ", ") ;
+//                    out.println(i.getTotalPrice() + ", ") ; // need to add more stuff here
+            %>
+            
+            
             <tr>
-                <td>id</td>
-                <td>date</td>
-                <td><a href="/IoTBay/orderForm.jsp">View details</a></td>
+                <td><%= i.getOrderID() %></td>
+                <td><%= i.getOrderDate() %></td>
+                <td><%= i.getStatus() %></td>
+                <td><%= i.getNoItems() %></td>
+                <td><%= i.getTotalPrice() %></td>
+                <td><a href="/IoTBay/orderForm.jsp">View details here (in progress)</a></td>
             </tr>
+            <% } } else { %>
+            <tr>
+                <td>No results to display</td>
+            </tr>        
+            <% }  %>
         </table>
         <a href="main.jsp">Main Page</a>
         
