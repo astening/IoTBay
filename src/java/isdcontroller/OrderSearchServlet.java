@@ -4,6 +4,7 @@
  */
 package isdcontroller;
 
+import isdmodel.Order;
 import isdmodeldao.DBConnector;
 import isdmodeldao.DBManager;
 import java.io.IOException;
@@ -15,6 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -127,6 +129,10 @@ public class OrderSearchServlet extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        // set up ArrayList or order for search results
+        ArrayList<Order> list = new ArrayList() ;
+        Order resultOrder ;
 
             // check that the values are filled in and correct before sending to db
             if (validator.checkEmpty(2, orderID)) {
@@ -147,10 +153,11 @@ public class OrderSearchServlet extends HttpServlet {
                     session.setAttribute("updated", "Search not successful") ;
                 }
                         
-                try {
+                try { // need to add an if else --> if staff, fetch all, if user, fetch user orders, if not logged in, fetch session stuff??
 //                    
-                    manager.findOrder(intOrderID, orderDate) ;
-                    session.setAttribute("searched", "Search request sent"); // could change to search
+                    resultOrder = manager.findOrder(intOrderID, orderDate) ;
+                    session.setAttribute("searched", "Search request sent");
+                    session.setAttribute("resultOrder", resultOrder) ; // add order to session
                 } catch (SQLException ex) {
                     Logger.getLogger(UpdateStatusServlet.class.getName()).log(Level.SEVERE, null, ex);
                     session.setAttribute("searched", "Search not successful") ;

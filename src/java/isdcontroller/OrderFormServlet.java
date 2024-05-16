@@ -172,7 +172,7 @@ public class OrderFormServlet extends HttpServlet {
                 session.setAttribute("quantityValidated", "Please provide a quantity") ;
             }            
             try {
-            int userID = 1 ;
+            int userID = 1 ; // this needs to be worked on
             // Use manager to add the order into the database
             manager.addOrder(intItemQuantity, userID, intProductID);
                // set confirmation message for product id, quantity
