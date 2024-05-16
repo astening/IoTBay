@@ -24,11 +24,9 @@
         %>
         <h1>Submit an order here:</h1>
         <p>
-            <%= quantityValidated %>, 
-            <%= IDValidated %>, 
-            <%= updated %>, 
-            Product ID = <%= session.getAttribute("productID") %>, 
-            Number of items = <%= session.getAttribute("noItems") %>
+            <%= quantityValidated %>
+            <%= IDValidated %>
+            <%= updated %>
         </p>
         <form action="OrderFormServlet" method="POST">
             <table>
