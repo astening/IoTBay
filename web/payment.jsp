@@ -5,8 +5,10 @@
 --%>
 <%@page import="isdmodel.PaymentMethod"%>
 <%@page import="isdmodel.User"%>
+<%@page import="isdmodel.Payment"%>
 <%@page import="java.time.LocalDate"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -42,6 +44,9 @@
                 expiryDate = expiry.format(formatter);
                 cvv = paymentMethod.getCvv()+"";
             }
+            
+            ArrayList<Payment> payments = (ArrayList<Payment>) session.getAttribute("payments");
+            ArrayList<Payment> searchResults = (ArrayList<Payment>) session.getAttribute("searchResults");
         %>
         <h1>Payment Details</h1>
         <h2>Edit Card Details <span> <%=(statusMsg!=null? "- "+statusMsg : "")%></span></h2>
@@ -71,12 +76,67 @@
                 </tr>
                 <td><input name="cvv" type="text" value="<%=(cvvErr!=null? cvvErr : cvv)%>" placeholder="123" maxlength="3" required></td>
                 </tr>
-            </table>
+            </table><br>
             <button>Submit</button>
+            <a class ="button" href="DeletePaymentMethodServlet" class="<%=(paymentMethod!=null? "" : "disabled")%>">Delete</a>
         </form>
-                <a class ="button" href="DeletePaymentMethodServlet?userID=<%=user.getUserID()%>" <%=(paymentMethod!=null? "enabled" : "disabled")%>>Delete</a>
+                <br>
 
         <h2>Payment History</h2>
+        <form method ="POST" action="PaymentsServlet">
+            <h3>Payment History Lookup</h3>
+            <div>
+                Enter PaymentID
+                <input type="number" name="paymentID" placeholder="321" min="1">
+                Enter Date
+                <input type="date" name="paymentDate" placeholder="Enter date">
+                <button>Search</button>
+            </div><br><br>
+            
+            <table>
+                <tr>
+                    <th>PaymentID</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                </tr>
+            <%
+                    if(searchResults!=null){
+                        for(Payment p : searchResults){
+                %>
+                        <tr>
+                            <td><%=p.getPaymentID()%></td>
+                            <td><%=p.getPaymentAmount()%></td>
+                            <td><%=p.getPaymentDate()%></td>
+                        </tr>
+                <%
+                        }
+                    }
+                %>
+                
+            </table>
+            
+            <h3>Full Payment History</h3>
+            <table>
+                <tr>
+                    <th>PaymentID</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                </tr>
+                <%
+                    if(payments!=null){
+                        for(Payment p : payments){
+                %>
+                        <tr>
+                            <td><%=p.getPaymentID()%></td>
+                            <td><%=p.getPaymentAmount()%></td>
+                            <td><%=p.getPaymentDate()%></td>
+                        </tr>
+                <%
+                        }
+                    }
+                %>
+            </table>
+        </form>
         
         
     </body>
