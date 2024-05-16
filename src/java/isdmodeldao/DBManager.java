@@ -104,14 +104,14 @@ public class DBManager {
         return null;
     }
     
-    // create a fetch students list ie select * from students
+    // fetch all orders as a list - works
     public ArrayList<Order> fetchAllOrders() throws SQLException {
         String fetch = "SELECT * FROM ORDERS" ;
         ArrayList<Order> list = new ArrayList() ;
         ResultSet rs = st.executeQuery(fetch) ;
         
         while (rs.next()) {
-            int orderID = rs.getInt(1) ; // to avoid problem with ID
+            int orderID = rs.getInt(1) ;
             String orderDate = rs.getString(2) ;
             String status = rs.getString(3) ;
             int totalNoItems = rs.getInt(4) ;
@@ -121,6 +121,24 @@ public class DBManager {
         
         return list ;
     }
+    
+    // fetch all orders as a list - works
+    public ArrayList<Order> fetchUserOrders(int userID) throws SQLException {
+        String fetch = "SELECT * FROM ORDERS WHERE USERID=" + userID ;
+        ArrayList<Order> list = new ArrayList() ;
+        ResultSet rs = st.executeQuery(fetch) ;
+        
+        while (rs.next()) {
+            int orderID = rs.getInt(1) ;
+            String orderDate = rs.getString(2) ;
+            String status = rs.getString(3) ;
+            int totalNoItems = rs.getInt(4) ;
+            double totalPrice = rs.getDouble(5) ;
+            list.add(new Order(orderID, orderDate, status, totalNoItems, totalPrice)) ;
+        }
+        
+        return list ;
+    }   
     
     // update the order details - works
     // im not even sure why i would need this method but ok ill keep it

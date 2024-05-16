@@ -99,10 +99,22 @@ int userID = in.nextInt() ;
 //db.updateOrder(orderID, productID, quantity) ;
 
 // return a list of all orders
-ArrayList<Order> list = db.fetchAllOrders() ;
+//ArrayList<Order> list = db.fetchAllOrders() ;
+//System.out.println("Total number of orders:" + list.size());
+//for (Order i: list) {
+//    System.out.print(i + ", "); //not needed
+//    System.out.print(i.getOrderID() + ", ");
+//    System.out.print(i.getOrderDate() + ", ") ;
+//    System.out.print(i.getStatus() + ", ") ;
+//    System.out.print(i.getNoItems() + ", ") ;
+//    System.out.println(i.getTotalPrice() + ", ") ;    
+//}
+
+// return a list of all user orders
+ArrayList<Order> list = db.fetchUserOrders(userID) ;
 System.out.println("Total number of orders:" + list.size());
 for (Order i: list) {
-    System.out.print(i + ", ");
+    System.out.print(i + ", "); // not needed
     System.out.print(i.getOrderID() + ", ");
     System.out.print(i.getOrderDate() + ", ") ;
     System.out.print(i.getStatus() + ", ") ;
