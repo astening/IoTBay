@@ -96,7 +96,7 @@
                 Enter Date
                 <input type="date" name="paymentDate" placeholder="Enter date" max="2024-05-17">
                 <button>Search</button>
-            </div><br><br>
+            </div><br>
             
             <table id="table">
                 <tr>
@@ -118,7 +118,7 @@
                     }
                 %>
                 
-            </table>
+            </table><br>
             
             <h3>Full Payment History</h3>
             <table id="table">
