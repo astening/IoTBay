@@ -56,7 +56,11 @@ public class PaymentsServlet extends HttpServlet {
         
         //loops over array of users payments and checks if the inputted data matches any
         for(Payment payment : payments){
-            if(payment.getPaymentID()==paymentID || payment.getPaymentDate().equals(paymentDate)){
+            if(payment.getPaymentID()==paymentID && payment.getPaymentDate().equals(paymentDate)){
+                searchResults.add(payment);
+                break;
+            }
+            else if(payment.getPaymentID()==paymentID || payment.getPaymentDate().equals(paymentDate)){
                 searchResults.add(payment);
             }
         }
