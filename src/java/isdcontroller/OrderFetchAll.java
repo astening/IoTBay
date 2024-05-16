@@ -26,7 +26,7 @@ import java.util.logging.Logger;
  */
 
 //tbc obviously
-public class OrderSearchServlet extends HttpServlet {
+public class OrderFetchAll extends HttpServlet {
     
     private DBConnector db;
 
@@ -109,18 +109,7 @@ public class OrderSearchServlet extends HttpServlet {
         // Create a validator object and clear the session
         Validator validator = new Validator() ;
         validator.clear(session) ;
-        
-        // Capture and store input from the session request
-        String orderDate = (String) request.getParameter("orderDate") ;
-        
-        String orderID = (String) request.getParameter("orderID") ;
-        int intOrderID = 0;
-        try {
-            intOrderID = Integer.parseInt(orderID) ;
-        }
-        catch (NumberFormatException e) {
-            session.setAttribute("IDvalidated", "Provide a valid order ID") ;
-        }
+
         
         // set up db manager
         conn = db.openConnection();       
@@ -133,36 +122,18 @@ public class OrderSearchServlet extends HttpServlet {
         // set up ArrayList or order for search results
         ArrayList<Order> list = new ArrayList() ;
         Order resultOrder ;
-
-            // check that the values are filled in and correct before sending to db
-            if (validator.checkEmpty(2, orderID)) {
-                session.setAttribute("IDValidated", "ID is empty") ;
-            }
-            else if (validator.checkEmpty(2, orderDate)) {
-                session.setAttribute("dateValidated", "Date is empty") ;
-            }
-            else if (!validator.validateNumber(orderID)) {
-                session.setAttribute("IDvalidated", "Fill in a valid ID") ;
-            }
-            else {
-
-                try {
-                    intOrderID = Integer.parseInt(orderID) ;
-                }
-                catch (NumberFormatException e) {
-                    session.setAttribute("updated", "Search not successful") ;
-                }
-                        
-                try {
+        
+        // for now, we get all
+        try { // need to add an if else --> if staff, fetch all, if user, fetch user orders, if not logged in, fetch session stuff??
 //                    
-                    list = manager.findOrder(intOrderID, orderDate) ;
-                    session.setAttribute("searched", "Search request sent");
-                    session.setAttribute("resultList", list) ; // add order to session
-                } catch (SQLException ex) {
-                    Logger.getLogger(UpdateStatusServlet.class.getName()).log(Level.SEVERE, null, ex);
-                    session.setAttribute("searched", "Search not successful") ;
-                }
-            }
+            list = manager.fetchAllOrders() ;
+            session.setAttribute("searched", "Search request sent");
+            session.setAttribute("resultList", list) ; // add order to session
+        } catch (SQLException ex) {
+            Logger.getLogger(UpdateStatusServlet.class.getName()).log(Level.SEVERE, null, ex);
+            session.setAttribute("searched", "Search not successful") ;
+        }
+
         
         // pretty sure this could be better
         request.getRequestDispatcher("orders.jsp").include(request, response) ;

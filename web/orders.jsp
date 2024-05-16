@@ -54,6 +54,13 @@
                 </tr>
             </table>
         </form>
+            
+        <!--Button to retrieve all orders-->   
+        <form action="OrderFetchAll" method="post">
+            <button>Fetch all</button>
+        </form>        
+            
+            
         <br>
         <h2>Search for orders here:</h2>
         
@@ -74,6 +81,8 @@
                 </tr>
             </table>
         </form>
+        
+        
         <h2>Results from search:</h2>
         <p>
 
@@ -113,6 +122,11 @@
             </tr>        
             <% }  %>
         </table>
+        
+        <!--Button to retrieve all orders--> 
+        <form action="OrderFetchAll" method="post">
+            <button>Fetch all</button>
+        </form>
         <a href="main.jsp">Main Page</a>
         
     </body>
