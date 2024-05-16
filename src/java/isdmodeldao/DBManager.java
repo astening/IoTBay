@@ -1,11 +1,12 @@
 package isdmodeldao;
 
+import isdmodel.Payment;
 import isdmodel.PaymentMethod;
 import isdmodel.User;
 import java.sql.*;
 import java.sql.Connection;
 import java.time.LocalDate;
-import java.time.ZoneId;
+import java.util.ArrayList;
 
 /* 
 * DBManager is the primary DAO class to interact with the database. 
@@ -99,6 +100,41 @@ public void deleteUser(String email) throws SQLException{
         while(rs.next()){
             int uid = rs.getInt(2);
             if(uid == userID){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public ArrayList<Payment> getPayments(int userID) throws SQLException{
+        String fetch = "select * from ISDUSER.PAYMENT where USERID = " + userID + "";
+        ResultSet rs = st.executeQuery(fetch);
+        ArrayList<Payment> payments = new ArrayList<Payment>();
+        
+        while(rs.next()){
+            int uID = rs.getInt(2);
+            if(uID==userID){
+                int paymentID = rs.getInt(1);
+                Date paymentD = rs.getDate(3);
+                LocalDate paymentDate = paymentD.toLocalDate();
+                double paymentAmount = rs.getDouble(4);
+                payments.add(new Payment(paymentID, paymentDate, paymentAmount));
+            }
+        }
+        if(payments.isEmpty()){
+            return null;
+        }
+        
+        return payments;
+    }
+    
+    public boolean checkPayments(int userID) throws SQLException{
+        String fetch = "select * from ISDUSER.PAYMENT where USERID = " + userID + "";
+        ResultSet rs = st.executeQuery(fetch);
+        
+        while(rs.next()){
+            int uid = rs.getInt(2);
+            if((uid == userID)){
                 return true;
             }
         }
