@@ -26,6 +26,10 @@
         <servlet-name>OrderFetchAll</servlet-name>
         <servlet-class>isdcontroller.OrderFetchAll</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateOrderForm</servlet-name>
+        <servlet-class>isdcontroller.UpdateOrderForm</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ConnServlet</servlet-name>
         <url-pattern>/ConnServlet</url-pattern>
@@ -49,6 +53,10 @@
     <servlet-mapping>
         <servlet-name>OrderFetchAll</servlet-name>
         <url-pattern>/OrderFetchAll</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateOrderForm</servlet-name>
+        <url-pattern>/UpdateOrderForm</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

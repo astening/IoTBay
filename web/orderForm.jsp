@@ -27,13 +27,16 @@
             <%= quantityValidated %>
             <%= IDValidated %>
             <%= updated %>
+            <%= request.getParameter("submittedOrderID") %>
             Your ID is: <%= session.getAttribute("returnID") %>
         </p>
+        
+        <% if(request.getParameter("orderID")==null) { // this part doesnt work %>
         <form action="OrderFormServlet" method="POST">
             <table>
                 <tr>
                     <td><label for="productID">Product ID: </label></td>
-                    <td><input type="int" id="productID" name="productID"></td>
+                    <td><input type="int" id="productID" name="productID" value="${orderID}"></td>
                 </tr>
                 <tr>
                     <td><label for="noItems">Quantity: </label></td>
@@ -47,7 +50,40 @@
             <button>Cancel</button>
             <button>Save</button>
             <button>Submit my order</button>
-        </form>
+        </form>          
+        <% } else { %>
+        <p>Update order tbc</p>
+        <% } %>
+        
+        <h1>Update Order</h1>
+        <%= quantityValidated %>
+        <%= IDValidated %>
+        <%= updated %>        
+        
+        <form action="UpdateOrderForm" method="POST">
+            <table>
+                <tr>
+                    <td><label for="orderID">Order ID: </label></td>
+                    <td><input type="int" id="orderID" name="orderID"></td>
+                </tr>
+                <tr> 
+                    <td><label for="productID">Product ID: </label></td>
+                    <td><input type="int" id="productID" name="productID"></td>
+                </tr>
+                <tr>
+                    <td><label for="noItems">Quantity: </label></td>
+                    <td><input type="int" id="noItems" name="noItems"></td>
+                </tr>
+            </table>
+            <br>
+            <button>Cancel</button>
+            <button>Save</button>
+            <button>Update my order</button>
+        </form>         
+      
+        
+        
+
         <a href="main.jsp">Main Page</a>
     </body>
 </html>
