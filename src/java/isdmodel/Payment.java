@@ -15,9 +15,11 @@ public class Payment {
     private int paymentID;
     private LocalDate paymentDate;
     private double paymentAmount;
+    private int orderID;
 
-    public Payment(int paymentID,LocalDate paymentDate, double paymentAmount) {
+    public Payment(int paymentID, int orderID, LocalDate paymentDate, double paymentAmount) {
         this.paymentID = paymentID;
+        this.orderID = orderID;
         this.paymentDate = paymentDate;
         this.paymentAmount = paymentAmount;
     }
@@ -44,6 +46,14 @@ public class Payment {
 
     public void setPaymentAmount(double paymentAmount) {
         this.paymentAmount = paymentAmount;
+    }
+
+    public int getOrderID() {
+        return orderID;
+    }
+
+    public void setOrderID(int orderID) {
+        this.orderID = orderID;
     }
 
 }
