@@ -24,8 +24,7 @@ public class DBManager {
        st = conn.createStatement();   
     }
         
-    // add the order in the database - few changes to be made with null userID
-    // double check you dont always need the useriD as input
+    // add the order in the database - could be updated for a null user ID
     public int addOrder(int noItems, int userID, int productID) throws SQLException { 
 
         int productStock=0 ;
@@ -62,10 +61,10 @@ public class DBManager {
             st.executeUpdate(addQuery) ;
             
             // retrieve most recent order and add into orderLine table
+            // return order ID to user for reference
             String IDQuery = "SELECT MAX(orderID) FROM ISDUSER.ORDERS" ;
             ResultSet IDResults = st.executeQuery(IDQuery) ;
             int orderID = 0;
-            // should probably return the orderID to the user :)
             while(IDResults.next()) {
                 orderID = IDResults.getInt(1) ;
             }
@@ -85,26 +84,21 @@ public class DBManager {
   
     }
     
-    // find an order using orderID and orderDate
-    // use a list here to return the stuff
+    // find an order using orderID and orderDate - works
     public ArrayList<Order> findOrder(int orderID, String orderDate) throws SQLException {
         String findQuery = "SELECT * FROM ISDUSER.ORDERS WHERE ORDERID=" + orderID + "AND orderDate='" + orderDate + "'" ;
         ResultSet rs = st.executeQuery(findQuery) ;
         ArrayList<Order> list = new ArrayList() ;
         
+        // adds the order to a list
         while (rs.next()) {
             int rsOrderID = (int) rs.getInt("orderID") ;
             String rsOrderDate = (String) rs.getString("orderDate") ;
             if (rsOrderID==orderID && rsOrderDate.equals(orderDate)) {
-                // tbc return a proper order                
                 String status = rs.getString(3) ;
                 int totalNoItems = rs.getInt(4) ;
                 double totalPrice = rs.getDouble(5) ;
                 list.add(new Order(orderID, orderDate, status, totalNoItems, totalPrice)) ;
-//                System.out.println("ID is: " + rsOrderID + ", and date is: " + rsOrderDate) ;
-                // check for order object return - tbc
-                // added user id
-//                return new Order(orderID, orderDate, status, totalNoItems, totalPrice) ; // string not working
                 return list ;
             }
 
@@ -118,6 +112,7 @@ public class DBManager {
         ArrayList<Order> list = new ArrayList() ;
         ResultSet rs = st.executeQuery(fetch) ;
         
+        // each order is added to a list
         while (rs.next()) {
             int orderID = rs.getInt(1) ;
             String orderDate = rs.getString(2) ;
@@ -130,12 +125,13 @@ public class DBManager {
         return list ;
     }
     
-    // fetch all orders as a list - works
+    // fetch all user orders as a list - works
     public ArrayList<Order> fetchUserOrders(int userID) throws SQLException {
         String fetch = "SELECT * FROM ORDERS WHERE USERID=" + userID ;
         ArrayList<Order> list = new ArrayList() ;
         ResultSet rs = st.executeQuery(fetch) ;
         
+        // adds orders to the list
         while (rs.next()) {
             int orderID = rs.getInt(1) ;
             String orderDate = rs.getString(2) ;
@@ -149,7 +145,6 @@ public class DBManager {
     }   
     
     // update the order details - works
-    // im not even sure why i would need this method but ok ill keep it
     public void updateOrder(int orderID, int productID, int quantity) throws SQLException {
         int productStock=0 ;
         
@@ -187,7 +182,6 @@ public class DBManager {
     }
     
     // delete the order from the database and restore product quantity - works
-    // ideally, put a for statement and loop through each orderline item ie when the customer makes a purchase for multiple products
     public void deleteOrder(int orderID) throws SQLException {
         // set status to cancelled
         String changeStatus = "UPDATE ISDUSER.ORDERS SET STATUS='Cancelled' WHERE ORDERID=" + orderID ;
@@ -202,8 +196,6 @@ public class DBManager {
     
     //update order status in the database - works  
     public void updateOrderStatus( int orderID, String status) throws SQLException {       
-    //code for update-operation
-    // add an if-branch to perform delete functionality if status = cancelled / deleted
     String updateQuery = "UPDATE ISDUSER.ORDERS SET STATUS='" + status +  "' WHERE ORDERID=" + orderID ;
     st.executeUpdate(updateQuery) ;
     

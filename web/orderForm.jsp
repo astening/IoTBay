@@ -16,6 +16,7 @@
     </head>
     <body>
         <%
+            // retrieve error message, user and order object
             Order order = (Order) session.getAttribute("order") ;
             User user = (User) session.getAttribute("user") ;
             String quantityValidated = (String) session.getAttribute("quantityValidated") ;
@@ -31,6 +32,7 @@
             Your ID is: <%= session.getAttribute("returnID") %>
         </p>
         
+        <%-- display order form to submit, or to update --%>
         <% if(request.getParameter("orderID")==null) { // this part doesnt work %>
         <form action="OrderFormServlet" method="POST">
             <table>
@@ -55,6 +57,7 @@
         <p>Update order tbc</p>
         <% } %>
         
+        <%-- display order form to update --%>
         <h1>Update Order</h1>
         <%= quantityValidated %>
         <%= IDValidated %>
@@ -80,10 +83,6 @@
             <button>Save</button>
             <button>Update my order</button>
         </form>         
-      
-        
-        
-
         <a href="main.jsp">Main Page</a>
     </body>
 </html>

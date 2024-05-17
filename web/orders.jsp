@@ -17,6 +17,7 @@
     </head>
     <body>
         <%
+            // get variables
             String statusValidated = (String) session.getAttribute("statusValidated") ;
             String updated = (String) session.getAttribute("updated") ;
             String IDvalidated = (String) session.getAttribute("IDValidated") ;
@@ -25,7 +26,8 @@
         %>        
         <h1>Orders Page</h1>
         <h2>Update order status - staff only</h2>
-                    
+        
+        <%-- display error messages --%>
         <% if(updated==null ) { //|| updated.equals("No change made yet") //do not display initial values on start-up %>
         <% } else { // display relevant response message %>
             <p><%= updated %><p>
@@ -37,7 +39,7 @@
             <% }%>
         <% } %>
             
-            
+        <%-- form to update status --%>    
         <form action="UpdateOrderStatus" method="post">
             <table>
                 <tr>
@@ -59,15 +61,18 @@
         <form action="OrderFetchAll" method="post">
             <button>Fetch all</button>
         </form>        
-            
-            
+                
         <br>
         <h2>Search for orders here:</h2>
+        
+        <%-- display error messages --%> 
         
         <p><%= session.getAttribute("searched") %><p>
         <p><%= IDvalidated %><p>
         <p><%= session.getAttribute("dateValidated") %><p>
         
+        <%-- form to search for an order --%>     
+            
         <form action="OrderSearchServlet" method="post">
             <table>
                 <tr>
@@ -97,6 +102,7 @@
                 <th>View Details</th>
             </tr>
             <%
+                // for each order in the list, display the details in the table row
                 ArrayList<Order> list = (ArrayList<Order>) session.getAttribute("resultList") ;
                 if (list!=null) {
                 for (Order i: list) {

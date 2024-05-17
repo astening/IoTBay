@@ -25,7 +25,6 @@ import java.util.logging.Logger;
  * @author chari
  */
 
-//tbc obviously
 public class OrderFetchAll extends HttpServlet {
     
     private DBConnector db;
