@@ -52,6 +52,8 @@
             ArrayList<Payment> payments = (ArrayList<Payment>) session.getAttribute("payments");
             ArrayList<Payment> searchResults = (ArrayList<Payment>) session.getAttribute("searchResults");
         %>
+        <br>
+        <a class ="button" href="main.jsp">Return To Main</a>
         <h1>Payment Details</h1>
         <h2>Edit Card Details</h2>
         <h3><span> <%=(statusMsg!=null? statusMsg : "")%></h3>
@@ -101,6 +103,7 @@
             <table id="table">
                 <tr>
                     <th>PaymentID</th>
+                    <th>OrderID</th>
                     <th>Amount</th>
                     <th>Date</th>
                 </tr>
@@ -110,6 +113,7 @@
                 %>
                         <tr>
                             <td><%=p.getPaymentID()%></td>
+                            <td><%=p.getOrderID()%></td>
                             <td><%=p.getPaymentAmount()%></td>
                             <td><%=p.getPaymentDate()%></td>
                         </tr>
@@ -124,6 +128,7 @@
             <table id="table">
                 <tr>
                     <th>PaymentID</th>
+                    <th>OrderID</th>
                     <th>Amount</th>
                     <th>Date</th>
                 </tr>
@@ -133,6 +138,7 @@
                 %>
                         <tr>
                             <td><%=p.getPaymentID()%></td>
+                            <td><%=p.getOrderID()%></td>
                             <td><%=p.getPaymentAmount()%></td>
                             <td><%=p.getPaymentDate()%></td>
                         </tr>
