@@ -31,6 +31,7 @@ public class DeleteStaffServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace(); // Handle the exception here
             System.out.println("SQL Exception: Failed to find Staff member to delete");
+            request.getRequestDispatcher("StaffInformationManagement.jsp").forward(request, response);
         }
     }
 }
