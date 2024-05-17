@@ -115,10 +115,11 @@ public void deleteUser(String email) throws SQLException{
             int uID = rs.getInt(2);
             if(uID==userID){
                 int paymentID = rs.getInt(1);
-                Date paymentD = rs.getDate(3);
+                int orderID = rs.getInt(3);
+                Date paymentD = rs.getDate(4);
                 LocalDate paymentDate = paymentD.toLocalDate();
-                double paymentAmount = rs.getDouble(4);
-                payments.add(new Payment(paymentID, paymentDate, paymentAmount));
+                double paymentAmount = rs.getDouble(5);
+                payments.add(new Payment(paymentID, orderID, paymentDate, paymentAmount));
             }
         }
         if(payments.isEmpty()){
