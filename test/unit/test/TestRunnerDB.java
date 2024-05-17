@@ -12,8 +12,8 @@ public class TestRunnerDB {
     
     public static void main(String[] args) {
         
-    System.out.println("Testing Calculator: ");
-    Result result = JUnitCore.runClasses(UpdateOrderStatusTest.class);
+    System.out.println("Testing Update Order Status: ");
+    Result result = JUnitCore.runClasses(DBUnitTest.class);
 
     for (Failure failure : result.getFailures()) {
       System.out.println(failure.toString());
