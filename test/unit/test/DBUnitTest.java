@@ -36,7 +36,7 @@ public class DBUnitTest {
         this.db = new DBManager(conn);
     }
     
-    // test the functionality of updateOrder   
+    // test update order status   
     @Test
     public void testUpdateOrderStatus() throws SQLException { // validation occurs with validator
         
@@ -58,15 +58,38 @@ public class DBUnitTest {
 
     }   
     
-    // test add order - TBC - also need to check product table, order line table etc
+    // test add order
     @Test
     public void testAddOrder() throws SQLException {
-//        try {
-//
-//        int returnID = db.addOrder(2, 1, 3);
 //        
-//        // check that the order is assigned an ID, and hence has been added
-//        assertEquals(121, returnID) ;
+//        // set up variables
+//        int returnID = 0;
+//        String returnStatus = "" ;
+//        int returnProductID = 0 ;
+//        int returnUserID = 0 ;
+//        int returnItems = 0 ;
+//        
+//        try {
+//            
+//        db.addOrder(2, 1, 3); // items, user product
+//        
+//        // retrieve variables
+//        String getOrder = "SELECT * FROM ISDUSER.ORDERS WHERE ORDERID=123" ;
+//        ResultSet rs = st.executeQuery(getOrder) ;
+//        while (rs.next()) {
+//            returnStatus = rs.getString("status") ;
+//            returnID = rs.getInt("orderID") ;
+//            returnProductID = rs.getInt("productID") ;
+//            returnUserID = rs.getInt("userID") ;
+//            returnItems = rs.getInt("noItems") ;
+//        }   
+//        
+//        // check the values are as expected
+//        assertEquals("New", returnStatus) ;
+//        assertEquals(123, returnID) ;
+//        assertEquals(3, returnProductID) ;
+//        assertEquals(1, returnUserID) ;
+//        assertEquals(2, returnItems) ;
 //
 //        connector.closeConnection();
 //
@@ -75,7 +98,7 @@ public class DBUnitTest {
 //        Logger.getLogger(DBUnitTest.class.getName()).log(Level.SEVERE, null, ex);
 //        
 //        }  
-//    
+    
     }
     
     // test find order
@@ -116,11 +139,37 @@ public class DBUnitTest {
 
     }      
     
-    // test find all orders --> arraylist, for loop to check the list :)
-    
     // test update order
+    @Test
+    public void testUpdateOrder() {
+        
+        // set up variables
+        int returnItems = 0 ;
+        
+        try {
+            
+        db.updateOrder(2, 2, 2);
+        
+        // retrieve variables
+        String getOrder = "SELECT * FROM ISDUSER.ORDERS WHERE ORDERID=2" ;
+        ResultSet rs = st.executeQuery(getOrder) ;
+        while (rs.next()) {
+            returnItems = rs.getInt("totalNoItems") ;
+        }   
+        
+        // check the values are as expected
+        assertEquals(2, returnItems) ;
+
+        connector.closeConnection();
+
+        } catch (SQLException ex) {
+
+        Logger.getLogger(DBUnitTest.class.getName()).log(Level.SEVERE, null, ex);
+        
+        }         
+    }
     
-    // test delete order - need to check that products are restored
+    // test delete order
     @Test
     public void testDeleteOrder() throws SQLException {
         
@@ -142,7 +191,7 @@ public class DBUnitTest {
 
     }      
     
-    
+    // test find all orders --> arraylist, for loop to check the list    
     
     
 }

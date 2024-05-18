@@ -148,7 +148,7 @@ public class DBManager {
     public void updateOrder(int orderID, int productID, int quantity) throws SQLException {
         int productStock=0 ;
         
-        String checkStock = "SELECT STOCKLVL FROM ISDUSER.PRODUCTS WHERE PRODUCTID = (SELECT productID FROM ISDUSER.ORDERLINEITEM WHERE ORDERID=" + orderID + ")" ;
+        String checkStock = "SELECT STOCKLVL FROM ISDUSER.PRODUCTS WHERE PRODUCTID =" + productID ;
         ResultSet rs = st.executeQuery(checkStock) ;
         while(rs.next()) {
             productStock = rs.getInt("STOCKLVL") ;
