@@ -135,7 +135,7 @@
         
         <!--Button to retrieve all orders--> 
         <form action="OrderFetchAll" method="post">
-            <button>Fetch all</button>
+            <button>Refresh</button>
         </form>
         <a href="main.jsp">Main Page</a>
         
