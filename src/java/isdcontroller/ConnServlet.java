@@ -18,18 +18,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import isdmodeldao.*;
 
-/**
- *
- * @author William Sinclair
- */
-public class ConnServlet extends HttpServlet {
 
- 
+public class ConnServlet extends HttpServlet {
 
        private DBConnector db;
        private DBManager manager;
        private Connection conn;
-
         
 
        @Override //Create and instance of DBConnector for the deployment session

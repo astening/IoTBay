@@ -11,19 +11,18 @@ package isdmodel;
 public class Product {
     
     private int productID;
-    private int name;
-    private int price;
+    private String name;
+    private float price;
     private String type;
-    private int quantity;
-    private String manufacturer;
+    private int stockLvl;
+    //private String manufacturer;
 
-    public Product(int productID, int name, int price, String type, int quantity, String manufacturer) {
+    public Product(int productID, String name, float price, String type, int stockLvl) {
         this.productID = productID;
         this.name = name;
         this.price = price;
         this.type = type;
-        this.quantity = quantity;
-        this.manufacturer = manufacturer;
+        this.stockLvl = stockLvl;
     }
 
     public int getProductID() {
@@ -34,15 +33,15 @@ public class Product {
         this.productID = productID;
     }
 
-    public int getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(int name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public int getPrice() {
+    public float getPrice() {
         return price;
     }
 
@@ -58,21 +57,12 @@ public class Product {
         this.type = type;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public int getStockLvl() {
+        return stockLvl;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setStockLvl(int quantity) {
+        this.stockLvl = quantity;
     }
-
-    public String getManufacturer() {
-        return manufacturer;
-    }
-
-    public void setManufacturer(String manufacturer) {
-        this.manufacturer = manufacturer;
-    }
-    
     
 }

@@ -1,27 +1,47 @@
- package isdcontroller;
+package isdcontroller;
 
-  import jakarta.servlet.http.HttpSession;
-   import java.io.Serializable;
-  import java.util.Date;
-   import java.util.regex.Matcher;
-   import java.util.regex.Pattern;
+import jakarta.servlet.http.HttpSession;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
-   public class Validator implements Serializable{ 
+public class Validator implements Serializable { 
 
- /*Creates the validation regexes */
-   private String emailPattern = "([a-zA-Z0-9]+)(([._-])([a-zA-Z0-9]+))*(@)([a-z]+)(.)([a-z]{3})((([.])[a-z]{0,2})*)";      
-   private String namePattern = "^[A-Z][a-z]+(?: [A-Z][a-z]+)*$";       
-   private String passwordPattern = "[a-z0-9]{4,}";
-   private String addressPattern = "^\\d+\\s+[a-zA-Z0-9]+(\\s+[a-zA-Z0-9]+)*$";
-   private String postcodePattern = "^\\d{4}$";
-   private String phonePattern = "^\\d{10}$";
-   private String statePattern = "^[a-zA-Z]{3}$";
-   private String cardNoPattern = "([0-9]{4}+[\\s]+[0-9]{4}+[\\s]+[0-9]{4}+[\\s]+[0-9]{4})";
-   private String expiryDatePattern = "(0[1-9]|1[0-2])/(2[4-9])";
-   private String cvvPattern = "[0-9]{3}";
-              
-   public Validator(){    }       
+    /*Creates the validation regexes */
+    private String emailPattern = "([a-zA-Z0-9]+)(([._-])([a-zA-Z0-9]+))*(@)([a-z]+)(.)([a-z]{3})((([.])[a-z]{0,2})*)";      
+    private String namePattern = "^[A-Z][a-z]+(?: [A-Z][a-z]+)*$";       
+    private String passwordPattern = "[a-z0-9]{4,}";
+    private String addressPattern = "^\\d+\\s+[a-zA-Z0-9]+(\\s+[a-zA-Z0-9]+)*$";
+    private String postcodePattern = "^\\d{4}$";
+    private String phonePattern = "^\\d{10}$";
+    private String statePattern = "^[a-zA-Z]{3}$";
+    private String cardNoPattern = "([0-9]{4}+[\\s]+[0-9]{4}+[\\s]+[0-9]{4}+[\\s]+[0-9]{4})";
+    private String expiryDatePattern = "(0[1-9]|1[0-2])/(2[4-9])";
+    private String cvvPattern = "[0-9]{3}";   
+    private String productPattern = "([A-Za-z])+";
+    private String productNoPattern = "([0-9])+";
+    
+            
+    public Validator(){    }       
+   
+    public boolean validateProductName(String name){
+        return validate(productPattern, name);
+    }
+   
+    public boolean validateProductType(String type){
+        return validate(productPattern, type);
+    }
+   
+    public boolean validateProductPrice(String price) {
+        return validate(productNoPattern, price);
+    }   
+   
+    public boolean validateProductStock(String stock){
+        return validate(productNoPattern, stock);
+    }
+    
 
 /*Validates inputs against regex pattern*/
    public boolean validate(String pattern, String input){       
@@ -131,5 +151,9 @@
         session.setAttribute("cardNoErr", null);
         session.setAttribute("expiryDateErr", null);
         session.setAttribute("cvvErr", null);
+        session.setAttribute("prodNameErr", "");
+        session.setAttribute("prodTypeErr", "");
+        session.setAttribute("prodPriceErr", "");
+        session.setAttribute("prodStockErr", "");
     }
 }

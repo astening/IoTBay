@@ -42,6 +42,31 @@ CREATE TABLE Invoice (
   CONSTRAINT Invoice_FK FOREIGN KEY (userID) REFERENCES Users(userID)
 );
 
+CREATE TABLE AccessLog (
+  logID INT NOT NULL,
+  userID INT NOT NULL,
+  logDate DATE,
+  logDetails VARCHAR(30),
+  CONSTRAINT AccessLog_PK PRIMARY KEY (logID),
+  CONSTRAINT AccessLog_FK FOREIGN KEY (userID) REFERENCES Users(userID)
+);
+
+CREATE TABLE Products (
+  ProductID INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  ProductName VARCHAR(30) NOT NULL,
+  ProductType VARCHAR(20),
+  UnitPrice FLOAT,
+  StockLvl INT
+);
+
+CREATE TABLE OrderLineItem (
+    itemQuantity INT,
+    orderID INT,
+    productID INT,
+    CONSTRAINT OrderLineItem_FK1 FOREIGN KEY (orderID) REFERENCES Orders(orderID),
+    CONSTRAINT OrderLineItem_FK2 FOREIGN KEY (productID) REFERENCES Product(productID)
+);
+
 CREATE TABLE PaymentMethod (
     paymentMethodID INT GENERATED ALWAYS AS IDENTITY NOT NULL,
     userID INT NOT NULL,
@@ -62,30 +87,4 @@ CREATE TABLE Payment (
     paymentAmount DOUBLE,
     CONSTRAINT Payment_PK PRIMARY KEY (paymentID),
     CONSTRAINT Payment_FK2 FOREIGN KEY (userID) REFERENCES Users(userID)
-);
-
-CREATE TABLE AccessLog (
-  logID INT NOT NULL,
-  userID INT NOT NULL,
-  logDate DATE,
-  logDetails VARCHAR(30),
-  CONSTRAINT AccessLog_PK PRIMARY KEY (logID),
-  CONSTRAINT AccessLog_FK FOREIGN KEY (userID) REFERENCES Users(userID)
-);
-
-CREATE TABLE Products (
-  ProductID INT NOT NULL,
-  ProductName VARCHAR(30) NOT NULL,
-  ProductType VARCHAR(20),
-  UnitPrice FLOAT,
-  StockLvl INT,
-  CONSTRAINT Product_PK PRIMARY KEY (ProductID)
-);
-
-CREATE TABLE OrderLineItem (
-    itemQuantity INT,
-    orderID INT,
-    productID INT,
-    CONSTRAINT OrderLineItem_FK1 FOREIGN KEY (orderID) REFERENCES Orders(orderID),
-    CONSTRAINT OrderLineItem_FK2 FOREIGN KEY (productID) REFERENCES Product(productID)
 );

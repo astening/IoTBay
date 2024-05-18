@@ -45,6 +45,4 @@ public class Invoice {
         this.invoiceDueDate = invoiceDueDate;
     }
     
-    
-    
 }

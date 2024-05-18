@@ -109,5 +109,38 @@
         <servlet-name>PaymentMethodServlet</servlet-name>
         <servlet-class>isdcontroller.PaymentMethodServlet</servlet-class>
     </servlet>
+  
+  <servlet>
+        <servlet-name>AddProductServlet</servlet-name>
+        <servlet-class>isdcontroller.AddProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeviceCatalogueServlet</servlet-name>
+        <servlet-class>isdcontroller.DeviceCatalogueServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeviceCatalogueServlet</servlet-name>
+        <url-pattern>/DeviceCatalogueServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>DeleteProductServlet</servlet-name>
+        <servlet-class>isdcontroller.DeleteProductServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteProductServlet</servlet-name>
+        <url-pattern>/DeleteProductServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>UpdateProductServlet</servlet-name>
+        <servlet-class>isdcontroller.UpdateProductServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateProductServlet</servlet-name>
+        <url-pattern>/UpdateProductServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddProductServlet</servlet-name>
+        <url-pattern>/AddProductServlet</url-pattern>
+    </servlet-mapping>
     
 </web-app>
