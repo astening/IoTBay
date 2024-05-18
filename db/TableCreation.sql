@@ -1,5 +1,3 @@
-
-
 CREATE TABLE Users (
     userID INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     fName VARCHAR(50),
@@ -81,4 +79,3 @@ CREATE TABLE OrderLineItem (
     CONSTRAINT OrderLineItem_FK1 FOREIGN KEY (orderID) REFERENCES Orders(orderID),
     CONSTRAINT OrderLineItem_FK2 FOREIGN KEY (productID) REFERENCES Product(productID)
 );
-

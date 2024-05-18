@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
+    <servlet>
+        <servlet-name>PaymentMethodServlet</servlet-name>
+        <servlet-class>isdcontroller.PaymentMethodServlet</servlet-class>
+    </servlet>
+
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>AddStaffServlet</servlet-name>
@@ -13,6 +20,28 @@
         <servlet-name>ConnServlet</servlet-name>
         <servlet-class>isdcontroller.ConnServlet</servlet-class>
     </servlet>
+
+    <servlet>
+        <servlet-name>DeletePaymentMethodServlet</servlet-name>
+        <servlet-class>isdcontroller.DeletePaymentMethodServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PaymentsServlet</servlet-name>
+        <servlet-class>isdcontroller.PaymentsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PaymentMethodServlet</servlet-name>
+        <url-pattern>/PaymentMethodServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeletePaymentMethodServlet</servlet-name>
+        <url-pattern>/DeletePaymentMethodServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PaymentsServlet</servlet-name>
+        <url-pattern>/PaymentsServlet</url-pattern>
+    </servlet-mapping>
+
     <servlet-mapping>
         <servlet-name>ConnServlet</servlet-name>
         <url-pattern>/ConnServlet</url-pattern> <!-- Adjust URL pattern as needed -->
@@ -81,5 +110,4 @@
         <url-pattern>/StaffInformationServlet</url-pattern> <!-- Adjust URL pattern as needed -->
     </servlet-mapping>   
     
-                    
 </web-app>

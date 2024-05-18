@@ -1,4 +1,3 @@
-
 /* 
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Other/SQLTemplate.sql to edit this template
@@ -123,5 +122,3 @@ INSERT INTO Products (ProductID, ProductName, ProductType, UnitPrice, StockLvl) 
 (13, 'Product13', 'Type1', 70.00, 700),
 (14, 'Product14', 'Type2', 75.00, 750),
 (15, 'Product15', 'Type3', 80.00, 800);
-
--- Sample data

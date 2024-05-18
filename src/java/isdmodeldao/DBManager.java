@@ -8,9 +8,12 @@ package isdmodeldao;
  *
  * @author William Sinclair
  */
+import isdmodel.Payment;
+import isdmodel.PaymentMethod
 import isdmodel.User;
 import java.sql.*;
 import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.Date;
 
 /* 
@@ -204,6 +207,46 @@ public boolean checkStaff(int userID) throws SQLException {
         }
     }
     return false;
+}
+  
+    public ArrayList<Payment> getPayments(int userID) throws SQLException{
+        String fetch = "select * from ISDUSER.PAYMENT where USERID = " + userID + "";
+        ResultSet rs = st.executeQuery(fetch);
+        ArrayList<Payment> payments = new ArrayList<Payment>();
+        
+        while(rs.next()){
+            int uID = rs.getInt(2);
+            if(uID==userID){
+                int paymentID = rs.getInt(1);
+                int orderID = rs.getInt(3);
+                Date paymentD = rs.getDate(4);
+                LocalDate paymentDate = paymentD.toLocalDate();
+                double paymentAmount = rs.getDouble(5);
+                payments.add(new Payment(paymentID, orderID, paymentDate, paymentAmount));
+            }
+        }
+        if(payments.isEmpty()){
+            return null;
+        }
+        
+        return payments;
+    }
+    
+    public boolean checkPayments(int userID) throws SQLException{
+        String fetch = "select * from ISDUSER.PAYMENT where USERID = " + userID + "";
+        ResultSet rs = st.executeQuery(fetch);
+        
+        while(rs.next()){
+            int uid = rs.getInt(2);
+            if((uid == userID)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+
 }
 
 }

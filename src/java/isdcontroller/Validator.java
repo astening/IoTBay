@@ -1,8 +1,8 @@
-   package isdcontroller;
+ package isdcontroller;
 
-import jakarta.servlet.http.HttpSession;
+  import jakarta.servlet.http.HttpSession;
    import java.io.Serializable;
-import java.util.Date;
+  import java.util.Date;
    import java.util.regex.Matcher;
    import java.util.regex.Pattern;
 
@@ -17,6 +17,9 @@ import java.util.Date;
    private String postcodePattern = "^\\d{4}$";
    private String phonePattern = "^\\d{10}$";
    private String statePattern = "^[a-zA-Z]{3}$";
+   private String cardNoPattern = "([0-9]{4}+[\\s]+[0-9]{4}+[\\s]+[0-9]{4}+[\\s]+[0-9]{4})";
+   private String expiryDatePattern = "(0[1-9]|1[0-2])/(2[4-9])";
+   private String cvvPattern = "[0-9]{3}";
               
    public Validator(){    }       
 
@@ -41,6 +44,9 @@ import java.util.Date;
 
    }
 
+      public boolean validateName(String name){
+      return validate(namePattern,name); 
+   }  
        
    public boolean validateFName(String fName){
 
@@ -95,7 +101,19 @@ import java.util.Date;
 
       return validate(namePattern, position); 
 
-   }   
+   }
+     
+   public boolean validateCardNo(String cardNo){
+      return validate(cardNoPattern,cardNo);
+  }
+
+  public boolean validateExpiryDate(String expiryDate){
+      return validate(expiryDatePattern,expiryDate);
+  }
+
+  public boolean validateCVV(String cvv){
+      return validate(cvvPattern, cvv);
+  }
 
    /*Method to reset the validation session to default attributes and values*/
     void clear(HttpSession session) {
@@ -110,5 +128,8 @@ import java.util.Date;
         session.setAttribute("positionErr", "Enter Position:");
         session.setAttribute("addressErr", "Enter Address:");
         session.setAttribute("phoneErr", "Enter Phone Number:");
+        session.setAttribute("cardNoErr", null);
+        session.setAttribute("expiryDateErr", null);
+        session.setAttribute("cvvErr", null);
     }
 }
