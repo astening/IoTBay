@@ -3,13 +3,24 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/William%20Sinclair/OneDrive%20-%20UTS/Documents/GitHub/IoTBay/src/java/isdcontroller/AddStaffServlet.java</file>
+            <file>file:/C:/Users/William%20Sinclair/OneDrive%20-%20UTS/Documents/GitHub/IoTBay/src/java/isdcontroller/DeleteStaffServlet.java</file>
             <file>file:/C:/Users/William%20Sinclair/OneDrive%20-%20UTS/Documents/GitHub/IoTBay/src/java/isdmodeldao/DBConnector.java</file>
-            <file>file:/C:/Users/William%20Sinclair/OneDrive%20-%20UTS/Documents/GitHub/IoTBay/web/css/style.css</file>
+            <file>file:/C:/Users/William%20Sinclair/OneDrive%20-%20UTS/Documents/GitHub/IoTBay/src/java/isdcontroller/FindStaffServlet.java</file>
+            <file>file:/C:/Users/William%20Sinclair/OneDrive%20-%20UTS/Documents/GitHub/IoTBay/src/java/isdcontroller/UpdateStaffServlet.java</file>
+            <file>file:/C:/Users/William%20Sinclair/OneDrive%20-%20UTS/Documents/GitHub/IoTBay/src/java/isdcontroller/Validator.java</file>
             <file>file:/C:/Users/William%20Sinclair/OneDrive%20-%20UTS/Documents/GitHub/IoTBay/src/java/isdmodel/Invoice.java</file>
+            <file>file:/C:/Users/William%20Sinclair/OneDrive%20-%20UTS/Documents/GitHub/IoTBay/web/StaffInformationManagement.jsp</file>
+            <file>file:/C:/Users/William%20Sinclair/OneDrive%20-%20UTS/Documents/GitHub/IoTBay/src/java/isdmodeldao/DBManager.java</file>
+            <file>file:/C:/Users/William%20Sinclair/OneDrive%20-%20UTS/Documents/GitHub/IoTBay/web/style.css</file>
+            <file>file:/C:/Users/William%20Sinclair/OneDrive%20-%20UTS/Documents/GitHub/IoTBay/src/java/isdcontroller/StaffInformationServlet.java</file>
+            <file>file:/C:/Users/William%20Sinclair/OneDrive%20-%20UTS/Documents/GitHub/IoTBay/src/java/isdcontroller/ShowAllStaffServlet.java</file>
+            <file>file:/C:/Users/William%20Sinclair/OneDrive%20-%20UTS/Documents/GitHub/IoTBay/web/css/style.css</file>
+            <file>file:/C:/Users/William%20Sinclair/OneDrive%20-%20UTS/Documents/GitHub/IoTBay/src/java/isdmodel/User.java</file>
             <file>file:/C:/Users/William%20Sinclair/OneDrive%20-%20UTS/Documents/GitHub/IoTBay/web/register.jsp</file>
             <file>file:/C:/Users/William%20Sinclair/OneDrive%20-%20UTS/Documents/GitHub/IoTBay/web/main.jsp</file>
             <file>file:/C:/Users/William%20Sinclair/OneDrive%20-%20UTS/Documents/GitHub/IoTBay/web/logout.jsp</file>
-            <file>file:/C:/Users/William%20Sinclair/OneDrive%20-%20UTS/Documents/GitHub/IoTBay/web/style.css</file>
+            <file>file:/C:/Users/William%20Sinclair/OneDrive%20-%20UTS/Documents/GitHub/IoTBay/src/java/isdcontroller/LoginServlet.java</file>
         </group>
     </open-files>
 </project-private>
