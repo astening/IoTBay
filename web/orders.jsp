@@ -85,9 +85,15 @@
         <h2>Search for orders here:</h2>
         
         <%-- display error messages --%> 
-        
-        <p><%= session.getAttribute("searched") %><p>
-        <p><%= session.getAttribute("dateValidated") %><p>
+        <% if(session.getAttribute("searched")==null && session.getAttribute("dateValidated")==null) { %>
+        <% } else if (session.getAttribute("searched")==null) { %>
+            <p><%= session.getAttribute("searched") %><p>
+        <% } else if (session.getAttribute("dateValidated")==null) { %>
+            <p><%= session.getAttribute("searched") %><p>
+        <% } else { %>
+            <p><%= session.getAttribute("searched") %><p>
+            <p><%= session.getAttribute("dateValidated") %><p>
+        <% } %>
         
         <%-- form to search for an order --%>     
             

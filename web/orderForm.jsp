@@ -25,11 +25,20 @@
             String updated = (String) session.getAttribute("updated") ;
         %>
         <h1>Submit an order here:</h1>
-        <p>
-            <%= updated %>
-            <%= request.getParameter("submittedOrderID") %>
-            Your ID is: <%= session.getAttribute("returnID") %>
-        </p>
+        
+        <% if(session.getAttribute("updated")==null) { %>
+        <% } else if (session.getAttribute("dateValidated")!=null) { %>
+            <p><%= session.getAttribute("updated") %><p>
+            <p><%= session.getAttribute("quantityValidated") %><p>    
+            <p><%= session.getAttribute("dateValidated") %><p>
+            <p>Your ID is: <%= session.getAttribute("returnID") %></p>
+        <% } else { %>
+            <p><%= session.getAttribute("updated") %><p>
+            <p><%= session.getAttribute("dateValidated") %><p>
+            <p><%= session.getAttribute("quantityValidated") %><p>
+            <p>Your ID is: <%= session.getAttribute("returnID") %></p>
+        <% } %>        
+        
         <form action="OrderFormServlet" method="POST">
             <table>
                 <tr> 
@@ -49,9 +58,12 @@
         
         <%-- display order form to update --%>
         <h1>Update Order</h1>
+        <% if(updated==null) {%>
+        <% } else { %>
         <%= IDValidated %>
-        <%= updated %>        
-        
+        <%= updated %>  
+        <% } %>
+    
         <%-- attempt to iterate through list --%>
         <%
                 
@@ -85,7 +97,7 @@
             </table>
             <br>
             <button>Cancel</button>
-            <button><a href="OrderSearchServlet">Retrieve details</a></button>
+            <button><a href="RetrieveOrder">Retrieve details</a></button>
             <button>Update my order</button>
         </form>         
         <a href="main.jsp">Main Page</a>
