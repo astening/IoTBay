@@ -70,22 +70,11 @@ INSERT INTO Invoice (invoiceID, userID, invoiceDate, invoiceDueDate) VALUES
 (15, 15, '2024-04-15', '2024-05-15');
 
 -- Sample data for Payment table
-INSERT INTO Payment (paymentID, paymentDate, paymentAmt, paymentMethod, cardNo, CVV, expiryDate, cardName) VALUES
-(1, '2024-04-02', 50.00, 'Credit Card', 1234567890123456, 123, '2026-04-01', 'John Doe'),
-(2, '2024-04-03', 30.00, 'PayPal', NULL, NULL, NULL, 'Jane Smith'),
-(3, '2024-04-04', 25.00, 'Credit Card', 9876543210987654, 456, '2025-04-02', 'Alice Johnson'),
-(4, '2024-04-05', 35.00, 'PayPal', NULL, NULL, NULL, 'Bob Williams'),
-(5, '2024-04-06', 40.00, 'Credit Card', 1111222233334444, 789, '2027-04-03', 'Admin Admin'),
-(6, '2024-04-07', 20.00, 'Credit Card', 5555666677778888, 321, '2026-04-04', 'Supplier1 Supplier'),
-(7, '2024-04-08', 55.00, 'Credit Card', 9999888877776666, 654, '2025-04-05', 'Manager1 Manager'),
-(8, '2024-04-09', 45.00, 'Credit Card', 4444333322221111, 987, '2027-04-06', 'Customer1 Customer'),
-(9, '2024-04-10', 60.00, 'Credit Card', 8888777766665555, 654, '2026-04-07', 'Customer2 Customer'),
-(10, '2024-04-11', 75.00, 'Credit Card', 7777666655554444, 321, '2025-04-08', 'Customer3 Customer'),
-(11, '2024-04-12', 80.00, 'Credit Card', 6666555544443333, 987, '2027-04-09', 'Customer4 Customer'),
-(12, '2024-04-13', 65.00, 'Credit Card', 3333222211110000, 123, '2026-04-10', 'Customer5 Customer'),
-(13, '2024-04-14', 70.00, 'Credit Card', 2222111100009999, 456, '2025-04-11', 'Customer6 Customer'),
-(14, '2024-04-15', 85.00, 'Credit Card', 9999000011112222, 789, '2027-04-12', 'Supplier2 Supplier'),
-(15, '2024-04-16', 90.00, 'Credit Card', 8888777766665555, 654, '2026-04-13', 'Manager2 Manager');
+INSERT INTO Payment (userID, orderID, paymentDate, paymentAmount) VALUES
+(1, 1, '2024-05-13', 33.33);
+
+INSERT INTO PaymentMethod (userID, cardName, cardNo, expiryDate, CVV) VALUES
+(1, 'John Doe', '1234 1234 1234 1234', '2024-12-31', 123);
 
 -- Sample data for AccessLog table
 INSERT INTO AccessLog (logID, userID, logDate, logDetails) VALUES
