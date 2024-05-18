@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package uts.isd.controller;
+package utsisdcontroller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -14,8 +14,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import uts.isd.model.dao.DBConnector;
-import uts.isd.model.dao.DBManager;
+import utsisdmodeldao.DBConnector;
+import utsisdmodeldao.DBManager;
 
 @WebServlet("/deleteAccount")
 public class DeleteUserServlet extends HttpServlet {
