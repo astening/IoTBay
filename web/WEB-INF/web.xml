@@ -6,11 +6,13 @@
         <servlet-class>isdcontroller.PaymentMethodServlet</servlet-class>
     </servlet>
 
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>AddStaffServlet</servlet-name>
         <servlet-class>isdcontroller.AddStaffServlet</servlet-class>
     </servlet>
-        <servlet-mapping>
+    
+    <servlet-mapping>
         <servlet-name>AddStaffServlet</servlet-name>
         <url-pattern>/AddStaffServlet</url-pattern> <!-- Adjust URL pattern as needed -->
     </servlet-mapping>  
@@ -108,5 +110,10 @@
         <servlet-name>StaffInformationServlet</servlet-name>
         <url-pattern>/StaffInformationServlet</url-pattern> <!-- Adjust URL pattern as needed -->
     </servlet-mapping>   
+    
+    <servlet>
+        <servlet-name>PaymentMethodServlet</servlet-name>
+        <servlet-class>isdcontroller.PaymentMethodServlet</servlet-class>
+    </servlet>
     
 </web-app>
