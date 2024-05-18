@@ -35,9 +35,11 @@ CREATE TABLE PaymentMethod (
     CONSTRAINT PaymentMethod_FK FOREIGN KEY (userID) REFERENCES Users(userID)
 );
 
+-- orderID would reference order table
 CREATE TABLE Payment (
     paymentID INT GENERATED ALWAYS AS IDENTITY NOT NULL,
     userID INT NOT NULL,
+    orderID INT NOT NULL,
     paymentDate DATE,
     paymentAmount DOUBLE,
     CONSTRAINT Payment_PK PRIMARY KEY (paymentID),
@@ -50,11 +52,11 @@ INSERT INTO Users (userID, fName, lName, phoneNo, email, password, address, city
 INSERT INTO PaymentMethod (userID, cardName, cardNo, expiryDate, CVV)
 VALUES (123, 'James Potter', '1234 1234 1234 1234', '2024-12-31', 123);
 
-INSERT INTO Payment (userID, paymentDate, paymentAmount)
-VALUES (123, '2024-05-13', 33.33),
-(123, '2024-04-12', 44.44),
-(123, '2024-03-11', 55.55),
-(321, '2024-02-10', 66.66);
+INSERT INTO Payment (userID, orderID, paymentDate, paymentAmount)
+VALUES (123, 1, '2024-05-13', 33.33),
+(123, 2, '2024-04-12', 44.44),
+(123, 3, '2024-03-11', 55.55),
+(123, 4, '2024-05-13', 66.66);
 
 
 SELECT * FROM USERS;
