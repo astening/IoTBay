@@ -41,10 +41,9 @@
             <table>
                 <tr>
                     <td><label for="orderID">Order ID: </label></td>
-                    <td><input type="int" id="orderID" name="orderID"></td>
+                    <td><input type="int" id="orderID" name="orderID" placeholder="<%=session.getAttribute("IDValidated")%>"></td>
                 </tr>
                 <tr>
-                    <!--<td><label for="status">Status: </label></td>-->
                     <td><input type="hidden" id="status" name="status" value="Cancelled"></td>
                 </tr>
                 <br>
@@ -60,12 +59,6 @@
         <% if(updated==null ) { //|| updated.equals("No change made yet") //do not display initial values on start-up %>
         <% } else { // display relevant response message %>
             <p><%= updated %><p>
-            <% if(statusValidated.equals("Provide a status")) { // display specific error messages %>
-            <p><%= statusValidated %><p>
-            <% } else if(IDvalidated.equals("Provide an order ID")) { %>
-            <p><%= IDvalidated %><p>
-            <% } else {%>
-            <% }%>
         <% } %>
             
         <%-- form to update status --%>    
@@ -73,11 +66,11 @@
             <table>
                 <tr>
                     <td><label for="orderID">Order ID: </label></td>
-                    <td><input type="int" id="orderID" name="orderID"></td>
+                    <td><input type="int" id="orderID" name="orderID" placeholder="<%=session.getAttribute("IDValidated")%>"></td>
                 </tr>
                 <tr>
                     <td><label for="status">Status: </label></td>
-                    <td><input type="text" id="status" name="status"></td>
+                    <td><input type="text" id="status" name="status" placeholder="<%=session.getAttribute("statusValidated")%>"></td>
                 </tr>
                 <br>
                 <tr>

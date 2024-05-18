@@ -52,7 +52,7 @@ import isdmodeldao.*;
                 orderID = Integer.parseInt(stringOrderID) ;
             }
             catch (NumberFormatException e) {
-                session.setAttribute("IDValidated", "Please enter an ID below");
+                session.setAttribute("IDValidated", "Please enter an ID");
             }
             
             
