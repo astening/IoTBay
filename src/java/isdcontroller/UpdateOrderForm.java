@@ -97,23 +97,28 @@ public class UpdateOrderForm extends HttpServlet {
         int intOrderID = 0;
 
         // retrieve the manager instance from session
-        DBManager manager = (DBManager) session.getAttribute("manager") ;   
+        DBManager manager = (DBManager) session.getAttribute("manager") ; 
+        session.setAttribute("updated", "Order was not submitted") ;
         
         // Check variables are valid before using manager to perform update
         if(validator.checkEmpty(2, productID)) {
             session.setAttribute("IDValidated", "Please provide a product ID") ;
+            session.setAttribute("updated", "Order was not submitted") ;
         }
         else if (validator.checkEmpty(2, itemQuantity)) {
             session.setAttribute("quantityValidated", "Please provide a quantity") ;
+            session.setAttribute("updated", "Order was not submitted") ;
         }
         else if (validator.checkEmpty(2, orderID)) {
             session.setAttribute("IDValidated", "Please provide an order ID") ;
+            session.setAttribute("updated", "Order was not submitted") ;
         }        
 //        else if (!validator.validateNumber(itemQuantity)) { // this isnt working properly
 //            session.setAttribute("IDValidated", "Please enter a valid quantity number above 0") ;
 //        }
         else if (!validator.validateNumber(productID)) {
             session.setAttribute("IDValidated", "Please provide a valid product ID") ;
+            session.setAttribute("updated", "Order was not submitted") ;
         }
         else {
             // convert int
@@ -124,6 +129,7 @@ public class UpdateOrderForm extends HttpServlet {
             }
             catch(NumberFormatException e) {
                 session.setAttribute("quantityValidated", "Please provide a quantity") ;
+                session.setAttribute("updated", "Order was not submitted") ;
             }            
             try {
             int userID = 1 ; // this needs to be worked on
@@ -135,6 +141,7 @@ public class UpdateOrderForm extends HttpServlet {
                // provide user with the order number and date
            } catch (SQLException ex) {
                Logger.getLogger(OrderFormServlet.class.getName()).log(Level.SEVERE, null, ex) ;
+               session.setAttribute("updated", "Order was not submitted") ;
            }
         }
         
