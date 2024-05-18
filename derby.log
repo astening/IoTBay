@@ -12,3 +12,5 @@ os.arch=amd64
 os.version=10.0
 derby.system.home=C:\Users\William Sinclair\OneDrive - UTS\Documents\GitHub\IoTBay
 Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Sat May 18 19:47:17 AEST 2024: Shutting down Derby engine
