@@ -100,10 +100,12 @@ public class OrderFormServlet extends HttpServlet {
         if(validator.checkEmpty(2, productID)) {
             session.setAttribute("IDValidated", "Please provide a product ID") ;
             request.setAttribute("updated", "No change made yet") ;
+            session.setAttribute("returnID", "") ;
         }
         else if (validator.checkEmpty(2, itemQuantity)) {
             session.setAttribute("quantityValidated", "Please provide a quantity") ;
             request.setAttribute("updated", "No change made yet") ;
+            session.setAttribute("returnID", "") ;
         }
 //        else if (!validator.validateNumber(itemQuantity)) { // this isnt working properly
 //            session.setAttribute("IDValidated", "Please enter a valid quantity number above 0") ;
@@ -111,6 +113,7 @@ public class OrderFormServlet extends HttpServlet {
         else if (!validator.validateNumber(productID)) {
             session.setAttribute("IDValidated", "Please provide a valid product ID") ;
             request.setAttribute("updated", "No change made yet") ;
+            session.setAttribute("returnID", "") ;
         }
         else {
             // convert int
@@ -121,6 +124,7 @@ public class OrderFormServlet extends HttpServlet {
             catch(NumberFormatException e) {
                 session.setAttribute("quantityValidated", "Please provide a quantity") ;
                 request.setAttribute("updated", "No change made yet") ;
+                session.setAttribute("returnID", "") ;
             }            
             try {
                 int userID = 1 ; // this needs to be worked on
@@ -132,6 +136,8 @@ public class OrderFormServlet extends HttpServlet {
                    session.setAttribute("returnID", returnID) ;
            } catch (SQLException ex) {
                Logger.getLogger(OrderFormServlet.class.getName()).log(Level.SEVERE, null, ex) ;
+               session.setAttribute("returnID", "") ;
+               session.setAttribute("updated", "Order was not submitted") ;
            }
         }
         

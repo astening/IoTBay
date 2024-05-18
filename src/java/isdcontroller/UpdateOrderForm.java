@@ -135,7 +135,7 @@ public class UpdateOrderForm extends HttpServlet {
             int userID = 1 ; // this needs to be worked on
             // Use manager to add the order into the database
             manager.updateOrder(intOrderID, intProductID, intItemQuantity);
-               // set confirmation message for product id, quantity
+               // set confirmation message for submission
                session.setAttribute("updated", "Order was submitted") ;
                
                // provide user with the order number and date
