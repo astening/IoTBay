@@ -27,28 +27,6 @@ import java.util.logging.Logger;
 
 //tbc obviously
 public class OrderSearchServlet extends HttpServlet {
-    
-    private DBConnector db;
-
-    private DBManager manager;
-
-    private Connection conn;
-    
-    @Override //Create an instance of DBConnector for the deployment session
-
-    public void init() {
-
-        try {
-
-            db = new DBConnector();
-
-        } catch (ClassNotFoundException | SQLException ex) {
-
-            Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE, null, ex);
-
-        }      
-
-    }
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -122,13 +100,8 @@ public class OrderSearchServlet extends HttpServlet {
             session.setAttribute("IDvalidated", "Provide a valid order ID") ;
         }
         
-        // set up db manager
-        conn = db.openConnection();       
-        try {
-            manager = new DBManager(conn);
-        } catch (SQLException ex) {
-            Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        // retrieve the manager instance from session
+        DBManager manager = (DBManager) session.getAttribute("manager") ;
         
         // set up ArrayList or order for search results
         ArrayList<Order> list = new ArrayList() ;

@@ -22,12 +22,6 @@ import java.util.logging.Logger;
  * @author chari
  */
 public class UpdateOrderForm extends HttpServlet {
-    
-       private DBConnector db;
-
-       private DBManager manager;
-
-       private Connection conn;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,25 +32,7 @@ public class UpdateOrderForm extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-       
-    @Override //Create an instance of DBConnector for the deployment session
-
-       public void init() {
-
-           try {
-
-               db = new DBConnector();
-
-           } catch (ClassNotFoundException | SQLException ex) {
-
-               Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE, null, ex);
-
-           }      
-
-       }
-       
-       
-       
+          
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -90,21 +66,6 @@ public class UpdateOrderForm extends HttpServlet {
 
            HttpSession session = request.getSession();
 
-//           conn = db.openConnection();       
-//
-//           try {
-//
-//               manager = new DBManager(conn);
-//
-//           } catch (SQLException ex) {
-//
-//               Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE, null, ex);
-//
-//           }
-
-           //export the DB manager to the view-session (JSPs)
-
-//           session.setAttribute("manager", manager);   
         processRequest(request, response);
     }
 
@@ -136,18 +97,8 @@ public class UpdateOrderForm extends HttpServlet {
         String orderID = (String) request.getParameter("orderID") ;
         int intOrderID = 0;
 
-        // add and create db manager
-        conn = db.openConnection() ;       
-
-        try {
-
-            manager = new DBManager(conn) ;
-
-        } catch (SQLException ex) {
-
-            Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE, null, ex) ;
-
-        }
+        // retrieve the manager instance from session
+        DBManager manager = (DBManager) session.getAttribute("manager") ;   
         
         // Check variables are valid before using manager to perform update
         if(validator.checkEmpty(2, productID)) {
