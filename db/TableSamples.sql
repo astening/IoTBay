@@ -1,4 +1,3 @@
-
 /* 
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Other/SQLTemplate.sql to edit this template
@@ -133,4 +132,7 @@ INSERT INTO Products (ProductName, ProductType, UnitPrice, StockLvl) VALUES
 ('iPhone X', 'Type1', 70.00, 700),
 ('Macbook Air', 'Type2', 75.00, 750),
 ('FitBit', 'Type3', 80.00, 800);
--- Sample data
+
+-- Sample data for Payment table
+-- INSERT INTO Payment (paymentID, paymentDate, paymentAmt, paymentMethod, cardNo, CVV, expiryDate, cardName) VALUES
+-- need to update

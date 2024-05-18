@@ -9,7 +9,7 @@ package isdmodeldao;
  * @author William Sinclair
  */
 import isdmodel.Payment;
-import isdmodel.PaymentMethod
+import isdmodel.PaymentMethod;
 import isdmodel.User;
 import java.sql.*;
 import java.util.ArrayList;
@@ -209,6 +209,53 @@ public boolean checkStaff(int userID) throws SQLException {
     return false;
 }
   
+    //find paymentMethod by userid
+    public PaymentMethod findPaymentMethod (int userID) throws SQLException{
+        String fetch = "select * from ISDUSER.PaymentMethod where USERID = " + userID + " ";
+        ResultSet rs = st.executeQuery(fetch);
+        
+        while (rs.next()){
+            int uID = rs.getInt(2);
+            if(userID == uID){
+                int paymentMethodID = rs.getInt(1);
+                String cardName  = rs.getString(3);
+                String cardNo = rs.getString(4);
+                java.sql.Date expiry = rs.getDate(5);
+                LocalDate expiryDate = expiry.toLocalDate();
+                int cvv = rs.getInt(6);
+                return new PaymentMethod(paymentMethodID, userID, cardName, cardNo, cvv, expiryDate);
+            }
+        }
+        return null;
+    }
+    //add new paymentMethod and attatch it to userID
+    public void addPaymentMethod (int userID, String cardName, String cardNo, int cvv, LocalDate expiryDate) throws SQLException{
+        st.executeUpdate("INSERT INTO ISDUSER.PaymentMethod " + "(USERID, CARDNAME, CARDNO, EXPIRYDATE, CVV)" +
+                "VALUES (" + userID + ", '" + cardName + "', '" + cardNo + "', '" + expiryDate + "'," + cvv + ")");
+    }
+    //update paymentMethod
+    public void updatePaymentMethod (int userID, String cardName, String cardNo, int cvv, LocalDate expiry) throws SQLException{
+        java.sql.Date expiryDate = java.sql.Date.valueOf(expiry);
+        st.executeUpdate("UPDATE ISDUSER.PaymentMethod SET CARDNAME='" + cardName + "',CARDNO='" + cardNo + "',EXPIRYDATE='" + expiryDate + "',CVV=" + cvv + "WHERE USERID=" + userID + "");
+    }
+    
+    public void deletePaymentMethod (int paymentMethodID) throws SQLException{
+        st.executeUpdate("DELETE FROM ISDUSER.PaymentMethod WHERE PAYMENTMETHODID=" + paymentMethodID + "");
+    }
+    
+    public boolean checkPaymentMethod (int userID) throws SQLException {
+        String fetch = "select * from ISDUSER.PAYMENTMETHOD where USERID = " + userID + "";
+        ResultSet rs = st.executeQuery(fetch);
+        
+        while(rs.next()){
+            int uid = rs.getInt(2);
+            if(uid == userID){
+                return true;
+            }
+        }
+        return false;
+    }
+    
     public ArrayList<Payment> getPayments(int userID) throws SQLException{
         String fetch = "select * from ISDUSER.PAYMENT where USERID = " + userID + "";
         ResultSet rs = st.executeQuery(fetch);
@@ -219,7 +266,7 @@ public boolean checkStaff(int userID) throws SQLException {
             if(uID==userID){
                 int paymentID = rs.getInt(1);
                 int orderID = rs.getInt(3);
-                Date paymentD = rs.getDate(4);
+                java.sql.Date paymentD = rs.getDate(4);
                 LocalDate paymentDate = paymentD.toLocalDate();
                 double paymentAmount = rs.getDouble(5);
                 payments.add(new Payment(paymentID, orderID, paymentDate, paymentAmount));
@@ -244,9 +291,5 @@ public boolean checkStaff(int userID) throws SQLException {
         }
         return false;
     }
-
-
-
-}
 
 }
