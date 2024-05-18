@@ -76,6 +76,7 @@ public class UpdateStaffServlet extends HttpServlet {
              } catch (SQLException e) {
                  e.printStackTrace(); // Handle your exception here
                  System.out.println("Staff Member does not exist in the database!");
+                 request.getRequestDispatcher("StaffInformationManagement.jsp").forward(request, response);
              }
         }
     }

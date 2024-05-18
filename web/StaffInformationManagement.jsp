@@ -15,7 +15,7 @@
     <h1>Staff Information Management</h1>
     
     <!-- Display staff information -->
-    <table border="1">
+    <table id="table">
         <tr>
             <th>User ID</th>
             <th>First Name</th>

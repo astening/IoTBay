@@ -52,6 +52,7 @@ public class FindStaffServlet extends HttpServlet {
             } catch (SQLException e) {
                 e.printStackTrace(); // Handle your exception here
                 System.out.println("SQL Exception: failed to find Staff Member");
+                request.getRequestDispatcher("StaffInformationManagement.jsp").forward(request, response);
             }
     }
 }

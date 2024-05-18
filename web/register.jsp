@@ -70,7 +70,7 @@
                     <td><input type="text" placeholder="<%=(positionErr != null ? positionErr : "Enter Position:")%>" id="position" name="position" required></td>
                 </tr>
                 <tr><td><td>
-                    <td><a href="CancelServlet" class="button">Cancel</a>
+                    <td><a href="index.jsp" class="button">Cancel</a>
                         <input class="button" type="submit" value="Register">
                     </td>
                 </tr>

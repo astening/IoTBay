@@ -76,6 +76,7 @@ public class AddStaffServlet extends HttpServlet {
             } catch (SQLException e) {
                 e.printStackTrace(); // Handle your exception here
                 System.out.println("Failed to add staff member to the database.");
+                request.getRequestDispatcher("StaffInformationManagement.jsp").forward(request, response);
             }
         }
     }

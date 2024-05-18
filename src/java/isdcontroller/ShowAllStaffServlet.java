@@ -32,6 +32,7 @@ public class ShowAllStaffServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace(); // Handle your exception here
             System.out.println("Failed to fetch StaffList");
+            request.getRequestDispatcher("StaffInformationManagement.jsp").forward(request, response);
         }
     }
 }
