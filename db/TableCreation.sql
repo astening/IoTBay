@@ -42,16 +42,26 @@ CREATE TABLE Invoice (
   CONSTRAINT Invoice_FK FOREIGN KEY (userID) REFERENCES Users(userID)
 );
 
+CREATE TABLE PaymentMethod (
+    paymentMethodID INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+    userID INT NOT NULL,
+    cardName VARCHAR(40),
+    cardNo VARCHAR(20),
+    expiryDate DATE,
+    CVV INT,
+    CONSTRAINT PaymentMethod_PK PRIMARY KEY (paymentMethodID),
+    CONSTRAINT PaymentMethod_FK FOREIGN KEY (userID) REFERENCES Users(userID)
+);
+
+-- orderID would reference order table
 CREATE TABLE Payment (
-  paymentID INT NOT NULL,
-  paymentDate DATE,
-  paymentAmt FLOAT,
-  paymentMethod VARCHAR(20),
-  cardNo INT,
-  CVV INT,
-  expiryDate DATE,
-  cardName VARCHAR(40),
-  CONSTRAINT Payment_PK PRIMARY KEY (paymentID)
+    paymentID INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+    userID INT NOT NULL,
+    orderID INT NOT NULL,
+    paymentDate DATE,
+    paymentAmount DOUBLE,
+    CONSTRAINT Payment_PK PRIMARY KEY (paymentID),
+    CONSTRAINT Payment_FK2 FOREIGN KEY (userID) REFERENCES Users(userID)
 );
 
 CREATE TABLE AccessLog (
