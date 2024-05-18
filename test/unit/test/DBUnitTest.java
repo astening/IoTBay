@@ -61,43 +61,43 @@ public class DBUnitTest {
     // test add order
     @Test
     public void testAddOrder() throws SQLException {
-//        
-//        // set up variables
-//        int returnID = 0;
-//        String returnStatus = "" ;
-//        int returnProductID = 0 ;
-//        int returnUserID = 0 ;
-//        int returnItems = 0 ;
-//        
-//        try {
-//            
-//        db.addOrder(2, 1, 3); // items, user product
-//        
-//        // retrieve variables
-//        String getOrder = "SELECT * FROM ISDUSER.ORDERS WHERE ORDERID=123" ;
-//        ResultSet rs = st.executeQuery(getOrder) ;
-//        while (rs.next()) {
-//            returnStatus = rs.getString("status") ;
-//            returnID = rs.getInt("orderID") ;
-//            returnProductID = rs.getInt("productID") ;
-//            returnUserID = rs.getInt("userID") ;
-//            returnItems = rs.getInt("noItems") ;
-//        }   
-//        
-//        // check the values are as expected
-//        assertEquals("New", returnStatus) ;
-//        assertEquals(123, returnID) ;
-//        assertEquals(3, returnProductID) ;
-//        assertEquals(1, returnUserID) ;
-//        assertEquals(2, returnItems) ;
-//
-//        connector.closeConnection();
-//
-//        } catch (SQLException ex) {
-//
-//        Logger.getLogger(DBUnitTest.class.getName()).log(Level.SEVERE, null, ex);
-//        
-//        }  
+        
+        // set up variables
+        int returnID = 0;
+        String returnStatus = "" ;
+        int returnProductID = 0 ;
+        int returnUserID = 0 ;
+        int returnItems = 0 ;
+        
+        try {
+            
+        db.addOrder(2, 1, 3); // items, user product
+        
+        // retrieve variables
+        String getOrder = "SELECT * FROM ISDUSER.ORDERS WHERE ORDERID=124" ;
+        ResultSet rs = st.executeQuery(getOrder) ;
+        while (rs.next()) {
+            returnStatus = rs.getString("status") ;
+            returnID = rs.getInt("orderID") ;
+            returnProductID = rs.getInt("productID") ;
+            returnUserID = rs.getInt("userID") ;
+            returnItems = rs.getInt("noItems") ;
+        }   
+        
+        // check the values are as expected
+        assertEquals("New", returnStatus) ;
+        assertEquals(124, returnID) ;
+        assertEquals(3, returnProductID) ;
+        assertEquals(1, returnUserID) ;
+        assertEquals(2, returnItems) ;
+
+        connector.closeConnection();
+
+        } catch (SQLException ex) {
+
+        Logger.getLogger(DBUnitTest.class.getName()).log(Level.SEVERE, null, ex);
+        
+        }  
     
     }
     
