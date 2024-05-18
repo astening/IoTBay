@@ -36,16 +36,16 @@
                 <td>${user.password}</td>
             </tr>
         </table>
-
-            <a class ="button" href="PaymentMethodServlet?userID=<%=user.getUserID()%>"> Edit Payment Details </a>
-
+            <% if (!isSystemsAdmin) { %>
+                <a class ="button" href="PaymentMethodServlet?userID=<%=user.getUserID()%>"> Edit Payment Details </a>
+            <% } %>
             <br>
             <br>
-                <a class ="button" href="logout.jsp"> Logout </a>
-                 <!-- Check if the user is a System Admin, then display the button -->
-                 <br>
-                 <br>
-                 <br>
-                <% if (isSystemsAdmin) { %>
-                  <a class="button" href="StaffInformationManagement.jsp">Manage Staff</a>
-               <% } %>
+            <a class ="button" href="logout.jsp"> Logout </a>
+             <!-- Check if the user is a System Admin, then display the button -->
+             <br>
+             <br>
+             <br>
+            <% if (isSystemsAdmin) { %>
+              <a class="button" href="StaffInformationManagement.jsp">Manage Staff</a>
+           <% } %>
