@@ -191,7 +191,46 @@ public class DBUnitTest {
 
     }      
     
-    // test find all orders --> arraylist, for loop to check the list    
+    // test find all orders --> arraylist, for loop to check the list   
+//    @Test
+//    public void testFetchAllOrders() throws SQLException {
+//    }
+    
+    
+    // test find user orders
+    @Test
+    public void testFetchUserOrders() throws SQLException {
+        // set up variables
+        ArrayList<Order> resultList = db.fetchUserOrders(8) ;
+                
+        int resultID = 0 ;
+        String resultDate = "" ;
+        String resultStatus = "" ;
+        int resultQuantity = 0 ;
+        double resultPrice = 0.0 ;     
+        
+        for (Order order: resultList) {
+            resultID = order.getOrderID() ;
+            resultDate = order.getOrderDate() ;
+            resultStatus = order.getStatus() ;
+            resultQuantity = order.getNoItems();
+            resultPrice = order.getTotalPrice() ;
+        }  
+        
+        // test values
+        int testID = 8 ;
+        String testDate = "2024-04-08" ;
+        String testStatus = "Completed" ;
+        int testQuantity = 4 ;
+        double testPrice = 120.0 ;
+        
+        // check if equal
+        assertEquals(testID, resultID) ;
+        assertEquals(testDate, resultDate) ;
+        assertEquals(testStatus, resultStatus) ;
+        assertEquals(testQuantity, resultQuantity) ;
+        assertEquals(testPrice, resultPrice, 0.1) ;
+    }
     
     
 }
