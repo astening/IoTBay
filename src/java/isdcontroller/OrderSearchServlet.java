@@ -108,12 +108,15 @@ public class OrderSearchServlet extends HttpServlet {
             // check that the values are filled in and correct before sending to db
             if (validator.checkEmpty(2, orderID)) {
                 session.setAttribute("IDValidated", "ID is empty") ;
+                session.setAttribute("resultList", null) ;
             }
             else if (validator.checkEmpty(2, orderDate)) {
                 session.setAttribute("dateValidated", "Date is empty") ;
+                session.setAttribute("resultList", null) ;
             }
             else if (!validator.validateNumber(orderID)) {
                 session.setAttribute("IDvalidated", "Fill in a valid ID") ;
+                session.setAttribute("resultList", null) ;
             }
             else {
 
@@ -122,6 +125,7 @@ public class OrderSearchServlet extends HttpServlet {
                 }
                 catch (NumberFormatException e) {
                     session.setAttribute("updated", "Search not successful") ;
+                    session.setAttribute("resultList", null) ;
                 }
                         
                 try {
@@ -132,6 +136,7 @@ public class OrderSearchServlet extends HttpServlet {
                 } catch (SQLException ex) {
                     Logger.getLogger(UpdateStatusServlet.class.getName()).log(Level.SEVERE, null, ex);
                     session.setAttribute("searched", "Search not successful") ;
+                    session.setAttribute("resultList", null) ;
                 }
             }
         
