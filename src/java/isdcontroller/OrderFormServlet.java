@@ -99,15 +99,18 @@ public class OrderFormServlet extends HttpServlet {
         // Check variables are valid before using manager to perform update
         if(validator.checkEmpty(2, productID)) {
             session.setAttribute("IDValidated", "Please provide a product ID") ;
+            request.setAttribute("updated", "No change made yet") ;
         }
         else if (validator.checkEmpty(2, itemQuantity)) {
             session.setAttribute("quantityValidated", "Please provide a quantity") ;
+            request.setAttribute("updated", "No change made yet") ;
         }
 //        else if (!validator.validateNumber(itemQuantity)) { // this isnt working properly
 //            session.setAttribute("IDValidated", "Please enter a valid quantity number above 0") ;
 //        }
         else if (!validator.validateNumber(productID)) {
             session.setAttribute("IDValidated", "Please provide a valid product ID") ;
+            request.setAttribute("updated", "No change made yet") ;
         }
         else {
             // convert int
@@ -117,16 +120,16 @@ public class OrderFormServlet extends HttpServlet {
             }
             catch(NumberFormatException e) {
                 session.setAttribute("quantityValidated", "Please provide a quantity") ;
+                request.setAttribute("updated", "No change made yet") ;
             }            
             try {
-            int userID = 1 ; // this needs to be worked on
-            // Use manager to add the order into the database
-            int returnID = manager.addOrder(intItemQuantity, userID, intProductID);
-               // set confirmation message for product id, quantity
-               session.setAttribute("updated", "Order was submitted") ;
-               session.setAttribute("returnID", returnID) ;
-               
-               // provide user with the order number and date
+                int userID = 1 ; // this needs to be worked on
+                // Use manager to add the order into the database
+                int returnID = manager.addOrder(intItemQuantity, userID, intProductID);
+                   // set confirmation message for product id, quantity
+                   session.setAttribute("updated", "Order was submitted") ;
+                   // provide user with the order number and date
+                   session.setAttribute("returnID", returnID) ;
            } catch (SQLException ex) {
                Logger.getLogger(OrderFormServlet.class.getName()).log(Level.SEVERE, null, ex) ;
            }
