@@ -86,5 +86,6 @@ CREATE TABLE Payment (
     paymentDate DATE,
     paymentAmount DOUBLE,
     CONSTRAINT Payment_PK PRIMARY KEY (paymentID),
-    CONSTRAINT Payment_FK2 FOREIGN KEY (userID) REFERENCES Users(userID)
+    CONSTRAINT Payment_FK1 FOREIGN KEY (userID) REFERENCES Users(userID),
+    CONSTRAINT Payment_FK2 FOREIGN KEY (orderID) REFERENCES Orders(orderID)
 );
