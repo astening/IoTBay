@@ -30,10 +30,7 @@
         <br>
         <br>
             <a class ="button" href="logout.jsp"> Logout </a>
-            <br>
-            <br>
-            <a class ="button" href="DeviceCatalogueServlet"> Device Catalogue </a>
-        </div>
+
         <jsp:include page="/ConnServlet" flush="true"/>
     </body>
 </html>

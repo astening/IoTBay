@@ -32,7 +32,7 @@ public class DBManager {
         while (rs.next()){
             int id = rs.getInt(1);
             if (productID == id){
-                return new Product(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getString(4), rs.getInt(5));
+                return new Product(rs.getInt(1), rs.getString(2), rs.getFloat(4), rs.getString(3), rs.getInt(5));
             }
         }
         return null;

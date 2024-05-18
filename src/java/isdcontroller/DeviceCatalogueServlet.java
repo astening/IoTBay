@@ -18,6 +18,8 @@ public class DeviceCatalogueServlet extends HttpServlet{
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         HttpSession session = request.getSession();
         DBManager manager = (DBManager) session.getAttribute("manager");
+        Validator validator = new Validator();
+        validator.clear(session);
         
         try{
             session.setAttribute("productList", manager.getProductList());

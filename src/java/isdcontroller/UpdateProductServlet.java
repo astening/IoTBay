@@ -6,7 +6,6 @@ package isdcontroller;
 
 import isdmodel.dao.DBManager;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -35,20 +34,38 @@ public class UpdateProductServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         HttpSession session = request.getSession();
         DBManager manager = (DBManager) session.getAttribute("manager");
+        Validator validator = new Validator();
+        validator.clear(session);
         
-        int productID = Integer.parseInt(request.getParameter("productID"));
         String name = request.getParameter("name");
-        Float price = Float.valueOf(request.getParameter("price"));
+        String price = request.getParameter("price");
         String type = request.getParameter("type");
-        Integer stock = 1; Integer.valueOf(request.getParameter("stock"));
+        String stock = request.getParameter("stock");
+        Integer productID = Integer.valueOf(request.getParameter("productID"));
+                   
         
         try{
-            manager.updateProduct(productID, name, price, type, stock);
-            response.sendRedirect("DeviceCatalogueServlet");
+            if (!validator.validateProductName(name)){
+                session.setAttribute("prodNameErr", "Invalid Name!");
+            } else if (!validator.validateProductType(type)){
+                session.setAttribute("prodTypeErr", "Invalid Type!");
+            } else if (!validator.validateProductPrice(price)){
+                session.setAttribute("prodPriceErr", "Invalid Price!");
+            } else if (!validator.validateProductStock(stock)){
+                session.setAttribute("prodStockErr", "Invalid Stock Level!");
+            } else {
+                Float priceFloat = Float.valueOf(price);
+                Integer stockInt = Integer.valueOf(stock);
+                
+                manager.updateProduct(productID, name, priceFloat, type, stockInt);
+                response.sendRedirect("DeviceCatalogueServlet");
+                return;
+            }
+            request.getRequestDispatcher("updateProduct.jsp").forward(request, response);
+            
         } catch (SQLException ex){
             Logger.getLogger(DeleteProductServlet.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println(ex.getErrorCode() + " and " + ex.getMessage());
         }
-    }
-
+    } 
 }

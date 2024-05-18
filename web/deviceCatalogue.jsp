@@ -20,18 +20,28 @@
             Connection conn = connector.openConnection();
             DBManager db = new DBManager(conn);
         %>
-        <h1>Device Catalogue</h1>
-        <br>
-        <table>
-            <tr>
-                <td><input type="text" size="50" id="searchInput" onkeyup="searchProducts()" placeholder="Search for products.."></td>
-                <%if(!user.getPosition().equals("Customer")) {%>
-                <td> <a class ="button" href="addProduct.jsp"> Add Product </a> </td>
-                <%}%>
-            </tr>
-        </table>
+       
+        <div class="navBar">
+            <a class="navBarTitle">IoT Bay</a>
+            <a class="node" href="main.jsp">Home</a>
+            <a class="active" href="DeviceCatalogueServlet">Device Catalogue</a>
+            <div class="navBar-right">
+                <a class="node" href="logout.jsp">Logout</a>
+            </div>
+        </div>
         
-        <table id="table">
+        <div class="main">
+        <h1>Device Catalogue</h1>
+        <hr>
+        <div class="searchBar">
+            <input class="searchInput" type="text" id="searchInput" onkeyup="searchProducts()" placeholder="Search for products..">
+            <%if(!user.getPosition().equals("Customer")) {%>
+            <a class ="searchButton" href="addProduct.jsp"> Add Product </a>
+            <%}%>
+            </tr>
+        </div>
+        
+        <table id="deviceCatalogueTable">
             <tr>
                 <th>Product ID</th>
                 <th>Product Name</th>
@@ -70,11 +80,7 @@
         }
         %>
         </form>
-        <br>
-        <br>
-        <div
-            <a class ="button" href="logout.jsp"> Logout </a>
-        </div>
+    </div>
         <script>
         function searchProducts() {
             var input, filter, table, tr;
