@@ -9,7 +9,7 @@ package isdmodeldao;
  * @author William Sinclair
  */
 import isdmodel.Payment;
-import isdmodel.PaymentMethod
+import isdmodel.PaymentMethod;
 import isdmodel.User;
 import java.sql.*;
 import java.util.ArrayList;
@@ -220,7 +220,7 @@ public boolean checkStaff(int userID) throws SQLException {
                 int paymentMethodID = rs.getInt(1);
                 String cardName  = rs.getString(3);
                 String cardNo = rs.getString(4);
-                Date expiry = rs.getDate(5);
+                java.sql.Date expiry = rs.getDate(5);
                 LocalDate expiryDate = expiry.toLocalDate();
                 int cvv = rs.getInt(6);
                 return new PaymentMethod(paymentMethodID, userID, cardName, cardNo, cvv, expiryDate);
@@ -235,7 +235,7 @@ public boolean checkStaff(int userID) throws SQLException {
     }
     //update paymentMethod
     public void updatePaymentMethod (int userID, String cardName, String cardNo, int cvv, LocalDate expiry) throws SQLException{
-        Date expiryDate = Date.valueOf(expiry);
+        java.sql.Date expiryDate = java.sql.Date.valueOf(expiry);
         st.executeUpdate("UPDATE ISDUSER.PaymentMethod SET CARDNAME='" + cardName + "',CARDNO='" + cardNo + "',EXPIRYDATE='" + expiryDate + "',CVV=" + cvv + "WHERE USERID=" + userID + "");
     }
     
@@ -266,7 +266,7 @@ public boolean checkStaff(int userID) throws SQLException {
             if(uID==userID){
                 int paymentID = rs.getInt(1);
                 int orderID = rs.getInt(3);
-                Date paymentD = rs.getDate(4);
+                java.sql.Date paymentD = rs.getDate(4);
                 LocalDate paymentDate = paymentD.toLocalDate();
                 double paymentAmount = rs.getDouble(5);
                 payments.add(new Payment(paymentID, orderID, paymentDate, paymentAmount));
