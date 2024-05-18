@@ -14,30 +14,15 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
-   import java.io.IOException;
-
-   import java.sql.Connection;
-
-   import java.sql.SQLException;
-
-   import java.util.logging.Level;
-
-   import java.util.logging.Logger;
-
-   import jakarta.servlet.ServletException;
-
-   import jakarta.servlet.http.HttpServlet;
-
-   import jakarta.servlet.http.HttpServletRequest;
-
-   import jakarta.servlet.http.HttpServletResponse;
-
-   import jakarta.servlet.http.HttpSession;
-
-   import isdmodeldao.*;
-
- 
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import isdmodeldao.*;
 
    public class UpdateOrderStatus extends HttpServlet {
 
