@@ -119,11 +119,11 @@
                     <input type='hidden' id='orderID' name='orderID' value=<%= i.getOrderID() %>>
                     <input type='hidden' id='status' name='status' value=<%= i.getNoItems() %>>
                     <input type='hidden' id='totalPrice' name='totalPrice' value=<%= i.getTotalPrice() %>>
-                    <td><a class ="button" href="orderForm.jsp" method="post"> Update (details to be displayed) </a></td>
+                    <td><a class ="button" href="orderForm.jsp" method="post"> Update </a></td>
                 </form>
                 
                 <% } else { %>
-                <td><a class ="button" href="orderForm.jsp" method="post"> View or maybe cancel? </a></td>
+                <td><a class ="button" href="orderForm.jsp" method="post"> View </a></td>
                 <% } %>             
             </tr>
             <% } } else { %>
