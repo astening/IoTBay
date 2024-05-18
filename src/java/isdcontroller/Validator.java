@@ -22,6 +22,8 @@ public class Validator implements Serializable {
     private String cvvPattern = "[0-9]{3}";   
     private String productPattern = "([A-Za-z])+";
     private String productNoPattern = "([0-9])+";
+    private final String statusPattern = "([A-Z][a-z]+)";
+    private final String numberPattern = "([0-9])+" ;
     
             
     public Validator(){    }       
@@ -135,6 +137,45 @@ public class Validator implements Serializable {
       return validate(cvvPattern, cvv);
   }
 
+  // checks that the number is a digit 0-9
+  public boolean validateOrderNumber(String number){
+
+      if (number==null) {
+          return false ;
+      }
+      else if (number.length()==0) {
+          return false ;
+      }
+      else if (number.equals("0")) {
+          return false ;
+      }
+      else {
+
+          return validate(numberPattern,number);
+      }
+
+   }
+
+   // notifies user if values aren't filled
+   public boolean checkEmptyOrder(int orderID, String status){
+      if (status!=null ) {
+          if (orderID==0) {
+              return true ;
+          } else {
+              return  status.isEmpty() ;
+          }
+      }
+      else {
+          return true ;
+      }
+   }
+
+   // check status format
+   public boolean validateOrderStatus(String status){
+      return validate(statusPattern,status);
+
+   }
+
    /*Method to reset the validation session to default attributes and values*/
     void clear(HttpSession session) {
         session.setAttribute("emailErr", "Enter Email:");
@@ -155,5 +196,11 @@ public class Validator implements Serializable {
         session.setAttribute("prodTypeErr", "");
         session.setAttribute("prodPriceErr", "");
         session.setAttribute("prodStockErr", "");
+        session.setAttribute("statusValidated", "Enter status") ;
+        session.setAttribute("updated", "No change made yet") ;
+        session.setAttribute("IDValidated", "Enter ID") ;
+        session.setAttribute("quantityValidated", "Enter a number above 0") ;
+        session.setAttribute("dateValidated", "Enter a date") ;
+        session.setAttribute("searched", "No search made yet") ;
     }
 }

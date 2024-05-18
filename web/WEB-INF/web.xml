@@ -126,6 +126,41 @@
         <servlet-name>DeleteProductServlet</servlet-name>
         <servlet-class>isdcontroller.DeleteProductServlet</servlet-class>
     </servlet>
+
+       <servlet>
+        <servlet-name>UpdateStatusServlet</servlet-name>
+        <servlet-class>isdcontroller.UpdateStatusServlet</servlet-class>
+        <!--<load-on-startup>1</load-on-startup>-->
+    </servlet>
+    <servlet>
+        <servlet-name>OrderSearchServlet</servlet-name>
+        <servlet-class>isdcontroller.OrderSearchServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OrderFormServlet</servlet-name>
+        <servlet-class>isdcontroller.OrderFormServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateOrderStatus</servlet-name>
+        <servlet-class>isdcontroller.UpdateOrderStatus</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OrderFetchAll</servlet-name>
+        <servlet-class>isdcontroller.OrderFetchAll</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateOrderForm</servlet-name>
+        <servlet-class>isdcontroller.UpdateOrderForm</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RetrieveOrder</servlet-name>
+        <servlet-class>isdcontroller.RetrieveOrder</servlet-class>
+    </servlet>
+
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+
     <servlet-mapping>
         <servlet-name>DeleteProductServlet</servlet-name>
         <url-pattern>/DeleteProductServlet</url-pattern>
@@ -142,5 +177,36 @@
         <servlet-name>AddProductServlet</servlet-name>
         <url-pattern>/AddProductServlet</url-pattern>
     </servlet-mapping>
-    
+    <servlet-mapping>
+        <servlet-name>ConnServlet</servlet-name>
+        <url-pattern>/ConnServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateStatusServlet</servlet-name>
+        <url-pattern>/UpdateStatusServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderSearchServlet</servlet-name>
+        <url-pattern>/OrderSearchServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderFormServlet</servlet-name>
+        <url-pattern>/OrderFormServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateOrderStatus</servlet-name>
+        <url-pattern>/UpdateOrderStatus</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderFetchAll</servlet-name>
+        <url-pattern>/OrderFetchAll</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateOrderForm</servlet-name>
+        <url-pattern>/UpdateOrderForm</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RetrieveOrder</servlet-name>
+        <url-pattern>/RetrieveOrder</url-pattern>
+    </servlet-mapping>
 </web-app>

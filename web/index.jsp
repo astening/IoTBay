@@ -23,8 +23,9 @@
             <br>
                 <a class="button" href="register.jsp">Register</a> 
                 <a class="button" href="login.jsp">Login</a>
+                <a href="main.jsp">Browse The Application</a>
         </div>
-    <jsp:include page="/ConnServlet" flush="true"/>
+        <%-- include conn servlet at the start of the session --%>
+        <jsp:include page="/ConnServlet" flush="true"/>
     </body>
 </html>
-

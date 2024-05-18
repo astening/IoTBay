@@ -15,13 +15,12 @@ CREATE TABLE Users (
 );
 
 CREATE TABLE Orders (
-    orderID INT NOT NULL,
+    orderID INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     orderDate VARCHAR(20),
     status VARCHAR(10),
     totalNoItems INT,
     totalPrice DOUBLE,
     userID INT,
-    CONSTRAINT Order_PK PRIMARY KEY (orderID),
     CONSTRAINT Order_FK FOREIGN KEY (userID) REFERENCES Users(userID)
 );
 
@@ -79,4 +78,10 @@ CREATE TABLE Payment (
     CONSTRAINT Payment_PK PRIMARY KEY (paymentID),
     CONSTRAINT Payment_FK1 FOREIGN KEY (userID) REFERENCES Users(userID),
     CONSTRAINT Payment_FK2 FOREIGN KEY (orderID) REFERENCES Orders(orderID)
+);
+
+CREATE TABLE Role (
+    roleID INT NOT NULL,
+    roleName VARCHAR(10),
+    CONSTRAINT Role_PK PRIMARY KEY (roleID)
 );

@@ -16,6 +16,8 @@ public class OrderLine {
 
     public OrderLine() {
         this.itemQuantity = itemQuantity;
+        this.orderID = orderID;
+        this.productID = productID;
     }
 
     public int getItemQuantity() {
