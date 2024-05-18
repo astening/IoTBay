@@ -26,8 +26,6 @@
         %>
         <h1>Submit an order here:</h1>
         <p>
-            <%= quantityValidated %>
-            <%= IDValidated %>
             <%= updated %>
             <%= request.getParameter("submittedOrderID") %>
             Your ID is: <%= session.getAttribute("returnID") %>
@@ -36,11 +34,11 @@
             <table>
                 <tr> 
                     <td><label for="productID">Product ID: </label></td>
-                    <td><input type="int" id="productID" name="productID"></td>
+                    <td><input type="int" id="productID" name="productID" placeholder="<%=session.getAttribute("IDValidated")%>"></td>
                 </tr>
                 <tr>
                     <td><label for="noItems">Quantity: </label></td>
-                    <td><input type="int" id="noItems" name="noItems"></td>
+                    <td><input type="int" id="noItems" name="noItems" placeholder="<%=session.getAttribute("quantityValidated")%>"></td>
                 </tr>
             </table>
             <br>
@@ -51,7 +49,6 @@
         
         <%-- display order form to update --%>
         <h1>Update Order</h1>
-        <%= quantityValidated %>
         <%= IDValidated %>
         <%= updated %>        
         
@@ -59,10 +56,11 @@
         <%
                 
             ArrayList<Order> list = (ArrayList<Order>) session.getAttribute("resultList") ;
+            int noItems = 0 ;
             if (list!=null) {
                 for (Order i: list) {
 //                    order.getProductID() ; // in order line, not order
-                    i.getNoItems() ;
+                    noItems = i.getNoItems() ;
                 }
             }
         %>
@@ -82,7 +80,7 @@
                 </tr>
                 <tr>
                     <td><label for="noItems">Quantity: </label></td>
-                    <td><input type="int" id="noItems" name="noItems"></td>
+                    <td><input type="int" id="noItems" name="noItems" value="${noItems}" placeholder="<%=session.getAttribute("quantityValidated")%>"></td>
                 </tr>
             </table>
             <br>

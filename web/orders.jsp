@@ -32,9 +32,6 @@
         <% if(updated==null ) { //do not display initial values on start-up %>
         <% } else { // display relevant response message %>
         <p><%= updated %><p>
-        <% }
-        if(IDvalidated.equals("Provide an order ID")) { %>
-        <p><%= IDvalidated %><p>
         <% } %>
        
         <form action="UpdateOrderStatus" method="post">
@@ -90,7 +87,6 @@
         <%-- display error messages --%> 
         
         <p><%= session.getAttribute("searched") %><p>
-        <p><%= IDvalidated %><p>
         <p><%= session.getAttribute("dateValidated") %><p>
         
         <%-- form to search for an order --%>     
@@ -99,7 +95,7 @@
             <table>
                 <tr>
                     <td><label for="orderID">Order ID: </label></td>
-                    <td><input type="int" id="orderID" name="orderID"></td>
+                    <td><input type="int" id="orderID" name="orderID" placeholder="<%=session.getAttribute("IDValidated")%>"></td>
                 </tr>
                     <td><label for="orderDate">Order Date: </label></td>
                     <td><input type="date" id="orderDate" name="orderDate"></td>
