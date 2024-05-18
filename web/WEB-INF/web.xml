@@ -5,7 +5,8 @@
         <servlet-name>AddStaffServlet</servlet-name>
         <servlet-class>isdcontroller.AddStaffServlet</servlet-class>
     </servlet>
-        <servlet-mapping>
+    
+    <servlet-mapping>
         <servlet-name>AddStaffServlet</servlet-name>
         <url-pattern>/AddStaffServlet</url-pattern> <!-- Adjust URL pattern as needed -->
     </servlet-mapping>  
