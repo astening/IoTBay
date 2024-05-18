@@ -26,38 +26,12 @@ import java.util.logging.Logger;
  */
 
 public class OrderFetchAll extends HttpServlet {
-    
-    private DBConnector db;
-
-    private DBManager manager;
-
-    private Connection conn;
-    
-    @Override //Create an instance of DBConnector for the deployment session
-
-    public void init() {
-
-        try {
-
-            db = new DBConnector();
-
-        } catch (ClassNotFoundException | SQLException ex) {
-
-            Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE, null, ex);
-
-        }      
-
-    }
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
      */
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -75,15 +49,10 @@ public class OrderFetchAll extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
      */
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -108,22 +77,16 @@ public class OrderFetchAll extends HttpServlet {
         // Create a validator object and clear the session
         Validator validator = new Validator() ;
         validator.clear(session) ;
-
         
-        // set up db manager
-        conn = db.openConnection();       
-        try {
-            manager = new DBManager(conn);
-        } catch (SQLException ex) {
-            Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        // retrieve the manager instance from session
+        DBManager manager = (DBManager) session.getAttribute("manager") ;
         
-        // set up ArrayList or order for search results
+        // set up ArrayList and order for search results
         ArrayList<Order> list = new ArrayList() ;
         Order resultOrder ;
         
-        // for now, we get all
-        try { // need to add an if else --> if staff, fetch all, if user, fetch user orders, if not logged in, fetch session stuff??
+        // return all orders
+        try { // need to add an if else --> if staff, fetch all, if user, fetch user orders, if not logged in, fetch session orders?
 //                    
             list = manager.fetchAllOrders() ;
             session.setAttribute("searched", "Search request sent");
@@ -133,8 +96,6 @@ public class OrderFetchAll extends HttpServlet {
             session.setAttribute("searched", "Search not successful") ;
         }
 
-        
-        // pretty sure this could be better
         request.getRequestDispatcher("orders.jsp").include(request, response) ;
     }
 
@@ -146,6 +107,6 @@ public class OrderFetchAll extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 
 }
