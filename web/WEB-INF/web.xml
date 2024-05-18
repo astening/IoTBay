@@ -3,7 +3,7 @@
     <servlet>
         <servlet-name>ConnServlet</servlet-name>
         <servlet-class>isdcontroller.ConnServlet</servlet-class>
-        <!--<load-on-startup>1</load-on-startup>-->
+        <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet>
         <servlet-name>UpdateStatusServlet</servlet-name>
