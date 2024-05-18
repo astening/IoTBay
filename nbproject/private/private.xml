@@ -1,4 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>src/java/isdcontroller/AddStaffServlet.java</file>
+            <file>src/java/isdcontroller/DeleteStaffServlet.java</file>
+            <file>src/java/isdmodeldao/DBConnector.java</file>
+            <file>src/java/isdcontroller/FindStaffServlet.java</file>
+            <file>src/java/isdcontroller/UpdateStaffServlet.java</file>
+            <file>src/java/isdcontroller/Validator.java</file>
+            <file>src/java/isdmodel/Invoice.java</file>
+            <file>web/StaffInformationManagement.jsp</file>
+            <file>src/java/isdmodeldao/DBManager.java</file>
+            <file>web/style.css</file>
+            <file>src/java/isdcontroller/StaffInformationServlet.java</file>
+            <file>src/java/isdcontroller/ShowAllStaffServlet.java</file>
+            <file>web/css/style.css</file>
+            <file>src/java/isdmodel/User.java</file>
+            <file>web/register.jsp</file>
+            <file>web/main.jsp</file>
+            <file>web/logout.jsp</file>
+            <file>src/java/isdcontroller/LoginServlet.java</file>
+        </group>
+    </open-files>
 </project-private>

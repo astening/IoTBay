@@ -12,10 +12,16 @@
         <link rel="stylesheet" href="style.css">
         <title>IOT Bay Main Page</title>
     </head>
-    <body>
+    <body onload="startTime(); resetSearch();">
+     <div><span class="time" id="time"></span></div>
         <% 
-            User user = new User(123, "James Potter", "james@gmail.com", "password");
-            session.setAttribute("user", user);
+            User user = (User)session.getAttribute("user");
+            
+            // Check if the user is a System Admin
+            boolean isSystemsAdmin = false;
+            if (user != null && user.getPosition().equals("Systems Admin")) {
+                isSystemsAdmin = true;
+            }
         %>
         <h1>User Profile</h1>
         <table id="table">
@@ -25,22 +31,21 @@
                 <th>Password</th>
             </tr>
             <tr>
-                <td>${user.name}</td>
+                <td>${user.fname} ${user.lname}</td>
                 <td>${user.email}</td>
                 <td>${user.password}</td>
             </tr>
         </table>
-        <div> 
-        <br>
-        <br>
-            <a class ="button" href="logout.jsp"> Logout </a>
-        </div>
-            
-        <div> 
-        <br>
-        <br>
+
             <a class ="button" href="PaymentMethodServlet?userID=<%=user.getUserID()%>"> Edit Payment Details </a>
-        </div>
-        <jsp:include page="/ConnServlet" flush="true"/>
-    </body>
-</html>
+
+            <br>
+            <br>
+                <a class ="button" href="logout.jsp"> Logout </a>
+                 <!-- Check if the user is a System Admin, then display the button -->
+                 <br>
+                 <br>
+                 <br>
+                <% if (isSystemsAdmin) { %>
+                  <a class="button" href="StaffInformationManagement.jsp">Manage Staff</a>
+               <% } %>

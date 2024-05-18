@@ -1,11 +1,5 @@
-CREATE TABLE Role (
-    roleID INT NOT NULL,
-    roleName VARCHAR(10),
-    CONSTRAINT Role_PK PRIMARY KEY (roleID)
-);
-
 CREATE TABLE Users (
-    userID INT NOT NULL,
+    userID INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     fName VARCHAR(50),
     lName VARCHAR(50),
     phoneNo INT,
@@ -17,14 +11,12 @@ CREATE TABLE Users (
     postCode VARCHAR(4),
     activation BOOLEAN,
     registrationDate DATE,
-    roleID INT,
-    CONSTRAINT Users_PK PRIMARY KEY (UserID),
-    CONSTRAINT Users_FK FOREIGN KEY (roleID) REFERENCES Role(roleID)
+    position VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE Orders (
     orderID INT NOT NULL,
-    orderDate DATE,
+    orderDate VARCHAR(20),
     status VARCHAR(10),
     totalNoItems INT,
     totalPrice DOUBLE,
@@ -50,26 +42,16 @@ CREATE TABLE Invoice (
   CONSTRAINT Invoice_FK FOREIGN KEY (userID) REFERENCES Users(userID)
 );
 
-CREATE TABLE PaymentMethod (
-  paymentMethodID INT NOT NULL AUTO_INCREMENT,
-  userID INT NOT NULL,
-  cardName VARCHAR(40),
-  cardNo INT,
-  expiryDate INT,
-  CVV INT,
-  CONSTRAINT PaymentMethod_PK PRIMARY KEY (paymentMethodID),
-  CONSTRAINT PaymentMethod_FK FOREIGN KEY (userID) REFERENCES Users(userID)
-);
-
 CREATE TABLE Payment (
   paymentID INT NOT NULL,
-  paymentMethodID INT,
-  invoiceID INT NOT NULL,
   paymentDate DATE,
   paymentAmt FLOAT,
-  CONSTRAINT Payment_PK PRIMARY KEY (paymentID),
-  CONSTRAINT Payment_FK1 FOREIGN KEY (paymentMethodID) REFERENCES PaymentMethod(paymentMethodID),
-  CONSTRAINT Payment_FK2 FOREIGN KEY (invoiceID) REFERENCES Invoice(invoiceID)
+  paymentMethod VARCHAR(20),
+  cardNo INT,
+  CVV INT,
+  expiryDate DATE,
+  cardName VARCHAR(40),
+  CONSTRAINT Payment_PK PRIMARY KEY (paymentID)
 );
 
 CREATE TABLE AccessLog (
@@ -81,7 +63,7 @@ CREATE TABLE AccessLog (
   CONSTRAINT AccessLog_FK FOREIGN KEY (userID) REFERENCES Users(userID)
 );
 
-CREATE TABLE Product (
+CREATE TABLE Products (
   ProductID INT NOT NULL,
   ProductName VARCHAR(30) NOT NULL,
   ProductType VARCHAR(20),
@@ -97,4 +79,3 @@ CREATE TABLE OrderLineItem (
     CONSTRAINT OrderLineItem_FK1 FOREIGN KEY (orderID) REFERENCES Orders(orderID),
     CONSTRAINT OrderLineItem_FK2 FOREIGN KEY (productID) REFERENCES Product(productID)
 );
-

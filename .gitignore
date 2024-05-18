@@ -1,3 +1,11 @@
 /nbproject/private/
 /build/
 /dist/
+*.log
+*.ctrl
+iotdb/seg0/c6e0.dat
+iotdb/log/log1.dat
+iotdb/log/log.ctrl
+derby.log
+*.log
+iotdb/log/log1.dat

@@ -1,0 +1,14 @@
+Sat May 18 19:49:47 AEST 2024 : Apache Derby Network Server - 10.17.1.0 - (1913217) started and ready to accept connections on port 1527
+----------------------------------------------------------------
+Sat May 18 19:50:04 AEST 2024:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.17.1.0 - (1913217): instance a816c00e-018f-8b1b-8275-ffffd9893647 
+on database directory C:\Users\William Sinclair\OneDrive - UTS\Documents\GitHub\IoTBay\iotdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@70dea4e 
+Loaded from file:/C:/Users/William%20Sinclair/Downloads/Netbeans%20Drivers/db-derby-10.17.1.0-bin/db-derby-10.17.1.0-bin/lib/derby.jar
+java.vendor=Azul Systems, Inc.
+java.runtime.version=21.0.2+13-LTS
+user.dir=C:\Users\William Sinclair\Downloads\Netbeans Drivers\db-derby-10.17.1.0-bin\db-derby-10.17.1.0-bin
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=C:\Users\William Sinclair\OneDrive - UTS\Documents\GitHub\IoTBay
+Database Class Loader started - derby.database.classpath=''
