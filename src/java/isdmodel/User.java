@@ -71,6 +71,7 @@ public User(int userID, String fname, String lname, Integer phoneNo, String emai
 
     public void setUserID(int userID) {
         this.userID = userID;
+        }
       
     public void setPhoneNo(Integer phoneNo) {
         this.phoneNo = phoneNo;
