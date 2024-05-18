@@ -26,6 +26,34 @@
             session.getAttribute("resultOrder") ;
         %>        
         <h1>Orders Page</h1>
+        <h2>Cancel Order</h2>
+        <%-- form to cancel order --%>    
+        <%-- display error messages --%>
+        <% if(updated==null ) { //do not display initial values on start-up %>
+        <% } else { // display relevant response message %>
+        <p><%= updated %><p>
+        <% }
+        if(IDvalidated.equals("Provide an order ID")) { %>
+        <p><%= IDvalidated %><p>
+        <% } %>
+       
+        <form action="UpdateOrderStatus" method="post">
+            <table>
+                <tr>
+                    <td><label for="orderID">Order ID: </label></td>
+                    <td><input type="int" id="orderID" name="orderID"></td>
+                </tr>
+                <tr>
+                    <!--<td><label for="status">Status: </label></td>-->
+                    <td><input type="hidden" id="status" name="status" value="Cancelled"></td>
+                </tr>
+                <br>
+                <tr>
+                    <td><input class="button" type="submit" value="Update"></td>
+                </tr>
+            </table>
+        </form>
+        
         <h2>Update order status - staff only</h2>
         
         <%-- display error messages --%>
