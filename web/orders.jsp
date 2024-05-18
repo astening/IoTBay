@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="isdmodel.Order"%>
+<%@page import="isdmodel.User" %>
 <%@page import="java.util.ArrayList"%>
 
 <!DOCTYPE html>
@@ -35,7 +36,7 @@
             <p><%= statusValidated %><p>
             <% } else if(IDvalidated.equals("Provide an order ID")) { %>
             <p><%= IDvalidated %><p>
-            <% } else { // what do I do here %>
+            <% } else {%>
             <% }%>
         <% } %>
             

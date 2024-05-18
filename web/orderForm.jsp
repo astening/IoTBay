@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="isdmodel.Order" %>
 <%@page import="isdmodel.User" %>
+<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -31,44 +32,8 @@
             <%= request.getParameter("submittedOrderID") %>
             Your ID is: <%= session.getAttribute("returnID") %>
         </p>
-        
-        <%-- display order form to submit, or to update --%>
-        <% if(request.getParameter("orderID")==null) { // this part doesnt work %>
         <form action="OrderFormServlet" method="POST">
             <table>
-                <tr>
-                    <td><label for="productID">Product ID: </label></td>
-                    <td><input type="int" id="productID" name="productID" value="${orderID}"></td>
-                </tr>
-                <tr>
-                    <td><label for="noItems">Quantity: </label></td>
-                    <td><input type="int" id="noItems" name="noItems"></td>
-                </tr>
-                <tr>
-                    <% //add hidden fields here for user ID %>
-                </tr>
-            </table>
-            <br>
-            <button>Cancel</button>
-            <button>Save</button>
-            <button>Submit my order</button>
-        </form>          
-        <% } else { %>
-        <p>Update order tbc</p>
-        <% } %>
-        
-        <%-- display order form to update --%>
-        <h1>Update Order</h1>
-        <%= quantityValidated %>
-        <%= IDValidated %>
-        <%= updated %>        
-        
-        <form action="UpdateOrderForm" method="POST">
-            <table>
-                <tr>
-                    <td><label for="orderID">Order ID: </label></td>
-                    <td><input type="int" id="orderID" name="orderID"></td>
-                </tr>
                 <tr> 
                     <td><label for="productID">Product ID: </label></td>
                     <td><input type="int" id="productID" name="productID"></td>
@@ -81,6 +46,48 @@
             <br>
             <button>Cancel</button>
             <button>Save</button>
+            <button>Submit my order</button>
+        </form>         
+        
+        <%-- display order form to update --%>
+        <h1>Update Order</h1>
+        <%= quantityValidated %>
+        <%= IDValidated %>
+        <%= updated %>        
+        
+        <%-- attempt to iterate through list --%>
+        <%
+                
+            ArrayList<Order> list = (ArrayList<Order>) session.getAttribute("resultList") ;
+            if (list!=null) {
+                for (Order i: list) {
+//                    order.getProductID() ; // in order line, not order
+                    i.getNoItems() ;
+                }
+            }
+        %>
+        <form action="UpdateOrderForm" method="POST">
+            <table>
+                <tr>
+                    <td><label for="orderID">Order ID: </label></td>
+                    <td><input type="int" id="orderID" name="orderID"></td>
+                </tr>
+                <tr>
+                    <td><label for="orderDate">Order Date: </label></td>
+                    <td><input type="date" id="orderDate" name="orderDate"></td>
+                </tr>
+                <tr> 
+                    <td><label for="productID">Product ID: </label></td>
+                    <td><input type="int" id="productID" name="productID"></td>
+                </tr>
+                <tr>
+                    <td><label for="noItems">Quantity: </label></td>
+                    <td><input type="int" id="noItems" name="noItems"></td>
+                </tr>
+            </table>
+            <br>
+            <button>Cancel</button>
+            <button><a href="OrderSearchServlet">Retrieve details</a></button>
             <button>Update my order</button>
         </form>         
         <a href="main.jsp">Main Page</a>
