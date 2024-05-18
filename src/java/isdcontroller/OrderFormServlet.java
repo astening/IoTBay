@@ -97,12 +97,12 @@ public class OrderFormServlet extends HttpServlet {
         DBManager manager = (DBManager) session.getAttribute("manager") ;        
         
         // Check variables are valid before using manager to perform update
-        if(validator.checkEmpty(2, productID)) {
+        if(validator.checkEmptyOrder(2, productID)) {
             session.setAttribute("IDValidated", "Please provide a product ID") ;
             request.setAttribute("updated", "No change made yet") ;
             session.setAttribute("returnID", "") ;
         }
-        else if (validator.checkEmpty(2, itemQuantity)) {
+        else if (validator.checkEmptyOrder(2, itemQuantity)) {
             session.setAttribute("quantityValidated", "Please provide a quantity") ;
             request.setAttribute("updated", "No change made yet") ;
             session.setAttribute("returnID", "") ;
@@ -110,7 +110,7 @@ public class OrderFormServlet extends HttpServlet {
 //        else if (!validator.validateNumber(itemQuantity)) { // this isnt working properly
 //            session.setAttribute("IDValidated", "Please enter a valid quantity number above 0") ;
 //        }
-        else if (!validator.validateNumber(productID)) {
+        else if (!validator.validateOrderNumber(productID)) {
             session.setAttribute("IDValidated", "Please provide a valid product ID") ;
             request.setAttribute("updated", "No change made yet") ;
             session.setAttribute("returnID", "") ;

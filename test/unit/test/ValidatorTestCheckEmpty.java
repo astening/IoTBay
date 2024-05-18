@@ -27,31 +27,31 @@ public class ValidatorTestCheckEmpty {
     @Test
     public void testCheckEmptyNumberEmpty() { // number is correctly identified as empty
         // this isnt woring
-        boolean res = validator.checkEmpty(0, "New");
+        boolean res = validator.checkEmptyOrder(0, "New");
         assertEquals(true,res) ;
     }
     
     @Test
     public void testCheckEmptyStatusEmpty() { // status is correctly identified as empty
-        boolean res = validator.checkEmpty(1, "");
+        boolean res = validator.checkEmptyOrder(1, "");
         assertEquals(true,res) ;
     }
     
     @Test
     public void testCheckEmptyStatusBothEmpty() { // both correctly identified as empty
-        boolean res = validator.checkEmpty(0, "") ;
+        boolean res = validator.checkEmptyOrder(0, "") ;
         assertEquals(true,res) ;
     }
     
     @Test
     public void testCheckEmptyNoneEmpty() { // both identified as not empty
-        boolean res = validator.checkEmpty(1, "Complete") ;
+        boolean res = validator.checkEmptyOrder(1, "Complete") ;
         assertEquals(false,res) ;
     }
     
     @Test
     public void testCheckEmptyNull() { // both identified as empty ie null
-        boolean res = validator.checkEmpty(0, null) ;
+        boolean res = validator.checkEmptyOrder(0, null) ;
         assertEquals(true,res) ;
     }
 

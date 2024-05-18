@@ -106,15 +106,15 @@ public class OrderSearchServlet extends HttpServlet {
         Order resultOrder ;
 
             // check that the values are filled in and correct before sending to db
-            if (validator.checkEmpty(2, orderID)) {
+            if (validator.checkEmptyOrder(2, orderID)) {
                 session.setAttribute("IDValidated", "ID is empty") ;
                 session.setAttribute("resultList", null) ;
             }
-            else if (validator.checkEmpty(2, orderDate)) {
+            else if (validator.checkEmptyOrder(2, orderDate)) {
                 session.setAttribute("dateValidated", "Date is empty") ;
                 session.setAttribute("resultList", null) ;
             }
-            else if (!validator.validateNumber(orderID)) {
+            else if (!validator.validateOrderNumber(orderID)) {
                 session.setAttribute("IDvalidated", "Fill in a valid ID") ;
                 session.setAttribute("resultList", null) ;
             }

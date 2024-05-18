@@ -26,19 +26,19 @@ public class ValidatorTestStatusNumber {
     
     @Test
     public void testValidateStatusValid() { // status is valid
-        boolean res = validator.validateStatus("New");
+        boolean res = validator.validateOrderStatus("New");
         assertEquals(true,res) ;
     }
     
     @Test
     public void testValidateStatusInvalid() { // status is invalid
-        boolean res = validator.validateStatus("New2");
+        boolean res = validator.validateOrderStatus("New2");
         assertEquals(false,res) ;
     }
     
     @Test
     public void testValidateStatusInvalidSpace() { // status is invalid
-        boolean res = validator.validateStatus("New order");
+        boolean res = validator.validateOrderStatus("New order");
         assertEquals(false,res) ;
     }
     
@@ -46,43 +46,43 @@ public class ValidatorTestStatusNumber {
     
     @Test
     public void testValidateNumberValid() {
-        boolean res = validator.validateNumber("1") ; // number is valid
+        boolean res = validator.validateOrderNumber("1") ; // number is valid
         assertEquals(true, res) ;
     }
     
     @Test
     public void testValidateNumberValidMultiple() {
-        boolean res = validator.validateNumber("13") ; // double digit number is valid
+        boolean res = validator.validateOrderNumber("13") ; // double digit number is valid
         assertEquals(true, res) ;
     }
     
     @Test
     public void testValidateNumberInvalidLetter() {
-        boolean res = validator.validateNumber("1a") ; // letter is invalid
+        boolean res = validator.validateOrderNumber("1a") ; // letter is invalid
         assertEquals(false, res) ;
     }
     
     @Test
     public void testValidateNumberInvalidCharacter() {
-        boolean res = validator.validateNumber("12!") ; // character is invalid
+        boolean res = validator.validateOrderNumber("12!") ; // character is invalid
         assertEquals(false, res) ;
     }
     
     @Test
     public void testValidateNumberInvalidNegative() {
-        boolean res = validator.validateNumber("-2") ; // negative number is invalid
+        boolean res = validator.validateOrderNumber("-2") ; // negative number is invalid
         assertEquals(false, res) ;
     }
     
     @Test
     public void testValidateNumberNEmpty() {
-        boolean res = validator.validateNumber("") ; // null is invalid
+        boolean res = validator.validateOrderNumber("") ; // null is invalid
         assertEquals(false, res) ;
     }
     
     @Test
     public void testValidateNumberNull() {
-        boolean res = validator.validateNumber(null) ; // null is invalid
+        boolean res = validator.validateOrderNumber(null) ; // null is invalid
         assertEquals(false, res) ;
     }
     

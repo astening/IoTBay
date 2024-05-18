@@ -64,14 +64,14 @@ import isdmodeldao.*;
 
             // check that the values are filled in and correct
             // before updating the db
-            if(validator.checkEmpty(orderID, status)) {
+            if(validator.checkEmptyOrder(orderID, status)) {
                 session.setAttribute("statusValidated", "Provide a status") ;
                 session.setAttribute("IDvalidated", "Provide a valid order ID") ;
             }
-            else if (!validator.validateNumber(stringOrderID)) {
+            else if (!validator.validateOrderNumber(stringOrderID)) {
                 session.setAttribute("IDvalidated", "Fill in a valid ID") ;
             }
-            else if (!validator.validateStatus(status)) {
+            else if (!validator.validateOrderStatus(status)) {
                 session.setAttribute("statusValidated", "Fill in a valid status") ;
             }
             else {

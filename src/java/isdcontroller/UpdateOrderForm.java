@@ -101,22 +101,22 @@ public class UpdateOrderForm extends HttpServlet {
         session.setAttribute("updated", "Order was not submitted") ;
         
         // Check variables are valid before using manager to perform update
-        if(validator.checkEmpty(2, productID)) {
+        if(validator.checkEmptyOrder(2, productID)) {
             session.setAttribute("IDValidated", "Please provide a product ID") ;
             session.setAttribute("updated", "Order was not submitted") ;
         }
-        else if (validator.checkEmpty(2, itemQuantity)) {
+        else if (validator.checkEmptyOrder(2, itemQuantity)) {
             session.setAttribute("quantityValidated", "Please provide a quantity") ;
             session.setAttribute("updated", "Order was not submitted") ;
         }
-        else if (validator.checkEmpty(2, orderID)) {
+        else if (validator.checkEmptyOrder(2, orderID)) {
             session.setAttribute("IDValidated", "Please provide an order ID") ;
             session.setAttribute("updated", "Order was not submitted") ;
         }        
 //        else if (!validator.validateNumber(itemQuantity)) { // this isnt working properly
 //            session.setAttribute("IDValidated", "Please enter a valid quantity number above 0") ;
 //        }
-        else if (!validator.validateNumber(productID)) {
+        else if (!validator.validateOrderNumber(productID)) {
             session.setAttribute("IDValidated", "Please provide a valid product ID") ;
             session.setAttribute("updated", "Order was not submitted") ;
         }

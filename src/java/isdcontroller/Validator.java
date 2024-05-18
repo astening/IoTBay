@@ -36,7 +36,7 @@ import java.util.regex.Pattern;
 
 
    // notifies user if values aren't filled
-   public boolean checkEmpty(int orderID, String status){  
+   public boolean checkEmptyOrder(int orderID, String status){  
       if (status!=null ) {
           if (orderID==0) {
               return true ;
@@ -50,13 +50,13 @@ import java.util.regex.Pattern;
    }
 
    // check status format
-   public boolean validateStatus(String status){                       
+   public boolean validateOrderStatus(String status){                       
       return validate(statusPattern,status);   
 
    }
 
    // checks that the number is a digit 0-9    
-   public boolean validateNumber(String number){
+   public boolean validateOrderNumber(String number){
        
        if (number==null) {
            return false ;
