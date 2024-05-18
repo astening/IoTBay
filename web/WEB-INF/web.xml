@@ -41,4 +41,113 @@
         <servlet-name>AddProductServlet</servlet-name>
         <url-pattern>/AddProductServlet</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>PaymentMethodServlet</servlet-name>
+        <servlet-class>isdcontroller.PaymentMethodServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>AddStaffServlet</servlet-name>
+        <servlet-class>isdcontroller.AddStaffServlet</servlet-class>
+    </servlet>
+        <servlet-mapping>
+        <servlet-name>AddStaffServlet</servlet-name>
+        <url-pattern>/AddStaffServlet</url-pattern> <!-- Adjust URL pattern as needed -->
+    </servlet-mapping>  
+    
+    <servlet>
+        <servlet-name>ConnServlet</servlet-name>
+        <servlet-class>isdcontroller.ConnServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>DeletePaymentMethodServlet</servlet-name>
+        <servlet-class>isdcontroller.DeletePaymentMethodServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PaymentsServlet</servlet-name>
+        <servlet-class>isdcontroller.PaymentsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PaymentMethodServlet</servlet-name>
+        <url-pattern>/PaymentMethodServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeletePaymentMethodServlet</servlet-name>
+        <url-pattern>/DeletePaymentMethodServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PaymentsServlet</servlet-name>
+        <url-pattern>/PaymentsServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ConnServlet</servlet-name>
+        <url-pattern>/ConnServlet</url-pattern> <!-- Adjust URL pattern as needed -->
+    </servlet-mapping>  
+    
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>isdcontroller.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern> <!-- Adjust URL pattern as needed -->
+    </servlet-mapping>   
+    
+    <servlet>
+        <servlet-name>DeleteStaffServlet</servlet-name>
+        <servlet-class>isdcontroller.DeleteStaffServlet</servlet-class>
+    </servlet> 
+        <servlet-mapping>
+        <servlet-name>DeleteStaffServlet</servlet-name>
+        <url-pattern>/DeleteStaffServlet</url-pattern> <!-- Adjust URL pattern as needed -->
+    </servlet-mapping>   
+          
+    <servlet>
+        <servlet-name>FindStaffServlet</servlet-name>
+        <servlet-class>isdcontroller.FindStaffServlet</servlet-class>
+    </servlet>
+        <servlet-mapping>
+        <servlet-name>FindStaffServlet</servlet-name>
+        <url-pattern>/FindStaffServlet</url-pattern> <!-- Adjust URL pattern as needed -->
+    </servlet-mapping>   
+    
+    <servlet>
+        <servlet-name>UpdateStaffServlet</servlet-name>
+        <servlet-class>isdcontroller.UpdateStaffServlet</servlet-class>
+    </servlet>  
+        <servlet-mapping>
+        <servlet-name>UpdateStaffServlet</servlet-name>
+        <url-pattern>/UpdateStaffServlet</url-pattern> <!-- Adjust URL pattern as needed -->
+    </servlet-mapping>   
+    
+    <servlet>
+        <servlet-name>RegistrationServlet</servlet-name>
+        <servlet-class>isdcontroller.RegistrationServlet</servlet-class>
+    </servlet>  
+        <servlet-mapping>
+        <servlet-name>RegistrationServlet</servlet-name>
+        <url-pattern>/RegistrationServlet</url-pattern> <!-- Adjust URL pattern as needed -->
+    </servlet-mapping>   
+    
+    <servlet>
+        <servlet-name>ShowAllStaffServlet</servlet-name>
+        <servlet-class>isdcontroller.ShowAllStaffServlet</servlet-class>
+    </servlet>  
+        <servlet-mapping>
+        <servlet-name>ShowAllStaffServlet</servlet-name>
+        <url-pattern>/ShowAllStaffServlet</url-pattern> <!-- Adjust URL pattern as needed -->
+    </servlet-mapping>   
+    
+    <servlet>
+        <servlet-name>StaffInformationServlet</servlet-name>
+        <servlet-class>isdcontroller.StaffInformationServlet</servlet-class>
+    </servlet>  
+        <servlet-mapping>
+        <servlet-name>StaffInformationServlet</servlet-name>
+        <url-pattern>/StaffInformationServlet</url-pattern> <!-- Adjust URL pattern as needed -->
+    </servlet-mapping>   
+    
 </web-app>

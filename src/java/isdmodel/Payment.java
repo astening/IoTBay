@@ -4,6 +4,7 @@
  */
 package isdmodel;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -12,23 +13,15 @@ import java.util.Date;
  */
 public class Payment {
     private int paymentID;
-    private Date paymentDate;
+    private LocalDate paymentDate;
     private double paymentAmount;
-    private String paymentMwthod;
-    private int cardNo;
-    private int cvv;
-    private Date expiryDate;
-    private String cardName;
+    private int orderID;
 
-    public Payment(int paymentID, Date paymentDate, double paymentAmount, String paymentMwthod, int cardNo, int cvv, Date expiryDate, String cardName) {
+    public Payment(int paymentID, int orderID, LocalDate paymentDate, double paymentAmount) {
         this.paymentID = paymentID;
+        this.orderID = orderID;
         this.paymentDate = paymentDate;
         this.paymentAmount = paymentAmount;
-        this.paymentMwthod = paymentMwthod;
-        this.cardNo = cardNo;
-        this.cvv = cvv;
-        this.expiryDate = expiryDate;
-        this.cardName = cardName;
     }
 
     public int getPaymentID() {
@@ -39,11 +32,11 @@ public class Payment {
         this.paymentID = paymentID;
     }
 
-    public Date getPaymentDate() {
+    public LocalDate getPaymentDate() {
         return paymentDate;
     }
 
-    public void setPaymentDate(Date paymentDate) {
+    public void setPaymentDate(LocalDate paymentDate) {
         this.paymentDate = paymentDate;
     }
 
@@ -55,46 +48,14 @@ public class Payment {
         this.paymentAmount = paymentAmount;
     }
 
-    public String getPaymentMwthod() {
-        return paymentMwthod;
+    public int getOrderID() {
+        return orderID;
     }
 
-    public void setPaymentMwthod(String paymentMwthod) {
-        this.paymentMwthod = paymentMwthod;
+    public void setOrderID(int orderID) {
+        this.orderID = orderID;
     }
 
-    public int getCardNo() {
-        return cardNo;
-    }
-
-    public void setCardNo(int cardNo) {
-        this.cardNo = cardNo;
-    }
-
-    public int getCvv() {
-        return cvv;
-    }
-
-    public void setCvv(int cvv) {
-        this.cvv = cvv;
-    }
-
-    public Date getExpiryDate() {
-        return expiryDate;
-    }
-
-    public void setExpiryDate(Date expiryDate) {
-        this.expiryDate = expiryDate;
-    }
-
-    public String getCardName() {
-        return cardName;
-    }
-
-    public void setCardName(String cardName) {
-        this.cardName = cardName;
-    }
-    
-    
-            
 }
+    
+    

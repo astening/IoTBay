@@ -4,9 +4,6 @@
  */
 package isdmodel;
 
-import java.util.Date;
-
-
 /**
  *
  * @author Ella
@@ -14,12 +11,12 @@ import java.util.Date;
 public class Order {
     
     private int orderID;
-    private Date orderDate;
+    private String orderDate;
     private String status;
     private int noItems;
     private double totalPrice;
 
-    public Order(int orderID, Date orderDate, String status, int noItems, double totalPrice) {
+    public Order(int orderID, String orderDate, String status, int noItems, double totalPrice) {
         this.orderID = orderID;
         this.orderDate = orderDate;
         this.status = status;
@@ -35,11 +32,11 @@ public class Order {
         this.orderID = orderID;
     }
 
-    public Date getOrderDate() {
+    public String getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(Date orderDate) {
+    public void setOrderDate(String orderDate) {
         this.orderDate = orderDate;
     }
 
