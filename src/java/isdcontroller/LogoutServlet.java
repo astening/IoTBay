@@ -10,8 +10,8 @@ import java.sql.*;
 import java.util.logging.*;
 import java.io.IOException;
 
-import uts.isd.model.dao.DBConnector;
-import uts.isd.model.dao.DBManager;
+import isdmodeldao.DBConnector;
+import isdmodeldao.DBManager;
 
 public class LogoutServlet extends HttpServlet {
 
