@@ -10,8 +10,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import utsisdmodeldao.DBConnector;
-import utsisdmodeldao.DBManager;
+import isdmodeldao.DBConnector;
+import isdmodeldao.DBManager;
 
 @WebServlet("/deleteAccount")
 public class DeleteUserServlet extends HttpServlet {
