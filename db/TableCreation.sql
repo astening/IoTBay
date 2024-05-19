@@ -33,11 +33,12 @@ CREATE TABLE Shipment (
 );
 
 CREATE TABLE AccessLog (
-  logID INT NOT NULL,
+  logID INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   userID INT NOT NULL,
   logDate DATE,
   logDetails VARCHAR(30),
-  CONSTRAINT AccessLog_PK PRIMARY KEY (logID),
+  loginTimeStamp TIMESTAMP,
+  logoutTimeStamp TIMESTAMP,
   CONSTRAINT AccessLog_FK FOREIGN KEY (userID) REFERENCES Users(userID)
 );
 
