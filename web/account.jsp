@@ -10,6 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <title>User Account</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>User Account Details</h1>

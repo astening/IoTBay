@@ -8,6 +8,7 @@
 <html>
 <head>
     <title>Error Registering</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Error Registering</h1>

@@ -12,6 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="style.css">
         <title>IOT Bay Main Page</title>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body onload="startTime(); resetSearch();">
      <div><span class="time" id="time"></span></div>

@@ -15,6 +15,7 @@
          <meta http-equiv="Content-Type" 
             content="text/html; charset=windows-1256">
          <title>Invalid Login</title>
+         <link rel="stylesheet" href="style.css">
       </head>
 	
       <body>
