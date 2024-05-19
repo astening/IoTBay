@@ -14,6 +14,20 @@
 </head>
 <body>
     <% User user = (User) session.getAttribute("user") ; %>
+    
+            <%
+            String existErr = (String) session.getAttribute("existErr");
+            String fnameErr = (String) session.getAttribute("fnameErr");
+            String lnameErr = (String) session.getAttribute("lnameErr");
+            String phoneErr = (String) session.getAttribute("phoneErr");
+            String emailErr = (String) session.getAttribute("emailErr");
+            String passErr = (String) session.getAttribute("passErr");
+            String addressErr = (String) session.getAttribute("addressErr");
+            String cityErr = (String) session.getAttribute("cityErr");
+            String stateErr = (String) session.getAttribute("stateErr");
+            String postErr = (String) session.getAttribute("postErr");
+            String positionErr = (String) session.getAttribute("positionErr");
+            %>
     <div class="navBar">
         <a class="navBarTitle">IoT Bay</a>
         <a class="node" href="main.jsp">Home</a>
@@ -41,15 +55,28 @@
     <p>Last Name: <%= user.getLname() %></p>
     <p>Email: <%= user.getEmail() %></p>
     <p>Phone Number: <%= user.getPhoneNo() %></p>
+    <p>Password: <%= user.getPassword() %></p>
+    <p>Address: <%= user.getAddress() %></p>
+    <p>City: <%= user.getCity() %></p>
+    <p>State: <%= user.getState() %></p>
+    <p>Postcode: <%= user.getPostcode() %></p>
+    <p>Activation: <%= user.isActivation() %> </p>
     <!-- Add more fields as needed -->
 
     <!-- Edit user details form -->
     <h2>Edit Details</h2>
     <form action="UpdateUserServlet" method="post">
-        <input type="text" name="firstName" value="<%= user.getFname() %>" required>
-        <input type="text" name="lastName" value="<%= user.getLname() %>" required>
-        <input type="email" name="email" value="<%= user.getEmail() %>" required>
-        <!-- Add more input fields for other details -->
+        <input type="text" placeholder="<%=(fnameErr != null ? fnameErr : "Enter First Name:")%>" id="fName" name="fName" required>
+        <input type="text" placeholder="<%=(lnameErr != null ? lnameErr : "Enter Last Name:")%>" id="lName" name="lName" required>
+        <input type="number" placeholder="<%=(phoneErr != null ? phoneErr : "Enter Phone Number:")%>" id="phoneNo" name="phoneNo" required>
+        <input type="text" placeholder="<%=(emailErr != null ? emailErr : "Enter Email:")%>" id="email" name="email" required>
+        <input type="password" placeholder="<%=(passErr != null ? passErr : "Enter Password:")%>" id="password" name="password" required>
+        <input type="text" placeholder="<%=(addressErr != null ? addressErr : "Enter Address:")%>" id="address" name="address" required>
+        <input type="text" placeholder="<%=(cityErr != null ? cityErr : "Enter City:")%>" id="city" name="city">
+        <input type="text" placeholder="<%=(stateErr != null ? stateErr : "Enter State:")%>" id="state" name="state" required>
+        <input type="number" placeholder="<%=(postErr != null ? postErr : "Enter Postcode:")%>" id="postcode" name="postcode" required>
+        <input type="text" placeholder="<%=(positionErr != null ? positionErr : "Enter Position:")%>" id="position" name="position" required>
+        
         <input type="submit" value="Save Changes">
     </form>
 

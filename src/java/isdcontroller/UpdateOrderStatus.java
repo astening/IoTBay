@@ -90,7 +90,7 @@ import isdmodeldao.*;
                         manager.updateOrderStatus(orderID, status) ;
                         session.setAttribute("updated", "Update successful");
                     } catch (SQLException ex) {
-                        Logger.getLogger(UpdateStatusServlet.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(UpdateOrderStatus.class.getName()).log(Level.SEVERE, null, ex);
                         session.setAttribute("updated", "Update not successful") ;
                     }                    
                 }
