@@ -21,6 +21,6 @@
             <file>web/main.jsp</file>
             <file>web/logout.jsp</file>
             <file>src/java/isdcontroller/LoginServlet.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
