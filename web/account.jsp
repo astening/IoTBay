@@ -13,10 +13,27 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <% User user = (User) session.getAttribute("user") ; %>
+    <div class="navBar">
+        <a class="navBarTitle">IoT Bay</a>
+        <a class="node" href="main.jsp">Home</a>
+        <a class="active" href="account.jsp">Account</a>
+        <a class="node" href="DeviceCatalogueServlet">Device Catalogue</a>
+        <a class="node" href="orders.jsp">Orders</a>
+        <a class="node" href="orderForm.jsp">Order Form</a>
+        <a class="node" href="payment.jsp">Payments</a>
+        <% if (user != null && user.getPosition().equals("Systems Admin")) { %>
+            <a class="node" href="customerInformationManagement.jsp">Manage Customers</a>
+            <a class="node" href="StaffInformationManagement.jsp">Manage Staff</a>
+        <% } %>
+        <div class="navBar-right">
+                <a class="node" href="logout.jsp">Logout</a>
+        </div>
+    </div>
+    
     <h1>User Account Details</h1>
     
     <!-- Display user details -->
-    <% User user = (User) session.getAttribute("user") ; %>
     <p>First Name: <%= user.getFname() %></p>
     <p>Last Name: <%= user.getLname() %></p>
     <p>Email: <%= user.getEmail() %></p>

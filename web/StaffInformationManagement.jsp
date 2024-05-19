@@ -12,6 +12,22 @@
     <title>Staff Information Management</title>
 </head>
 <body>
+
+    <div class="navBar">
+        <a class="navBarTitle">IoT Bay</a>
+        <a class="node" href="main.jsp">Home</a>
+        <a class="node" href="account.jsp">Account</a>
+        <a class="node" href="DeviceCatalogueServlet">Device Catalogue</a>
+        <a class="node" href="orders.jsp">Orders</a>
+        <a class="node" href="orderForm.jsp">Order Form</a>
+        <a class="node" href="payment.jsp">Payments</a>
+        <a class="node" href="customerInformationManagement.jsp">Manage Customers</a>
+        <a class="active" href="StaffInformationManagement.jsp">Manage Staff</a>
+        <div class="navBar-right">
+            <a class="node" href="logout.jsp">Logout</a>
+        </div>     
+    </div>
+    
     <h1>Staff Information Management</h1>
     
     <!-- Display staff information -->
@@ -243,7 +259,5 @@
         </form>
         <br>
         <br>  
-    <!-- Add a link to return to the main page -->
-    <a href="main.jsp" class="button"> Return to Main Page</a>
 </body>
 </html>
