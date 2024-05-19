@@ -19,6 +19,7 @@
     <body>
         <%
             // get variables
+            User user = (User) session.getAttribute("user") ;
             String statusValidated = (String) session.getAttribute("statusValidated") ;
             String updated = (String) session.getAttribute("updated") ;
             String IDvalidated = (String) session.getAttribute("IDValidated") ;
@@ -50,33 +51,37 @@
             </table>
         </form>
         
-        <h2>Update order status - staff only</h2>
         
-        <%-- display error messages --%>
-        <% if(updated==null ) { //|| updated.equals("No change made yet") //do not display initial values on start-up %>
-        <% } else { // display relevant response message %>
-            <p><%= updated %><p>
+        <% if(user!=null) { // check if staff %>
+            <% if(user.getPosition()!="Customer" && user.getPosition()!="Supplier") { // check if staff %>       
+            <%-- form to update status --%>  
+            <%-- display error messages --%>
+            <% if(updated==null ) { //|| updated.equals("No change made yet") //do not display initial values on start-up %>
+            <% } else { // display relevant response message %>
+                <p><%= updated %><p>
+
+            <% } %>            
+            <h2>Update order status - staff only</h2>
+            <form action="UpdateOrderStatus" method="post">
+                <table>
+                    <tr>
+                        <td><label for="orderID">Order ID: </label></td>
+                        <td><input type="int" id="orderID" name="orderID" placeholder="<%=session.getAttribute("IDValidated")%>"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="status">Status: </label></td>
+                        <td><input type="text" id="status" name="status" placeholder="<%=session.getAttribute("statusValidated")%>"></td>
+                    </tr>
+                    <br>
+                    <tr>
+                        <td><input class="button" type="submit" value="Update"></td>
+                    </tr>
+                </table>
+            </form>            
+            <% } %> 
         <% } %>
-            
-        <%-- form to update status --%>    
-        <form action="UpdateOrderStatus" method="post">
-            <table>
-                <tr>
-                    <td><label for="orderID">Order ID: </label></td>
-                    <td><input type="int" id="orderID" name="orderID" placeholder="<%=session.getAttribute("IDValidated")%>"></td>
-                </tr>
-                <tr>
-                    <td><label for="status">Status: </label></td>
-                    <td><input type="text" id="status" name="status" placeholder="<%=session.getAttribute("statusValidated")%>"></td>
-                </tr>
-                <br>
-                <tr>
-                    <td><input class="button" type="submit" value="Update"></td>
-                </tr>
-            </table>
-        </form>
-            
-        <!--Button to retrieve all orders-->   
+             
+        <!--Button to retrieve all orders, ideally staff only-->   
         <form action="OrderFetchAll" method="post">
             <button>Fetch all</button>
         </form>        
