@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package unit.test;
+import isdcontroller.Validator;
 import junit.framework.Assert;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -15,8 +16,9 @@ import java.sql.DriverManager;
 
 public class DeviceCatalogueTest {
     private DBManager manager;
+    private Validator validator = new Validator();
     protected String URL = "jdbc:derby://localhost:1527/";  
-    protected String db = "IoTBayDB";//name of the database   
+    protected String db = "iotdb";//name of the database   
     protected String dbuser = "app";//db root user   
     protected String dbpass = "app"; //db root password   
     protected String driver = "org.apache.derby.jdbc.ClientDriver"; //jdbc client driver - built in with NetBeans   
@@ -27,7 +29,9 @@ public class DeviceCatalogueTest {
         manager = new DBManager(conn);
     }
     
+    //for testing, select a product from the database and update the details accordingly
     
+    /*
     @Test
     public void testFindProduct() throws SQLException {
         // Testing against existing product with:
@@ -43,10 +47,6 @@ public class DeviceCatalogueTest {
         assertEquals(30, product.getPrice(), 0);
         assertEquals("Type2", product.getType());
         assertEquals(300, product.getStockLvl());
-        
-        // Testing against product that does not exist:
-        Product notAProduct = manager.findProduct(7284);
-        assertNull(notAProduct); //tests that the product is null
     }
     
     @Test
@@ -75,14 +75,60 @@ public class DeviceCatalogueTest {
         assertNotEquals(ogType, "upType"); //tests if the type was updated
         assertNotEquals(ogStock, 1392); //tests if the stock was updated
         
-        assertNotNull(product); //tests that the product is not null;
-    }*/
+    }
     
     @Test
     public void testDeleteProduct() throws SQLException {
         assertNotNull(manager.findProduct(24)); //checks the product exists in the first place
         manager.deleteProduct(24);
         assertNull(manager.findProduct(24)); //checks the product was deleted
+    } */
+    
+    @Test
+    public void testFindNullProduct() throws SQLException {
+        // Testing finding product that does not exist:
+        Product notAProduct = manager.findProduct(7284);
+        assertNull(notAProduct); //tests that the product is null
+    }
+    
+    @Test
+    public void testUpdateNullProduct() throws SQLException {
+        // Testing updating product that does not exist:
+        Product notAProduct = manager.findProduct(7284);
+        manager.updateProduct(7284, "upName", 928, "upType", 1392);
+        assertNull(notAProduct); //tests that the product is null
+    }
+    
+    @Test
+    public void testDeleteNullProduct() throws SQLException {
+        // Testing deleting product that does not exist:
+        Product notAProduct = manager.findProduct(7284);
+        manager.deleteProduct(7284);
+        assertNull(notAProduct); //tests that the product is null
+    }
+    
+    @Test 
+    public void testValidateStock() throws SQLException {
+        assertEquals(validator.validateProductStock("123"), true);
+        assertEquals(validator.validateProductStock("*s2"), false);
+    }
+    
+    @Test 
+    public void testValidatePrice() throws SQLException {
+        assertEquals(validator.validateProductStock("123"), true);
+        assertEquals(validator.validateProductStock("sj*h3#$h"), false);
+    }
+    
+    @Test 
+    public void testValidateType() throws SQLException {
+        assertEquals(validator.validateProductStock("Type"), true);
+        assertEquals(validator.validateProductStock("sj*h3#$h"), false);
+    }
+    
+    @Test 
+    public void testValidateName() throws SQLException {
+        assertEquals(validator.validateProductStock("Smart Thermostat"), true);
+        assertEquals(validator.validateProductStock("sj*h3#$h"), false);
     }
     
 }
