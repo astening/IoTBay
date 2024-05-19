@@ -26,20 +26,6 @@
                    String postErr = (String) session.getAttribute("postErr");
                    String positionErr = (String) session.getAttribute("positionErr");
                 %>
-
-    <div class="navBar">
-        <a class="navBarTitle">IoT Bay</a>
-        <a class="node" href="main.jsp">Home</a>
-        <a class="node" href="account.jsp">Account</a>
-        <a class="node" href="DeviceCatalogueServlet">Device Catalogue</a>
-        <a class="node" href="orders.jsp">Orders</a>
-        <a class="node" href="orderForm.jsp">Order Form</a>
-        <a class="node" href="payment.jsp">Payments</a>
-        <div class="navBar-right">
-            <a class="active" href="register.jsp">Register</a>
-            <a class="node" href="login.jsp">Login</a>
-        </div>
-    </div>
                 
          <!-- Create the registration form and the table to enter all user data with validation checks-->
         <h1>Register Account</h1>
