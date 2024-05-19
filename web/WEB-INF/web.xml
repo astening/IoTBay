@@ -227,7 +227,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>ViewAccessLogServlet</servlet-name>
-        <servlet-class>uts.isd.controller.ViewAccessLogServlet</servlet-class>
+        <servlet-class>isdcontroller.ViewAccessLogServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ViewAccessLogServlet</servlet-name>
@@ -235,7 +235,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>SearchAccessLogs</servlet-name>
-        <servlet-class>uts.isd.controller.SearchAccessLogs</servlet-class>
+        <servlet-class>isdcontroller.SearchAccessLogs</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>SearchAccessLogs</servlet-name>
