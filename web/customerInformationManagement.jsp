@@ -19,7 +19,21 @@
         <!--Script to toggle buttons for search/manage customer forms-->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </head>
-    <body>            
+    <body> 
+    <div class="navBar">
+        <a class="navBarTitle">IoT Bay</a>
+        <a class="node" href="main.jsp">Home</a>
+        <a class="node" href="account.jsp">Account</a>
+        <a class="node" href="DeviceCatalogueServlet">Device Catalogue</a>
+        <a class="node" href="orders.jsp">Orders</a>
+        <a class="node" href="orderForm.jsp">Order Form</a>
+        <a class="node" href="payment.jsp">Payments</a>
+        <a class="active" href="customerInformationManagement.jsp">Manage Customers</a>
+        <a class="node" href="StaffInformationManagement.jsp">Manage Staff</a>
+        <div class="navBar-right">
+                <a class="node" href="logout.jsp">Logout</a>
+        </div>
+    </div>        
         <h1>Customer Information Management</h1> 
         <!--Call servlet to generate list of all customers-->
             <form action="ShowAllCustomersServlet" method="get">
@@ -449,7 +463,5 @@
         
         <hr>
         <br>
-    <!-- Link to return to the main page -->
-    <a href="main.jsp" class="button"> Return to Main Page</a>
     </body>
 </html>
