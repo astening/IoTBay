@@ -20,7 +20,9 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </head>
     <body>
+
         <% User u = (User) session.getAttribute("user");%>
+
     <div class="navBar">
         <a class="navBarTitle">IoT Bay</a>
         <a class="node" href="main.jsp">Home</a>
