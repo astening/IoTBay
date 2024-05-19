@@ -26,6 +26,7 @@
                    String postErr = (String) session.getAttribute("postErr");
                    String positionErr = (String) session.getAttribute("positionErr");
                 %>
+                
          <!-- Create the registration form and the table to enter all user data with validation checks-->
         <h1>Register Account</h1>
         <form action="RegistrationServlet" method="POST">

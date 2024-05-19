@@ -25,7 +25,30 @@
             String IDvalidated = (String) session.getAttribute("IDValidated") ;
             session.getAttribute("manager") ;
             session.getAttribute("resultOrder") ;
-        %>        
+        %> 
+
+    <div class="navBar">
+        <a class="navBarTitle">IoT Bay</a>
+        <a class="node" href="main.jsp">Home</a>
+        <a class="node" href="account.jsp">Account</a>
+        <a class="node" href="DeviceCatalogueServlet">Device Catalogue</a>
+        <a class="active" href="orders.jsp">Orders</a>
+        <a class="node" href="orderForm.jsp">Order Form</a>
+        <a class="node" href="payment.jsp">Payments</a>
+        <% if (user != null && user.getPosition().equals("Systems Admin")) { %>
+            <a class="node" href="customerInformationManagement.jsp">Manage Customers</a>
+            <a class="node" href="StaffInformationManagement.jsp">Manage Staff</a>
+        <% } %>
+        <div class="navBar-right">
+            <% if (user==null){ %>
+                <a class="node" href="register.jsp">Register</a>
+                <a class="node" href="login.jsp">Login</a>
+            <% } else {%>
+                <a class="node" href="logout.jsp">Logout</a>
+            <% } %>
+        </div>
+    </div>        
+        
         <h1>Orders Page</h1>
         <h2>Cancel Order</h2>
         <%-- form to cancel order --%>    
@@ -165,8 +188,6 @@
         <!--Button to retrieve all orders--> 
         <form action="OrderFetchAll" method="post">
             <button>View All</button>
-        </form>
-        <a href="main.jsp">Main Page</a>
-        
+        </form>        
     </body>
 </html>

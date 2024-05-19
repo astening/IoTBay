@@ -1,3 +1,4 @@
+
 <%-- 
     Document   : orderForm
     Created on : 6 May 2024, 7:12:27 pm
@@ -125,6 +126,5 @@
             <button><a href="RetrieveOrder">Retrieve details</a></button>
             <button>Update my order</button>
         </form>         
-        <a href="main.jsp">Main Page</a>
     </body>
 </html>

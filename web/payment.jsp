@@ -8,6 +8,7 @@
 <%@page import="java.time.LocalDate"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="isdmodel.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -52,8 +53,31 @@
             ArrayList<Payment> payments = (ArrayList<Payment>) session.getAttribute("payments");
             ArrayList<Payment> searchResults = (ArrayList<Payment>) session.getAttribute("searchResults");
         %>
+
+    <% User user = (User) session.getAttribute("user") ; %>
+    <div class="navBar">
+        <a class="navBarTitle">IoT Bay</a>
+        <a class="node" href="main.jsp">Home</a>
+        <a class="node" href="account.jsp">Account</a>
+        <a class="node" href="DeviceCatalogueServlet">Device Catalogue</a>
+        <a class="node" href="orders.jsp">Orders</a>
+        <a class="node" href="orderForm.jsp">Order Form</a>
+        <a class="active" href="payment.jsp">Payments</a>
+        <% if (user != null && user.getPosition().equals("Systems Admin")) { %>
+            <a class="node" href="customerInformationManagement.jsp">Manage Customers</a>
+            <a class="node" href="StaffInformationManagement.jsp">Manage Staff</a>
+        <% } %>
+        <div class="navBar-right">
+            <% if (user==null){ %>
+                <a class="node" href="register.jsp">Register</a>
+                <a class="node" href="login.jsp">Login</a>
+            <% } else {%>
+                <a class="node" href="logout.jsp">Logout</a>
+            <% } %>
+        </div>
+    </div>        
+        
         <br>
-        <a class ="button" href="main.jsp">Return To Main</a>
         <h1>Payment Details</h1>
         <h2>Edit Card Details</h2>
         <h3><span> <%=(statusMsg!=null? statusMsg : "")%></h3>
