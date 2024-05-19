@@ -80,9 +80,3 @@ CREATE TABLE Payment (
     CONSTRAINT Payment_FK1 FOREIGN KEY (userID) REFERENCES Users(userID),
     CONSTRAINT Payment_FK2 FOREIGN KEY (orderID) REFERENCES Orders(orderID)
 );
-
-CREATE TABLE Role (
-    roleID INT NOT NULL,
-    roleName VARCHAR(10),
-    CONSTRAINT Role_PK PRIMARY KEY (roleID)
-);
