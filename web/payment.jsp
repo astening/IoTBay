@@ -107,7 +107,7 @@
                 <tr>
                     <td>CVC/CVV</td>
                 </tr>
-                <td><input name="cvv" type="text" value="<%=(cvvErr!=null? cvvErr : cvv)%>" placeholder="123" pattern="[0-9]{3}" maxlength="3" required></td>
+                <td><input name="cvv" type="text" value="<%=(cvvErr!=null? cvvErr : cvv)%>" placeholder="123" maxlength="3" required></td>
                 </tr>
             </table><br>
             <button>Submit</button>
