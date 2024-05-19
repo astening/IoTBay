@@ -134,7 +134,7 @@ public class OrderSearchServlet extends HttpServlet {
                     session.setAttribute("searched", "Search request sent");
                     session.setAttribute("resultList", list) ; // add order to session
                 } catch (SQLException ex) {
-                    Logger.getLogger(UpdateStatusServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(UpdateOrderStatus.class.getName()).log(Level.SEVERE, null, ex);
                     session.setAttribute("searched", "Search not successful") ;
                     session.setAttribute("resultList", null) ;
                 }
