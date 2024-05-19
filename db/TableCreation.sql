@@ -55,7 +55,7 @@ CREATE TABLE OrderLineItem (
     orderID INT,
     productID INT,
     CONSTRAINT OrderLineItem_FK1 FOREIGN KEY (orderID) REFERENCES Orders(orderID),
-    CONSTRAINT OrderLineItem_FK2 FOREIGN KEY (productID) REFERENCES Products(productID)
+    
 );
 
 CREATE TABLE PaymentMethod (
