@@ -50,21 +50,21 @@ INSERT INTO Users (fName, lName, phoneNo, email, password, address, city, state,
 
 -- Sample data for Orders table
 INSERT INTO Orders (orderDate, status, totalNoItems, totalPrice, userID) VALUES
-('2024-04-01', 'Completed', 5, 150.00, 1),
-('2024-04-02', 'Pending', 3, 75.00, 2),
-('2024-04-03', 'Processing', 2, 50.00, 3),
-('2024-04-04', 'Completed', 4, 100.00, 4),
-('2024-04-05', 'Cancelled', 1, 25.00, 5),
-('2024-04-06', 'Pending', 2, 60.00, 6),
-('2024-04-07', 'Processing', 3, 90.00, 7),
+('2024-04-01', 'Completed', 5, 150.00, 8),
+('2024-04-02', 'Pending', 3, 75.00, 9),
+('2024-04-03', 'Processing', 2, 50.00, 8),
+('2024-04-04', 'Completed', 4, 100.00, 9),
+('2024-04-05', 'Cancelled', 1, 25.00, 8),
+('2024-04-06', 'Pending', 2, 60.00, 10),
+('2024-04-07', 'Processing', 3, 90.00, 9),
 ('2024-04-08', 'Completed', 4, 120.00, 8),
 ('2024-04-09', 'Cancelled', 2, 55.00, 9),
 ('2024-04-10', 'Completed', 3, 80.00, 10),
-('2024-04-11', 'Pending', 4, 100.00, 11),
-('2024-04-12', 'Processing', 2, 45.00, 12),
-('2024-04-13', 'Completed', 5, 110.00, 13),
-('2024-04-14', 'Pending', 2, 70.00, 14),
-('2024-04-15', 'Processing', 3, 95.00, 15);
+('2024-04-11', 'Pending', 4, 100.00, 10),
+('2024-04-12', 'Processing', 2, 45.00, 10),
+('2024-04-13', 'Completed', 5, 110.00, 10),
+('2024-04-14', 'Pending', 2, 70.00, 8),
+('2024-04-15', 'Processing', 3, 95.00, 9);
 
 -- Sample data for Shipment table
 INSERT INTO Shipment (shipmentID, shipmentDate, carrier, trackingNo) VALUES
