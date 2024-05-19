@@ -123,6 +123,5 @@
             <button><a href="RetrieveOrder">Retrieve details</a></button>
             <button>Update my order</button>
         </form>         
-        <a href="main.jsp">Main Page</a>
     </body>
 </html>
