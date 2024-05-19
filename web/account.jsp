@@ -45,7 +45,7 @@
 
     <!-- Edit user details form -->
     <h2>Edit Details</h2>
-    <form action="EditUserServlet" method="post">
+    <form action="UpdateUserServlet" method="post">
         <input type="text" name="firstName" value="<%= user.getFname() %>" required>
         <input type="text" name="lastName" value="<%= user.getLname() %>" required>
         <input type="email" name="email" value="<%= user.getEmail() %>" required>

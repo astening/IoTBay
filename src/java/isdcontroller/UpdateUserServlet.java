@@ -67,7 +67,7 @@ public class UpdateUserServlet extends HttpServlet {
              } else {
              try{
                  manager.updateUser(userID, fName, lName, phoneNo, email, password, address, city, state, postcode, activation, position);
-                 response.sendRedirect("logout.jsp");
+                 request.getRequestDispatcher("account.jsp").forward(request, response);
                  System.out.println("User successfully updated in the database!");
              } catch (SQLException e) {
                  e.printStackTrace(); // Handle your exception here
