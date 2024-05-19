@@ -13,7 +13,7 @@
 </head>
 <body>
     
-    <%User user = session.getAttribute("user"); %>
+    <%User user = (User) session.getAttribute("user"); %>
 
     <div class="navBar">
         <a class="navBarTitle">IoT Bay</a>
@@ -71,7 +71,7 @@
             User foundStaff = (User) request.getAttribute("foundStaff");
             
             if (staffList != null && !staffList.isEmpty()) {
-                for (User user : staffList) {
+                for (User u : staffList) {
         %>
         
         <!-- Get the values of the users attributes and put them in the table columns-->
