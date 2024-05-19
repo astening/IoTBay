@@ -204,7 +204,7 @@ public void deleteUser(String email) throws SQLException {
 
 //fetch all staff members from the db
 public ArrayList<User> fetchStaff() throws SQLException{
-    String fetch = "select * from USERS";
+    String fetch = "SELECT * FROM USERS WHERE position IN ('Systems Admin', 'Salesperson', 'Clerk', 'Manager')";
     ResultSet rs = st.executeQuery(fetch);
     ArrayList<User> temp = new ArrayList();
     while (rs.next()) {
