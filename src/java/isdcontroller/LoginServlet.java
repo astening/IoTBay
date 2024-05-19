@@ -61,7 +61,7 @@ public class LoginServlet extends HttpServlet {
                 manager.addAccessLog(user.getUserID(), "User logged in", null);
                 response.sendRedirect("main.jsp");
             } else {
-                session.setAttribute("loginError", "Invalid email or password");
+                session.setAttribute("existErr", "User does not exist in the database!");
                 response.sendRedirect("login.jsp");
             }
         } catch (SQLException ex) {
