@@ -1,10 +1,15 @@
 <%-- 
-    Document   : test
-    Created on : 19 Mar 2024, 1:35:29 pm
-    Author     : anna
+    Document   : welcome
+    Created on : 16 May 2024, 11:32:28 pm
+    Author     : phoen
 --%>
+
+<!DOCTYPE html>
 <%@page import="isdmodel.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.ParseException" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,29 +17,23 @@
         <link rel="stylesheet" href="style.css">
         <title>Welcome Page</title>
         <%
-            String name = request.getParameter("name");
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
+            User user = (User)session.getAttribute("user");
         %>
     </head>
     <body>
-        <%if (name!=null) {%>
-            <h1>Welcome, <%=name%>!</h1>
+        <%if (user.getFname() !=null) {%>
+            <h1>Welcome, <%=user.getFname() %> <%=user.getLname() %>!</h1>
         <%}else{%>
             <h1>Welcome!</h1>
         <%}%>
-        <h3>Your email is <%=email%></h3>
-        <p>Your password is <%=password%></p>
+        <h3>Your email is <%=user.getEmail() %></h3>
+        <p>Your password is <%=user.getPassword() %></p>
         <div>
            <br>
-            <a class="button" href="index.html">Cancel</a>
+            <a class="button" href="index.jsp">Cancel</a>
             
             <a class="button" href="main.jsp">Main</a>
             
         </div>
-        <%
-            User user = new User(name, email, password);
-            session.setAttribute("user", user);
-        %>
     </body>
 </html>

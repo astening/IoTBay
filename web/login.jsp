@@ -1,7 +1,7 @@
 <%-- 
     Document   : login
-    Created on : 1 Apr 2024, 4:50:54 pm
-    Author     : anna
+    Created on : 16 May 2024, 11:31:32 pm
+    Author     : phoen
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -10,26 +10,34 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="style.css">
+        <script type="text/javascript" src="js/script.js"></script>
         <title>Login</title>
-        <% String email = request.getParameter("email");%>
-        <% String password = request.getParameter("password");%>
     </head>
 
     <body>
-        <h1>Login</h1>
-        <form action="welcome.jsp" method="post">
-            <table>
+        <div> <span class="time" id="time"></span></div>
+                <%
+                   String existError = (String) session.getAttribute("existError");
+                   String emailError = (String) session.getAttribute("emailError");
+                %>
+        <h1>Login <span class="message"> <%=(existError != null ? existError : "")%> </span></h1>
+        <form action="LoginServlet" method="post">
+            <table id="form_table">
                 <tr>
-                    <td><label for="Email">Email: </label></td>
-                    <td><input type="text" id="email" name="email" required="true"></td>
+                    <td>Email:</td>
+                    <td><input type="text" placeholder="<%=(emailError != null ? emailError : "Email:")%>" name="email" required></td>
                 </tr>
                 <tr>
-                    <td><label for="password">Password: </label></td>
-                    <td><input type="password" id="password" name="password" required="true"></td>
+                    <td>Password:</td>
+                    <td><input type="password" placeholder="Password:" name="password" required></td>
+                </tr>
+                <tr><td><td>
+                    <td><a href="CancelServlet" class="button">Cancel</a>
+                        <input class="button" type="submit" value="Log in">
+                    </td>
                 </tr>
             </table>
            <br>
-            <button>Login</button>
         </form>
     </body>
 </html>

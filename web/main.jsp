@@ -1,8 +1,9 @@
 <%-- 
     Document   : main
-    Created on : 2 Apr 2024, 1:37 pm
-    Author     : William
+    Created on : 16 May 2024, 11:31:54 pm
+    Author     : phoen
 --%>
+
 <%@page import="isdmodel.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,6 +14,7 @@
         <title>IOT Bay Main Page</title>
     </head>
     <body>
+     <div><span class="time" id="time"></span></div>
         <% 
             User user = (User)session.getAttribute("user");
         %>
@@ -22,17 +24,34 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Password</th>
+                <th>Phone Number</th>
+                <th>Address</th>
+                <th>Activation Status</th>
+                <th>Registration Date</th>
+                <th>Type</th>
             </tr>
             <tr>
-                <td>${user.name}</td>
+                <td>${user.fname} ${user.lname}</td>
                 <td>${user.email}</td>
                 <td>${user.password}</td>
+                <td>${user.phoneNo}</td>
+                <td>${user.address} ${user.city} ${user.state} ${user.postcode}</td>
+                <td>${user.activation}</td>
+                <td>${user.registrationDate}</td>
+                <td>${user.position}</td>
             </tr>
         </table>
-        <div> 
-        <br>
-        <br>
-            <a class ="button" href="logout.jsp"> Logout </a>
-        </div>
+            <br>
+            <br>
+                <a class ="button" href="logout.jsp"> Logout </a>
+                
+                 <br>
+                 <br>
+                 <br>
+                 <% if (user != null && user.getPosition().equals("Systems Admin")) { %>
+                 <p>You are a Systems Admin</p>
+                  <a class="button" href="customerInformationManagement.jsp">Customer Management List</a>
+                  <%   } %>
+                  
     </body>
 </html>

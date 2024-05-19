@@ -5,39 +5,33 @@
 package isdmodeldao;
 
 import java.sql.Connection;
-
 import java.sql.DriverManager;
-
 import java.sql.SQLException;
 
- 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
-public class DBConnector extends DB{
-
- 
-
-public DBConnector() throws ClassNotFoundException, SQLException {
-
-Class.forName(driver);
-
-conn = DriverManager.getConnection(URL+db, dbuser, dbpass);
-
-}
-
- 
-
-public Connection openConnection(){
-
-return this.conn;
-
-}
+/**
+ *
+ * @author phoen
+ */
+public class DBConnector extends DB {
+    public DBConnector() throws ClassNotFoundException, SQLException {
+    Class.forName(driver);
+    conn = DriverManager.getConnection(URL+db, dbuser, dbpass);
+    }
 
  
 
-public void closeConnection() throws SQLException {
+    public Connection openConnection(){
+    return this.conn;
+    }
 
-this.conn.close();
+ 
 
-}
-
+    public void closeConnection() throws SQLException {
+    this.conn.close();
+    }
+    
 }
