@@ -33,7 +33,7 @@
         <a class="node" href="DeviceCatalogueServlet">Device Catalogue</a>
         <a class="node" href="orders.jsp">Orders</a>
         <a class="active" href="orderForm.jsp">Order Form</a>
-        <% if (user!=null && user.getPosition().equals("Individual") || user.getPosition().equals("Company")){%>
+        <% if (user != null && (user.getPosition().equals("Individual") || user.getPosition().equals("Company"))){%>
             <a class="node" href="PaymentMethodServlet?userID=<%=user.getUserID()%>">Payments</a>
         <% } %>
         <% if (user != null && user.getPosition().equals("Systems Admin")) { %>
