@@ -9,3 +9,5 @@ iotdb/log/log.ctrl
 derby.log
 *.log
 iotdb/log/log1.dat
+*.dat
+*.dat

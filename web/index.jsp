@@ -20,7 +20,6 @@
     <body onload="startTime()">
 
     <% User user = (User) session.getAttribute("user") ; %>
-    
         
         <h1>Welcome to IoTBay!</h1>
         <div> <span class="time" id="time"> </span> </div>

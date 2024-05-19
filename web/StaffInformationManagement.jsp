@@ -13,17 +13,20 @@
 </head>
 <body>
     
-    <%User u = (User) session.getAttribute("user"); %>
+    <%User user = (User) session.getAttribute("user"); %>
 
     <div class="navBar">
         <a class="navBarTitle">IoT Bay</a>
         <a class="node" href="main.jsp">Home</a>
-        <a class="node" href="account.jsp">Account</a>
+        <% if (user != null) { %>
+            <a class="node" href="account.jsp">Account</a>
+        <% } %>
         <a class="node" href="DeviceCatalogueServlet">Device Catalogue</a>
         <a class="node" href="orders.jsp">Orders</a>
         <a class="node" href="orderForm.jsp">Order Form</a>
-        <% if (u != null && (u.getPosition().equals("Individual") || u.getPosition().equals("Company"))){%>
-            <a class="node" href="PaymentMethodServlet?userID=<%=u.getUserID()%>">Payments</a>
+        
+        <% if (user != null && (user.getPosition().equals("Individual") || user.getPosition().equals("Company"))){%>
+            <a class="node" href="PaymentMethodServlet?userID=<%=user.getUserID()%>">Payments</a>
         <% } %>
         <a class="node" href="customerInformationManagement.jsp">Manage Customers</a>
         <a class="active" href="StaffInformationManagement.jsp">Manage Staff</a>
@@ -71,7 +74,7 @@
             User foundStaff = (User) request.getAttribute("foundStaff");
             
             if (staffList != null && !staffList.isEmpty()) {
-                for (User user : staffList) {
+                for (User u : staffList) {
         %>
         
         <!-- Get the values of the users attributes and put them in the table columns-->
