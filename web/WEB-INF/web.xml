@@ -46,6 +46,7 @@
         <url-pattern>/ConnServlet</url-pattern>
         <!-- Adjust URL pattern as needed -->
     </servlet-mapping>
+    <servlet>
         <servlet-name>DeleteCustomerServlet</servlet-name>
         <servlet-class>isdcontroller.DeleteCustomerServlet</servlet-class>
     </servlet>
