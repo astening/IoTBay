@@ -40,14 +40,14 @@
             </tr>
         </table>
             <% if (!isSystemsAdmin && user!=null) { %>
-                <a class ="button" href="PaymentMethodServlet?userID=<%=user.getUserID()%>"> Edit Payment Details </a>
+                <br><a class ="button" href="PaymentMethodServlet?userID=<%=user.getUserID()%>"> Edit Payment Details </a><br>
             <% } %>
             <br>
             <br>
         <br><a href="index.jsp">Home Page</a><br>
         <br><a href="orders.jsp">Order Page</a><br>
         <br><a href="orderForm.jsp">Order Form</a><br>
-            <a class ="button" href="logout.jsp"> Logout </a>
+        <br><a class ="button" href="logout.jsp"> Logout </a><br>
              <!-- Check if the user is a System Admin, then display the button -->
              <br>
              <br>
