@@ -47,6 +47,7 @@
         <br><a href="index.jsp">Home Page</a><br>
         <br><a href="orders.jsp">Order Page</a><br>
         <br><a href="orderForm.jsp">Order Form</a><br>
+        <br><a href="DeviceCatalogueServlet">Devices</a><br>
          <form action="LogoutServlet" method="post">
             <input class="button" type="submit" value="Log out">
          </form>

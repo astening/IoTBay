@@ -1,6 +1,6 @@
 <%@ page import="isdmodel.User"%>
 <%@ page import="java.sql.*" %>
-<%@ page import="isdmodel.dao.*"%>
+<%@ page import="isdmodeldao.*"%>
 <%@ page import="isdmodel.Product"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

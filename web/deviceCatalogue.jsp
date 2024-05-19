@@ -1,6 +1,6 @@
 <%@ page import="isdmodel.User"%>
 <%@ page import="java.sql.*" %>
-<%@ page import="isdmodel.dao.*"%>
+<%@ page import="isdmodeldao.*"%>
 <%@ page import="isdmodel.Product"%>
 <%@ page import="java.util.ArrayList"%>
 
@@ -14,8 +14,7 @@
     </head>
     <body>
         <% 
-            //User user = (User)session.getAttribute("user");
-            User user = (User) new User("John","john@email.com","password123","Staff");
+            User user = (User) session.getAttribute("user");
             DBConnector connector = new DBConnector();
             Connection conn = connector.openConnection();
             DBManager db = new DBManager(conn);
@@ -35,7 +34,7 @@
         <hr>
         <div class="searchBar">
             <input class="searchInput" type="text" id="searchInput" onkeyup="searchProducts()" placeholder="Search for products..">
-            <%if(!user.getPosition().equals("Customer")) {%>
+            <%if(user != null && !user.getPosition().equals("Customer")) {%>
             <a class ="searchButton" href="addProduct.jsp"> Add Product </a>
             <%}%>
             </tr>
@@ -48,7 +47,7 @@
                 <th>Product Type</th>
                 <th>Unit Price</th>
                 <th>Stock Level</th>
-                <%if(!user.getPosition().equals("Customer")) {%>
+                <%if(user != null && !user.getPosition().equals("Customer")) {%>
                     <th>Update</th>
                     <th>Delete</th>
                 <%}%>
@@ -64,7 +63,7 @@
                 <td> <%out.println(p.getType()); %> </td>
                 <td> $<%out.println(p.getPrice()); %> </td>
                 <td> <%out.println(p.getStockLvl()); %> </td>
-                <%if(!user.getPosition().equals("Customer")) {%>
+                <%if(user != null && !user.getPosition().equals("Customer")) {%>
                 <td> <a class ="button" href="UpdateProductServlet?productID=<%out.println(p.getProductID());%>"> Update </a> </td>
                 <td> <a class ="button" href="DeleteProductServlet?productID=<%out.println(p.getProductID());%>"> Delete </a> </td>
                 <%}%>
