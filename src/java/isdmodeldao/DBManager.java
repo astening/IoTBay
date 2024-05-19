@@ -2,6 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+
 package isdmodeldao;
 
 /**
@@ -12,6 +13,7 @@ import isdmodel.Order;
 import isdmodel.Payment;
 import isdmodel.PaymentMethod;
 import isdmodel.User;
+import isdmodel.AccessLog;
 import java.sql.*;
 import java.util.ArrayList;
 import java.time.LocalDate;
@@ -138,6 +140,27 @@ public void addStaff(String fname, String lname, int phoneNo, String email, Stri
 
 //updating existing staff details in the database   
 public void updateStaff(int userID, String fName, String lName, int phoneNo, String email, String password, String address, String city, String state, int postcode, boolean activation, String position) throws SQLException {
+String query = "UPDATE Users SET fName=?, lName=?, phoneNo=?, email=?, password=?, address=?, city=?, state=?, postcode=?, activation=?, position=? WHERE userID=?";
+
+    try (PreparedStatement stmt = conn.prepareStatement(query)) {
+        stmt.setString(1, fName);
+        stmt.setString(2, lName);
+        stmt.setInt(3, phoneNo);
+        stmt.setString(4, email);
+        stmt.setString(5, password);
+        stmt.setString(6, address);
+        stmt.setString(7, city);
+        stmt.setString(8, state);
+        stmt.setInt(9, postcode);
+        stmt.setBoolean(10, activation);
+        stmt.setString(11, position);
+        stmt.setInt(12, userID);
+
+        stmt.executeUpdate();
+    }
+}
+
+public void updateUser(int userID, String fName, String lName, int phoneNo, String email, String password, String address, String city, String state, int postcode, boolean activation, String position) throws SQLException {
     String query = "UPDATE Users SET fName=?, lName=?, phoneNo=?, email=?, password=?, address=?, city=?, state=?, postcode=?, activation=?, position=? WHERE userID=?";
     
     try (PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -158,12 +181,22 @@ public void updateStaff(int userID, String fName, String lName, int phoneNo, Str
     }
 }   
 
+
 //delete a user from the database   
 public void deleteStaff(int userID) throws SQLException {
     String query = "DELETE FROM Users WHERE userID=?";
     
     try (PreparedStatement stmt = conn.prepareStatement(query)) {
         stmt.setInt(1, userID);
+        stmt.executeUpdate();
+    }
+}
+
+public void deleteUser(String email) throws SQLException {
+    String query = "DELETE * FROM Users WHERE email=?";
+    
+    try (PreparedStatement stmt = conn.prepareStatement(query)) {
+        stmt.setString(1, email);
         stmt.executeUpdate();
     }
 }
@@ -473,3 +506,98 @@ public boolean checkStaff(int userID) throws SQLException {
 
 }
 
+// Method to fetch access logs for a specific user
+public ArrayList<AccessLog> getUserAccessLogs(int userID) throws SQLException {
+        String query = "SELECT * FROM AccessLog WHERE userID = ?";
+        PreparedStatement stmt = conn.prepareStatement(query);
+        stmt.setInt(1, userID);
+        ResultSet rs = stmt.executeQuery();
+
+        ArrayList<AccessLog> logs = new ArrayList<>();
+        while (rs.next()) {
+            AccessLog log = new AccessLog(
+                rs.getInt("logID"),
+                rs.getInt("userID"),
+                rs.getTimestamp("loginTimestamp"),
+                rs.getTimestamp("logoutTimestamp"),
+                rs.getString("logDetails")
+            );
+            logs.add(log);
+        }
+        return logs;
+    }
+
+public ArrayList<AccessLog> getUserAccessLogsByDate(int userID, Date date) throws SQLException {
+    String query = "SELECT * FROM AccessLog WHERE userID = ? AND CAST(loginDateTime AS DATE) = ?";
+    ArrayList<AccessLog> logs = new ArrayList<>();
+
+    try (PreparedStatement stmt = conn.prepareStatement(query)) {
+        stmt.setInt(1, userID);
+        stmt.setDate(2, new java.sql.Date(date.getTime()));
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+            int logID = rs.getInt("logID");
+            Date loginDateTime = rs.getTimestamp("loginDateTime");
+            Date logoutDateTime = rs.getTimestamp("logoutDateTime");
+            String logDetails = rs.getString("logDetails");
+            logs.add(new AccessLog(logID, userID, loginDateTime, logoutDateTime, logDetails));
+        }
+    }
+
+    return logs;
+}
+
+public void addAccessLog(int userID, String logDetails, Timestamp logoutTimestamp) throws SQLException {
+    String query = "INSERT INTO AccessLog (userID, loginTimestamp, logoutTimestamp, logDetails) VALUES (?, ?, ?, ?)";
+    try (PreparedStatement stmt = conn.prepareStatement(query)) {
+        stmt.setInt(1, userID);
+        stmt.setTimestamp(2, new java.sql.Timestamp(new Date().getTime()));
+        stmt.setTimestamp(3, logoutTimestamp);
+        stmt.setString(4, logDetails);
+        stmt.executeUpdate();
+    }
+}
+
+public void updateLogoutTime(int userID) throws SQLException {
+    String query = "UPDATE AccessLog SET logoutTimestamp = ? WHERE userID = ? AND logoutTimestamp IS NULL";
+    try (PreparedStatement stmt = conn.prepareStatement(query)) {
+        stmt.setTimestamp(1, new java.sql.Timestamp(new Date().getTime()));
+        stmt.setInt(2, userID);
+        stmt.executeUpdate();
+    }
+}
+
+public void addUserLogout(int userID) throws SQLException {
+    ResultSet result = st.executeQuery("SELECT max(login) from USERS WHERE userID="+userID); 
+    
+    if(result.next()) {
+        Timestamp max = result.getTimestamp(1);
+    
+        String query = "UPDATE AcessLogs SET logoutTimestamp= CURRENT_TIMESTAMP WHERE userID="+userID+ " AND login='" +max+"'"; 
+        st.executeUpdate(query);
+    }
+}
+
+public ArrayList<AccessLog> searchUserAccessLogs(int userID, Date startDate, Date endDate) throws SQLException {
+        String query = "SELECT * FROM AccessLog WHERE userID = ? AND loginTimestamp BETWEEN ? AND ?";
+        PreparedStatement stmt = conn.prepareStatement(query);
+        stmt.setInt(1, userID);
+        stmt.setTimestamp(2, new Timestamp(startDate.getTime()));
+        stmt.setTimestamp(3, new Timestamp(endDate.getTime()));
+        ResultSet rs = stmt.executeQuery();
+
+        ArrayList<AccessLog> logs = new ArrayList<>();
+        while (rs.next()) {
+            AccessLog log = new AccessLog(
+                rs.getInt("logID"),
+                rs.getInt("userID"),
+                rs.getTimestamp("loginTimestamp"),
+                rs.getTimestamp("logoutTimestamp"),
+                rs.getString("logDetails")
+            );
+            logs.add(log);
+        }
+        return logs;
+    }
+}

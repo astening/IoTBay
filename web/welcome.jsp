@@ -3,7 +3,7 @@
     Created on : 19 Mar 2024, 1:35:29 pm
     Author     : anna
 --%>
-<%@page import="isdmodel.User"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.Date" %>
@@ -12,8 +12,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="style.css">
-        <title>Welcome Page</title>
+        <title>JSP Page</title>
         <%
             int userID = Integer.parseInt(request.getParameter("userID"));
             String fname = request.getParameter("fname");

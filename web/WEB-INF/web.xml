@@ -24,14 +24,17 @@
         <servlet-name>PaymentsServlet</servlet-name>
         <servlet-class>isdcontroller.PaymentsServlet</servlet-class>
     </servlet>
+
     <servlet-mapping>
         <servlet-name>PaymentMethodServlet</servlet-name>
         <url-pattern>/PaymentMethodServlet</url-pattern>
     </servlet-mapping>
+
     <servlet-mapping>
         <servlet-name>DeletePaymentMethodServlet</servlet-name>
         <url-pattern>/DeletePaymentMethodServlet</url-pattern>
     </servlet-mapping>
+
     <servlet-mapping>
         <servlet-name>PaymentsServlet</servlet-name>
         <url-pattern>/PaymentsServlet</url-pattern>
@@ -46,6 +49,7 @@
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>isdcontroller.LoginServlet</servlet-class>
     </servlet>
+
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern> <!-- Adjust URL pattern as needed -->
@@ -54,8 +58,9 @@
     <servlet>
         <servlet-name>DeleteStaffServlet</servlet-name>
         <servlet-class>isdcontroller.DeleteStaffServlet</servlet-class>
-    </servlet> 
-        <servlet-mapping>
+    </servlet>
+
+    <servlet-mapping>
         <servlet-name>DeleteStaffServlet</servlet-name>
         <url-pattern>/DeleteStaffServlet</url-pattern> <!-- Adjust URL pattern as needed -->
     </servlet-mapping>   
@@ -208,5 +213,50 @@
     <servlet-mapping>
         <servlet-name>RetrieveOrder</servlet-name>
         <url-pattern>/RetrieveOrder</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UpdateUserServlet</servlet-name>
+        <servlet-class>isdcontroller.UpdateUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateUserServlet</servlet-name>
+        <url-pattern>/UpdateUserServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeleteUserServlet</servlet-name>
+        <servlet-class>isdcontroller.DeleteUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteUserServlet</servlet-name>
+        <url-pattern>/DeleteUserServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>isdcontroller.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/LogoutServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ViewAccessLogServlet</servlet-name>
+        <servlet-class>uts.isd.controller.ViewAccessLogServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewAccessLogServlet</servlet-name>
+        <url-pattern>/ViewAccessLogServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SearchAccessLogs</servlet-name>
+        <servlet-class>uts.isd.controller.SearchAccessLogs</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SearchAccessLogs</servlet-name>
+        <url-pattern>/SearchAccessLogs</url-pattern>
     </servlet-mapping>
 </web-app>

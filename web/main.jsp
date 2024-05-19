@@ -3,18 +3,18 @@
     Created on : 2 Apr 2024, 1:37 pm
     Author     : William
 --%>
-<%@page import="isdmodel.User"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="style.css">
         <title>IOT Bay Main Page</title>
     </head>
     <body onload="startTime(); resetSearch();">
      <div><span class="time" id="time"></span></div>
         <% 
+
             User user = (User)session.getAttribute("user");
             
             // Check if the user is a System Admin
