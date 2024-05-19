@@ -19,12 +19,26 @@
       </head>
 	
       <body>
-         <center>
+
+    <div class="navBar">
+        <a class="navBarTitle">IoT Bay</a>
+        <a class="node" href="main.jsp">Home</a>
+        <a class="node" href="account.jsp">Account</a>
+        <a class="node" href="DeviceCatalogueServlet">Device Catalogue</a>
+        <a class="node" href="orders.jsp">Orders</a>
+        <a class="node" href="orderForm.jsp">Order Form</a>
+        <a class="node" href="payment.jsp">Payments</a>
+        <div class="navBar-right">
+                <a class="node" href="register.jsp">Register</a>
+                <a class="node" href="login.jsp">Login</a>
+        </div>
+    </div>          
+        <br>
+        <br>
+        <center>
             Sorry, you are not a registered user! Please sign up first
-         </center>
-          
-          <a href="register.jsp">Click here to register</a>
-          
+        </center>
+                    
       </body>
 	
    </html>
