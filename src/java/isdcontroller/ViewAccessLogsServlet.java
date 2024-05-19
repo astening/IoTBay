@@ -17,10 +17,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import uts.isd.model.AccessLog;
-import uts.isd.model.User;
-import uts.isd.model.dao.DBConnector;
-import uts.isd.model.dao.DBManager;
+import isdmodel.AccessLog;
+import isdmodel.User;
+import isdmodeldao.DBConnector;
+import isdmodeldao.DBManager;
 
 @WebServlet("/viewAccessLogs")
 public class ViewAccessLogsServlet extends HttpServlet {
