@@ -1,4 +1,5 @@
 
+
 <%@page contentType="text/html" pageEncoding = "UTF-8"%>
 <%@page import="isdmodel.*" %>
 <!DOCTYPE html>
@@ -55,5 +56,7 @@
         </div>
         <%-- include conn servlet at the start of the session --%>
         <jsp:include page="/ConnServlet" flush="true"/>
+        <br>
+        <img src="https://www.lifewire.com/thmb/9t-gZY20dDkgCJkjoeVisVOlttE=/7680x4320/filters:no_upscale():max_bytes(150000):strip_icc()/hands-using-computer-to-config-system-vector-illustration-setting-personal-computer-concept-918493164-5ae8e89204d1cf003c57846f-a79a8815d23947d489c122d8cf9f06d1.jpg" width="600" height="400" />
     </body>
 </html>
