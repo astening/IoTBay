@@ -18,10 +18,13 @@
     <div class="navBar">
         <a class="navBarTitle">IoT Bay</a>
         <a class="node" href="main.jsp">Home</a>
-        <a class="node" href="account.jsp">Account</a>
+        <% if (user != null) { %>
+            <a class="node" href="account.jsp">Account</a>
+        <% } %>
         <a class="node" href="DeviceCatalogueServlet">Device Catalogue</a>
         <a class="node" href="orders.jsp">Orders</a>
         <a class="node" href="orderForm.jsp">Order Form</a>
+        
         <% if (user != null && (user.getPosition().equals("Individual") || user.getPosition().equals("Company"))){%>
             <a class="node" href="PaymentMethodServlet?userID=<%=user.getUserID()%>">Payments</a>
         <% } %>
