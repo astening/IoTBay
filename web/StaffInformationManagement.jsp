@@ -74,7 +74,7 @@
             User foundStaff = (User) request.getAttribute("foundStaff");
             
             if (staffList != null && !staffList.isEmpty()) {
-                for (User u : staffList) {
+                for (User user : staffList) {
         %>
         
         <!-- Get the values of the users attributes and put them in the table columns-->
