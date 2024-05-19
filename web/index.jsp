@@ -1,4 +1,5 @@
 
+
 <%@page contentType="text/html" pageEncoding = "UTF-8"%>
 <%@page import="isdmodel.*" %>
 <!DOCTYPE html>
@@ -26,8 +27,10 @@
         <a class="node" href="DeviceCatalogueServlet">Device Catalogue</a>
         <a class="node" href="orders.jsp">Orders</a>
         <a class="node" href="orderForm.jsp">Order Form</a>
-        <a class="node" href="payment.jsp">Payments</a>
-        <% if (user != null && user.getPosition().equals("Systems Admin")) { %>
+        <% if (user != null && (user.getPosition().equals("Individual") || user.getPosition().equals("Company"))){%>
+            <a class="node" href="PaymentMethodServlet?userID=<%=user.getUserID()%>">Payments</a>
+        <% } %>
+        <% if (user != null && (user.getPosition().equals("Systems Admin"))) { %>
             <a class="node" href="customerInformationManagement.jsp">Manage Customers</a>
             <a class="node" href="StaffInformationManagement.jsp">Manage Staff</a>
         <% } %>

@@ -13,7 +13,7 @@
 </head>
 <body>
     
-    <%User user = session.getAttribute("user"); %>
+    <%User user = (User) session.getAttribute("user"); %>
 
     <div class="navBar">
         <a class="navBarTitle">IoT Bay</a>
@@ -22,7 +22,7 @@
         <a class="node" href="DeviceCatalogueServlet">Device Catalogue</a>
         <a class="node" href="orders.jsp">Orders</a>
         <a class="node" href="orderForm.jsp">Order Form</a>
-        <% if (user!=null && user.getPosition().equals("Individual") || user.getPosition().equals("Company")){%>
+        <% if (user != null && (user.getPosition().equals("Individual") || user.getPosition().equals("Company"))){%>
             <a class="node" href="PaymentMethodServlet?userID=<%=user.getUserID()%>">Payments</a>
         <% } %>
         <a class="node" href="customerInformationManagement.jsp">Manage Customers</a>
@@ -71,7 +71,7 @@
             User foundStaff = (User) request.getAttribute("foundStaff");
             
             if (staffList != null && !staffList.isEmpty()) {
-                for (User user : staffList) {
+                for (User u : staffList) {
         %>
         
         <!-- Get the values of the users attributes and put them in the table columns-->
