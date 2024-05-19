@@ -20,8 +20,9 @@ public class Validator implements Serializable {
     private String cardNoPattern = "([0-9]{4}+[\\s]+[0-9]{4}+[\\s]+[0-9]{4}+[\\s]+[0-9]{4})";
     private String expiryDatePattern = "(0[1-9]|1[0-2])/(2[4-9])";
     private String cvvPattern = "[0-9]{3}";   
-    private String productPattern = "([A-Za-z])+";
-    private String productNoPattern = "([0-9])+";
+    private String productPattern = "\\b[A-Z][a-zA-Z]*(?: [A-Z][a-zA-Z]*)*\\b";
+    private String productPricePattern = "\\b\\d+(?:\\.\\d+)?\\b";
+    private String productStockPattern = "([0-9])+";
     private final String statusPattern = "([A-Z][a-z]+)";
     private final String numberPattern = "([0-9])+" ;
     private String customerPositionPattern = "^(Individual|Company)$";
@@ -38,11 +39,11 @@ public class Validator implements Serializable {
     }
    
     public boolean validateProductPrice(String price) {
-        return validate(productNoPattern, price);
+        return validate(productPricePattern, price);
     }   
    
     public boolean validateProductStock(String stock){
-        return validate(productNoPattern, stock);
+        return validate(productStockPattern, stock);
     }
     
 
