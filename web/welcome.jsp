@@ -1,7 +1,7 @@
 <%-- 
-    Document   : test
-    Created on : 19 Mar 2024, 1:35:29 pm
-    Author     : anna
+    Document   : welcome
+    Created on : 16 May 2024, 11:32:28 pm
+    Author     : phoen
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -44,8 +44,8 @@
         <%}else{%>
             <h1>Welcome!</h1>
         <%}%>
-        <h3>Your email is <%=email%></h3>
-        <p>Your password is <%=password%></p>
+        <h3>Your email is <%=user.getEmail() %></h3>
+        <p>Your password is <%=user.getPassword() %></p>
         <div>
            <br>
             <a class="button" href="index.jsp.html">Cancel</a>

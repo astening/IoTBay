@@ -1,9 +1,3 @@
-<%-- 
-    Document   : login
-    Created on : 1 Apr 2024, 4:50:54 pm
-    Author     : anna
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
