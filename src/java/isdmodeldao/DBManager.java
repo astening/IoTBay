@@ -666,7 +666,7 @@ public boolean checkStaff(int userID) throws SQLException {
     }
      
      public User findCustomer(String fname, String lname, String position) throws SQLException {       
-        ResultSet fetch = st.executeQuery("select * from Users2 where FNAME = '" + fname + "' and LNAME = '" + lname +"' and POSITION = '" + position +"'");
+        ResultSet fetch = st.executeQuery("select * from USERS where FNAME = '" + fname + "' and LNAME = '" + lname +"' and POSITION = '" + position +"'");
         while (fetch.next()) {
             String customerFname = fetch.getString(2);
             String customerLname = fetch.getString(3);
@@ -690,7 +690,7 @@ public boolean checkStaff(int userID) throws SQLException {
      
      
      public void addCustomer(String fname, String lname, int phoneNo, String email, String password, String address, String city, String state, int postcode, boolean activation, Date registrationDate, String position) throws SQLException {
-         try (PreparedStatement stmt = conn.prepareStatement("INSERT INTO Users2 (fName, lName, PhoneNo, Email, Password, Address, City, State, Postcode, Activation, RegistrationDate, Position) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
+         try (PreparedStatement stmt = conn.prepareStatement("INSERT INTO USERS (fName, lName, PhoneNo, Email, Password, Address, City, State, Postcode, Activation, RegistrationDate, Position) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
              stmt.setString(1, fname);
              stmt.setString(2, lname);
              stmt.setInt(3, phoneNo);
@@ -709,7 +709,7 @@ public boolean checkStaff(int userID) throws SQLException {
      }
         
      public void updateCustomer(int userID, String fName, String lName, int phoneNo, String email, String password, String address, String city, String state, int postcode, boolean activation, String position) throws SQLException {
-         try (PreparedStatement stmt = conn.prepareStatement("UPDATE Users2 SET fName=?, lName=?, phoneNo=?, email=?, password=?, address=?, city=?, state=?, postcode=?, activation=?, position=? WHERE userID=?")) {
+         try (PreparedStatement stmt = conn.prepareStatement("UPDATE USERS SET fName=?, lName=?, phoneNo=?, email=?, password=?, address=?, city=?, state=?, postcode=?, activation=?, position=? WHERE userID=?")) {
              stmt.setString(1, fName);
              stmt.setString(2, lName);
              stmt.setInt(3, phoneNo);
@@ -729,7 +729,7 @@ public boolean checkStaff(int userID) throws SQLException {
      
         
      public void deleteCustomer(int userID) throws SQLException {
-         String query = "DELETE FROM Users2 WHERE userID = ?";
+         String query = "DELETE FROM USERS WHERE userID = ?";
          
          try (PreparedStatement stmt = conn.prepareStatement(query)) {
              stmt.setInt(1, userID);
@@ -739,7 +739,7 @@ public boolean checkStaff(int userID) throws SQLException {
      
      public ArrayList<User> fetchCustomerList() throws SQLException{
          ArrayList<User> customerList = new ArrayList();
-         ResultSet fetch = st.executeQuery("SELECT * FROM USERS2 WHERE position IN ('Individual', 'Company')");
+         ResultSet fetch = st.executeQuery("SELECT * FROM USERS WHERE position IN ('Individual', 'Company')");
          while (fetch.next()) {
              int userID = fetch.getInt(1);
              String fname = fetch.getString(2);
@@ -761,7 +761,7 @@ public boolean checkStaff(int userID) throws SQLException {
       
      
      public void changeCustomerStatus(int userID, boolean activation) throws SQLException {
-         String query = "UPDATE Users2 SET activation=? WHERE userID=?";
+         String query = "UPDATE USERS SET activation=? WHERE userID=?";
          
          try (PreparedStatement stmt = conn.prepareStatement(query)) {
              stmt.setBoolean(1, activation);
@@ -773,7 +773,7 @@ public boolean checkStaff(int userID) throws SQLException {
      
      public ArrayList<User> findCustomerByType(String position) throws SQLException {       
        ArrayList<User> customerTypeList = new ArrayList();
-             ResultSet fetch = st.executeQuery("select * from Users2 where POSITION = '" + position +"'");
+             ResultSet fetch = st.executeQuery("select * from USERS where POSITION = '" + position +"'");
              while (fetch.next()) {
                  int userID = fetch.getInt(1);
                  String fname = fetch.getString(2);
@@ -794,7 +794,7 @@ public boolean checkStaff(int userID) throws SQLException {
      
      public ArrayList<User> findCustomerByFName(String fname) throws SQLException {       
        ArrayList<User> customerTypeList = new ArrayList();
-             ResultSet fetch = st.executeQuery("select * from Users2 where fName = '" + fname +"' AND position IN ('Individual', 'Company')");
+             ResultSet fetch = st.executeQuery("select * from USERS where fName = '" + fname +"' AND position IN ('Individual', 'Company')");
              while (fetch.next()) {
                  int userID = fetch.getInt(1);
                  String lname = fetch.getString(3);
