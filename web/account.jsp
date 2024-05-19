@@ -26,6 +26,7 @@
             String cityErr = (String) session.getAttribute("cityErr");
             String stateErr = (String) session.getAttribute("stateErr");
             String postErr = (String) session.getAttribute("postErr");
+            String positionErr = (String) session.getAttribute("positionErr");
             %>
     <div class="navBar">
         <a class="navBarTitle">IoT Bay</a>
@@ -59,6 +60,7 @@
     <p>City: <%= user.getCity() %></p>
     <p>State: <%= user.getState() %></p>
     <p>Postcode: <%= user.getPostcode() %></p>
+    <p>Activation: <%= user.isActivation() %> </p>
     <!-- Add more fields as needed -->
 
     <!-- Edit user details form -->
@@ -73,6 +75,7 @@
         <input type="text" placeholder="<%=(cityErr != null ? cityErr : "Enter City:")%>" id="city" name="city">
         <input type="text" placeholder="<%=(stateErr != null ? stateErr : "Enter State:")%>" id="state" name="state" required>
         <input type="number" placeholder="<%=(postErr != null ? postErr : "Enter Postcode:")%>" id="postcode" name="postcode" required>
+        <input type="text" placeholder="<%=(positionErr != null ? positionErr : "Enter Position:")%>" id="position" name="position" required>
         
         <input type="submit" value="Save Changes">
     </form>
