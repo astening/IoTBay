@@ -47,7 +47,9 @@
         <br><a href="index.jsp">Home Page</a><br>
         <br><a href="orders.jsp">Order Page</a><br>
         <br><a href="orderForm.jsp">Order Form</a><br>
-            <a class ="button" href="logout.jsp"> Logout </a>
+         <form action="LogoutServlet" method="post">
+            <input class="button" type="submit" value="Log out">
+         </form>
              <!-- Check if the user is a System Admin, then display the button -->
              <br>
              <br>
