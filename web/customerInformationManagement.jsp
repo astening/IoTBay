@@ -19,7 +19,7 @@
         <!--Script to toggle buttons for search/manage customer forms-->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </head>
-    <body>
+    <body>            
         <h1>Customer Information Management</h1> 
         <!--Call servlet to generate list of all customers-->
             <form action="ShowAllCustomersServlet" method="get">
@@ -445,6 +445,11 @@
         });
         </script>
         <br>
-        <br> 
+        <br>
+        
+        <hr>
+        <br>
+    <!-- Link to return to the main page -->
+    <a href="main.jsp" class="button"> Return to Main Page</a>
     </body>
 </html>
