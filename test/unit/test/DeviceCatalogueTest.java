@@ -7,7 +7,7 @@ import junit.framework.Assert;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import isdmodel.*;
-import isdmodel.dao.DBManager;
+import isdmodeldao.DBManager;
 import java.util.ArrayList;
 import java.sql.SQLException;
 import java.sql.Connection;

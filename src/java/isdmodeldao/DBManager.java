@@ -14,6 +14,7 @@ import isdmodel.Payment;
 import isdmodel.PaymentMethod;
 import isdmodel.User;
 import isdmodel.AccessLog;
+import isdmodel.Product;
 import java.sql.*;
 import java.util.ArrayList;
 import java.time.LocalDate;
@@ -504,82 +505,80 @@ public boolean checkStaff(int userID) throws SQLException {
 
     }
 
-}
+        // Method to fetch access logs for a specific user
+        public ArrayList<AccessLog> getUserAccessLogs(int userID) throws SQLException {
+            String query = "SELECT * FROM AccessLog WHERE userID = ?";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setInt(1, userID);
+            ResultSet rs = stmt.executeQuery();
 
-// Method to fetch access logs for a specific user
-public ArrayList<AccessLog> getUserAccessLogs(int userID) throws SQLException {
-        String query = "SELECT * FROM AccessLog WHERE userID = ?";
-        PreparedStatement stmt = conn.prepareStatement(query);
-        stmt.setInt(1, userID);
-        ResultSet rs = stmt.executeQuery();
-
-        ArrayList<AccessLog> logs = new ArrayList<>();
-        while (rs.next()) {
-            AccessLog log = new AccessLog(
+            ArrayList<AccessLog> logs = new ArrayList<>();
+            while (rs.next()) {
+                AccessLog log = new AccessLog(
                 rs.getInt("logID"),
                 rs.getInt("userID"),
                 rs.getTimestamp("loginTimestamp"),
                 rs.getTimestamp("logoutTimestamp"),
                 rs.getString("logDetails")
-            );
-            logs.add(log);
-        }
+                );
+                logs.add(log);
+            }
         return logs;
     }
 
-public ArrayList<AccessLog> getUserAccessLogsByDate(int userID, Date date) throws SQLException {
-    String query = "SELECT * FROM AccessLog WHERE userID = ? AND CAST(loginDateTime AS DATE) = ?";
-    ArrayList<AccessLog> logs = new ArrayList<>();
+    public ArrayList<AccessLog> getUserAccessLogsByDate(int userID, Date date) throws SQLException {
+        String query = "SELECT * FROM AccessLog WHERE userID = ? AND CAST(loginDateTime AS DATE) = ?";
+        ArrayList<AccessLog> logs = new ArrayList<>();
 
-    try (PreparedStatement stmt = conn.prepareStatement(query)) {
-        stmt.setInt(1, userID);
-        stmt.setDate(2, new java.sql.Date(date.getTime()));
-        ResultSet rs = stmt.executeQuery();
+        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, userID);
+            stmt.setDate(2, new java.sql.Date(date.getTime()));
+            ResultSet rs = stmt.executeQuery();
 
-        while (rs.next()) {
-            int logID = rs.getInt("logID");
-            Date loginDateTime = rs.getTimestamp("loginDateTime");
-            Date logoutDateTime = rs.getTimestamp("logoutDateTime");
-            String logDetails = rs.getString("logDetails");
-            logs.add(new AccessLog(logID, userID, loginDateTime, logoutDateTime, logDetails));
+            while (rs.next()) {
+                int logID = rs.getInt("logID");
+                Date loginDateTime = rs.getTimestamp("loginDateTime");
+                Date logoutDateTime = rs.getTimestamp("logoutDateTime");
+                String logDetails = rs.getString("logDetails");
+                logs.add(new AccessLog(logID, userID, loginDateTime, logoutDateTime, logDetails));
+            }
+        }
+
+        return logs;
+    }   
+
+    public void addAccessLog(int userID, String logDetails, Timestamp logoutTimestamp) throws SQLException {
+        String query = "INSERT INTO AccessLog (userID, loginTimestamp, logoutTimestamp, logDetails) VALUES (?, ?, ?, ?)";
+        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, userID);
+            stmt.setTimestamp(2, new java.sql.Timestamp(new Date().getTime()));
+            stmt.setTimestamp(3, logoutTimestamp);
+            stmt.setString(4, logDetails);
+            stmt.executeUpdate();
         }
     }
 
-    return logs;
-}
-
-public void addAccessLog(int userID, String logDetails, Timestamp logoutTimestamp) throws SQLException {
-    String query = "INSERT INTO AccessLog (userID, loginTimestamp, logoutTimestamp, logDetails) VALUES (?, ?, ?, ?)";
-    try (PreparedStatement stmt = conn.prepareStatement(query)) {
-        stmt.setInt(1, userID);
-        stmt.setTimestamp(2, new java.sql.Timestamp(new Date().getTime()));
-        stmt.setTimestamp(3, logoutTimestamp);
-        stmt.setString(4, logDetails);
-        stmt.executeUpdate();
+    public void updateLogoutTime(int userID) throws SQLException {
+        String query = "UPDATE AccessLog SET logoutTimestamp = ? WHERE userID = ? AND logoutTimestamp IS NULL";
+        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setTimestamp(1, new java.sql.Timestamp(new Date().getTime()));
+            stmt.setInt(2, userID);
+            stmt.executeUpdate();
+        }
     }
-}
 
-public void updateLogoutTime(int userID) throws SQLException {
-    String query = "UPDATE AccessLog SET logoutTimestamp = ? WHERE userID = ? AND logoutTimestamp IS NULL";
-    try (PreparedStatement stmt = conn.prepareStatement(query)) {
-        stmt.setTimestamp(1, new java.sql.Timestamp(new Date().getTime()));
-        stmt.setInt(2, userID);
-        stmt.executeUpdate();
-    }
-}
-
-public void addUserLogout(int userID) throws SQLException {
-    ResultSet result = st.executeQuery("SELECT max(login) from USERS WHERE userID="+userID); 
+    public void addUserLogout(int userID) throws SQLException {
+        ResultSet result = st.executeQuery("SELECT max(login) from USERS WHERE userID="+userID); 
     
-    if(result.next()) {
-        Timestamp max = result.getTimestamp(1);
+        if(result.next()) {
+            Timestamp max = result.getTimestamp(1);
     
-        String query = "UPDATE AcessLogs SET logoutTimestamp= CURRENT_TIMESTAMP WHERE userID="+userID+ " AND login='" +max+"'"; 
-        st.executeUpdate(query);
+            String query = "UPDATE AcessLogs SET logoutTimestamp= CURRENT_TIMESTAMP WHERE userID="+userID+ " AND login='" +max+"'"; 
+            st.executeUpdate(query);
+        }
     }
-}
 
-public ArrayList<AccessLog> searchUserAccessLogs(int userID, Date startDate, Date endDate) throws SQLException {
+    public ArrayList<AccessLog> searchUserAccessLogs(int userID, Date startDate, Date endDate) throws SQLException {
         String query = "SELECT * FROM AccessLog WHERE userID = ? AND loginTimestamp BETWEEN ? AND ?";
         PreparedStatement stmt = conn.prepareStatement(query);
         stmt.setInt(1, userID);
@@ -599,5 +598,70 @@ public ArrayList<AccessLog> searchUserAccessLogs(int userID, Date startDate, Dat
             logs.add(log);
         }
         return logs;
+    }
+    
+    //get all the products in the database
+    public ArrayList<Product> getProductList() throws SQLException {       
+        String query = "select * from PRODUCTS"; 
+        ResultSet rs = st.executeQuery(query);
+        ArrayList<Product> productList = new ArrayList();
+        while (rs.next()){
+            productList.add(new Product(rs.getInt("ProductID"), rs.getString("ProductName"),  rs.getFloat("UnitPrice"), rs.getString("ProductType"), rs.getInt("StockLvl")));
+        }
+        return productList;
+    }
+    
+    //find a product in the database by it's ID
+    public Product findProduct(int productID) throws SQLException {
+        String query = "select * from PRODUCTS where PRODUCTID = " + productID + " "; 
+        ResultSet rs = st.executeQuery(query);
+        while (rs.next()){
+            int id = rs.getInt(1);
+            if (productID == id){
+                return new Product(rs.getInt(1), rs.getString(2), rs.getFloat(4), rs.getString(3), rs.getInt(5));
+            }
+        }
+        return null;
+    }
+    
+    //add a product to the database
+    public void addProduct(String name, float price, String type, int stockLvl) throws SQLException {                   //code for add-operation       
+        String query = "INSERT INTO Products (PRODUCTNAME, PRODUCTTYPE, UNITPRICE, STOCKLVL) VALUES(?, ?, ?, ?)";
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            
+            stmt.setString(1, name); 
+            stmt.setString(2, type);
+            stmt.setFloat(3, price); 
+            stmt.setInt(4, stockLvl);
+            
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getErrorCode() + " and " + ex.getMessage());
+        }
+    }
+
+    //update a product in the database
+    public void updateProduct(int productID, String name, float price, String type, int stockLvl) throws SQLException {       
+        String query = "UPDATE Products SET PRODUCTNAME = ?, PRODUCTTYPE = ?, UNITPRICE = ?, STOCKLVL = ? WHERE PRODUCTID = ?";
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            
+            stmt.setString(1, name); 
+            stmt.setString(2, type);
+            stmt.setFloat(3, price); 
+            stmt.setInt(4, stockLvl);
+            stmt.setInt(5, productID);
+            
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getErrorCode() + " and " + ex.getMessage());
+        }
+    }       
+
+    //delete a product from the database   
+    public void deleteProduct(int productID) throws SQLException{       
+        String query = "DElETE FROM PRODUCTS WHERE PRODUCTID = " + productID;
+        st.executeUpdate(query);
     }
 }

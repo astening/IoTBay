@@ -8,7 +8,7 @@
  * @author aneir
  */
 
-package uts.isd.model;
+package isdmodel;
 
 import java.io.Serializable;
 import java.util.Date;

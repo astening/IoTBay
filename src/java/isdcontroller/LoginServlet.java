@@ -4,36 +4,48 @@
  */
 package isdcontroller;
 
-import isdmodel.User;
-import isdmodeldao.DBManager;
-import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import isdmodel.User;
+import isdmodeldao.DBConnector;
+import isdmodeldao.DBManager;
 
-
-/**
- *
- * @author William Sinclair
- */
+@WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
-  /*Post method creates new Http Session and Validator. Following Validation Checks, it saves the user to the session */
+    private DBConnector db;
+    private DBManager manager;
+    private Connection conn;
+
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        Validator validator = new Validator();
+    public void init() {
+        try {
+            db = new DBConnector();
+            conn = db.openConnection();
+            manager = new DBManager(conn);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        DBManager manager = (DBManager) session.getAttribute("manager");
-        User user = null;
-        validator.clear(session);
-
+        HttpSession session = request.getSession();
+        Validator validator = new Validator();
+        
         if (!validator.validateEmail(email)) {
             session.setAttribute("emailErr", "Error: Email format incorrect");
             request.getRequestDispatcher("login.jsp").forward(request, response);
@@ -41,19 +53,21 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("passErr", "Error: Password format incorrect");
             request.getRequestDispatcher("login.jsp").forward(request, response);
         } else {
-            try {
-                user = manager.findUser(email, password);
-                if (user != null) {
-                    session.setAttribute("user", user);
-                    request.getRequestDispatcher("main.jsp").forward(request, response);
-                } else {
-                    session.setAttribute("existErr", "Error: User does not exist in the database!");
-                    request.getRequestDispatcher("login.jsp").forward(request, response);
-                }
-            } catch (SQLException | NullPointerException ex) {
-                System.out.println(ex.getMessage() == null ? "User does not exist" : "welcome");
-                request.getRequestDispatcher("login.jsp").forward(request, response);
+        try {
+            User user = manager.findUser(email, password);
+            if (user != null) {
+                session.setAttribute("user", user);
+                // Save access log with login timestamp (null for logout timestamp)
+                manager.addAccessLog(user.getUserID(), "User logged in", null);
+                response.sendRedirect("main.jsp");
+            } else {
+                session.setAttribute("loginError", "Invalid email or password");
+                response.sendRedirect("login.jsp");
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+            throw new ServletException("Database access error", ex);
         }
     }
+  }
 }

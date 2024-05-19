@@ -4,7 +4,7 @@
  */
 package isdcontroller;
 
-import isdmodel.dao.DBManager;
+import isdmodeldao.DBManager;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;

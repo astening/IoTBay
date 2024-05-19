@@ -1,7 +1,7 @@
 
 package isdcontroller;
 
-import isdmodel.dao.DBManager;
+import isdmodeldao.DBManager;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
