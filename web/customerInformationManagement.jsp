@@ -34,7 +34,6 @@
         <a class="node" href="orderForm.jsp">Order Form</a>
         <% if (u != null && (u.getPosition().equals("Individual") || u.getPosition().equals("Company"))){%>
             <a class="node" href="PaymentMethodServlet?userID=<%=u.getUserID()%>">Payments</a>
-        <% } %>
         <a class="active" href="customerInformationManagement.jsp">Manage Customers</a>
         <a class="node" href="StaffInformationManagement.jsp">Manage Staff</a>
         <div class="navBar-right">
