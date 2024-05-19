@@ -46,7 +46,7 @@
         <hr>
         <div class="searchBar">
             <input class="searchInput" type="text" id="searchInput" onkeyup="searchProducts()" placeholder="Search for products..">
-            <%if(user != null && !user.getPosition().equals("Customer")) {%>
+            <%if(user != null && !user.getPosition().equals("Individual") && !user.getPosition().equals("Company")) {%>
             <a class ="searchButton" href="addProduct.jsp"> Add Product </a>
             <%}%>
             </tr>
@@ -59,7 +59,7 @@
                 <th>Product Type</th>
                 <th>Unit Price</th>
                 <th>Stock Level</th>
-                <%if(user != null && !user.getPosition().equals("Customer")) {%>
+                <%if(user != null && !user.getPosition().equals("Individual") && !user.getPosition().equals("Company")) {%>
                     <th>Update</th>
                     <th>Delete</th>
                 <%}%>
@@ -75,7 +75,7 @@
                 <td> <%out.println(p.getType()); %> </td>
                 <td> $<%out.println(p.getPrice()); %> </td>
                 <td> <%out.println(p.getStockLvl()); %> </td>
-                <%if(user != null && !user.getPosition().equals("Customer")) {%>
+                <%if(user != null && !user.getPosition().equals("Individual") && !user.getPosition().equals("Company")) {%>
                 <td> <a class ="button" href="UpdateProductServlet?productID=<%out.println(p.getProductID());%>"> Update </a> </td>
                 <td> <a class ="button" href="DeleteProductServlet?productID=<%out.println(p.getProductID());%>"> Delete </a> </td>
                 <%}%>
