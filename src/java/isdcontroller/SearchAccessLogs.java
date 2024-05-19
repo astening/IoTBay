@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import uts.isd.model.AccessLog;
+import isdmodel.AccessLog;
 import isdmodel.User;
 import isdmodeldao.DBConnector;
 import isdmodeldao.DBManager;
