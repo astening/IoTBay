@@ -24,6 +24,7 @@ public class Validator implements Serializable {
     private String productNoPattern = "([0-9])+";
     private final String statusPattern = "([A-Z][a-z]+)";
     private final String numberPattern = "([0-9])+" ;
+    private String customerPositionPattern = "^(Individual|Company)$";
     
             
     public Validator(){    }       
@@ -122,6 +123,12 @@ public class Validator implements Serializable {
    public boolean validatePosition(String position){
 
       return validate(namePattern, position); 
+
+   }
+
+   public boolean validateCustomerPosition(String position){
+
+      return validate(customerPositionPattern, position); 
 
    }
      

@@ -10,6 +10,14 @@
         <!-- Adjust URL pattern as needed -->
     </servlet-mapping>
     <servlet>
+        <servlet-name>AddCustomerServlet</servlet-name>
+        <servlet-class>isdcontroller.AddCustomerServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChangeActivationStatusServlet</servlet-name>
+        <servlet-class>isdcontroller.ChangeActivationStatusServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>ConnServlet</servlet-name>
         <servlet-class>isdcontroller.ConnServlet</servlet-class>
     </servlet>
@@ -38,6 +46,30 @@
         <url-pattern>/ConnServlet</url-pattern>
         <!-- Adjust URL pattern as needed -->
     </servlet-mapping>
+    <servlet>
+        <servlet-name>DeleteCustomerServlet</servlet-name>
+        <servlet-class>isdcontroller.DeleteCustomerServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchCustomerByFirstNameServlet</servlet-name>
+        <servlet-class>isdcontroller.SearchCustomerByFirstNameServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchCustomerByTypeServlet</servlet-name>
+        <servlet-class>isdcontroller.SearchCustomerByTypeServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchForSpecificCustomerServlet</servlet-name>
+        <servlet-class>isdcontroller.SearchForSpecificCustomerServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ShowAllCustomersServlet</servlet-name>
+        <servlet-class>isdcontroller.ShowAllCustomersServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateCustomerServlet</servlet-name>
+        <servlet-class>isdcontroller.UpdateCustomerServlet</servlet-class>
+    </servlet>
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>isdcontroller.LoginServlet</servlet-class>
@@ -169,6 +201,14 @@
         <servlet-name>AddProductServlet</servlet-name>
         <url-pattern>/AddProductServlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>        
+        <servlet-name>AddCustomerServlet</servlet-name>
+        <url-pattern>/AddCustomerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangeActivationStatusServlet</servlet-name>
+        <url-pattern>/ChangeActivationStatusServlet</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ConnServlet</servlet-name>
         <url-pattern>/ConnServlet</url-pattern>
@@ -240,5 +280,33 @@
     <servlet-mapping>
         <servlet-name>SearchAccessLogs</servlet-name>
         <url-pattern>/SearchAccessLogs</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>    
+        <servlet-name>DeleteCustomerServlet</servlet-name>
+        <url-pattern>/DeleteCustomerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchCustomerByFirstNameServlet</servlet-name>
+        <url-pattern>/SearchCustomerByFirstNameServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchCustomerByTypeServlet</servlet-name>
+        <url-pattern>/SearchCustomerByTypeServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchForSpecificCustomerServlet</servlet-name>
+        <url-pattern>/SearchForSpecificCustomerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowAllCustomersServlet</servlet-name>
+        <url-pattern>/ShowAllCustomersServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateCustomerServlet</servlet-name>
+        <url-pattern>/UpdateCustomerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
     </servlet-mapping>
 </web-app>

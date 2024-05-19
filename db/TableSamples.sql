@@ -25,23 +25,46 @@ INSERT INTO Users (fName, lName, phoneNo, email, password, address, city, state,
 ( 'Customer5', 'Customer', 222333444, 'customer5@example.com', 'customerpassword5', '654 Customer St', 'Customer County', 'CC', '2345', TRUE, '2024-04-14', 'Salesperson'),
 ( 'Customer6', 'Customer', 999000111, 'customer6@example.com', 'customerpassword6', '987 Customer St', 'Customer State', 'CS', '6789', TRUE, '2024-04-15', 'Salesperson');
 
+-- Sample data for Customer table
+INSERT INTO Users (fName, lName, phoneNo, email, password, address, city, state, postCode, activation, registrationDate, position) VALUES
+( 'Lily', 'Smith', 874205619, 'LilySmith@email.com', 'password1', '34 Duke St', 'Fern', 'CO', '2725', TRUE, '2024-03-02', 'Company'),
+( 'John', 'Kelly', 328716495, 'JohnKelly@email.com', 'password2', '235 Brook St', 'Redding', 'NY', '8628', TRUE, '2024-05-01', 'Individual'),
+( 'Olivia', 'Jones', 506197324, 'OliviaJones@email.com', 'password3', '2 Green St', 'Millville', 'CA', '7153', TRUE, '2024-03-04', 'Company'),
+( 'Tom', 'Anderson', 932460175, 'TomAnderson@email.com', 'password4', '554 Park St', 'Miranda', 'FL', '6172', TRUE, '2024-02-02', 'Individual'),
+( 'Miller', 'Johnson', 615893207, 'MillerJohnson@email.com', 'password5', '43 George St', 'Lakeport', 'CT', '1625', TRUE, '2024-01-03', 'Company'),
+( 'Mark', 'Moore', 749312508, 'MarkMore@email.com', 'password6', '989 Kendal St', 'Middletown', 'HI', '2618', TRUE, '2024-03-05', 'Individual'),
+( 'Daniel', 'Clark', 201587643, 'DanielClark@email.com', 'password7', '34 Brown St', 'Windsor', 'IA', '8362', TRUE, '2024-04-05', 'Individual'),
+( 'Stacy', 'Lane', 485932670, 'StacyLane@email.com', 'password8', '59 Archer St', 'Hopland', 'NY', '7352', TRUE, '2024-02-01', 'Company'),
+( 'Jess', 'Jackson', 573821049, 'JessJackson@email.com', 'password9', '5 Dawson St', 'Oakland', 'DE', '8161', TRUE, '2024-01-04', 'Individual'),
+( 'Sarah', 'Hall', 946720358, 'SarahHall@email.com', 'password10', '90 Finstock St', 'Watsonville', 'LA', '3527', TRUE, '2024-04-03', 'Company'),
+( 'Royce', 'Allen', 362810947, 'RoyceAllen@email.com', 'password11', '283 Sunbeam St', 'Newman', 'AK', '8726', TRUE, '2024-02-03', 'Individual'),
+( 'James', 'Young', 518734602, 'JamesYoung@email.com', 'password12', '621 Dunmore St', 'Livingston', 'IL', '9817', TRUE, '2024-04-02', 'Individual'),
+( 'Michael', 'Walker', 894167235, 'MichaelWalker@email.com', 'password13', '563 Hopefield St', 'Weldon', 'CO', '6152', TRUE, '2024-01-02', 'Company'),
+( 'Jennifer', 'Lewis', 725134986, 'JenniferLewis@email.com', 'password14', '421 Maygrove St', 'Inglewood', 'AZ', '2345', TRUE, '2024-01-01', 'Individual'),
+( 'Scott', 'Adams', 631857492, 'ScottAdams@email.com', 'password15', '980 Dartmouth St', 'Ontario', 'GA', '9725', TRUE, '2024-03-02', 'Individual'),
+( 'Steve', 'Charles', 470298156, 'SteveCharles@email.com', 'password16', '123 Lowfield St', 'Anaheim', 'FL', '7514', TRUE, '2024-02-03', 'Company'),
+( 'Bruce', 'Myers', 862415703, 'BruceMyers@email.com', 'password17', '45 Mora St', 'Irvine', 'CV', '3529', TRUE, '2024-04-04', 'Individual'),
+( 'Kim', 'Fisher', 395728146, 'KimFisher@email.com', 'password18', '928 Ivy St', 'Vista', 'CT', '8651', TRUE, '2024-01-02', 'Company'),
+( 'Wilson', 'Keely', 143876592, 'WilsonKeely@email.com', 'password19', '48 Clifford St', 'Hayfield', 'FL', '2653', TRUE, '2024-03-04', 'Individual'),
+( 'Bailey', 'Baker', 642753975, 'BaileyBaker@email.com', 'password20', '7 Mulgrave St', 'Topock', 'LA', '7652', TRUE, '2024-04-01', 'Company');
+
 -- Sample data for Orders table
 INSERT INTO Orders (orderDate, status, totalNoItems, totalPrice, userID) VALUES
-('2024-04-01', 'Completed', 5, 150.00, 1),
-('2024-04-02', 'Pending', 3, 75.00, 2),
-('2024-04-03', 'Processing', 2, 50.00, 3),
-('2024-04-04', 'Completed', 4, 100.00, 4),
-('2024-04-05', 'Cancelled', 1, 25.00, 5),
-('2024-04-06', 'Pending', 2, 60.00, 6),
-('2024-04-07', 'Processing', 3, 90.00, 7),
+('2024-04-01', 'Completed', 5, 150.00, 8),
+('2024-04-02', 'Pending', 3, 75.00, 9),
+('2024-04-03', 'Processing', 2, 50.00, 8),
+('2024-04-04', 'Completed', 4, 100.00, 9),
+('2024-04-05', 'Cancelled', 1, 25.00, 8),
+('2024-04-06', 'Pending', 2, 60.00, 10),
+('2024-04-07', 'Processing', 3, 90.00, 9),
 ('2024-04-08', 'Completed', 4, 120.00, 8),
 ('2024-04-09', 'Cancelled', 2, 55.00, 9),
 ('2024-04-10', 'Completed', 3, 80.00, 10),
-('2024-04-11', 'Pending', 4, 100.00, 11),
-('2024-04-12', 'Processing', 2, 45.00, 12),
-('2024-04-13', 'Completed', 5, 110.00, 13),
-('2024-04-14', 'Pending', 2, 70.00, 14),
-('2024-04-15', 'Processing', 3, 95.00, 15);
+('2024-04-11', 'Pending', 4, 100.00, 10),
+('2024-04-12', 'Processing', 2, 45.00, 10),
+('2024-04-13', 'Completed', 5, 110.00, 10),
+('2024-04-14', 'Pending', 2, 70.00, 8),
+('2024-04-15', 'Processing', 3, 95.00, 9);
 
 -- Sample data for Shipment table
 INSERT INTO Shipment (shipmentID, shipmentDate, carrier, trackingNo) VALUES

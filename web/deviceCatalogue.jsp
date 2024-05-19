@@ -28,7 +28,7 @@
             <a class="node" href="orderForm.jsp">Order Form</a>
             <a class="node" href="payment.jsp">Payments</a>
             <% if (user != null && user.getPosition().equals("Systems Admin")) { %>
-                <a class="node" href="StaffInformationManagement.jsp">Manage Customers</a>
+                <a class="node" href="customerInformationManagement.jsp">Manage Customers</a>
                 <a class="node" href="StaffInformationManagement.jsp">Manage Staff</a>
             <% } %>
             <div class="navBar-right">

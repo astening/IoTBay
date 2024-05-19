@@ -1,3 +1,4 @@
+
 <%@page contentType="text/html" pageEncoding = "UTF-8"%>
 <%@page import="isdmodel.*" %>
 <!DOCTYPE html>
@@ -23,8 +24,8 @@
             <br>
                 <a class="button" href="register.jsp">Register</a> 
                 <a class="button" href="login.jsp">Login</a>
-                <a href="main.jsp">Browse The Application</a>
-                <a href="DeviceCatalogueServlet">Devices</a>
+                <a class="button" href="main.jsp">Browse The Application</a>
+                <a class="button" href="DeviceCatalogueServlet">Devices</a>
         </div>
         <%-- include conn servlet at the start of the session --%>
         <jsp:include page="/ConnServlet" flush="true"/>
