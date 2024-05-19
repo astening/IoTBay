@@ -9,7 +9,6 @@
         <url-pattern>/AddStaffServlet</url-pattern>
         <!-- Adjust URL pattern as needed -->
     </servlet-mapping>
-<web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
     <servlet>
         <servlet-name>AddCustomerServlet</servlet-name>
         <servlet-class>isdcontroller.AddCustomerServlet</servlet-class>
@@ -200,6 +199,8 @@
     <servlet-mapping>
         <servlet-name>AddProductServlet</servlet-name>
         <url-pattern>/AddProductServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>        
         <servlet-name>AddCustomerServlet</servlet-name>
         <url-pattern>/AddCustomerServlet</url-pattern>
     </servlet-mapping>
@@ -278,6 +279,8 @@
     <servlet-mapping>
         <servlet-name>SearchAccessLogs</servlet-name>
         <url-pattern>/SearchAccessLogs</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>    
         <servlet-name>DeleteCustomerServlet</servlet-name>
         <url-pattern>/DeleteCustomerServlet</url-pattern>
     </servlet-mapping>
