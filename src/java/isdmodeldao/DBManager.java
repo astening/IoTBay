@@ -8,6 +8,7 @@ package isdmodeldao;
  *
  * @author William Sinclair
  */
+import isdmodel.Order;
 import isdmodel.Payment;
 import isdmodel.PaymentMethod;
 import isdmodel.User;
