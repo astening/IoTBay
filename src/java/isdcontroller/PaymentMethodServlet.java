@@ -75,7 +75,8 @@ public class PaymentMethodServlet extends HttpServlet{
         String cardNo = request.getParameter("cardNo");
         String expiryString = request.getParameter("expiryDate");
         String cvvString = request.getParameter("cvv");
-        int cvv = Integer.valueOf(cvvString);
+        
+        
         
         DBManager manager = (DBManager) session.getAttribute("manager");
         User user = (User) session.getAttribute("user");
@@ -105,6 +106,7 @@ public class PaymentMethodServlet extends HttpServlet{
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/yy");
                 YearMonth yearMonth = YearMonth.parse(expiryString, formatter);
                 LocalDate expiryDate = yearMonth.atEndOfMonth();
+                int cvv = Integer.valueOf(cvvString);
                 
                 //updates card details if user has a saved card
                 //status message updated
@@ -118,6 +120,7 @@ public class PaymentMethodServlet extends HttpServlet{
                 } else{
                     //creates a new card attached to user if there isnt one already
                     //status message updated
+                    
                     manager.addPaymentMethod(userID, cardName, cardNo, cvv, expiryDate);
                     paymentMethod = manager.findPaymentMethod(userID);
                     session.setAttribute("paymentMethod", paymentMethod);
