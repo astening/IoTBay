@@ -3,7 +3,7 @@
     Created on : 2 Apr 2024, 1:37 pm
     Author     : William
 --%>
-
+<%@page import="isdmodel.*" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="isdmodel.User" %>
 <!DOCTYPE html>
@@ -38,7 +38,7 @@
                 <td>${user.password}</td>
             </tr>
         </table>
-            <% if (!isSystemsAdmin) { %>
+            <% if (!isSystemsAdmin && user!=null) { %>
                 <a class ="button" href="PaymentMethodServlet?userID=<%=user.getUserID()%>"> Edit Payment Details </a>
             <% } %>
             <br>
@@ -54,3 +54,5 @@
             <% if (isSystemsAdmin) { %>
               <a class="button" href="StaffInformationManagement.jsp">Manage Staff</a>
            <% } %>
+    </body>
+</html>
