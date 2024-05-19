@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import uts.isd.model.dao.DBManager;
+import isdmodeldao.DBManager;
 
 /*Post method creates new Http Session and Validator. Following Validation Checks, 
 it updates the chosen user details in the DB by looking at the UserID*/
