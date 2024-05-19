@@ -36,6 +36,7 @@
     <h1>User Account Details</h1>
     
     <!-- Display user details -->
+    <%if(user!=null) {%>
     <p>First Name: <%= user.getFname() %></p>
     <p>Last Name: <%= user.getLname() %></p>
     <p>Email: <%= user.getEmail() %></p>
@@ -57,5 +58,6 @@
     <form action="DeleteUserServlet" method="post">
         <input type="submit" value="Delete Account">
     </form>
+    <% } %>
 </body>
 </html>
